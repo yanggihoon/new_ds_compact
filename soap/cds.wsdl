@@ -1,0 +1,2044 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="cds"
+ targetNamespace="http://220.120.109.1/project/soap/kim/wsdl/cds.wsdl"
+ xmlns:tns="http://220.120.109.1/project/soap/kim/wsdl/cds.wsdl"
+ xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+ xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:ns="urn:cds"
+ xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/"
+ xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/"
+ xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/"
+ xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+<types>
+
+ <schema targetNamespace="urn:cds"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:ns="urn:cds"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <simpleType name="enum-devInfo">
+   <restriction base="xsd:string">
+    <enumeration value="dummy"/>
+    <enumeration value="boiler"/>
+    <enumeration value="light"/>
+    <enumeration value="gasValve"/>
+    <enumeration value="doorLock"/>
+    <enumeration value="outlet"/>
+    <enumeration value="curtain"/>
+    <enumeration value="airCleaner"/>
+    <enumeration value="bide"/>
+    <enumeration value="aroma"/>
+    <enumeration value="rf"/>
+    <enumeration value="zlplc"/>
+    <enumeration value="bundleLight"/>
+    <enumeration value="systemAircon"/>
+    <enumeration value="fanSystem"/>
+    <enumeration value="aircon"/>
+    <enumeration value="washMachine"/>
+    <enumeration value="dishWashMachine"/>
+    <enumeration value="gasOven"/>
+    <enumeration value="microwave"/>
+    <enumeration value="television"/>
+    <enumeration value="audio"/>
+    <enumeration value="vtr"/>
+    <enumeration value="dvd"/>
+    <enumeration value="refrigerator"/>
+    <enumeration value="kRefrigeator"/>
+    <enumeration value="sensorEmer"/>
+    <enumeration value="exTerminal"/>
+    <enumeration value="protoCommax"/>
+    <enumeration value="protoLnCP"/>
+    <enumeration value="protoSCUBE"/>
+    <enumeration value="protoZ256"/>
+    <enumeration value="protoICROSS"/>
+    <enumeration value="protoSamsung"/>
+    <enumeration value="protoHaMun"/>
+    <enumeration value="intfPLC"/>
+    <enumeration value="intfRF"/>
+    <enumeration value="intfRS485"/>
+    <enumeration value="intfLAN"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-devError">
+   <restriction base="xsd:string">
+    <enumeration value="devError-no"/>
+    <enumeration value="devError-232-Serial-Port-Open-Error"/>
+    <enumeration value="devError-lncp-Common-Micom-Error"/>
+    <enumeration value="devError-lncp-Common-Running-Door-Open"/>
+    <enumeration value="devError-lncp-Common-Hardware-Error"/>
+    <enumeration value="devError-lncp-Common-Sensor-Error"/>
+    <enumeration value="devError-lncp-Common-Motor-Error"/>
+    <enumeration value="devError-lncp-Common-Power-Fail"/>
+    <enumeration value="devError-lncp-Common-Temperature-Range-Error"/>
+    <enumeration value="devError-lncp-Common-Device-Preempted-Error"/>
+    <enumeration value="devError-lncp-Common-Device-control-timeout"/>
+    <enumeration value="devError-lncp-Common-Device-Not-Exist-DD"/>
+    <enumeration value="devError-lncp-Common-Device-Nak-Error"/>
+    <enumeration value="devError-lncp-Common-Incorrect-Option-Setting"/>
+    <enumeration value="devError-lncp-Common-Argument-Error"/>
+    <enumeration value="devError-485-Serial-Port-Open-Error"/>
+    <enumeration value="devError-TTL-Serial-Port-Open-Error"/>
+    <enumeration value="devError-boiler-DisConnect"/>
+    <enumeration value="devError-light-DisConnect"/>
+    <enumeration value="devError-gas-DisConnect"/>
+    <enumeration value="devError-door-DisConnect"/>
+    <enumeration value="devError-outlet-DisConnect"/>
+    <enumeration value="devError-curtain-DisConnect"/>
+    <enumeration value="devError-airCleaner-DisConnect"/>
+    <enumeration value="devError-bide-DisConnect"/>
+    <enumeration value="devError-aroma-DisConnect"/>
+    <enumeration value="devError-rf-DisConnect"/>
+    <enumeration value="devError-plc-DisConnect"/>
+    <enumeration value="devError-bundleLight-DisConnect"/>
+    <enumeration value="devError-systemAircon-DisConnect"/>
+    <enumeration value="devError-fanSystem-DisConnect"/>
+    <enumeration value="devError-aircon-DisConnect"/>
+    <enumeration value="devError-washMachine-DisConnect"/>
+    <enumeration value="devError-dishWashMachine-DisConnect"/>
+    <enumeration value="devError-gasOven-DisConnect"/>
+    <enumeration value="devError-microwave-DisConnect"/>
+    <enumeration value="devError-television-DisConnect"/>
+    <enumeration value="devError-audio-DisConnect"/>
+    <enumeration value="devError-vtr-DisConnect"/>
+    <enumeration value="devError-refrigerator-DisConnect"/>
+    <enumeration value="devError-kRefrigeator-DisConnect"/>
+    <enumeration value="devError-Boiler-control"/>
+    <enumeration value="devError-Boiler-drive"/>
+    <enumeration value="devError-Boiler-boiler"/>
+    <enumeration value="devError-Boiler-eeprom"/>
+    <enumeration value="devGas-notFound-sensor"/>
+    <enumeration value="devError-aroma-catridge1-drive"/>
+    <enumeration value="devError-aroma-catridge2-drive"/>
+    <enumeration value="devError-aroma-catridge3-drive"/>
+    <enumeration value="devStatus-no"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-device-connect-check">
+   <restriction base="xsd:string">
+    <enumeration value="device-connect"/>
+    <enumeration value="not-device-disconnect"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-config-Common-Error">
+   <restriction base="xsd:string">
+    <enumeration value="not-error"/>
+    <enumeration value="not-founded-file"/>
+    <enumeration value="not-founded-configuration-info"/>
+    <enumeration value="not-founded-mismatch-configuration"/>
+    <enumeration value="not-supported-function"/>
+    <enumeration value="supported-function"/>
+    <enumeration value="not-supported-device"/>
+    <enumeration value="device-support"/>
+    <enumeration value="not-response-control"/>
+    <enumeration value="not-device-use"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="deviceCategoryFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-deviceCategory"/>
+    <enumeration value="f-deviceCategoryDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-boiler">
+   <restriction base="xsd:string">
+    <enumeration value="boilerPower-Off"/>
+    <enumeration value="boilerPower-On"/>
+    <enumeration value="boilerHeating-Off"/>
+    <enumeration value="boilerHeating-On"/>
+    <enumeration value="boilerOutMode-Set"/>
+    <enumeration value="boilerOutMode-Release"/>
+    <enumeration value="boilerDipSwitchMode-Hypocaust"/>
+    <enumeration value="boilerDipSwitchMode-InnerTemperature"/>
+    <enumeration value="model-boiler-Rinnai"/>
+    <enumeration value="model-boiler-Kiturami"/>
+    <enumeration value="model-boiler-KyungDong"/>
+    <enumeration value="model-boiler-HansungCisco"/>
+    <enumeration value="model-boiler-HauWell"/>
+    <enumeration value="model-boiler-HanEnergy"/>
+    <enumeration value="model-boiler-Valcon"/>
+    <enumeration value="model-boiler-Kotech"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="boilerFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-boilerPower"/>
+    <enumeration value="f-boilerHeatingPower"/>
+    <enumeration value="f-boilerOutMode"/>
+    <enumeration value="f-boilerRequestedTemperature"/>
+    <enumeration value="f-boilerCurrentTemperature"/>
+    <enumeration value="f-boilerHeatingWaterTemperature"/>
+    <enumeration value="f-boilerDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-light">
+   <restriction base="xsd:string">
+    <enumeration value="lightPower-Off"/>
+    <enumeration value="lightPower-On"/>
+    <enumeration value="lightPower-AllOff"/>
+    <enumeration value="lightPower-AllOn"/>
+    <enumeration value="lightSwitch-Binary"/>
+    <enumeration value="lightSwitch-Dimmable"/>
+    <enumeration value="model-Light-JoongAngControl"/>
+    <enumeration value="model-Light-Clio"/>
+    <enumeration value="model-Light-Anam"/>
+    <enumeration value="model-Light-GoIM"/>
+    <enumeration value="model-Light-PlanetInt"/>
+    <enumeration value="model-UnKnown"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="lightFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-lightPower"/>
+    <enumeration value="f-dimmableLevel"/>
+    <enumeration value="f-lightDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-gasValve">
+   <restriction base="xsd:string">
+    <enumeration value="gvDo-Close"/>
+    <enumeration value="gvDo-Open"/>
+    <enumeration value="gvAlarm-On"/>
+    <enumeration value="gvAlarm-Off"/>
+    <enumeration value="model-GasValve-Shinwoo"/>
+    <enumeration value="model-GasValve-GoIM"/>
+    <enumeration value="model-GasValve-Mat"/>
+    <enumeration value="model-GasValve-koreaFire"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="gasValveFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-gvDo"/>
+    <enumeration value="f-gvAlarm"/>
+    <enumeration value="f-gvDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-curtain">
+   <restriction base="xsd:string">
+    <enumeration value="curtainDo-Close"/>
+    <enumeration value="curtainDo-Open"/>
+    <enumeration value="curtainDo-Stop"/>
+    <enumeration value="model-curtain-PlanetInt"/>
+    <enumeration value="model-curtain-CLIO"/>
+    <enumeration value="model-curtain-HaMun"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="curtainFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-curtainDo"/>
+    <enumeration value="f-curtainAngular"/>
+    <enumeration value="f-curtainDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-bundleLight">
+   <restriction base="xsd:string">
+    <enumeration value="bundleLightPower-Off"/>
+    <enumeration value="bundleLightPower-On"/>
+    <enumeration value="bundleLightPower-AllOff"/>
+    <enumeration value="bundleLightPower-AllOn"/>
+    <enumeration value="readyEnergyPower-Off"/>
+    <enumeration value="readyEnergyPower-On"/>
+    <enumeration value="readyEnergyPower-AllOff"/>
+    <enumeration value="readyEnergyPower-AllOn"/>
+    <enumeration value="bundleLightExit-Notify"/>
+    <enumeration value="bundleLightExit-Entry-Accept"/>
+    <enumeration value="bundleLightExit-Entry-Deny"/>
+    <enumeration value="bundleLightExit-Setting"/>
+    <enumeration value="bundleLightExit-Release"/>
+    <enumeration value="bundleLightElevator-Up"/>
+    <enumeration value="bundleLightElevator-Down"/>
+    <enumeration value="bundleLightElevator-Fail"/>
+    <enumeration value="bundleLightElevator-Success"/>
+    <enumeration value="gasValve-Entry-Accept"/>
+    <enumeration value="gasValve-Entry-Deny"/>
+    <enumeration value="model-BundleLight-icom"/>
+    <enumeration value="model-BundleLight-Clio"/>
+    <enumeration value="model-BundleLight-Anam"/>
+    <enumeration value="model-BundleLight-Speel"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="bundleLightFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-bundleLightPower"/>
+    <enumeration value="f-bundleLightExit"/>
+    <enumeration value="f-readyEnergyPower"/>
+    <enumeration value="f-gasValve"/>
+    <enumeration value="f-bundleLightElevator"/>
+    <enumeration value="f-bundleLightDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-systemAircon">
+   <restriction base="xsd:string">
+    <enumeration value="systemAirconDo-Power-Off"/>
+    <enumeration value="systemAirconDo-Power-On"/>
+    <enumeration value="systemAirconDo-Power-AllOff"/>
+    <enumeration value="systemAirconDo-Power-AllOn"/>
+    <enumeration value="systemAirconDo-WindDirection-UpDown"/>
+    <enumeration value="systemAirconDo-WindDirection-LeftRight"/>
+    <enumeration value="systemAirconDo-WindDirection-UpDownLeftRight"/>
+    <enumeration value="systemAirconDo-WindDirection-Stop"/>
+    <enumeration value="systemAirconDo-Drive-Auto"/>
+    <enumeration value="systemAirconDo-Drive-Cooling"/>
+    <enumeration value="systemAirconDo-Drive-Humidity"/>
+    <enumeration value="systemAirconDo-Drive-Ventilation"/>
+    <enumeration value="systemAirconDo-Drive-Heating"/>
+    <enumeration value="systemAirconDo-WindPower-Auto"/>
+    <enumeration value="systemAirconDo-WindPower-Breeze"/>
+    <enumeration value="systemAirconDo-WindPower-Middle"/>
+    <enumeration value="systemAirconDo-WindPower-Super"/>
+    <enumeration value="systemAirconDo-WindPower-Natural"/>
+    <enumeration value="systemAirconDo-StatusQuery-Start"/>
+    <enumeration value="systemAirconDo-StatusQuery-Stop"/>
+    <enumeration value="systemAirconSt-Power-Start"/>
+    <enumeration value="systemAirconSt-Power-Stop"/>
+    <enumeration value="systemAirconSt-WindDirection-UpDown"/>
+    <enumeration value="systemAirconSt-WindDirection-LeftRight"/>
+    <enumeration value="systemAirconSt-WindDirection-UpDownLeftRight"/>
+    <enumeration value="systemAirconSt-WindDirection-Stop"/>
+    <enumeration value="systemAirconSt-WindPower-Auto"/>
+    <enumeration value="systemAirconSt-WindPower-Breeze"/>
+    <enumeration value="systemAirconSt-WindPower-Middle"/>
+    <enumeration value="systemAirconSt-WindPower-Super"/>
+    <enumeration value="systemAirconSt-WindPower-Natural"/>
+    <enumeration value="systemAirconSt-Drive-Driving"/>
+    <enumeration value="systemAirconSt-Drive-EventRelease"/>
+    <enumeration value="systemAirconSt-Drive-Auto"/>
+    <enumeration value="systemAirconSt-Drive-JaeSang"/>
+    <enumeration value="systemAirconSt-Drive-Ventilation"/>
+    <enumeration value="systemAirconSt-Drive-Humidity"/>
+    <enumeration value="systemAirconSt-Drive-Cooling"/>
+    <enumeration value="systemAirconSt-Drive-Heating"/>
+    <enumeration value="systemAirconSt-Tracking-Success"/>
+    <enumeration value="systemAirconSt-Tracking-Fail"/>
+    <enumeration value="systemAirconSt-Tracking-Searching"/>
+    <enumeration value="systemAirconSt-Tracking-End"/>
+    <enumeration value="systemAirconSt-Installation-Not-Exist"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-Normal"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-InnerTemperature"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-EVA-IN"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-FAN"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-Communication"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-Floating-Switch"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-Open-Two"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-EVA-OUT"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-Normal"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-Temp"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-Sensor"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-Cond"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-Commnuication"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-Error"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-lowPower"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-MagicalPower"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-InitCommunication"/>
+    <enumeration value="model-systemAircon-SamSung"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="systemAirconFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-systemAirconDo-Power"/>
+    <enumeration value="f-systemAirconDo-WindDirection"/>
+    <enumeration value="f-systemAirconDo-WindPower"/>
+    <enumeration value="f-systemAirconDo-Temperature"/>
+    <enumeration value="f-systemAirconDo-Drive"/>
+    <enumeration value="f-systemAirconDo-StatusQuery"/>
+    <enumeration value="f-systemAirconSt-Power"/>
+    <enumeration value="f-systemAirconSt-WindDirection"/>
+    <enumeration value="f-systemAirconSt-WindPower"/>
+    <enumeration value="f-systemAirconSt-Temperature-Set"/>
+    <enumeration value="f-systemAirconSt-Temperature-Current"/>
+    <enumeration value="f-systemAirconSt-Drive"/>
+    <enumeration value="f-systemAirconSt-Tracking"/>
+    <enumeration value="f-systemAirconSt-InnerRoom-Error"/>
+    <enumeration value="f-systemAirconSt-OutRoom-Error"/>
+    <enumeration value="f-systemAirconSt-Installation"/>
+    <enumeration value="f-systemAirconDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-fanSystem">
+   <restriction base="xsd:string">
+    <enumeration value="fanSystemDo-Power-Off"/>
+    <enumeration value="fanSystemDo-Power-On"/>
+    <enumeration value="fanSystemDo-AutoFan-ElectricHeat"/>
+    <enumeration value="fanSystemDo-AutoFan-GeneralFan"/>
+    <enumeration value="fanSystemDo-FanMode-ElectricHeat"/>
+    <enumeration value="fanSystemDo-FanMode-GeneralFan"/>
+    <enumeration value="fanSystemDo-FanMode-Schedule"/>
+    <enumeration value="fanSystemDo-FanMode-SleepingMode"/>
+    <enumeration value="fanSystemDo-Wind-Off"/>
+    <enumeration value="fanSystemDo-Wind-Low"/>
+    <enumeration value="fanSystemDo-Wind-Middle"/>
+    <enumeration value="fanSystemDo-Wind-High"/>
+    <enumeration value="fanSystemDo-ReservationSet-Set"/>
+    <enumeration value="fanSystemDo-ReservationSet-Release"/>
+    <enumeration value="fanSystemDo-ReservationSet-Running"/>
+    <enumeration value="fanSystemDo-ReservationSet-NotRunning"/>
+    <enumeration value="fanSystemSt-Power-Off"/>
+    <enumeration value="fanSystemSt-Power-On"/>
+    <enumeration value="fanSystemSt-AutoFan-ElectricHeat"/>
+    <enumeration value="fanSystemSt-AutoFan-GeneralFan"/>
+    <enumeration value="fanSystemSt-CurrentFanMode-AutoFan"/>
+    <enumeration value="fanSystemSt-FanMode-ElectricHeat"/>
+    <enumeration value="fanSystemSt-FanMode-GeneralFan"/>
+    <enumeration value="fanSystemSt-FanMode-Schedule"/>
+    <enumeration value="fanSystemSt-FanMode-SleepingMode"/>
+    <enumeration value="fanSystemSt-CurrentFanMode-Manual"/>
+    <enumeration value="fanSystemSt-Wind-Off"/>
+    <enumeration value="fanSystemSt-Wind-Low"/>
+    <enumeration value="fanSystemSt-Wind-Middle"/>
+    <enumeration value="fanSystemSt-Wind-High"/>
+    <enumeration value="fanSystemSt-FanReservationSetMode-Hour"/>
+    <enumeration value="fanSystemSt-FanReservationSetMode-Minute"/>
+    <enumeration value="fanSystemSt-ReservationSet-Set"/>
+    <enumeration value="fanSystemSt-ReservationSet-Release"/>
+    <enumeration value="fanSystemSt-ReservationSet-Running"/>
+    <enumeration value="fanSystemSt-ReservationSet-NotRunning"/>
+    <enumeration value="fanSystemSt-SensorMode-NotExistSenosr"/>
+    <enumeration value="fanSystemSt-SensorMode-GasSenosr"/>
+    <enumeration value="fanSystemSt-SensorMode-CO2Senosr"/>
+    <enumeration value="fanSystemSt-DamperMode-NotExist"/>
+    <enumeration value="fanSystemSt-DamperMode-Exist"/>
+    <enumeration value="fanSystemSt-FilterEmpressMode-Normal"/>
+    <enumeration value="fanSystemSt-FilterEmpressMode-Clean"/>
+    <enumeration value="fanSystemSt-FilterEmpressMode-Change"/>
+    <enumeration value="fanSystemSt-FilterEmpressMode-FEChange"/>
+    <enumeration value="fanSystemSt-AlarmMode-Normal"/>
+    <enumeration value="fanSystemSt-AlarmMode-HighSpeedMotor"/>
+    <enumeration value="fanSystemSt-AlarmMode-VentilationMotor"/>
+    <enumeration value="fanSystemSt-AlarmMode-DamperMotor"/>
+    <enumeration value="fanSystemSt-AlarmMode-CO2"/>
+    <enumeration value="fanSystemSt-AlarmMode-TemperatureMotor"/>
+    <enumeration value="fanSystemSt-AlarmMode-OverHeating"/>
+    <enumeration value="fanSystemSt-AlarmMode-DeviceProtect"/>
+    <enumeration value="fanSystemSt-CO2-DensityMode-CO2High"/>
+    <enumeration value="fanSystemSt-CO2-DensityMode-CO2Low"/>
+    <enumeration value="fanSystemSt-GAS-Density-Low"/>
+    <enumeration value="fanSystemSt-GAS-Density-Middle"/>
+    <enumeration value="fanSystemSt-GAS-Density-High"/>
+    <enumeration value="model-fanSystem-KoKomTech"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="fanSystemFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-fanSystemDo-Power"/>
+    <enumeration value="f-fanSystemDo-AutoFan"/>
+    <enumeration value="f-fanSystemDo-FanMode"/>
+    <enumeration value="f-fanSystemDo-FanWind"/>
+    <enumeration value="f-fanSystemDo-FanReservationSet"/>
+    <enumeration value="f-fanSystemSt-Power"/>
+    <enumeration value="f-fanSystemSt-AutoFan"/>
+    <enumeration value="f-fanSystemSt-FanMode"/>
+    <enumeration value="f-fanSystemSt-FanWind"/>
+    <enumeration value="f-fanSystemSt-FanReservationSet"/>
+    <enumeration value="f-fanSystemSt-SensorMode"/>
+    <enumeration value="f-fanSystemSt-DamperMode"/>
+    <enumeration value="f-fanSystemSt-FilterEmpress"/>
+    <enumeration value="f-fanSystemSt-AlarmMode"/>
+    <enumeration value="f-fanSystemSt-Temperature"/>
+    <enumeration value="f-fanSystemSt-CO2-Density"/>
+    <enumeration value="f-fanSystemSt-GAS-Density"/>
+    <enumeration value="f-fanSystemDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-sensorEmer">
+   <restriction base="xsd:string">
+    <enumeration value="seMode-Release"/>
+    <enumeration value="seMode-Set"/>
+    <enumeration value="seMode-Alarm"/>
+    <enumeration value="model-sensorEmer-Menix"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="sensorEmerFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-seMode"/>
+    <enumeration value="f-seDevError"/>
+   </restriction>
+  </simpleType>
+  <complexType name="rootDevice">
+   <sequence>
+     <element name="dev" type="ns:enum-devInfo" minOccurs="1" maxOccurs="1"/>
+     <element name="proto" type="ns:enum-devInfo" minOccurs="1" maxOccurs="1"/>
+     <element name="intf" type="ns:enum-devInfo" minOccurs="1" maxOccurs="1"/>
+     <element name="order" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+   </sequence>
+  </complexType>
+  <complexType name="xsd-devCategory">
+   <sequence>
+     <element name="boiler" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="light" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="gasValve" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="doorLock" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="outlet" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="curtain" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="aroma" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="airCleaner" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="bide" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="rf" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="plc" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLight" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAircon" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystem" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="aircon" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="washMachine" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="dishWashMachine" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="gasOven" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="microwave" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="television" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="audio" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="vtr" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="dvd" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="refrigerator" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="kRefrigeator" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+   </sequence>
+  </complexType>
+  <complexType name="deviceCategory">
+   <sequence>
+     <element name="enable-device-category" type="ns:xsd-devCategory" minOccurs="1" maxOccurs="1"/>
+     <element name="commonError" type="ns:enum-config-Common-Error" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="lightDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="gasDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="doorLockDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="acConsentDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="curtainDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="airconDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="rfDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="deviceConnectionCheck" type="ns:enum-device-connect-check" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:deviceCategoryFunc" minOccurs="1" maxOccurs="1"/>
+   </sequence>
+  </complexType>
+  <complexType name="xsd-BoilerProperty">
+   <sequence>
+     <element name="indivisualBoiler" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="eachBoiler" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerPower-Off" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerPower-On" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerHeatingPower-Off" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerHeatingPower-On" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerOutMode-Set" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerOutMode-Release" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerDipSwitchMode-Hypocaust" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerDipSwitchMode-InnerTemperature" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerRequestedTemperature" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerRequestedTemperatureFrom" type="xsd:unsignedInt" minOccurs="1" maxOccurs="7"/>
+     <element name="boilerRequestedTemperatureTo" type="xsd:unsignedInt" minOccurs="1" maxOccurs="7"/>
+     <element name="boilerCurrentTemperature" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerCurrentTemperatureFrom" type="xsd:unsignedInt" minOccurs="1" maxOccurs="7"/>
+     <element name="boilerCurrentTemperatureTo" type="xsd:unsignedInt" minOccurs="1" maxOccurs="7"/>
+     <element name="boilerHeatingWaterTemperature" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerHeatingWaterTemperatureFrom" type="xsd:unsignedInt" minOccurs="1" maxOccurs="7"/>
+     <element name="boilerHeatingWaterTemperatureTo" type="xsd:unsignedInt" minOccurs="1" maxOccurs="7"/>
+   </sequence>
+  </complexType>
+  <complexType name="boiler">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devBoilerProperty" type="ns:xsd-BoilerProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerZoneName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="boilerRequestedTemperature" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerCurrentTemperature" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerHeatingWaterTemperature" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-boiler" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerPower" type="ns:enum-boiler" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerHeatingPower" type="ns:enum-boiler" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerOutMode" type="ns:enum-boiler" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerDipSwitchMode" type="ns:enum-boiler" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:boilerFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="xsd-LightProperty">
+   <sequence>
+     <element name="lightBinary" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="lightDimmable" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="lightPower-Off" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="lightPower-On" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="lightPower-AllOff" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="lightPower-AllOn" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="dimmerLevelFrom" type="xsd:unsignedInt" minOccurs="1" maxOccurs="4"/>
+     <element name="dimmerLevelTo" type="xsd:unsignedInt" minOccurs="1" maxOccurs="4"/>
+   </sequence>
+  </complexType>
+  <complexType name="light">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devLightProperty" type="ns:xsd-LightProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="lightZoneMainName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="lightZoneSubName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="dimmableLevel" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-light" minOccurs="1" maxOccurs="1"/>
+     <element name="lightPower" type="ns:enum-light" minOccurs="1" maxOccurs="1"/>
+     <element name="lightSwitchMode" type="ns:enum-light" minOccurs="1" maxOccurs="1"/>
+     <element name="lightDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:lightFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="xsd-gasValveProperty">
+   <sequence>
+     <element name="gvDo-Close" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="gvDo-Open" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="gvAlarm-On" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="gvAlarm-Off" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+   </sequence>
+  </complexType>
+  <complexType name="gasValve">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devGasValveProperty" type="ns:xsd-gasValveProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-gasValve" minOccurs="1" maxOccurs="1"/>
+     <element name="gvDo" type="ns:enum-gasValve" minOccurs="1" maxOccurs="1"/>
+     <element name="gvAlarm" type="ns:enum-gasValve" minOccurs="1" maxOccurs="1"/>
+     <element name="gvDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:gasValveFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="xsd-curtainProperty">
+   <sequence>
+     <element name="curtainDo-Close" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="curtainDo-Open" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="curtainDo-Stop" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="curtainAngular" type="xsd:unsignedInt" minOccurs="1" maxOccurs="9"/>
+   </sequence>
+  </complexType>
+  <complexType name="curtain">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devCurtainProperty" type="ns:xsd-curtainProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-curtain" minOccurs="1" maxOccurs="1"/>
+     <element name="curtainDo" type="ns:enum-curtain" minOccurs="1" maxOccurs="1"/>
+     <element name="curtainDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="curtainAngular" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:curtainFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="xsd-bundleLightProperty">
+   <sequence>
+     <element name="bundleLightPower-Off" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightPower-On" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightPower-AllOff" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightPower-AllOn" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="readyEnergyPower-Off" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="readyEnergyPower-On" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="readyEnergyPower-AllOff" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="readyEnergyPower-AllOn" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightExit-Notify" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightExit-Entry-Accept" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightExit-Entry-Deny" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightExit-Setting" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightExit-Release" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightElevator-Up" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightElevator-Down" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="gasValve-Entry-Accept" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="gasValve-Entry-Deny" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+   </sequence>
+  </complexType>
+  <complexType name="bundleLight">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devBundleLightProperty" type="ns:xsd-bundleLightProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-bundleLight" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightPower" type="ns:enum-bundleLight" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightExit" type="ns:enum-bundleLight" minOccurs="1" maxOccurs="1"/>
+     <element name="readyEnergyPower" type="ns:enum-bundleLight" minOccurs="1" maxOccurs="1"/>
+     <element name="gasValve" type="ns:enum-bundleLight" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightElevator" type="ns:enum-bundleLight" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:bundleLightFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="xsd-systemAirconProperty">
+   <sequence>
+     <element name="systemAirconDo-Power-Start" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Power-Stop" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Power-AllRunning" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Power-AllStop" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-WindDirection-UpDown" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-WindDirection-LeftRight" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-WindDirection-UpDownLeftRight" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-WindDirection-Stop" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-WindPower-Auto" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-WindPower-Breeze" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-WindPower-Middle" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-WindPower-Super" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-WindPower-Natural" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Drive-Auto" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Drive-Cool" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Drive-Humidity" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Drive-Ventilation" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Drive-Heating" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Power-Start" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Power-Stop" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-WindDirection-UpDown" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-WindDirection-LeftRight" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-WindDirection-UpDownLeftRight" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-WindDirection-Stop" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-WindPower-Auto" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-WindPower-Breeze" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-WindPower-Middle" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-WindPower-Super" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-WindPower-Natural" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Drive-Driving" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Drive-EventRelease" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Drive-Auto" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Drive-JaeSang" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Drive-Ventilation" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Drive-Humidity" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Drive-Cooling" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Drive-Heating" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Tracking-Success" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Tracking-Fail" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Tracking-Searching" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Tracking-End" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Installation-Not-Exist" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-InnerRoom-Error-Normal" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-InnerRoom-Error-InnerTemperature" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-InnerRoom-Error-EVA-IN" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-InnerRoom-Error-FAN" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-InnerRoom-Error-Communication" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-InnerRoom-Error-Floating-Switch" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-InnerRoom-Error-Open-Two" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-InnerRoom-Error-EVA-OUT" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-OutRoom-Error-Normal" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-OutRoom-Error-Temp" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-OutRoom-Error-Sensor" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-OutRoom-Error-Cond" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-OutRoom-Error-Commnuication" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-OutRoom-Error-Error" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-OutRoom-Error-lowPower" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-OutRoom-Error-MagicalPower" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-OutRoom-Error-InitCommunication" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+   </sequence>
+  </complexType>
+  <complexType name="systemAircon">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devsystemAirconProperty" type="ns:xsd-systemAirconProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Power" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-WindDirection" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-WindPower" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Drive" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-StatusQuery" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Power" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-WindDirection" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-WindPower" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Drive" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Tracking" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Installation" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-InnerRoom-Error" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-OutRoom-Error" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Temperature-Set" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Temperature-Set" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Temperature-Current" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:systemAirconFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="xsd-fanSystemProperty">
+   <sequence>
+     <element name="fanSystemDo-Power-Off" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-Power-On" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-AutoFan-ElectricHeat" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-AutoFan-GeneralFan" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-FanMode-ElectricHeat" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-FanMode-GeneralFan" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-FanMode-Schedule" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-FanMode-SleepingMode" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-Wind-Off" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-Wind-Low" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-Wind-Middle" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-Wind-High" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-ReservationSet" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-ReservationSet-Release" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-ReservationSet-Running" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-ReservationSet-NotRunning" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-Power-Off" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-Power-On" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AutoFan-ElectricHeat" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AutoFan-GeneralFan" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-CurrentFanMode-AutoFan" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanMode-ElectricHeat" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanMode-GeneralFan" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanMode-Schedule" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanMode-SleepingMode" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-CurrentFanMode-Manual" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-Wind-Off" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-Wind-Low" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-Wind-Middle" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-Wind-High" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-ReservationSet" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-ReservationSet-Release" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-ReservationSet-Running" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-ReservationSet-NotRunning" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanReservationSetMode-Hour" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanReservationSetMode-Minute" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanReservation-Hour" type="xsd:unsignedInt" minOccurs="1" maxOccurs="7"/>
+     <element name="fanSystemSt-FanReservation-Minute" type="xsd:unsignedInt" minOccurs="1" maxOccurs="7"/>
+     <element name="fanSystemSt-SensorMode-NotExistSenosr" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-SensorMode-GasSenosr" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-SensorMode-CO2Senosr" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-DamperMode-NotExist" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-DamperMode-Exist" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FilterEmpressMode-Clean" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FilterEmpressMode-Change" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FilterEmpressMode-FEChange" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FilterEmpressMode-Normal" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AlarmMode-Normal" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AlarmMode-HighSpeedMotor" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AlarmMode-VentilationMotor" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AlarmMode-DamperMotor" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AlarmMode-CO2" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AlarmMode-TemperatureMotor" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AlarmMode-OverHeating" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AlarmMode-DeviceProtect" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-CO2-DensityMode-CO2High" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-CO2-DensityMode-CO2Low" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-CO2-Density-High" type="xsd:unsignedInt" minOccurs="1" maxOccurs="7"/>
+     <element name="fanSystemSt-CO2-Density-Low" type="xsd:unsignedInt" minOccurs="1" maxOccurs="7"/>
+     <element name="fanSystemSt-GAS-Density-Low" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-GAS-Density-Middle" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-GAS-Density-High" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+   </sequence>
+  </complexType>
+  <complexType name="fanSystem">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devFanSystemProperty" type="ns:xsd-fanSystemProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-Power" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-AutoFan" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-FanMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-FanWind" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-FanReservationSet" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-Power" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AutoFan" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-CurrentFanMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanWind" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanReservationSet" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanReservationSetMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanReservation-Hour" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="fanReservation-Minute" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-SensorMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-DamperMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FilterEmpressMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AlarmMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-Temperature" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-CO2-DensityMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-CO2-Density-High" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-CO2-Density-Low" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-GAS-Density" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:fanSystemFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="sensorEmer">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="model" type="ns:enum-sensorEmer" minOccurs="1" maxOccurs="1"/>
+     <element name="seMode" type="ns:enum-sensorEmer" minOccurs="1" maxOccurs="1"/>
+     <element name="seDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:sensorEmerFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+ </schema>
+
+</types>
+
+<message name="getDeviceCategoryCountRequest">
+</message>
+
+<message name="getDeviceCategoryCountResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getDeviceCategoryItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getDeviceCategoryItemResponse">
+ <part name="return" type="ns:deviceCategory"/>
+</message>
+
+<message name="getDeviceCategory">
+ <part name="in" type="ns:deviceCategory"/>
+</message>
+
+<message name="getDeviceCategoryResponse">
+ <part name="return" type="ns:deviceCategory"/>
+</message>
+
+<message name="setDeviceCategory">
+ <part name="in" type="ns:deviceCategory"/>
+</message>
+
+<message name="setDeviceCategoryResponse">
+</message>
+
+<message name="deviceCategoryEventRequest">
+ <part name="in" type="ns:deviceCategory"/>
+</message>
+
+<message name="deviceCategoryEventResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getBoilerCountRequest">
+</message>
+
+<message name="getBoilerCountResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getBoilerPropertyItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getBoilerPropertyItemResponse">
+ <part name="return" type="ns:boiler"/>
+</message>
+
+<message name="getBoilerItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getBoilerItemResponse">
+ <part name="return" type="ns:boiler"/>
+</message>
+
+<message name="getBoiler">
+ <part name="in" type="ns:boiler"/>
+</message>
+
+<message name="getBoilerResponse">
+ <part name="return" type="ns:boiler"/>
+</message>
+
+<message name="setBoiler">
+ <part name="in" type="ns:boiler"/>
+</message>
+
+<message name="setBoilerResponse">
+</message>
+
+<message name="boilerEventRequest">
+ <part name="in" type="ns:boiler"/>
+</message>
+
+<message name="boilerEventResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getLightCountRequest">
+</message>
+
+<message name="getLightCountResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getLightPropertyItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getLightPropertyItemResponse">
+ <part name="return" type="ns:light"/>
+</message>
+
+<message name="getLightItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getLightItemResponse">
+ <part name="return" type="ns:light"/>
+</message>
+
+<message name="getLight">
+ <part name="in" type="ns:light"/>
+</message>
+
+<message name="getLightResponse">
+ <part name="return" type="ns:light"/>
+</message>
+
+<message name="setLight">
+ <part name="in" type="ns:light"/>
+</message>
+
+<message name="setLightResponse">
+</message>
+
+<message name="lightEventRequest">
+ <part name="in" type="ns:light"/>
+</message>
+
+<message name="lightEventResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getGasValveCountRequest">
+</message>
+
+<message name="getGasValveCountResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getGasValvePropertyItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getGasValvePropertyItemResponse">
+ <part name="return" type="ns:gasValve"/>
+</message>
+
+<message name="getGasValveItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getGasValveItemResponse">
+ <part name="return" type="ns:gasValve"/>
+</message>
+
+<message name="getGasValve">
+ <part name="in" type="ns:gasValve"/>
+</message>
+
+<message name="getGasValveResponse">
+ <part name="return" type="ns:gasValve"/>
+</message>
+
+<message name="setGasValve">
+ <part name="in" type="ns:gasValve"/>
+</message>
+
+<message name="setGasValveResponse">
+</message>
+
+<message name="gasValveEventRequest">
+ <part name="in" type="ns:gasValve"/>
+</message>
+
+<message name="gasValveEventResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getCurtainCountRequest">
+</message>
+
+<message name="getCurtainCountResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getCurtainPropertyItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getCurtainPropertyItemResponse">
+ <part name="return" type="ns:curtain"/>
+</message>
+
+<message name="getCurtainItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getCurtainItemResponse">
+ <part name="return" type="ns:curtain"/>
+</message>
+
+<message name="getCurtain">
+ <part name="in" type="ns:curtain"/>
+</message>
+
+<message name="getCurtainResponse">
+ <part name="return" type="ns:curtain"/>
+</message>
+
+<message name="setCurtain">
+ <part name="in" type="ns:curtain"/>
+</message>
+
+<message name="setCurtainResponse">
+</message>
+
+<message name="curtainEventRequest">
+ <part name="in" type="ns:curtain"/>
+</message>
+
+<message name="curtainEventResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getBundleLightCountRequest">
+</message>
+
+<message name="getBundleLightCountResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getBundleLightPropertyItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getBundleLightPropertyItemResponse">
+ <part name="return" type="ns:bundleLight"/>
+</message>
+
+<message name="getBundleLightItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getBundleLightItemResponse">
+ <part name="return" type="ns:bundleLight"/>
+</message>
+
+<message name="getBundleLight">
+ <part name="in" type="ns:bundleLight"/>
+</message>
+
+<message name="getBundleLightResponse">
+ <part name="return" type="ns:bundleLight"/>
+</message>
+
+<message name="setBundleLight">
+ <part name="in" type="ns:bundleLight"/>
+</message>
+
+<message name="setBundleLightResponse">
+</message>
+
+<message name="BundleLightEventRequest">
+ <part name="in" type="ns:bundleLight"/>
+</message>
+
+<message name="BundleLightEventResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getSystemAirconCountRequest">
+</message>
+
+<message name="getSystemAirconCountResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getSystemAirconPropertyItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getSystemAirconPropertyItemResponse">
+ <part name="return" type="ns:systemAircon"/>
+</message>
+
+<message name="getSystemAirconItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getSystemAirconItemResponse">
+ <part name="return" type="ns:systemAircon"/>
+</message>
+
+<message name="getSystemAircon">
+ <part name="in" type="ns:systemAircon"/>
+</message>
+
+<message name="getSystemAirconResponse">
+ <part name="return" type="ns:systemAircon"/>
+</message>
+
+<message name="setSystemAircon">
+ <part name="in" type="ns:systemAircon"/>
+</message>
+
+<message name="setSystemAirconResponse">
+</message>
+
+<message name="systemAirconEventRequest">
+ <part name="in" type="ns:systemAircon"/>
+</message>
+
+<message name="systemAirconEventResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getFanSystemCountRequest">
+</message>
+
+<message name="getFanSystemCountResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getFanSystemPropertyItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getFanSystemPropertyItemResponse">
+ <part name="return" type="ns:fanSystem"/>
+</message>
+
+<message name="getFanSystemItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getFanSystemItemResponse">
+ <part name="return" type="ns:fanSystem"/>
+</message>
+
+<message name="getFanSystem">
+ <part name="in" type="ns:fanSystem"/>
+</message>
+
+<message name="getFanSystemResponse">
+ <part name="return" type="ns:fanSystem"/>
+</message>
+
+<message name="setFanSystem">
+ <part name="in" type="ns:fanSystem"/>
+</message>
+
+<message name="setFanSystemResponse">
+</message>
+
+<message name="FanSystemEventRequest">
+ <part name="in" type="ns:fanSystem"/>
+</message>
+
+<message name="FanSystemEventResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getSensorEmerCountRequest">
+</message>
+
+<message name="getSensorEmerCountResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="getSensorEmerItem">
+ <part name="order" type="xsd:int"/>
+</message>
+
+<message name="getSensorEmerItemResponse">
+ <part name="return" type="ns:sensorEmer"/>
+</message>
+
+<message name="getSensorEmer">
+ <part name="in" type="ns:sensorEmer"/>
+</message>
+
+<message name="getSensorEmerResponse">
+ <part name="return" type="ns:sensorEmer"/>
+</message>
+
+<message name="setSensorEmer">
+ <part name="in" type="ns:sensorEmer"/>
+</message>
+
+<message name="setSensorEmerResponse">
+</message>
+
+<message name="sensorEmerEventRequest">
+ <part name="in" type="ns:sensorEmer"/>
+</message>
+
+<message name="sensorEmerEventResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<message name="subcribeEventRequest">
+ <part name="port" type="xsd:int"/>
+</message>
+
+<message name="subcribeEventResponse">
+ <part name="out" type="xsd:int"/>
+</message>
+
+<portType name="cdsPortType">
+ <operation name="getDeviceCategoryCount">
+  <documentation>Service definition of function ns__getDeviceCategoryCount</documentation>
+  <input message="tns:getDeviceCategoryCountRequest"/>
+  <output message="tns:getDeviceCategoryCountResponse"/>
+ </operation>
+ <operation name="getDeviceCategoryItem">
+  <documentation>Service definition of function ns__getDeviceCategoryItem</documentation>
+  <input message="tns:getDeviceCategoryItem"/>
+  <output message="tns:getDeviceCategoryItemResponse"/>
+ </operation>
+ <operation name="getDeviceCategory">
+  <documentation>Service definition of function ns__getDeviceCategory</documentation>
+  <input message="tns:getDeviceCategory"/>
+  <output message="tns:getDeviceCategoryResponse"/>
+ </operation>
+ <operation name="setDeviceCategory">
+  <documentation>Service definition of function ns__setDeviceCategory</documentation>
+  <input message="tns:setDeviceCategory"/>
+  <output message="tns:setDeviceCategoryResponse"/>
+ </operation>
+ <operation name="deviceCategoryEvent">
+  <documentation>Service definition of function ns__deviceCategoryEvent</documentation>
+  <input message="tns:deviceCategoryEventRequest"/>
+  <output message="tns:deviceCategoryEventResponse"/>
+ </operation>
+ <operation name="getBoilerCount">
+  <documentation>Service definition of function ns__getBoilerCount</documentation>
+  <input message="tns:getBoilerCountRequest"/>
+  <output message="tns:getBoilerCountResponse"/>
+ </operation>
+ <operation name="getBoilerPropertyItem">
+  <documentation>Service definition of function ns__getBoilerPropertyItem</documentation>
+  <input message="tns:getBoilerPropertyItem"/>
+  <output message="tns:getBoilerPropertyItemResponse"/>
+ </operation>
+ <operation name="getBoilerItem">
+  <documentation>Service definition of function ns__getBoilerItem</documentation>
+  <input message="tns:getBoilerItem"/>
+  <output message="tns:getBoilerItemResponse"/>
+ </operation>
+ <operation name="getBoiler">
+  <documentation>Service definition of function ns__getBoiler</documentation>
+  <input message="tns:getBoiler"/>
+  <output message="tns:getBoilerResponse"/>
+ </operation>
+ <operation name="setBoiler">
+  <documentation>Service definition of function ns__setBoiler</documentation>
+  <input message="tns:setBoiler"/>
+  <output message="tns:setBoilerResponse"/>
+ </operation>
+ <operation name="boilerEvent">
+  <documentation>Service definition of function ns__boilerEvent</documentation>
+  <input message="tns:boilerEventRequest"/>
+  <output message="tns:boilerEventResponse"/>
+ </operation>
+ <operation name="getLightCount">
+  <documentation>Service definition of function ns__getLightCount</documentation>
+  <input message="tns:getLightCountRequest"/>
+  <output message="tns:getLightCountResponse"/>
+ </operation>
+ <operation name="getLightPropertyItem">
+  <documentation>Service definition of function ns__getLightPropertyItem</documentation>
+  <input message="tns:getLightPropertyItem"/>
+  <output message="tns:getLightPropertyItemResponse"/>
+ </operation>
+ <operation name="getLightItem">
+  <documentation>Service definition of function ns__getLightItem</documentation>
+  <input message="tns:getLightItem"/>
+  <output message="tns:getLightItemResponse"/>
+ </operation>
+ <operation name="getLight">
+  <documentation>Service definition of function ns__getLight</documentation>
+  <input message="tns:getLight"/>
+  <output message="tns:getLightResponse"/>
+ </operation>
+ <operation name="setLight">
+  <documentation>Service definition of function ns__setLight</documentation>
+  <input message="tns:setLight"/>
+  <output message="tns:setLightResponse"/>
+ </operation>
+ <operation name="lightEvent">
+  <documentation>Service definition of function ns__lightEvent</documentation>
+  <input message="tns:lightEventRequest"/>
+  <output message="tns:lightEventResponse"/>
+ </operation>
+ <operation name="getGasValveCount">
+  <documentation>Service definition of function ns__getGasValveCount</documentation>
+  <input message="tns:getGasValveCountRequest"/>
+  <output message="tns:getGasValveCountResponse"/>
+ </operation>
+ <operation name="getGasValvePropertyItem">
+  <documentation>Service definition of function ns__getGasValvePropertyItem</documentation>
+  <input message="tns:getGasValvePropertyItem"/>
+  <output message="tns:getGasValvePropertyItemResponse"/>
+ </operation>
+ <operation name="getGasValveItem">
+  <documentation>Service definition of function ns__getGasValveItem</documentation>
+  <input message="tns:getGasValveItem"/>
+  <output message="tns:getGasValveItemResponse"/>
+ </operation>
+ <operation name="getGasValve">
+  <documentation>Service definition of function ns__getGasValve</documentation>
+  <input message="tns:getGasValve"/>
+  <output message="tns:getGasValveResponse"/>
+ </operation>
+ <operation name="setGasValve">
+  <documentation>Service definition of function ns__setGasValve</documentation>
+  <input message="tns:setGasValve"/>
+  <output message="tns:setGasValveResponse"/>
+ </operation>
+ <operation name="gasValveEvent">
+  <documentation>Service definition of function ns__gasValveEvent</documentation>
+  <input message="tns:gasValveEventRequest"/>
+  <output message="tns:gasValveEventResponse"/>
+ </operation>
+ <operation name="getCurtainCount">
+  <documentation>Service definition of function ns__getCurtainCount</documentation>
+  <input message="tns:getCurtainCountRequest"/>
+  <output message="tns:getCurtainCountResponse"/>
+ </operation>
+ <operation name="getCurtainPropertyItem">
+  <documentation>Service definition of function ns__getCurtainPropertyItem</documentation>
+  <input message="tns:getCurtainPropertyItem"/>
+  <output message="tns:getCurtainPropertyItemResponse"/>
+ </operation>
+ <operation name="getCurtainItem">
+  <documentation>Service definition of function ns__getCurtainItem</documentation>
+  <input message="tns:getCurtainItem"/>
+  <output message="tns:getCurtainItemResponse"/>
+ </operation>
+ <operation name="getCurtain">
+  <documentation>Service definition of function ns__getCurtain</documentation>
+  <input message="tns:getCurtain"/>
+  <output message="tns:getCurtainResponse"/>
+ </operation>
+ <operation name="setCurtain">
+  <documentation>Service definition of function ns__setCurtain</documentation>
+  <input message="tns:setCurtain"/>
+  <output message="tns:setCurtainResponse"/>
+ </operation>
+ <operation name="curtainEvent">
+  <documentation>Service definition of function ns__curtainEvent</documentation>
+  <input message="tns:curtainEventRequest"/>
+  <output message="tns:curtainEventResponse"/>
+ </operation>
+ <operation name="getBundleLightCount">
+  <documentation>Service definition of function ns__getBundleLightCount</documentation>
+  <input message="tns:getBundleLightCountRequest"/>
+  <output message="tns:getBundleLightCountResponse"/>
+ </operation>
+ <operation name="getBundleLightPropertyItem">
+  <documentation>Service definition of function ns__getBundleLightPropertyItem</documentation>
+  <input message="tns:getBundleLightPropertyItem"/>
+  <output message="tns:getBundleLightPropertyItemResponse"/>
+ </operation>
+ <operation name="getBundleLightItem">
+  <documentation>Service definition of function ns__getBundleLightItem</documentation>
+  <input message="tns:getBundleLightItem"/>
+  <output message="tns:getBundleLightItemResponse"/>
+ </operation>
+ <operation name="getBundleLight">
+  <documentation>Service definition of function ns__getBundleLight</documentation>
+  <input message="tns:getBundleLight"/>
+  <output message="tns:getBundleLightResponse"/>
+ </operation>
+ <operation name="setBundleLight">
+  <documentation>Service definition of function ns__setBundleLight</documentation>
+  <input message="tns:setBundleLight"/>
+  <output message="tns:setBundleLightResponse"/>
+ </operation>
+ <operation name="BundleLightEvent">
+  <documentation>Service definition of function ns__BundleLightEvent</documentation>
+  <input message="tns:BundleLightEventRequest"/>
+  <output message="tns:BundleLightEventResponse"/>
+ </operation>
+ <operation name="getSystemAirconCount">
+  <documentation>Service definition of function ns__getSystemAirconCount</documentation>
+  <input message="tns:getSystemAirconCountRequest"/>
+  <output message="tns:getSystemAirconCountResponse"/>
+ </operation>
+ <operation name="getSystemAirconPropertyItem">
+  <documentation>Service definition of function ns__getSystemAirconPropertyItem</documentation>
+  <input message="tns:getSystemAirconPropertyItem"/>
+  <output message="tns:getSystemAirconPropertyItemResponse"/>
+ </operation>
+ <operation name="getSystemAirconItem">
+  <documentation>Service definition of function ns__getSystemAirconItem</documentation>
+  <input message="tns:getSystemAirconItem"/>
+  <output message="tns:getSystemAirconItemResponse"/>
+ </operation>
+ <operation name="getSystemAircon">
+  <documentation>Service definition of function ns__getSystemAircon</documentation>
+  <input message="tns:getSystemAircon"/>
+  <output message="tns:getSystemAirconResponse"/>
+ </operation>
+ <operation name="setSystemAircon">
+  <documentation>Service definition of function ns__setSystemAircon</documentation>
+  <input message="tns:setSystemAircon"/>
+  <output message="tns:setSystemAirconResponse"/>
+ </operation>
+ <operation name="systemAirconEvent">
+  <documentation>Service definition of function ns__systemAirconEvent</documentation>
+  <input message="tns:systemAirconEventRequest"/>
+  <output message="tns:systemAirconEventResponse"/>
+ </operation>
+ <operation name="getFanSystemCount">
+  <documentation>Service definition of function ns__getFanSystemCount</documentation>
+  <input message="tns:getFanSystemCountRequest"/>
+  <output message="tns:getFanSystemCountResponse"/>
+ </operation>
+ <operation name="getFanSystemPropertyItem">
+  <documentation>Service definition of function ns__getFanSystemPropertyItem</documentation>
+  <input message="tns:getFanSystemPropertyItem"/>
+  <output message="tns:getFanSystemPropertyItemResponse"/>
+ </operation>
+ <operation name="getFanSystemItem">
+  <documentation>Service definition of function ns__getFanSystemItem</documentation>
+  <input message="tns:getFanSystemItem"/>
+  <output message="tns:getFanSystemItemResponse"/>
+ </operation>
+ <operation name="getFanSystem">
+  <documentation>Service definition of function ns__getFanSystem</documentation>
+  <input message="tns:getFanSystem"/>
+  <output message="tns:getFanSystemResponse"/>
+ </operation>
+ <operation name="setFanSystem">
+  <documentation>Service definition of function ns__setFanSystem</documentation>
+  <input message="tns:setFanSystem"/>
+  <output message="tns:setFanSystemResponse"/>
+ </operation>
+ <operation name="FanSystemEvent">
+  <documentation>Service definition of function ns__FanSystemEvent</documentation>
+  <input message="tns:FanSystemEventRequest"/>
+  <output message="tns:FanSystemEventResponse"/>
+ </operation>
+ <operation name="getSensorEmerCount">
+  <documentation>Service definition of function ns__getSensorEmerCount</documentation>
+  <input message="tns:getSensorEmerCountRequest"/>
+  <output message="tns:getSensorEmerCountResponse"/>
+ </operation>
+ <operation name="getSensorEmerItem">
+  <documentation>Service definition of function ns__getSensorEmerItem</documentation>
+  <input message="tns:getSensorEmerItem"/>
+  <output message="tns:getSensorEmerItemResponse"/>
+ </operation>
+ <operation name="getSensorEmer">
+  <documentation>Service definition of function ns__getSensorEmer</documentation>
+  <input message="tns:getSensorEmer"/>
+  <output message="tns:getSensorEmerResponse"/>
+ </operation>
+ <operation name="setSensorEmer">
+  <documentation>Service definition of function ns__setSensorEmer</documentation>
+  <input message="tns:setSensorEmer"/>
+  <output message="tns:setSensorEmerResponse"/>
+ </operation>
+ <operation name="sensorEmerEvent">
+  <documentation>Service definition of function ns__sensorEmerEvent</documentation>
+  <input message="tns:sensorEmerEventRequest"/>
+  <output message="tns:sensorEmerEventResponse"/>
+ </operation>
+ <operation name="subcribeEvent">
+  <documentation>Service definition of function ns__subcribeEvent</documentation>
+  <input message="tns:subcribeEventRequest"/>
+  <output message="tns:subcribeEventResponse"/>
+ </operation>
+</portType>
+
+<binding name="cds" type="tns:cdsPortType">
+ <SOAP:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+ <operation name="getDeviceCategoryCount">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getDeviceCategoryItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getDeviceCategory">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="setDeviceCategory">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="deviceCategoryEvent">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getBoilerCount">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getBoilerPropertyItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getBoilerItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getBoiler">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="setBoiler">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="boilerEvent">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getLightCount">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getLightPropertyItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getLightItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getLight">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="setLight">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="lightEvent">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getGasValveCount">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getGasValvePropertyItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getGasValveItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getGasValve">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="setGasValve">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="gasValveEvent">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getCurtainCount">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getCurtainPropertyItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getCurtainItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getCurtain">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="setCurtain">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="curtainEvent">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getBundleLightCount">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getBundleLightPropertyItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getBundleLightItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getBundleLight">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="setBundleLight">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="BundleLightEvent">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getSystemAirconCount">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getSystemAirconPropertyItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getSystemAirconItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getSystemAircon">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="setSystemAircon">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="systemAirconEvent">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getFanSystemCount">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getFanSystemPropertyItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getFanSystemItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getFanSystem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="setFanSystem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="FanSystemEvent">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getSensorEmerCount">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getSensorEmerItem">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="getSensorEmer">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="setSensorEmer">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="sensorEmerEvent">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="subcribeEvent">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+</binding>
+
+<service name="cds">
+ <documentation>gSOAP 2.7.6e generated service definition</documentation>
+ <port name="cds" binding="tns:cds">
+  <SOAP:address location="http://220.120.109.37:29700"/>
+ </port>
+</service>
+
+</definitions>

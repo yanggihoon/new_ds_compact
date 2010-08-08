@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <schema targetNamespace="urn:cds"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:ns="urn:cds"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <simpleType name="enum-devInfo">
+   <restriction base="xsd:string">
+    <enumeration value="dummy"/>
+    <enumeration value="boiler"/>
+    <enumeration value="light"/>
+    <enumeration value="gasValve"/>
+    <enumeration value="doorLock"/>
+    <enumeration value="outlet"/>
+    <enumeration value="curtain"/>
+    <enumeration value="airCleaner"/>
+    <enumeration value="bide"/>
+    <enumeration value="aroma"/>
+    <enumeration value="rf"/>
+    <enumeration value="zlplc"/>
+    <enumeration value="bundleLight"/>
+    <enumeration value="systemAircon"/>
+    <enumeration value="fanSystem"/>
+    <enumeration value="aircon"/>
+    <enumeration value="washMachine"/>
+    <enumeration value="dishWashMachine"/>
+    <enumeration value="gasOven"/>
+    <enumeration value="microwave"/>
+    <enumeration value="television"/>
+    <enumeration value="audio"/>
+    <enumeration value="vtr"/>
+    <enumeration value="dvd"/>
+    <enumeration value="refrigerator"/>
+    <enumeration value="kRefrigeator"/>
+    <enumeration value="sensorEmer"/>
+    <enumeration value="exTerminal"/>
+    <enumeration value="protoCommax"/>
+    <enumeration value="protoLnCP"/>
+    <enumeration value="protoSCUBE"/>
+    <enumeration value="protoZ256"/>
+    <enumeration value="protoICROSS"/>
+    <enumeration value="protoSamsung"/>
+    <enumeration value="protoHaMun"/>
+    <enumeration value="intfPLC"/>
+    <enumeration value="intfRF"/>
+    <enumeration value="intfRS485"/>
+    <enumeration value="intfLAN"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-devError">
+   <restriction base="xsd:string">
+    <enumeration value="devError-no"/>
+    <enumeration value="devError-232-Serial-Port-Open-Error"/>
+    <enumeration value="devError-lncp-Common-Micom-Error"/>
+    <enumeration value="devError-lncp-Common-Running-Door-Open"/>
+    <enumeration value="devError-lncp-Common-Hardware-Error"/>
+    <enumeration value="devError-lncp-Common-Sensor-Error"/>
+    <enumeration value="devError-lncp-Common-Motor-Error"/>
+    <enumeration value="devError-lncp-Common-Power-Fail"/>
+    <enumeration value="devError-lncp-Common-Temperature-Range-Error"/>
+    <enumeration value="devError-lncp-Common-Device-Preempted-Error"/>
+    <enumeration value="devError-lncp-Common-Device-control-timeout"/>
+    <enumeration value="devError-lncp-Common-Device-Not-Exist-DD"/>
+    <enumeration value="devError-lncp-Common-Device-Nak-Error"/>
+    <enumeration value="devError-lncp-Common-Incorrect-Option-Setting"/>
+    <enumeration value="devError-lncp-Common-Argument-Error"/>
+    <enumeration value="devError-485-Serial-Port-Open-Error"/>
+    <enumeration value="devError-TTL-Serial-Port-Open-Error"/>
+    <enumeration value="devError-boiler-DisConnect"/>
+    <enumeration value="devError-light-DisConnect"/>
+    <enumeration value="devError-gas-DisConnect"/>
+    <enumeration value="devError-door-DisConnect"/>
+    <enumeration value="devError-outlet-DisConnect"/>
+    <enumeration value="devError-curtain-DisConnect"/>
+    <enumeration value="devError-airCleaner-DisConnect"/>
+    <enumeration value="devError-bide-DisConnect"/>
+    <enumeration value="devError-aroma-DisConnect"/>
+    <enumeration value="devError-rf-DisConnect"/>
+    <enumeration value="devError-plc-DisConnect"/>
+    <enumeration value="devError-bundleLight-DisConnect"/>
+    <enumeration value="devError-systemAircon-DisConnect"/>
+    <enumeration value="devError-fanSystem-DisConnect"/>
+    <enumeration value="devError-aircon-DisConnect"/>
+    <enumeration value="devError-washMachine-DisConnect"/>
+    <enumeration value="devError-dishWashMachine-DisConnect"/>
+    <enumeration value="devError-gasOven-DisConnect"/>
+    <enumeration value="devError-microwave-DisConnect"/>
+    <enumeration value="devError-television-DisConnect"/>
+    <enumeration value="devError-audio-DisConnect"/>
+    <enumeration value="devError-vtr-DisConnect"/>
+    <enumeration value="devError-refrigerator-DisConnect"/>
+    <enumeration value="devError-kRefrigeator-DisConnect"/>
+    <enumeration value="devError-Boiler-control"/>
+    <enumeration value="devError-Boiler-drive"/>
+    <enumeration value="devError-Boiler-boiler"/>
+    <enumeration value="devError-Boiler-eeprom"/>
+    <enumeration value="devGas-notFound-sensor"/>
+    <enumeration value="devError-aroma-catridge1-drive"/>
+    <enumeration value="devError-aroma-catridge2-drive"/>
+    <enumeration value="devError-aroma-catridge3-drive"/>
+    <enumeration value="devStatus-no"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-device-connect-check">
+   <restriction base="xsd:string">
+    <enumeration value="device-connect"/>
+    <enumeration value="not-device-disconnect"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-config-Common-Error">
+   <restriction base="xsd:string">
+    <enumeration value="not-error"/>
+    <enumeration value="not-founded-file"/>
+    <enumeration value="not-founded-configuration-info"/>
+    <enumeration value="not-founded-mismatch-configuration"/>
+    <enumeration value="not-supported-function"/>
+    <enumeration value="supported-function"/>
+    <enumeration value="not-supported-device"/>
+    <enumeration value="device-support"/>
+    <enumeration value="not-response-control"/>
+    <enumeration value="not-device-use"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="deviceCategoryFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-deviceCategory"/>
+    <enumeration value="f-deviceCategoryDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-boiler">
+   <restriction base="xsd:string">
+    <enumeration value="boilerPower-Off"/>
+    <enumeration value="boilerPower-On"/>
+    <enumeration value="boilerHeating-Off"/>
+    <enumeration value="boilerHeating-On"/>
+    <enumeration value="boilerOutMode-Set"/>
+    <enumeration value="boilerOutMode-Release"/>
+    <enumeration value="boilerDipSwitchMode-Hypocaust"/>
+    <enumeration value="boilerDipSwitchMode-InnerTemperature"/>
+    <enumeration value="model-boiler-Rinnai"/>
+    <enumeration value="model-boiler-Kiturami"/>
+    <enumeration value="model-boiler-KyungDong"/>
+    <enumeration value="model-boiler-HansungCisco"/>
+    <enumeration value="model-boiler-HauWell"/>
+    <enumeration value="model-boiler-HanEnergy"/>
+    <enumeration value="model-boiler-Valcon"/>
+    <enumeration value="model-boiler-Kotech"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="boilerFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-boilerPower"/>
+    <enumeration value="f-boilerHeatingPower"/>
+    <enumeration value="f-boilerOutMode"/>
+    <enumeration value="f-boilerRequestedTemperature"/>
+    <enumeration value="f-boilerCurrentTemperature"/>
+    <enumeration value="f-boilerHeatingWaterTemperature"/>
+    <enumeration value="f-boilerDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-light">
+   <restriction base="xsd:string">
+    <enumeration value="lightPower-Off"/>
+    <enumeration value="lightPower-On"/>
+    <enumeration value="lightPower-AllOff"/>
+    <enumeration value="lightPower-AllOn"/>
+    <enumeration value="lightSwitch-Binary"/>
+    <enumeration value="lightSwitch-Dimmable"/>
+    <enumeration value="model-Light-JoongAngControl"/>
+    <enumeration value="model-Light-Clio"/>
+    <enumeration value="model-Light-Anam"/>
+    <enumeration value="model-Light-GoIM"/>
+    <enumeration value="model-Light-PlanetInt"/>
+    <enumeration value="model-UnKnown"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="lightFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-lightPower"/>
+    <enumeration value="f-dimmableLevel"/>
+    <enumeration value="f-lightDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-gasValve">
+   <restriction base="xsd:string">
+    <enumeration value="gvDo-Close"/>
+    <enumeration value="gvDo-Open"/>
+    <enumeration value="gvAlarm-On"/>
+    <enumeration value="gvAlarm-Off"/>
+    <enumeration value="model-GasValve-Shinwoo"/>
+    <enumeration value="model-GasValve-GoIM"/>
+    <enumeration value="model-GasValve-Mat"/>
+    <enumeration value="model-GasValve-koreaFire"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="gasValveFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-gvDo"/>
+    <enumeration value="f-gvAlarm"/>
+    <enumeration value="f-gvDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-curtain">
+   <restriction base="xsd:string">
+    <enumeration value="curtainDo-Close"/>
+    <enumeration value="curtainDo-Open"/>
+    <enumeration value="curtainDo-Stop"/>
+    <enumeration value="model-curtain-PlanetInt"/>
+    <enumeration value="model-curtain-CLIO"/>
+    <enumeration value="model-curtain-HaMun"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="curtainFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-curtainDo"/>
+    <enumeration value="f-curtainAngular"/>
+    <enumeration value="f-curtainDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-bundleLight">
+   <restriction base="xsd:string">
+    <enumeration value="bundleLightPower-Off"/>
+    <enumeration value="bundleLightPower-On"/>
+    <enumeration value="bundleLightPower-AllOff"/>
+    <enumeration value="bundleLightPower-AllOn"/>
+    <enumeration value="readyEnergyPower-Off"/>
+    <enumeration value="readyEnergyPower-On"/>
+    <enumeration value="readyEnergyPower-AllOff"/>
+    <enumeration value="readyEnergyPower-AllOn"/>
+    <enumeration value="bundleLightExit-Notify"/>
+    <enumeration value="bundleLightExit-Entry-Accept"/>
+    <enumeration value="bundleLightExit-Entry-Deny"/>
+    <enumeration value="bundleLightExit-Setting"/>
+    <enumeration value="bundleLightExit-Release"/>
+    <enumeration value="bundleLightElevator-Up"/>
+    <enumeration value="bundleLightElevator-Down"/>
+    <enumeration value="bundleLightElevator-Fail"/>
+    <enumeration value="bundleLightElevator-Success"/>
+    <enumeration value="gasValve-Entry-Accept"/>
+    <enumeration value="gasValve-Entry-Deny"/>
+    <enumeration value="model-BundleLight-icom"/>
+    <enumeration value="model-BundleLight-Clio"/>
+    <enumeration value="model-BundleLight-Anam"/>
+    <enumeration value="model-BundleLight-Speel"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="bundleLightFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-bundleLightPower"/>
+    <enumeration value="f-bundleLightExit"/>
+    <enumeration value="f-readyEnergyPower"/>
+    <enumeration value="f-gasValve"/>
+    <enumeration value="f-bundleLightElevator"/>
+    <enumeration value="f-bundleLightDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-systemAircon">
+   <restriction base="xsd:string">
+    <enumeration value="systemAirconDo-Power-Off"/>
+    <enumeration value="systemAirconDo-Power-On"/>
+    <enumeration value="systemAirconDo-Power-AllOff"/>
+    <enumeration value="systemAirconDo-Power-AllOn"/>
+    <enumeration value="systemAirconDo-WindDirection-UpDown"/>
+    <enumeration value="systemAirconDo-WindDirection-LeftRight"/>
+    <enumeration value="systemAirconDo-WindDirection-UpDownLeftRight"/>
+    <enumeration value="systemAirconDo-WindDirection-Stop"/>
+    <enumeration value="systemAirconDo-Drive-Auto"/>
+    <enumeration value="systemAirconDo-Drive-Cooling"/>
+    <enumeration value="systemAirconDo-Drive-Humidity"/>
+    <enumeration value="systemAirconDo-Drive-Ventilation"/>
+    <enumeration value="systemAirconDo-Drive-Heating"/>
+    <enumeration value="systemAirconDo-WindPower-Auto"/>
+    <enumeration value="systemAirconDo-WindPower-Breeze"/>
+    <enumeration value="systemAirconDo-WindPower-Middle"/>
+    <enumeration value="systemAirconDo-WindPower-Super"/>
+    <enumeration value="systemAirconDo-WindPower-Natural"/>
+    <enumeration value="systemAirconDo-StatusQuery-Start"/>
+    <enumeration value="systemAirconDo-StatusQuery-Stop"/>
+    <enumeration value="systemAirconSt-Power-Start"/>
+    <enumeration value="systemAirconSt-Power-Stop"/>
+    <enumeration value="systemAirconSt-WindDirection-UpDown"/>
+    <enumeration value="systemAirconSt-WindDirection-LeftRight"/>
+    <enumeration value="systemAirconSt-WindDirection-UpDownLeftRight"/>
+    <enumeration value="systemAirconSt-WindDirection-Stop"/>
+    <enumeration value="systemAirconSt-WindPower-Auto"/>
+    <enumeration value="systemAirconSt-WindPower-Breeze"/>
+    <enumeration value="systemAirconSt-WindPower-Middle"/>
+    <enumeration value="systemAirconSt-WindPower-Super"/>
+    <enumeration value="systemAirconSt-WindPower-Natural"/>
+    <enumeration value="systemAirconSt-Drive-Driving"/>
+    <enumeration value="systemAirconSt-Drive-EventRelease"/>
+    <enumeration value="systemAirconSt-Drive-Auto"/>
+    <enumeration value="systemAirconSt-Drive-JaeSang"/>
+    <enumeration value="systemAirconSt-Drive-Ventilation"/>
+    <enumeration value="systemAirconSt-Drive-Humidity"/>
+    <enumeration value="systemAirconSt-Drive-Cooling"/>
+    <enumeration value="systemAirconSt-Drive-Heating"/>
+    <enumeration value="systemAirconSt-Tracking-Success"/>
+    <enumeration value="systemAirconSt-Tracking-Fail"/>
+    <enumeration value="systemAirconSt-Tracking-Searching"/>
+    <enumeration value="systemAirconSt-Tracking-End"/>
+    <enumeration value="systemAirconSt-Installation-Not-Exist"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-Normal"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-InnerTemperature"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-EVA-IN"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-FAN"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-Communication"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-Floating-Switch"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-Open-Two"/>
+    <enumeration value="systemAirconSt-InnerRoom-Error-EVA-OUT"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-Normal"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-Temp"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-Sensor"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-Cond"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-Commnuication"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-Error"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-lowPower"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-MagicalPower"/>
+    <enumeration value="systemAirconSt-OutRoom-Error-InitCommunication"/>
+    <enumeration value="model-systemAircon-SamSung"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="systemAirconFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-systemAirconDo-Power"/>
+    <enumeration value="f-systemAirconDo-WindDirection"/>
+    <enumeration value="f-systemAirconDo-WindPower"/>
+    <enumeration value="f-systemAirconDo-Temperature"/>
+    <enumeration value="f-systemAirconDo-Drive"/>
+    <enumeration value="f-systemAirconDo-StatusQuery"/>
+    <enumeration value="f-systemAirconSt-Power"/>
+    <enumeration value="f-systemAirconSt-WindDirection"/>
+    <enumeration value="f-systemAirconSt-WindPower"/>
+    <enumeration value="f-systemAirconSt-Temperature-Set"/>
+    <enumeration value="f-systemAirconSt-Temperature-Current"/>
+    <enumeration value="f-systemAirconSt-Drive"/>
+    <enumeration value="f-systemAirconSt-Tracking"/>
+    <enumeration value="f-systemAirconSt-InnerRoom-Error"/>
+    <enumeration value="f-systemAirconSt-OutRoom-Error"/>
+    <enumeration value="f-systemAirconSt-Installation"/>
+    <enumeration value="f-systemAirconDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-fanSystem">
+   <restriction base="xsd:string">
+    <enumeration value="fanSystemDo-Power-Off"/>
+    <enumeration value="fanSystemDo-Power-On"/>
+    <enumeration value="fanSystemDo-AutoFan-ElectricHeat"/>
+    <enumeration value="fanSystemDo-AutoFan-GeneralFan"/>
+    <enumeration value="fanSystemDo-FanMode-ElectricHeat"/>
+    <enumeration value="fanSystemDo-FanMode-GeneralFan"/>
+    <enumeration value="fanSystemDo-FanMode-Schedule"/>
+    <enumeration value="fanSystemDo-FanMode-SleepingMode"/>
+    <enumeration value="fanSystemDo-Wind-Off"/>
+    <enumeration value="fanSystemDo-Wind-Low"/>
+    <enumeration value="fanSystemDo-Wind-Middle"/>
+    <enumeration value="fanSystemDo-Wind-High"/>
+    <enumeration value="fanSystemDo-ReservationSet-Set"/>
+    <enumeration value="fanSystemDo-ReservationSet-Release"/>
+    <enumeration value="fanSystemDo-ReservationSet-Running"/>
+    <enumeration value="fanSystemDo-ReservationSet-NotRunning"/>
+    <enumeration value="fanSystemSt-Power-Off"/>
+    <enumeration value="fanSystemSt-Power-On"/>
+    <enumeration value="fanSystemSt-AutoFan-ElectricHeat"/>
+    <enumeration value="fanSystemSt-AutoFan-GeneralFan"/>
+    <enumeration value="fanSystemSt-CurrentFanMode-AutoFan"/>
+    <enumeration value="fanSystemSt-FanMode-ElectricHeat"/>
+    <enumeration value="fanSystemSt-FanMode-GeneralFan"/>
+    <enumeration value="fanSystemSt-FanMode-Schedule"/>
+    <enumeration value="fanSystemSt-FanMode-SleepingMode"/>
+    <enumeration value="fanSystemSt-CurrentFanMode-Manual"/>
+    <enumeration value="fanSystemSt-Wind-Off"/>
+    <enumeration value="fanSystemSt-Wind-Low"/>
+    <enumeration value="fanSystemSt-Wind-Middle"/>
+    <enumeration value="fanSystemSt-Wind-High"/>
+    <enumeration value="fanSystemSt-FanReservationSetMode-Hour"/>
+    <enumeration value="fanSystemSt-FanReservationSetMode-Minute"/>
+    <enumeration value="fanSystemSt-ReservationSet-Set"/>
+    <enumeration value="fanSystemSt-ReservationSet-Release"/>
+    <enumeration value="fanSystemSt-ReservationSet-Running"/>
+    <enumeration value="fanSystemSt-ReservationSet-NotRunning"/>
+    <enumeration value="fanSystemSt-SensorMode-NotExistSenosr"/>
+    <enumeration value="fanSystemSt-SensorMode-GasSenosr"/>
+    <enumeration value="fanSystemSt-SensorMode-CO2Senosr"/>
+    <enumeration value="fanSystemSt-DamperMode-NotExist"/>
+    <enumeration value="fanSystemSt-DamperMode-Exist"/>
+    <enumeration value="fanSystemSt-FilterEmpressMode-Normal"/>
+    <enumeration value="fanSystemSt-FilterEmpressMode-Clean"/>
+    <enumeration value="fanSystemSt-FilterEmpressMode-Change"/>
+    <enumeration value="fanSystemSt-FilterEmpressMode-FEChange"/>
+    <enumeration value="fanSystemSt-AlarmMode-Normal"/>
+    <enumeration value="fanSystemSt-AlarmMode-HighSpeedMotor"/>
+    <enumeration value="fanSystemSt-AlarmMode-VentilationMotor"/>
+    <enumeration value="fanSystemSt-AlarmMode-DamperMotor"/>
+    <enumeration value="fanSystemSt-AlarmMode-CO2"/>
+    <enumeration value="fanSystemSt-AlarmMode-TemperatureMotor"/>
+    <enumeration value="fanSystemSt-AlarmMode-OverHeating"/>
+    <enumeration value="fanSystemSt-AlarmMode-DeviceProtect"/>
+    <enumeration value="fanSystemSt-CO2-DensityMode-CO2High"/>
+    <enumeration value="fanSystemSt-CO2-DensityMode-CO2Low"/>
+    <enumeration value="fanSystemSt-GAS-Density-Low"/>
+    <enumeration value="fanSystemSt-GAS-Density-Middle"/>
+    <enumeration value="fanSystemSt-GAS-Density-High"/>
+    <enumeration value="model-fanSystem-KoKomTech"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="fanSystemFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-fanSystemDo-Power"/>
+    <enumeration value="f-fanSystemDo-AutoFan"/>
+    <enumeration value="f-fanSystemDo-FanMode"/>
+    <enumeration value="f-fanSystemDo-FanWind"/>
+    <enumeration value="f-fanSystemDo-FanReservationSet"/>
+    <enumeration value="f-fanSystemSt-Power"/>
+    <enumeration value="f-fanSystemSt-AutoFan"/>
+    <enumeration value="f-fanSystemSt-FanMode"/>
+    <enumeration value="f-fanSystemSt-FanWind"/>
+    <enumeration value="f-fanSystemSt-FanReservationSet"/>
+    <enumeration value="f-fanSystemSt-SensorMode"/>
+    <enumeration value="f-fanSystemSt-DamperMode"/>
+    <enumeration value="f-fanSystemSt-FilterEmpress"/>
+    <enumeration value="f-fanSystemSt-AlarmMode"/>
+    <enumeration value="f-fanSystemSt-Temperature"/>
+    <enumeration value="f-fanSystemSt-CO2-Density"/>
+    <enumeration value="f-fanSystemSt-GAS-Density"/>
+    <enumeration value="f-fanSystemDevError"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="enum-sensorEmer">
+   <restriction base="xsd:string">
+    <enumeration value="seMode-Release"/>
+    <enumeration value="seMode-Set"/>
+    <enumeration value="seMode-Alarm"/>
+    <enumeration value="model-sensorEmer-Menix"/>
+   </restriction>
+  </simpleType>
+  <simpleType name="sensorEmerFunc">
+   <restriction base="xsd:string">
+    <enumeration value="f-seMode"/>
+    <enumeration value="f-seDevError"/>
+   </restriction>
+  </simpleType>
+  <complexType name="rootDevice">
+   <sequence>
+     <element name="dev" type="ns:enum-devInfo" minOccurs="1" maxOccurs="1"/>
+     <element name="proto" type="ns:enum-devInfo" minOccurs="1" maxOccurs="1"/>
+     <element name="intf" type="ns:enum-devInfo" minOccurs="1" maxOccurs="1"/>
+     <element name="order" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+   </sequence>
+  </complexType>
+  <complexType name="deviceCategory">
+   <sequence>
+     <element name="enable-device-category" type="ns:xsd-devCategory" minOccurs="1" maxOccurs="1"/>
+     <element name="commonError" type="ns:enum-config-Common-Error" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="lightDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="gasDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="doorLockDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="acConsentDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="curtainDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="airconDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="rfDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="deviceConnectionCheck" type="ns:enum-device-connect-check" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:deviceCategoryFunc" minOccurs="1" maxOccurs="1"/>
+   </sequence>
+  </complexType>
+  <complexType name="boiler">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devBoilerProperty" type="ns:xsd-BoilerProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerZoneName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="boilerRequestedTemperature" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerCurrentTemperature" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerHeatingWaterTemperature" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-boiler" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerPower" type="ns:enum-boiler" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerHeatingPower" type="ns:enum-boiler" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerOutMode" type="ns:enum-boiler" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerDipSwitchMode" type="ns:enum-boiler" minOccurs="1" maxOccurs="1"/>
+     <element name="boilerDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:boilerFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="light">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devLightProperty" type="ns:xsd-LightProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="lightZoneMainName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="lightZoneSubName" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+     <element name="dimmableLevel" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-light" minOccurs="1" maxOccurs="1"/>
+     <element name="lightPower" type="ns:enum-light" minOccurs="1" maxOccurs="1"/>
+     <element name="lightSwitchMode" type="ns:enum-light" minOccurs="1" maxOccurs="1"/>
+     <element name="lightDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:lightFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="gasValve">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devGasValveProperty" type="ns:xsd-gasValveProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-gasValve" minOccurs="1" maxOccurs="1"/>
+     <element name="gvDo" type="ns:enum-gasValve" minOccurs="1" maxOccurs="1"/>
+     <element name="gvAlarm" type="ns:enum-gasValve" minOccurs="1" maxOccurs="1"/>
+     <element name="gvDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:gasValveFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="curtain">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devCurtainProperty" type="ns:xsd-curtainProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-curtain" minOccurs="1" maxOccurs="1"/>
+     <element name="curtainDo" type="ns:enum-curtain" minOccurs="1" maxOccurs="1"/>
+     <element name="curtainDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="curtainAngular" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:curtainFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="bundleLight">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devBundleLightProperty" type="ns:xsd-bundleLightProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-bundleLight" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightPower" type="ns:enum-bundleLight" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightExit" type="ns:enum-bundleLight" minOccurs="1" maxOccurs="1"/>
+     <element name="readyEnergyPower" type="ns:enum-bundleLight" minOccurs="1" maxOccurs="1"/>
+     <element name="gasValve" type="ns:enum-bundleLight" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightElevator" type="ns:enum-bundleLight" minOccurs="1" maxOccurs="1"/>
+     <element name="bundleLightDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:bundleLightFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="systemAircon">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devsystemAirconProperty" type="ns:xsd-systemAirconProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Power" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-WindDirection" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-WindPower" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Drive" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-StatusQuery" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Power" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-WindDirection" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-WindPower" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Drive" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Tracking" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Installation" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-InnerRoom-Error" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-OutRoom-Error" type="ns:enum-systemAircon" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDo-Temperature-Set" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Temperature-Set" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconSt-Temperature-Current" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="systemAirconDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:systemAirconFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="fanSystem">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="devFanSystemProperty" type="ns:xsd-fanSystemProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-Power" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-AutoFan" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-FanMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-FanWind" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDo-FanReservationSet" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-Power" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AutoFan" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-CurrentFanMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanWind" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanReservationSet" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FanReservationSetMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanReservation-Hour" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="fanReservation-Minute" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-SensorMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-DamperMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-FilterEmpressMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-AlarmMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-Temperature" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-CO2-DensityMode" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-CO2-Density-High" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-CO2-Density-Low" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemSt-GAS-Density" type="ns:enum-fanSystem" minOccurs="1" maxOccurs="1"/>
+     <element name="fanSystemDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:fanSystemFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+  <complexType name="sensorEmer">
+   <complexContent>
+    <extension base="ns:rootDevice">
+     <sequence>
+     <element name="model" type="ns:enum-sensorEmer" minOccurs="1" maxOccurs="1"/>
+     <element name="seMode" type="ns:enum-sensorEmer" minOccurs="1" maxOccurs="1"/>
+     <element name="seDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:sensorEmerFunc" minOccurs="1" maxOccurs="1"/>
+     </sequence>
+    </extension>
+   </complexContent>
+  </complexType>
+ </schema>
+
