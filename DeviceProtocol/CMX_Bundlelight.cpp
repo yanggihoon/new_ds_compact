@@ -35,7 +35,7 @@ void CMX_Bundlelight::DeviceInit()
 	{
 		bundlelightStatus[i].order = 0xFF;
 		bundlelightStatus[i].isAck = FALSE;
-		bundlelightStatus[i].power = BUNDLELIGHT_POWER_ON;
+		bundlelightStatus[i].power = BUNDLELIGHT_POWER_NONE;
 		bundlelightStatus[i].readyPower = BUNDLELIGHT_READYPOWER_NONE;
 		bundlelightStatus[i].elevatorCall = BUNDLELIGHT_ELEVATORCALL_NONE;
 		bundlelightStatus[i].out = BUNDLELIGHT_OUT_NONE;
@@ -58,8 +58,31 @@ void CMX_Bundlelight::DeviceInit()
 int CMX_Bundlelight::FrameSend(unsigned char wBuf[])
 {
 	int result = 0;
+	isRecv = FALSE;
+	retrySendCnt = 0;
+
 	Log(LOG::PRTCL, "BUNDLELIGHT SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6], wBuf[7]);
 	result = (CMX_UartRS485::Instance())->WriteFrame(wBuf, CMX_PROTOCOL_LENGTH);
+
+	usleep(100000);
+
+	if((wBuf[0] == OLD_BUNDLELIGHT_CTRL_COMMAND ||  wBuf[0] == NEW_BUNDLELIGHT_CTRL_COMMAND) && isRecv == FALSE)
+	{
+		while(isRecv == FALSE)
+		{
+			Log(LOG::ERR, "Retry BUNDLELIGHT SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6], wBuf[7]);
+			result = (CMX_UartRS485::Instance())->WriteFrame(wBuf, CMX_PROTOCOL_LENGTH);
+			retrySendCnt++;
+
+			if(retrySendCnt >= MAX_RETRY_SEND_CNT)
+			{
+				Log(LOG::ERR, "Retry BUNDLELIGHT Count Over\n");
+				break;
+			}
+
+			usleep(200000);
+		}
+	}
 	
 	return result;
 }
@@ -384,6 +407,9 @@ int CMX_Bundlelight::FrameRecv(unsigned char rBuf[])
 {
 	int result = 0;
 	Log(LOG::PRTCL, "BUNDLELIGHT RecvFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", rBuf[0], rBuf[1], rBuf[2], rBuf[3], rBuf[4], rBuf[5], rBuf[6], rBuf[7]);
+	if(rBuf[0] == OLD_BUNDLELIGHT_CTRL_ACK || rBuf[0] == NEW_BUNDLELIGHT_CTRL_ACK)
+		isRecv = TRUE;
+
 	result = FarmeParser(rBuf);
 
 	return result;
@@ -393,6 +419,9 @@ int CMX_Bundlelight::FarmeParser(unsigned char buf[])
 {
 	unsigned char order;
 	int result = 0;
+
+	if(buf[0] != BUNDLELIGHT_STATUS_ACK)
+		return result;
 
 	if(buf[5] == 0x00)		//기존 현장과 구분
 	{

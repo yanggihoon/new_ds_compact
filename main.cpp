@@ -1,7 +1,7 @@
 
 #include <app.h>
 
-#define MAX_POLLING_SKIP_COUNT	7
+#define BUNDLELIGHT_GAS_CLOSE_MAX_WAIT_COUNT	100	//한개 polling은 대략 200ms 1초 polling은 5개 = 10초 polling은 50개 
 #define MAX_CONF_BUF				100
 #define MAX_DEVICE_CATEGORY		10
 #define POLLING_TIME				100000
@@ -15,6 +15,7 @@ int pollingDeviceIndex = 0;
 int pollingDeviceOrder = 1;
 int deviceCategoryCnt = 0;
 DeviceProtocol* deviceCategory[MAX_DEVICE_CATEGORY] = {NULL, };
+clock_t t_begin, t_end, t_elap;
 
 
 int ParsingLine(char str[][MAX_CONF_BUF], char *line)
@@ -650,17 +651,27 @@ void* DevicePollingManger(void * arg)
 {
 	int i, index;
 	int result;
-	int bundlelight_gas_close_check_count = 0;
+	int polling_cnt = -1;
+	int polling_cnt_start = FALSE;
+	
 	DeviceProtocol* dCategory;
 	D_Item d_item;
 	enum DEVICE_PROTOCOL dProtocol;
-	
 
+	if(deviceCategory[pollingDeviceIndex] == NULL)
+	{
+		Log(LOG::ERR, "device.conf file error\n");
+		mainRunningFlag = FALSE;
+	}
+	
 	usleep(POLLING_TIME);
 
 	while(mainRunningFlag == TRUE)
 	{
 		usleep(POLLING_TIME);
+
+		if(polling_cnt_start == TRUE)
+			polling_cnt++;
 		
 		if(controlFlag == FALSE)
 		{
@@ -735,11 +746,16 @@ void* DevicePollingManger(void * arg)
 					{				
 						if(((CMX_Bundlelight*)deviceCategory[pollingDeviceIndex])->bundlelightStatus[pollingDeviceOrder - 1].gasClose == BUNDLELIGHT_GASCLOSE_REQUEST)
 						{
+							polling_cnt_start = TRUE;
+
 							for(index = 0; index < get_current_supported_cnt(GAS); index++)
 							{
 								get_device_item(GAS, index + 1, &d_item);
 								if(d_item.gasItem.action == GAS_CLOSE)
 								{
+									polling_cnt = 0;
+									polling_cnt_start = FALSE;
+	
 									notify_print(EVENT, BUNDLELIGHT, pollingDeviceOrder, BUNDLELIGHT_GASCLOSE_EVENT, BUNDLELIGHT_GASCLOSE_REQUEST_SUCCESS, 0, 0);
 									(SOAP_Handler::Instance())->control.device_name = BUNDLELIGHT;
 									(SOAP_Handler::Instance())->control.order = pollingDeviceOrder;
@@ -749,11 +765,15 @@ void* DevicePollingManger(void * arg)
 									(SOAP_Handler::Instance())->control.function4 = 0x00;
 
 									result = (SOAP_Handler::Instance())->Add_Control((SOAP_Handler::Instance())->control);
+									
 								}
 								else 
 								{
-									if(bundlelight_gas_close_check_count > MAX_POLLING_SKIP_COUNT)
+									if(polling_cnt > BUNDLELIGHT_GAS_CLOSE_MAX_WAIT_COUNT)
 									{
+										polling_cnt = 0;
+										polling_cnt_start = FALSE;
+	
 										notify_print(EVENT, BUNDLELIGHT, pollingDeviceOrder, BUNDLELIGHT_GASCLOSE_EVENT, BUNDLELIGHT_GASCLOSE_REQUEST_FAIL, 0, 0);
 										(SOAP_Handler::Instance())->control.device_name = BUNDLELIGHT;
 										(SOAP_Handler::Instance())->control.order =pollingDeviceOrder;
@@ -772,11 +792,9 @@ void* DevicePollingManger(void * arg)
 									}
 								}
 							}
-							bundlelight_gas_close_check_count++;
 						}
 						else
 						{
-							bundlelight_gas_close_check_count = 0;
 							Log(LOG::MGR, "%s Polling\n", ((CMX_Bundlelight*)deviceCategory[pollingDeviceIndex])->bundlelightStatus[pollingDeviceOrder -1].deviceCharName);
 							result = ((CMX_Bundlelight*)deviceCategory[pollingDeviceIndex])->FrameMake(POLLING_CMD, pollingDeviceOrder, 0, 0, 0, 0);
 							pollingDeviceOrder++;	
@@ -857,6 +875,9 @@ int NotifyControlToDevice(enum DEVICE_NAME dName, unsigned char order, unsigned 
 
 				usleep(POLLING_TIME);
 				result = notifyDevice->FrameMake(CONTROL_CMD, order, function1, function2, function3, function4);
+
+				if(d_property.lightProperty.mode == LIGHT_MODE_DIMMABLE)
+					usleep(POLLING_TIME);
 				
 				pollingDeviceIndex = get_device_index(LIGHT);
 				if(pollingDeviceIndex == -1) pollingDeviceIndex = 0;
@@ -1014,11 +1035,9 @@ int main(int argc, char** argv)
 	signal(SIGINT, SignalHandler);
 	signal(SIGTERM, SignalHandler);
 
-
 /************************************************************************************/
 /* Set Log Type																		*/
 /************************************************************************************/
-
 	log_type = SetLogType(argc, argv[1]);
 
 	Log(LOG::MGR, "App version : "__DATE__" "__TIME__"\n");
@@ -1112,7 +1131,6 @@ int main(int argc, char** argv)
 /**************************************************************************************/
 	(SOAP_Service::Instance())->Start();
 
-
 /***************************************************************************************/
 // Polling Thread Start
 /**************************************************************************************/
@@ -1130,6 +1148,7 @@ int main(int argc, char** argv)
 // START
 /**************************************************************************************/
 	sleep(2);
+	
 	Log(LOG::MGR, "***************MAIN START***************\n");
 	Log(LOG::SEP, "\n");
 
@@ -1148,7 +1167,8 @@ int main(int argc, char** argv)
 
 	printf(" ### MAIN PROGRAM : ENDING ###\n");
 
-	exit(-1);
+	//exit(-1);
+	return 0;
 } 
 
 /***************************************************************************************/
@@ -1174,9 +1194,13 @@ void Close()
 	(HAMUN_UartRS485::Instance())->Close();	
 	(SOAP_Handler::Instance())->Close();
 	(SOAP_Service::Instance())->Close();
+
+	(DUMMY_Device::GetInstance())->Instance_Close();
 	
 	for(i = 0; i < deviceCategoryCnt; i++)
+	{
 		delete deviceCategory[i];
+	}
 
 }
 
@@ -1208,8 +1232,7 @@ enum DEVICE_PROTOCOL get_protocol(enum DEVICE_NAME device_name)
 		if(deviceCategory[i]->dName  == device_name)
 			return deviceCategory[i]->pName;
 
-	deviceCategory[i]->pName = PROTOCOL_DUMMY;
-	return deviceCategory[i]->pName;
+	return PROTOCOL_DUMMY;
 }
 
 unsigned int get_devicecategory_cnt()
@@ -1224,7 +1247,7 @@ int get_current_supported_cnt(enum DEVICE_NAME device_name)
 	enum DEVICE_PROTOCOL dProtocol;
 
 	dProtocol = get_protocol(device_name);
-	
+
 	dCategory = (ConcreteDeviceCreator::GetInstance())->DeviceFactoryMethod(device_name, dProtocol);			
 
 	count = dCategory->getCurrentSupportedCount();

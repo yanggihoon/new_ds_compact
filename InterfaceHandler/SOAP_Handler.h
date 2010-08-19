@@ -23,10 +23,11 @@ class SOAP_Handler
 	private:
 		static SOAP_Handler* _instance;
 
-	public:
+	protected:
 		SOAP_Handler();
 		~SOAP_Handler();
-
+		
+	public:
 		typedef struct{
 			enum DEVICE_NAME device_name;	
 			unsigned char order;
@@ -76,6 +77,7 @@ class SOAP_Handler
 		void	Close();
 		
 		//soap service command
+		int Check_Supported(enum DEVICE_NAME device_name);
 		int Get_Count(enum DEVICE_NAME device_name);
 		int Get_DeviceCategory(cmxDeviceService::ns__deviceCategory * device);
 		int Get_Property(cmxDeviceService::ns__rootDevice* device, int* order);

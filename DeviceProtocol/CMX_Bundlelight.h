@@ -47,11 +47,13 @@ class  CMX_Bundlelight : public DeviceProtocol
 	private :
 			static CMX_Bundlelight* uniqueInstance;	
 		 	unsigned char buf[8];
-		
-	public  :
-			static CMX_Bundlelight* GetInstance();
+
+	protected:
 			CMX_Bundlelight();
 			~CMX_Bundlelight();
+	
+	public  :
+			static CMX_Bundlelight* GetInstance();
 
 			void DeviceInit();
 			int FrameSend(unsigned char wBuf[]);

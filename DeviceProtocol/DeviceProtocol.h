@@ -2,6 +2,7 @@
 #define _DEVICE_PROTOCOL_H_
 
 #define MAX_DEVICENAME_STRING_LENGTH	15
+#define MAX_RETRY_SEND_CNT				3
 
 #define USED			1
 #define NOT_USED	0
@@ -336,6 +337,8 @@ public:
 
 	unsigned int supportedPollingCount;
 	unsigned int isAck;
+	unsigned int isRecv;
+	unsigned int retrySendCnt;
 	
 	enum DEVICE_NAME dName;
 	enum DEVICE_PROTOCOL pName;

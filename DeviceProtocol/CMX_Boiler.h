@@ -44,10 +44,12 @@ class CMX_Boiler : public DeviceProtocol
 		static CMX_Boiler* uniqueInstance;	
 	 	unsigned char buf[8];	
 
-	public:
-		static CMX_Boiler* GetInstance();
+	protected:
 		CMX_Boiler();
 		 ~CMX_Boiler();
+
+	public:
+		static CMX_Boiler* GetInstance();
 		
 		void DeviceInit();
 		int FrameSend(unsigned char wBuf[]);

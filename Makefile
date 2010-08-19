@@ -25,6 +25,7 @@ HEADERS = 	app.h \
 		DeviceFactory/DeviceCreator.h \
 		DeviceFactory/ConcreteDeviceCreator.h \
 		DeviceProtocol/DeviceProtocol.h \
+		DeviceProtocol/DUMMY_Device.h \
 		DeviceProtocol/CMX_Boiler.h \
 		DeviceProtocol/CMX_Bundlelight.h \
 		DeviceProtocol/CMX_Gas.h \
@@ -39,6 +40,7 @@ HEADERS = 	app.h \
 
 SOURCES =	main.cpp	\
 		DeviceFactory/ConcreteDeviceCreator.cpp \
+		DeviceProtocol/DUMMY_Device.h \
 		DeviceProtocol/CMX_Boiler.cpp \
 		DeviceProtocol/CMX_Bundlelight.cpp \
 		DeviceProtocol/CMX_Gas.cpp \
@@ -54,6 +56,7 @@ SOURCES =	main.cpp	\
 APP_OBJECTS =	main.o \
 		LogUtil/logutil.o	\
 		DeviceFactory/ConcreteDeviceCreator.o \
+		DeviceProtocol/DUMMY_Device.o \
 		DeviceProtocol/CMX_Boiler.o \
 		DeviceProtocol/CMX_Bundlelight.o \
 		DeviceProtocol/CMX_Gas.o \

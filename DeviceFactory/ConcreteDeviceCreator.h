@@ -14,11 +14,13 @@ class ConcreteDeviceCreator : public DeviceCreator
 	private:
 			static ConcreteDeviceCreator* uniqueInstance;	
 
+	protected:
+			ConcreteDeviceCreator();
+			~ConcreteDeviceCreator();
+		
 	public:
 			static ConcreteDeviceCreator* GetInstance();
 
-			ConcreteDeviceCreator();
-			~ConcreteDeviceCreator();
 
 			DeviceProtocol* DeviceFactoryMethod(enum DEVICE_NAME deviceNAME, enum DEVICE_PROTOCOL deviceProtocol);
 };

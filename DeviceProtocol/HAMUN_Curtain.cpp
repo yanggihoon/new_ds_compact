@@ -51,9 +51,34 @@ void HAMUN_Curtain::DeviceInit()
 int HAMUN_Curtain::FrameSend(unsigned char wBuf[])
 {
 	int result = 0;
-	
+
+	isRecv = FALSE;
+	retrySendCnt = 0;
+
 	Log(LOG::PRTCL, "CURTAIN SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6]);
 	result = (HAMUN_UartRS485::Instance())->WriteFrame(wBuf, HAMUN_PROTOCOL_LENGTH);
+
+	usleep(100000);
+
+	if(wBuf[0] == CURTAIN_CTRL_COMMAND && isRecv == FALSE)
+	{
+		while(isRecv == FALSE)
+		{
+			Log(LOG::ERR, "Retry CURTAIN SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6]);
+			result = (HAMUN_UartRS485::Instance())->WriteFrame(wBuf, HAMUN_PROTOCOL_LENGTH);
+			retrySendCnt++;
+
+			if(retrySendCnt >= MAX_RETRY_SEND_CNT)
+			{
+				Log(LOG::ERR, "Retry CURTAIN Count Over\n");
+				break;
+			}
+
+			usleep(200000);
+		}
+	}
+
+
 
 	return result;
 }
@@ -102,6 +127,9 @@ int HAMUN_Curtain::FrameRecv(unsigned char rBuf[])
 {
 	int result = 0;
 	Log(LOG::PRTCL, "CURTAIN RecvFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x\n", rBuf[0], rBuf[1], rBuf[2], rBuf[3], rBuf[4], rBuf[5], rBuf[6]);
+	if(rBuf[0] == CURTAIN_CTRL_ACK)
+		isRecv = TRUE;
+
 	result = FarmeParser(rBuf);
 
 	return result;

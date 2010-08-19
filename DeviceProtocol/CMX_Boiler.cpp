@@ -54,8 +54,32 @@ void CMX_Boiler::DeviceInit()
 int CMX_Boiler::FrameSend(unsigned char wBuf[])
 {
 	int result = 0;
+
+	isRecv = FALSE;
+	retrySendCnt = 0;
+	
 	Log(LOG::PRTCL, "BOILER SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6], wBuf[7]);
 	result = (CMX_UartRS485::Instance())->WriteFrame(wBuf, CMX_PROTOCOL_LENGTH);
+
+	usleep(100000);
+
+	if((wBuf[0] == INDIVIDUAL_BOILER_CTRL_COMMAND ||  wBuf[0] == EACH_BOILER_CTRL_COMMAND  || wBuf[0] == BOILER_OUT_CTRL_COMMAND ) && isRecv == FALSE)
+	{
+		while(isRecv == FALSE)
+		{
+			Log(LOG::ERR, "Retry BOILER SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6], wBuf[7]);
+			result = (CMX_UartRS485::Instance())->WriteFrame(wBuf, CMX_PROTOCOL_LENGTH);
+			retrySendCnt++;
+
+			if(retrySendCnt >= MAX_RETRY_SEND_CNT)
+			{
+				Log(LOG::ERR, "Retry BOILER Count Over\n");
+				break;
+			}
+
+			usleep(200000);
+		}
+	}
 	
 	return result;
 }
@@ -207,6 +231,10 @@ int CMX_Boiler::FrameRecv(unsigned char rBuf[])
 {
 	int result = 0;
 	Log(LOG::PRTCL, "BOILER RecvFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", rBuf[0], rBuf[1], rBuf[2], rBuf[3], rBuf[4], rBuf[5], rBuf[6], rBuf[7]);
+
+	if(rBuf[0] == INDIVIDUAL_BOILER_CTRL_ACK || rBuf[0] == EACH_BOILER_CTRL_ACK || rBuf[0] == BOILER_OUT_CTRL_ACK)
+		isRecv = TRUE;
+
 	result = FarmeParser(rBuf);
 
 	return result;
@@ -295,7 +323,7 @@ int CMX_Boiler::FarmeParser(unsigned char buf[])
 		}
 	}
 
-	else if(buf[0] == EACH_BOILER_STATUS_ACK || buf[0] == EACH_BOILER_CTRL_ACK)
+	else if(buf[0] == EACH_BOILER_STATUS_ACK)	// || buf[0] == EACH_BOILER_CTRL_ACK) 제어 command에 대한 ACK는 무시 함(EACH_BOILER_CTRL_ACK)
 	{
 		order = buf[2];
 		rtemp =  ( ((buf[4] & 0xF0) >> 4) * 10);

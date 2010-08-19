@@ -551,6 +551,7 @@ void * SOAP_Handler::control_run(void * arg)
 	Log(LOG::HND, "### SOAP_HANDLER:: CONTROL THREAD STARTING [ INTERFACE THREAD ]\n");
 
 	int ret = 0, result;
+	int count = 0;
 	SOAP_Handler * s_handler = ( SOAP_Handler*)arg;
 	list<Control>::iterator it;
 	
@@ -565,6 +566,17 @@ void * SOAP_Handler::control_run(void * arg)
 
 		Log(LOG::HND, "### SOAP_HANDLER:: g_controlList.size = %d\n", s_handler->g_controlList.size());
 		it = s_handler->g_controlList.begin();
+
+		if(it->order > s_handler->Get_Count(it->device_name) || it->order < 1)
+		{
+			Log(LOG::ERR, "### SOAP_HANDLER:: Over or Under Current Device Cnt\n");	
+
+			pthread_mutex_lock(&s_handler->control_mutex);
+			s_handler->g_controlList.pop_front();
+			pthread_mutex_unlock(&s_handler->control_mutex);
+
+			continue;
+		}
 
 		s_handler->soap_print(CONTROL, it->device_name, it->order, it->function1, it->function2, it->function3, it->function4);
 	
@@ -644,12 +656,14 @@ int SOAP_Handler::Add_Event(Event event)
 {
 	pthread_mutex_lock(&event_mutex);
 	
+	/*
 	if(g_eventList.size() >= MAX_EVENT_LIST)
 	{
 		pthread_mutex_unlock(&event_mutex);
 		Log(LOG::ERR, "### SOAP_HANDLER:: Over Max Event List\n");	
 		return -1;
 	}
+	*/
 
 	g_eventList.push_back(event);
 
@@ -664,16 +678,17 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 	int parsing_success = TRUE;
 	vector<string> member;
 	vector<string>::iterator member_it;
-	Subscribe_Copy(&member);
+	enum DEVICE_PROTOCOL dProtocol;
 	cmxDeviceService::ns__rootDevice *rootDevice;
 	D_Item d_item;
+
 	member_it = member.begin();
 	current_device_cnt = Get_Count(it->device_name);
-	enum DEVICE_PROTOCOL dProtocol;
+	Subscribe_Copy(&member);
 
-	if(it->order > current_device_cnt)
+	if(it->order > current_device_cnt || it->order <= 0)
 	{
-		Log(LOG::ERR, "### SOAP_HANDLER:: Over Current Device Cnt\n");	
+		Log(LOG::ERR, "### SOAP_HANDLER:: Over or Under Current Device Cnt\n");	
 		return FALSE;
 	}
 
@@ -756,7 +771,7 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 			}
 
 			rootDevice = (cmxDeviceService::ns__rootDevice*)lightEvent;
-			delete lightEvent;
+			//delete lightEvent;
 			break;
 		}
 		
@@ -798,7 +813,7 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 			}
 
 			rootDevice = (cmxDeviceService::ns__rootDevice*)gasEvent;
-			delete gasEvent;
+			//delete gasEvent;
 			break;
 		}
 
@@ -875,7 +890,7 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 			}
 			
 			rootDevice = (cmxDeviceService::ns__rootDevice*)boilerEvent;
-			delete boilerEvent;
+			//delete boilerEvent;
 			break;
 		}
 
@@ -978,7 +993,7 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 			}
 
 			rootDevice = (cmxDeviceService::ns__rootDevice*)bundleLightEvent;
-			delete bundleLightEvent;
+			//delete bundleLightEvent;
 			break;	
 		}
 
@@ -1032,7 +1047,7 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 			}
 
 			rootDevice = (cmxDeviceService::ns__rootDevice*)curtainEvent;
-			delete curtainEvent;
+			//delete curtainEvent;
 			break;
 		}
 		
@@ -1055,8 +1070,12 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 		}
 	}
 	else
+	{
+		delete rootDevice;
 		return -1;
-	
+	}
+
+	delete rootDevice;
 	return 1;
 }
 
@@ -1321,7 +1340,7 @@ void SOAP_Handler::Subscribe_Remove(char* url)
 		{
 			found = 1;
 			//cout << "remove url " << strd.c_str() << endl;
-			Log(LOG::HND, "Remove Registered End Point Url : %s", strd.c_str() ) ;
+			Log(LOG::HND, "Remove Registered End Point Url : %s\n", strd.c_str() ) ;
 			break;
 		}
 		i++;
@@ -1338,10 +1357,24 @@ void SOAP_Handler::Subscribe_Remove(char* url)
 /***************************************************************************************/
 //SOAP Command
 /**************************************************************************************/
+int SOAP_Handler::Check_Supported(enum DEVICE_NAME device_name)
+{
+	int count;
+	count = get_current_supported_cnt(device_name);
 
+	if(count <= 0) 
+		return FALSE;
+	else
+		return TRUE;
+}
+
+//client 프로그램 중 get_item 할 때  get_count를 먼저 가져와 count 수 만큼 
+//for 문을 도는 데 return 을 0을 하게 되면 for문을 돌지 못 한다.
+//그래서 1로 해주면 적어도 한 번은 for문을 돌게 되어 있음
 int SOAP_Handler::Get_Count(enum DEVICE_NAME device_name)
 {
 	int count;
+
 	count = get_current_supported_cnt(device_name);
 
 	if(count <= 0) 
@@ -1363,8 +1396,8 @@ int SOAP_Handler::Get_DeviceCategory(cmxDeviceService::ns__deviceCategory * devi
 		switch(get_name(categoryIndex))
 		{
 			case LIGHT:
-				result = Get_Count(LIGHT);
-				if(result > 0)
+				result = Check_Supported(LIGHT);
+				if(result == TRUE)
 				{
 					device->enable_device_category._light = cmxDeviceService::_device_support;
 					Log(LOG::HND, "LIGHT _device_support\n");
@@ -1373,28 +1406,33 @@ int SOAP_Handler::Get_DeviceCategory(cmxDeviceService::ns__deviceCategory * devi
 				{
 					device->enable_device_category._light = cmxDeviceService::_not_supported_device;
 					Log(LOG::HND, "LIGHT _not_supported_device\n");
-				}
 
-				error_check = check_device_port_error();
-				if(error_check == FALSE)		//port error
-				{
-					device->lightDeviceError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
-					Log(LOG::HND, "check_device_port = FALSE\n");					
-				}
-				else
-				{
-					error_check = check_device_disconnection(LIGHT);
-					if(error_check == FALSE)	//light disconnection
+					error_check = check_device_port_error();
+					if(error_check == FALSE)		//port error
 					{
-						device->deviceConnectionCheck = cmxDeviceService::_not_device_disconnect;
-						Log(LOG::HND, "check_device_ack = FALSE\n");
+						device->lightDeviceError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
+						Log(LOG::HND, "check_device_port = FALSE\n");					
+					}
+					else
+					{
+						error_check = check_device_disconnection(LIGHT);
+						if(error_check == FALSE)	//light disconnection
+						{
+							device->deviceConnectionCheck = cmxDeviceService::_not_device_disconnect;
+							Log(LOG::HND, "check_device_ack = FALSE\n");
+						}
+						else
+						{
+							device->deviceConnectionCheck = cmxDeviceService::_device_connect;
+							Log(LOG::HND, "check_device_ack = TRUE\n");					
+						}
 					}
 				}
 				break;
 
 			case GAS:
-				result = Get_Count(GAS);
-				if(result > 0)
+				result = Check_Supported(GAS);
+				if(result == TRUE)
 				{
 					device->enable_device_category._gasValve= cmxDeviceService::_device_support;
 					Log(LOG::HND, "GAS _device_support\n");						
@@ -1403,29 +1441,33 @@ int SOAP_Handler::Get_DeviceCategory(cmxDeviceService::ns__deviceCategory * devi
 				{
 					device->enable_device_category._gasValve = cmxDeviceService::_not_supported_device;
 					Log(LOG::HND, "GAS _not_supported_device\n");															
-				}
 
-				error_check = check_device_port_error();
-				if(error_check == FALSE)	//port error
-				{
-					device->gasDeviceError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
-					Log(LOG::HND, "check_device_port = FALSE\n");					
-				}
-				else
-				{
-					error_check = check_device_disconnection(GAS);
-					if(error_check == FALSE)	//gas disconnection
+					error_check = check_device_port_error();
+					if(error_check == FALSE)	//port error
 					{
-						device->deviceConnectionCheck = cmxDeviceService::_not_device_disconnect;
-						Log(LOG::HND, "check_device_ack = FALSE\n");					
+						device->gasDeviceError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
+						Log(LOG::HND, "check_device_port = FALSE\n");					
+					}
+					else
+					{
+						error_check = check_device_disconnection(GAS);
+						if(error_check == FALSE)	//gas disconnection
+						{
+							device->deviceConnectionCheck = cmxDeviceService::_not_device_disconnect;
+							Log(LOG::HND, "check_device_ack = FALSE\n");					
+						}
+						else
+						{
+							device->deviceConnectionCheck = cmxDeviceService::_device_connect;
+							Log(LOG::HND, "check_device_ack = TRUE\n");					
+						}
 					}
 				}
-		
 				break;
 				
 			case BOILER:
-				result = Get_Count(BOILER);
-				if(result > 0)
+				result = Check_Supported(BOILER);
+				if(result == TRUE)
 				{
 					device->enable_device_category._boiler = cmxDeviceService::_device_support;
 					Log(LOG::HND, "BOILER _device_support\n");					
@@ -1434,29 +1476,34 @@ int SOAP_Handler::Get_DeviceCategory(cmxDeviceService::ns__deviceCategory * devi
 				{
 					device->enable_device_category._boiler = cmxDeviceService::_not_supported_device;
 					Log(LOG::HND, "BOILER _not_supported_device\n");					
-				}
 				
-				result = check_device_port_error();
-				if(result == FALSE)
-				{
-					device->boilerDeviceError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
-					Log(LOG::HND, "check_device_port = FALSE\n");					
-				}
-				else
-				{
-					result = check_device_disconnection(BOILER);
+					result = check_device_port_error();
 					if(result == FALSE)
 					{
-						device->deviceConnectionCheck = cmxDeviceService::_not_device_disconnect;
-						Log(LOG::HND, "check_device_ack = FALSE\n");					
+						device->boilerDeviceError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
+						Log(LOG::HND, "check_device_port = FALSE\n");					
+					}
+					else
+					{
+						result = check_device_disconnection(BOILER);
+						if(result == FALSE)
+						{
+							device->deviceConnectionCheck = cmxDeviceService::_not_device_disconnect;
+							Log(LOG::HND, "check_device_ack = FALSE\n");					
+						}
+						else
+						{
+							device->deviceConnectionCheck = cmxDeviceService::_device_connect;
+							Log(LOG::HND, "check_device_ack = TRUE\n");					
+						}
 					}
 				}
 
 				break;
 			
 			case BUNDLELIGHT:
-				result = Get_Count(BUNDLELIGHT);
-				if(result > 0)
+				result = Check_Supported(BUNDLELIGHT);
+				if(result == TRUE)
 				{
 					device->enable_device_category._bundleLight = cmxDeviceService::_device_support;
 					Log(LOG::HND, "BUNDLELIGHT _device_support\n");										
@@ -1465,29 +1512,34 @@ int SOAP_Handler::Get_DeviceCategory(cmxDeviceService::ns__deviceCategory * devi
 				{
 					device->enable_device_category._bundleLight = cmxDeviceService::_not_supported_device;
 					Log(LOG::HND, "BUNDLELIGHT _not_supported_device\n");										
-				}
 
-				error_check = check_device_port_error();
-				if(error_check == FALSE)
-				{
-					device->bundleLightDeviceError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
-					Log(LOG::HND, "check_device_port = FALSE\n");					
-				}
-				else
-				{
-					error_check = check_device_disconnection(BUNDLELIGHT);
+					error_check = check_device_port_error();
 					if(error_check == FALSE)
 					{
-						device->deviceConnectionCheck = cmxDeviceService::_not_device_disconnect;
-						Log(LOG::HND, "check_device_ack = FALSE\n");					
+						device->bundleLightDeviceError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
+						Log(LOG::HND, "check_device_port = FALSE\n");					
+					}
+					else
+					{
+						error_check = check_device_disconnection(BUNDLELIGHT);
+						if(error_check == FALSE)
+						{
+							device->deviceConnectionCheck = cmxDeviceService::_not_device_disconnect;
+							Log(LOG::HND, "check_device_ack = FALSE\n");					
+						}
+						else
+						{
+							device->deviceConnectionCheck = cmxDeviceService::_device_connect;
+							Log(LOG::HND, "check_device_ack = TRUE\n");					
+						}
 					}
 				}
 				
 				break;
 
 			case CURTAIN:
-				result = Get_Count(CURTAIN);
-				if(result > 0)
+				result = Check_Supported(CURTAIN);
+				if(result == TRUE)
 				{
 					device->enable_device_category._curtain = cmxDeviceService::_device_support;
 					Log(LOG::HND, "CURTAIN _device_support\n");						
@@ -1496,21 +1548,26 @@ int SOAP_Handler::Get_DeviceCategory(cmxDeviceService::ns__deviceCategory * devi
 				{
 					device->enable_device_category._curtain = cmxDeviceService::_not_supported_device;
 					Log(LOG::HND, "CURTAIN _not_supported_device\n");															
-				}
 
-				error_check = check_device_port_error();
-				if(error_check == FALSE)	//port error
-				{
-					device->curtainDeviceError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
-					Log(LOG::HND, "check_device_port = FALSE\n");					
-				}
-				else
-				{
-					error_check = check_device_disconnection(CURTAIN);
-					if(error_check == FALSE)	//gas disconnection
+					error_check = check_device_port_error();
+					if(error_check == FALSE)	//port error
 					{
-						device->deviceConnectionCheck = cmxDeviceService::_not_device_disconnect;
-						Log(LOG::HND, "check_device_ack = FALSE\n");					
+						device->curtainDeviceError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
+						Log(LOG::HND, "check_device_port = FALSE\n");					
+					}
+					else
+					{
+						error_check = check_device_disconnection(CURTAIN);
+						if(error_check == FALSE)	//gas disconnection
+						{
+							device->deviceConnectionCheck = cmxDeviceService::_not_device_disconnect;
+							Log(LOG::HND, "check_device_ack = FALSE\n");					
+						}
+						else
+						{
+							device->deviceConnectionCheck = cmxDeviceService::_device_connect;
+							Log(LOG::HND, "check_device_ack = TRUE\n");					
+						}
 					}
 				}
 		
@@ -1829,7 +1886,9 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 
 			// 디바이스 아이디 범위 초과 에러	
 			if(Get_Count(LIGHT) < device->order || device->order < 1) 
+			{
 				return SOAP_IOB;
+			}
 
 			dProtocol = get_protocol(LIGHT);
 			if(dProtocol == COMMAX)
@@ -1843,6 +1902,8 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				else
 					pObject->lightSwitchMode = cmxDeviceService::_lightSwitch_Binary;
 			}
+			else
+				return SOAP_FATAL_ERROR;
 
 			if(d_item.lightItem.error == PORT_ERROR)
 			{
@@ -1859,6 +1920,13 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 			
 				Log(LOG::ERR, "LIGHT [%d] LIGHT_DISCONNECTION\n", device->order);
 				return SOAP_OK;	
+			}
+			else
+			{
+				res = Check_Supported(LIGHT);
+				if(res == FALSE)
+					return SOAP_FATAL_ERROR;
+				
 			}
 
 			int ret = 0;
@@ -1908,6 +1976,8 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				pObject->intf =  cmxDeviceService::_intfRS485;					
 				pObject->model = cmxDeviceService::_model_GasValve_Shinwoo;	
 			}
+			else
+				return SOAP_FATAL_ERROR;
 
 			if(d_item.gasItem.error == PORT_ERROR)
 			{
@@ -1924,6 +1994,13 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 			
 				Log(LOG::ERR, "GAS [%] GAS_DISCONNECTION\n", device->order);
 				return SOAP_OK;	
+			}
+			else
+			{
+				res = Check_Supported(GAS);
+				if(res == FALSE)
+					return SOAP_FATAL_ERROR;
+				
 			}
 
 			int ret = 0;
@@ -1963,6 +2040,8 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				pObject->intf =  cmxDeviceService::_intfRS485;					
 				pObject->model = cmxDeviceService::_model_BundleLight_Speel;	
 			}
+			else
+				return SOAP_FATAL_ERROR;
 
 			if(d_item.bundleLightItem.error == PORT_ERROR)
 			{
@@ -1979,6 +2058,13 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 			
 				Log(LOG::ERR, "BUNDLELIGHT [%d] BUNDLELIGHT_DISCONNECTION\n", device->order);
 				return SOAP_OK;	
+			}
+			else
+			{
+				res = Check_Supported(BUNDLELIGHT);
+				if(res == FALSE)
+					return SOAP_FATAL_ERROR;
+
 			}
 
 			int ret = 0;
@@ -2045,6 +2131,8 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				pObject->intf =  cmxDeviceService::_intfRS485;					
 				pObject->model = cmxDeviceService::_model_boiler_Rinnai;	
 			}
+			else
+				return SOAP_FATAL_ERROR;
 
 			if(d_item.boilerItem.error == PORT_ERROR)
 			{
@@ -2063,6 +2151,14 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				return SOAP_OK;	
 
 			}
+			else
+			{
+				res = Check_Supported(BOILER);
+				if(res == FALSE)
+					return SOAP_FATAL_ERROR;
+
+			}
+
 
 			int ret = 0;
 
@@ -2129,6 +2225,8 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				pObject->intf =  cmxDeviceService::_intfRS485;			
 				pObject->model = cmxDeviceService::_model_curtain_HaMun;
 			}
+			else
+				return SOAP_FATAL_ERROR;			
 
 			if(d_item.curtainItem.error == PORT_ERROR)
 			{
@@ -2146,7 +2244,14 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				Log(LOG::ERR, "CURTAIN [%] CURTAIN_DISCONNECTION\n", device->order);
 				return SOAP_OK;	
 			}
+			else
+			{
+				res = Check_Supported(CURTAIN);
+				if(res == FALSE)
+					return SOAP_FATAL_ERROR;
 
+			}
+			
 			int ret = 0;
 
 			cmxDeviceService::cds service;
@@ -2174,8 +2279,10 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 {
 	int ret = SOAP_OK, i;
+	int parsing_success = TRUE;
 	unsigned int count;
 	D_Property d_property;
+	
 
 	if(g_controlList.size() > MAX_CONTROL_LIST)
 	{
@@ -2219,6 +2326,7 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 
 				default:
 					Log(LOG::ERR, "BOILER NOT SUPPORTED FUNC\n");					
+					parsing_success = FALSE;
 					break;
 			}
 
@@ -2264,6 +2372,7 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 
 				default:
 					Log(LOG::ERR, "LIGHT NOT SUPPORTED FUNC\n");					
+					parsing_success = FALSE;					
 					break;
 			}
 
@@ -2285,7 +2394,10 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 				if(pObject->gvDo == cmxDeviceService::_gvDo_Close)
 					control.function1 = GAS_CLOSE;
 				else
+				{
 					Log(LOG::ERR, "GAS NOT SUPPORTED FUNC\n");					
+					parsing_success = FALSE;					
+				}
 			}
 
 			delete pObject;
@@ -2316,6 +2428,8 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 						control.function2 = BUNDLELIGHT_POWER_ALLOFF;
 					else if(((cmxDeviceService::ns__bundleLight*)device)->bundleLightPower == cmxDeviceService::_bundleLightPower_AllOn)
 						control.function2 = BUNDLELIGHT_POWER_ALLON;
+					else
+						parsing_success = FALSE;					
 					
 				break;
 
@@ -2325,6 +2439,8 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 						control.function2 = BUNDLELIGHT_ELEVATORCALL_REQUEST_SUCCESS;
 					else if(((cmxDeviceService::ns__bundleLight*)device)->bundleLightElevator == cmxDeviceService::_bundleLightElevator_Fail)
 						control.function2 = BUNDLELIGHT_ELEVATORCALL_REQUEST_FAIL;
+					else
+						parsing_success = FALSE;					
 
 				break;
 
@@ -2338,7 +2454,9 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 						control.function2 = BUNDLELIGHT_READYPOWER_ALLOFF;
 					else if(((cmxDeviceService::ns__bundleLight*)device)->readyEnergyPower == cmxDeviceService::_readyEnergyPower_AllOn)
 						control.function2 = BUNDLELIGHT_READYPOWER_ALLON;
-					
+					else
+						parsing_success = FALSE;					
+						
 				break;
 
 				case cmxDeviceService::f_bundleLightExit :
@@ -2351,6 +2469,8 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 						control.function2 = BUNDLELIGHT_OUT_SET;
 					else if(((cmxDeviceService::ns__bundleLight*)device)->bundleLightExit == cmxDeviceService::_bundleLightExit_Release)
 						control.function2 = BUNDLELIGHT_OUT_CANCEL;
+					else
+						parsing_success = FALSE;					
 
 				break;
 
@@ -2360,11 +2480,15 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 						control.function2 = BUNDLELIGHT_GASCLOSE_REQUEST_SUCCESS;
 					else if(((cmxDeviceService::ns__bundleLight*)device)->gasValve == cmxDeviceService::_gasValve_Entry_Deny)
 						control.function2 = BUNDLELIGHT_GASCLOSE_REQUEST_FAIL;
+					else
+						parsing_success = FALSE;					
 
 				break;
 
 				default:
 					Log(LOG::ERR, "BUNDLELIGHT NOT SUPPORTED FUNC\n");
+					parsing_success = FALSE;					
+					
 				break;
 			}
 
@@ -2391,7 +2515,10 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 				else if(pObject->curtainDo == cmxDeviceService::_curtainDo_Stop)
 					control.function2 = CURTAIN_STOP;
 				else
+				{
+					parsing_success = FALSE;
 					Log(LOG::ERR, "CURTAIN NOT SUPPORTED FUNC\n");	
+				}
 			}
 
 			delete pObject;
@@ -2399,12 +2526,14 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 		break;
 
 		default:
+			parsing_success = FALSE;								
 			Log(LOG::HND, "DEVICE NOT SUPPORTED\n");					
 			break;
 	}
 
-	ret = Add_Control(control);
+	if(parsing_success == TRUE)
+		ret = Add_Control(control);
 	
-	return ret;
+	return SOAP_OK;
 }
 

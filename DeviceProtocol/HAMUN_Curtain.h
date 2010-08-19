@@ -33,11 +33,13 @@ class  HAMUN_Curtain : public DeviceProtocol
 	private :
 			static HAMUN_Curtain* uniqueInstance;	
 		 	unsigned char buf[7];
+
+	protected:
+			HAMUN_Curtain();
+			~HAMUN_Curtain();
 		
 	public  :
 			static HAMUN_Curtain* GetInstance();
-			HAMUN_Curtain();
-			~HAMUN_Curtain();
 
 			void DeviceInit();
 			int FrameSend(unsigned char wBuf[]);

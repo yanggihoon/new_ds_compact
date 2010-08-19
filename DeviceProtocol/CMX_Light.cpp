@@ -49,9 +49,33 @@ void CMX_Light::DeviceInit()
 int CMX_Light::FrameSend(unsigned char wBuf[])
 {
 	int result = 0;
+	
+	isRecv = FALSE;
+	retrySendCnt = 0;
+
 	Log(LOG::PRTCL, "LIGHT SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6], wBuf[7]);
 	result = (CMX_UartRS485::Instance())->WriteFrame(wBuf, CMX_PROTOCOL_LENGTH);
-	
+
+	usleep(100000);
+
+	if(wBuf[0] == LIGHT_CTRL_COMMAND && isRecv == FALSE)
+	{
+		while(isRecv == FALSE)
+		{
+			Log(LOG::ERR, "Retry LIGHT SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6], wBuf[7]);
+			result = (CMX_UartRS485::Instance())->WriteFrame(wBuf, CMX_PROTOCOL_LENGTH);
+			retrySendCnt++;
+
+			if(retrySendCnt >= MAX_RETRY_SEND_CNT)
+			{
+				Log(LOG::ERR, "Retry LIGHT Count Over\n");
+				break;
+			}
+
+			usleep(200000);
+		}
+	}
+
 	return result;
 }
 
@@ -148,7 +172,7 @@ int CMX_Light::FrameMake(unsigned char cmd_flag, unsigned char order, unsigned c
 					{
 						buf[0] = LIGHT_CTRL_COMMAND;
 						buf[1] = order;
-						buf[2] = 0x01;
+						buf[2] = 0x00;
 						buf[3] = 0x00;
 						buf[4] = 0x00;
 						buf[5] = 0x00;
@@ -182,7 +206,12 @@ int CMX_Light::FrameMake(unsigned char cmd_flag, unsigned char order, unsigned c
 				{
 					buf[0] = LIGHT_CTRL_COMMAND;
 					buf[1] = order;
-					buf[2] = 0x01;
+
+					if(function3 == 0x00)
+						buf[2] = 0x00;
+					else
+						buf[2] = 0x01;
+					
 					buf[3] = 0x00;
 					buf[4] = 0x00;
 					buf[5] = 0x00;
@@ -205,7 +234,11 @@ int CMX_Light::FrameMake(unsigned char cmd_flag, unsigned char order, unsigned c
 int CMX_Light::FrameRecv(unsigned char rBuf[])
 {
 	int result = 0;
+
 	Log(LOG::PRTCL, "LIGHT RecvFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", rBuf[0], rBuf[1], rBuf[2], rBuf[3], rBuf[4], rBuf[5], rBuf[6], rBuf[7]);
+	if(rBuf[0] == LIGHT_CTRL_ACK)
+		isRecv = TRUE;
+
 	result = FarmeParser(rBuf);
 
 	return result;
@@ -216,13 +249,14 @@ int CMX_Light::FarmeParser(unsigned char buf[])
 	unsigned char order;
 	int result = 0;
 
-	if(buf[0] == LIGHT_STATUS_ACK  || buf[0] == LIGHT_CTRL_ACK)
+	if(buf[0] == LIGHT_STATUS_ACK ) 	// || buf[0] == LIGHT_CTRL_ACK)	제어 command ack에 대해서는 처리를 하지 않는다.(status ack로 상태 확인)
 	{
 		order = buf[2];
 
 		lightStatus[order -1].isAck = TRUE;
 
-		if(buf[1] == 0x00)
+		//power on/off
+		if(buf[1] == 0x00)		
 		{
 			if(lightStatus[order -1].power != LIGHT_POWER_OFF)
 			{
@@ -238,16 +272,21 @@ int CMX_Light::FarmeParser(unsigned char buf[])
 		}
 		else if(buf[1] == 0x01)
 		{
-			if(lightStatus[order -1].power != LIGHT_POWER_ON)	//power off
+			if(lightStatus[order -1].power != LIGHT_POWER_ON)	
 			{
-				lightStatus[order -1].power = LIGHT_POWER_ON;	//power on
+				lightStatus[order -1].power = LIGHT_POWER_ON;	
 
 				if(buf[6] == 0x00)
+				{
 					result = NotifyEventToService(LIGHT, order, LIGHT_MODE_BINARY, LIGHT_POWER_EVENT, LIGHT_POWER_ON, 0);
+					lightStatus[order - 1].dimmingLevel = 0x00;
+				}
 				else
+				{
 					result = NotifyEventToService(LIGHT, order, LIGHT_MODE_DIMMABLE, LIGHT_POWER_EVENT, LIGHT_POWER_ON, buf[5]);
-
-				lightStatus[order - 1].dimmingLevel = 	lightStatus[order - 1].maxDimmingLevel;
+					lightStatus[order - 1].dimmingLevel = buf[5];
+				}
+				//lightStatus[order - 1].dimmingLevel = 	lightStatus[order - 1].maxDimmingLevel;
 			}
 		}
 		
@@ -265,6 +304,7 @@ int CMX_Light::FarmeParser(unsigned char buf[])
 				lightStatus[order - 1].dimmingLevel = buf[5];
 				result = NotifyEventToService(LIGHT, order, LIGHT_MODE_DIMMABLE, LIGHT_DIMMING_EVENT, lightStatus[order - 1].dimmingLevel, 0);								
 			}
+			
 			lightStatus[order -1].maxDimmingLevel = buf[6];
 		}
 	}

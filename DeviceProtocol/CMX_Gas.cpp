@@ -49,8 +49,33 @@ void CMX_Gas::DeviceInit()
 int CMX_Gas::FrameSend(unsigned char wBuf[])
 {
 	int result = 0;
+
+	isRecv = FALSE;
+	retrySendCnt = 0;
+
 	Log(LOG::PRTCL, "GAS SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6], wBuf[7]);
 	result = (CMX_UartRS485::Instance())->WriteFrame(wBuf, CMX_PROTOCOL_LENGTH);
+
+	usleep(100000);
+
+	if(wBuf[0] == GAS_CTRL_COMMAND && isRecv == FALSE)
+	{
+		sleep(1);
+		while(isRecv == FALSE)
+		{
+			Log(LOG::ERR, "Retry GAS SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6], wBuf[7]);
+			result = (CMX_UartRS485::Instance())->WriteFrame(wBuf, CMX_PROTOCOL_LENGTH);
+			retrySendCnt++;
+
+			if(retrySendCnt >= MAX_RETRY_SEND_CNT)
+			{
+				Log(LOG::ERR, "Retry GAS Count Over\n");
+				break;
+			}
+
+			usleep(200000);
+		}
+	}
 	
 	return result;
 }
@@ -58,7 +83,8 @@ int CMX_Gas::FrameSend(unsigned char wBuf[])
 int CMX_Gas::FrameMake(unsigned char cmd_flag, unsigned char order, unsigned char function1, unsigned char function2, unsigned char function3, unsigned char function4)
 {
 	int result = 0;
-
+	current_order = order;
+	
 	if(cmd_flag == POLLING_CMD)
 	{
 		buf[0] = GAS_STATUS_COMMAND;
@@ -95,7 +121,7 @@ int CMX_Gas::FrameMake(unsigned char cmd_flag, unsigned char order, unsigned cha
 
 		result = FrameSend(buf);
 	}
-	current_order = order;
+
 	return result;
 }
 
@@ -103,6 +129,9 @@ int CMX_Gas::FrameRecv(unsigned char rBuf[])
 {
 	int result = 0;
 	Log(LOG::PRTCL, "GAS RecvFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", rBuf[0], rBuf[1], rBuf[2], rBuf[3], rBuf[4], rBuf[5], rBuf[6], rBuf[7]);
+	if(rBuf[0] == GAS_CTRL_ACK)
+		isRecv = TRUE;
+
 	result = FarmeParser(rBuf);
 
 	return result;
@@ -113,7 +142,7 @@ int CMX_Gas::FarmeParser(unsigned char buf[])
 	unsigned char order;
 	int result = 0;
 
-	if(buf[0] == GAS_STATUS_ACK || buf[0] == GAS_CTRL_ACK)
+	if(buf[0] == GAS_STATUS_ACK)  //|| buf[0] == GAS_CTRL_ACK) 제어 command ack에 대해서는 처리를 하지 않는다.(status ack로 상태 확인)
 	{
 		order = current_order;
 		gasStatus[order -1].isAck = TRUE;

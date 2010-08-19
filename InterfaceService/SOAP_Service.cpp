@@ -559,6 +559,7 @@ int ns__setLight(struct soap* soap, ns__light in, ns__setLightResponse* out)
 		break;
 	}
 	
+
 	if( ret != SOAP_OK) 
 	{
 		return send_fault(soap,SOAP_E_TEMP_UNAVAIL, "ns__setGasValve Control Buffer Overflow");

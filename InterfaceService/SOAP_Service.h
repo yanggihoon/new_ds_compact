@@ -32,10 +32,11 @@ class SOAP_Service
 private:
 	static SOAP_Service* _instance;
 
-public:
+protected:
 	SOAP_Service();
 	~SOAP_Service();
 
+public:
 	int soap_service_runningFlag;
 	
 	void Start();

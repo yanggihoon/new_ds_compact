@@ -27,13 +27,15 @@ ConcreteDeviceCreator::~ConcreteDeviceCreator()
 
 DeviceProtocol* ConcreteDeviceCreator::DeviceFactoryMethod(enum DEVICE_NAME deviceName, enum DEVICE_PROTOCOL deviceProtocol)
 {
+	if(deviceProtocol == PROTOCOL_DUMMY)
+		return (DUMMY_Device::GetInstance());
+	
 	switch( deviceName)  
 	{
 	
 		case LIGHT:
 			if(deviceProtocol == COMMAX)
 				return (CMX_Light::GetInstance());
-			
 			break;
 
 		case GAS:
@@ -61,6 +63,7 @@ DeviceProtocol* ConcreteDeviceCreator::DeviceFactoryMethod(enum DEVICE_NAME devi
 			break;
 
 		default:
+				return (DUMMY_Device::GetInstance());
 		break;
 	}
 

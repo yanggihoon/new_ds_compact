@@ -20,6 +20,7 @@
 #define LIGHT_GROUP_CTRL_ACK					0x00	//no ack
 
 #define MAX_SUPPORTED_LIGHT_CNT	40
+#define MAX_DIMMING_LEVEL			8
 
 struct LightStatus
 {
@@ -39,11 +40,13 @@ class  CMX_Light : public DeviceProtocol
 	private :
 			static CMX_Light* uniqueInstance;	
 		 	unsigned char buf[8];
+
+	protected:
+			CMX_Light();
+			~CMX_Light();
 		
 	public  :
 			static CMX_Light* GetInstance();
-			CMX_Light();
-			~CMX_Light();
 
 			void DeviceInit();
 			int FrameSend(unsigned char wBuf[]);

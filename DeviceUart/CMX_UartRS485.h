@@ -194,14 +194,14 @@ private:
 
 		  struct termios oldtio;
 
-	public:		  	 
-	
+	protected:
 		/** default constructor */
 		CMX_UartRS485();
 
 		/** default destructor */
 		 ~CMX_UartRS485();
 
+	public:		  	 
 		/** opening the serial port */  
 		int UartOpen(unsigned int COMMPORT, unsigned int BAUDRATE);
 

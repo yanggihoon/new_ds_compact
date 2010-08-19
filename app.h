@@ -13,6 +13,7 @@
 #include "LogUtil/lognamespace.h"
 
 #include "DeviceProtocol/DeviceProtocol.h"
+#include "DeviceProtocol/DUMMY_Device.h"
 #include "DeviceProtocol/CMX_Boiler.h"
 #include "DeviceProtocol/CMX_Bundlelight.h"
 #include "DeviceProtocol/CMX_Light.h"
