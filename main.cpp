@@ -962,7 +962,7 @@ int NotifyControlToDevice(enum DEVICE_NAME dName, unsigned char order, unsigned 
 
 int NotifyEventToService(enum DEVICE_NAME dName, unsigned char order, unsigned char function1, unsigned char function2, unsigned char function3, unsigned char function4)
 {
-	int result, i;
+	int result = 0, i;
 	int request = FALSE;
 	D_Item d_item;
 
@@ -1063,7 +1063,6 @@ int main(int argc, char** argv)
 					if((HAMUN_UartRS485::Instance())->isOpen() == FALSE)
 					{
 						result = (HAMUN_UartRS485::Instance())->UartOpen(3, 1);
-
 						if(result == FAIL)
 						{
 							Log(LOG::ERR, "/dev/ttyS2 UartOpen error\n");

@@ -40,8 +40,8 @@ void SOAP_Service::Instance_Close()
 {	
 	if( _instance != NULL )
 	{
-		delete _instance;
 		Log(LOG::SERV, "SOAP_Service _instance delete\n");	
+		delete _instance;
 		_instance = NULL;		
 	}
 

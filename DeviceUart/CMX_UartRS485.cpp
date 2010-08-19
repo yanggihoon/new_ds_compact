@@ -24,8 +24,8 @@ void CMX_UartRS485::Instance_Close()
 {	
 	if( _instance != NULL )
 	{
-		delete _instance;
 		Log(LOG::UART, "CMX_UartRS485 _instance delete\n");	
+		delete _instance;
 		_instance = NULL;		
 	}
 

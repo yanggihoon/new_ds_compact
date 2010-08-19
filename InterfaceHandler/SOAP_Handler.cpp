@@ -28,8 +28,8 @@ void SOAP_Handler::Instance_Close()
 {	
 	if( _instance != NULL )
 	{
-		delete _instance;
 		Log(LOG::HND, "SOAP_Handler _instance delete\n");	
+		delete _instance;
 		_instance = NULL;		
 	}
 
@@ -756,7 +756,7 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 			}
 
 			rootDevice = (cmxDeviceService::ns__rootDevice*)lightEvent;
-			
+			delete lightEvent;
 			break;
 		}
 		
@@ -798,7 +798,7 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 			}
 
 			rootDevice = (cmxDeviceService::ns__rootDevice*)gasEvent;
-
+			delete gasEvent;
 			break;
 		}
 
@@ -875,7 +875,7 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 			}
 			
 			rootDevice = (cmxDeviceService::ns__rootDevice*)boilerEvent;
-			
+			delete boilerEvent;
 			break;
 		}
 
@@ -978,7 +978,7 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 			}
 
 			rootDevice = (cmxDeviceService::ns__rootDevice*)bundleLightEvent;
-			
+			delete bundleLightEvent;
 			break;	
 		}
 
@@ -1032,7 +1032,7 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 			}
 
 			rootDevice = (cmxDeviceService::ns__rootDevice*)curtainEvent;
-
+			delete curtainEvent;
 			break;
 		}
 		
@@ -1344,7 +1344,10 @@ int SOAP_Handler::Get_Count(enum DEVICE_NAME device_name)
 	int count;
 	count = get_current_supported_cnt(device_name);
 
-	return count;
+	if(count <= 0) 
+		return 1;
+	else
+		return count;
 }
 
 
@@ -2218,6 +2221,8 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 					Log(LOG::ERR, "BOILER NOT SUPPORTED FUNC\n");					
 					break;
 			}
+
+			delete pObject;
 		}
 		break;
 
@@ -2261,6 +2266,8 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 					Log(LOG::ERR, "LIGHT NOT SUPPORTED FUNC\n");					
 					break;
 			}
+
+			delete pObject;
 		}
 		break;
 
@@ -2280,6 +2287,8 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 				else
 					Log(LOG::ERR, "GAS NOT SUPPORTED FUNC\n");					
 			}
+
+			delete pObject;
 		}
 		break;
 
@@ -2358,6 +2367,8 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 					Log(LOG::ERR, "BUNDLELIGHT NOT SUPPORTED FUNC\n");
 				break;
 			}
+
+			delete pObject;
 		}
 		break;
 
@@ -2382,6 +2393,8 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 				else
 					Log(LOG::ERR, "CURTAIN NOT SUPPORTED FUNC\n");	
 			}
+
+			delete pObject;
 		}
 		break;
 
@@ -2391,7 +2404,7 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 	}
 
 	ret = Add_Control(control);
-
+	
 	return ret;
 }
 

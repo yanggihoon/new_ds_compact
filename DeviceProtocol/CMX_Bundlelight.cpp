@@ -520,7 +520,7 @@ int CMX_Bundlelight::FarmeParser(unsigned char buf[])
 			}
 			else
 			{
-				bundlelightStatus[order - 1].out != BUNDLELIGHT_OUT_NONE;
+				bundlelightStatus[order - 1].out = BUNDLELIGHT_OUT_NONE;
 			}
 		}
 

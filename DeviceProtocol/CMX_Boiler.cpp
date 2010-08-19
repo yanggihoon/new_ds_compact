@@ -116,7 +116,7 @@ int CMX_Boiler::FrameMake(unsigned char cmd_flag, unsigned char order, unsigned 
 					buf[1] = 0x01;
 
 					if(function2 == BOILER_POWER_ON)
-						buf[2] = 0xFF;
+						buf[2] = 0x80;
 					else 
 						buf[2] = 0x00;
 						
@@ -126,7 +126,6 @@ int CMX_Boiler::FrameMake(unsigned char cmd_flag, unsigned char order, unsigned 
 					buf[5] = 0x00;
 					buf[6] = 0x00;
 					buf[7] = buf[0] + buf[1] + buf[2] + buf[3] + buf[4] + buf[5] + buf[6];
-					printf("INDIVIDUAL_BOILER_CTRL_COMMAND boilerMode = %d\n", boilerMode);
 				}
 				else
 				{
@@ -143,7 +142,6 @@ int CMX_Boiler::FrameMake(unsigned char cmd_flag, unsigned char order, unsigned 
 					buf[5] = 0x00;
 					buf[6] = 0x00;
 					buf[7] = buf[0] + buf[1] + buf[2] + buf[3] + buf[4] + buf[5] + buf[6];
-					printf("EACH_BOILER_CTRL_COMMAND boilerMode = %d\n", boilerMode);					
 				}
 			}
 			break;

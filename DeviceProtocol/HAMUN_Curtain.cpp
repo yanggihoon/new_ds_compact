@@ -180,6 +180,5 @@ unsigned int HAMUN_Curtain::getCurrentSupportedCount()
 		if(result == FALSE)	
 			return order - 1;
 	}
-	printf("curtainStatus[%d].order = %d\n", order - 1, curtainStatus[order - 1].order);
 	return supportedPollingCount;
 }
