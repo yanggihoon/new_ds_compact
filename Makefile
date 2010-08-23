@@ -31,8 +31,10 @@ HEADERS = 	app.h \
 		DeviceProtocol/CMX_Gas.h \
 		DeviceProtocol/CMX_Light.h \
 		DeviceProtocol/HAMUN_Curtain.h \
+		DeviceProtocol/NOKSUNG_Sensor.h	\
 		DeviceUart/CMX_UartRS485.h \
 		DeviceUart/HAMUN_UartRS485.h \
+		DeviceUart/NOKSUNG_UartRS485.h	\
 		InterfaceHandler/SOAP_Handler.h \
 		InterfaceService/SOAP_Service.h \
 		LogUtil/lognamespace.h \
@@ -46,8 +48,10 @@ SOURCES =	main.cpp	\
 		DeviceProtocol/CMX_Gas.cpp \
 		DeviceProtocol/CMX_Light.cpp \
 		DeviceProtocol/HAMUN_Curtain.cpp \
+		DeviceProtocol/NOKSUNG_Sensor.cpp \
 		DeviceUart/CMX_UartRS485.cpp \
 		DeviceUart/HAMUN_UartRS485.cpp \
+		DeviceUart/NOKSUNG_UartRS485.cpp \
 		InterfaceHandler/SOAP_Handler.cpp \
 		InterfaceService/SOAP_Service.cpp \
 		LogUtil/logutil.cpp 
@@ -62,8 +66,10 @@ APP_OBJECTS =	main.o \
 		DeviceProtocol/CMX_Gas.o \
 		DeviceProtocol/CMX_Light.o \
 		DeviceProtocol/HAMUN_Curtain.o \
+		DeviceProtocol/NOKSUNG_Sensor.o \
 		DeviceUart/CMX_UartRS485.o \
 		DeviceUart/HAMUN_UartRS485.o \
+		DeviceUart/NOKSUNG_UartRS485.o	\
 		InterfaceHandler/SOAP_Handler.o \
 		InterfaceService/SOAP_Service.o \
 		$(SOAP_LIB_DIR)/stdsoap2.o \

@@ -6,6 +6,7 @@
 #define MAX_DEVICE_CATEGORY		10
 #define POLLING_TIME				100000
 
+void UartOpenAndUartStart();
 void SignalHandler(int sig);
 void Close();
 
@@ -163,6 +164,9 @@ void CmdCtrl(char* ctrl)
 			case CURTAIN:
 				Log(LOG::INFO, "  CURTAIN |order = %d | function1 = %d | function2 = %d | function3 = %d | function4 = %d\n", it->order, it->function1, it->function2, it->function3, it->function4);				
 				break;
+			case SENSOR:
+				Log(LOG::INFO, "  SENSOR |order = %d | function1 = %d | function2 = %d | function3 = %d | function4 = %d\n", it->order, it->function1, it->function2, it->function3, it->function4);				
+				break;
 		}
 	}
 	else if(!strcmp(arg1, "clist"))
@@ -192,6 +196,9 @@ void CmdCtrl(char* ctrl)
 				break;
 			case CURTAIN:
 				Log(LOG::INFO, "  CURTAIN |order = %d | function1 = %d | function2 = %d | function3 = %d | function4 = %d\n", it->order, it->function1, it->function2, it->function3, it->function4);				
+				break;
+			case SENSOR:
+				Log(LOG::INFO, "  SENSOR |order = %d | function1 = %d | function2 = %d | function3 = %d | function4 = %d\n", it->order, it->function1, it->function2, it->function3, it->function4);				
 				break;
 		}
 
@@ -233,6 +240,9 @@ void CmdCtrl(char* ctrl)
 					break;
 				case CURTAIN:
 						Log(LOG::INFO, "%d : CURTAIN Supported\n", i);	
+					break;
+				case SENSOR:
+						Log(LOG::INFO, "%d : SENSOR Supported\n", i);	
 					break;
 			}
 		}
@@ -284,6 +294,16 @@ void CmdCtrl(char* ctrl)
 						else
 							Log(LOG::INFO, "CURTAIN Protocol is Unknown\n");
 					break;
+
+				case SENSOR:
+						dProtocol = get_protocol(SENSOR);
+						if(dProtocol == COMMAX)
+							Log(LOG::INFO, "SENSOR Protocol is COMMAX\n");
+						else if(dProtocol == NOKSUNG)
+							Log(LOG::INFO, "SENSOR Protocol is NOKSUNG\n");							
+						else
+							Log(LOG::INFO, "SENSOR Protocol is Unknown\n");
+					break;					
 					
 			}
 		}
@@ -335,6 +355,15 @@ void CmdCtrl(char* ctrl)
 							Log(LOG::INFO, "CURTAIN connection is disconnected\n");
 
 					break;
+
+				case SENSOR:
+						if(result == TRUE)
+							Log(LOG::INFO, "SENSOR connection is TRUE\n");
+						else
+							Log(LOG::INFO, "SENSOR connection is disconnected\n");
+
+					break;
+					
 			}
 		}
 	}
@@ -345,6 +374,73 @@ void CmdCtrl(char* ctrl)
 			Log(LOG::INFO, "PORT is OK\n");
 		else			
 			Log(LOG::INFO, "PORT is error\n");
+	}
+	else if(!strcmp(arg1, "uart"))
+	{
+		for(i = 0; i < deviceCategoryCnt; i++)
+		{
+			switch(deviceCategory[i]->dName)
+			{
+				case LIGHT:
+						if(deviceCategory[i]->iName == EXT1)
+							Log(LOG::INFO, "LIGHT uart port is EXT1\n");
+						else if(deviceCategory[i]->iName == EXT2)
+							Log(LOG::INFO, "LIGHT uart port is EXT2\n");
+						else if(deviceCategory[i]->iName == EXT3)
+							Log(LOG::INFO, "LIGHT uart port is EXT3\n");
+					break;
+
+				case GAS:
+						if(deviceCategory[i]->iName == EXT1)
+							Log(LOG::INFO, "GAS uart port is EXT1\n");
+						else if(deviceCategory[i]->iName == EXT2)
+							Log(LOG::INFO, "GAS uart port is EXT2\n");
+						else if(deviceCategory[i]->iName == EXT3)
+							Log(LOG::INFO, "GAS uart port is EXT3\n");
+					break;
+
+				case BUNDLELIGHT:
+						if(deviceCategory[i]->iName == EXT1)
+							Log(LOG::INFO, "BUNDLELIGHT uart port is EXT1\n");
+						else if(deviceCategory[i]->iName == EXT2)
+							Log(LOG::INFO, "BUNDLELIGHT uart port is EXT2\n");
+						else if(deviceCategory[i]->iName == EXT3)
+							Log(LOG::INFO, "BUNDLELIGHT uart port is EXT3\n");
+
+					break;
+
+				case BOILER:
+						if(deviceCategory[i]->iName == EXT1)
+							Log(LOG::INFO, "BOILER uart port is EXT1\n");
+						else if(deviceCategory[i]->iName == EXT2)
+							Log(LOG::INFO, "BOILER uart port is EXT2\n");
+						else if(deviceCategory[i]->iName == EXT3)
+							Log(LOG::INFO, "BOILER uart port is EXT3\n");
+
+					break;
+
+				case CURTAIN:
+						if(deviceCategory[i]->iName == EXT1)
+							Log(LOG::INFO, "CURTAIN uart port is EXT1\n");
+						else if(deviceCategory[i]->iName == EXT2)
+							Log(LOG::INFO, "CURTAIN uart port is EXT2\n");
+						else if(deviceCategory[i]->iName == EXT3)
+							Log(LOG::INFO, "CURTAIN uart port is EXT3\n");
+
+					break;
+
+				case SENSOR:
+						if(deviceCategory[i]->iName == EXT1)
+							Log(LOG::INFO, "SENSOR uart port is EXT1\n");
+						else if(deviceCategory[i]->iName == EXT2)
+							Log(LOG::INFO, "SENSOR uart port is EXT2\n");
+						else if(deviceCategory[i]->iName == EXT3)
+							Log(LOG::INFO, "SENSOR uart port is EXT3\n");
+
+					break;
+
+			}
+		}
 	}
 	else if(!strcmp(arg1, "st"))
 	{
@@ -489,6 +585,7 @@ void GetCmd()
 			printf("protocol : show protocol of supported device\n");
 			printf("ack : show device connection status whether connected or disconnected\n");
 			printf("port : show port error\n");
+			printf("uart : show using uart port\n");
 			printf("st : show current all device status\n");
 			printf("bundlelight function : show supported function of bundlelight\n");
 			printf("boiler method : show boiler method\n");
@@ -573,6 +670,7 @@ int SetDeviceConfigure()
 				deviceCategory[deviceCategoryCnt]->dName = LIGHT;
 				deviceCategory[deviceCategoryCnt]->pName = COMMAX;
 				deviceCategory[deviceCategoryCnt]->iName = EXT2;
+				
 				deviceCategory[deviceCategoryCnt]->DeviceInit();
 				deviceCategoryCnt++;				
 			}
@@ -587,7 +685,8 @@ int SetDeviceConfigure()
 				deviceCategory[deviceCategoryCnt]->supportedPollingCount = atoi(confBuf[2]);
 				deviceCategory[deviceCategoryCnt]->dName = BOILER;
 				deviceCategory[deviceCategoryCnt]->pName = COMMAX;
-				deviceCategory[deviceCategoryCnt]->iName = EXT2;
+				deviceCategory[deviceCategoryCnt]->iName = EXT2;	
+
 				deviceCategory[deviceCategoryCnt]->DeviceInit();
 				deviceCategoryCnt++;				
 			}
@@ -602,7 +701,8 @@ int SetDeviceConfigure()
 				deviceCategory[deviceCategoryCnt]->supportedPollingCount = atoi(confBuf[2]);
 				deviceCategory[deviceCategoryCnt]->dName = BUNDLELIGHT;
 				deviceCategory[deviceCategoryCnt]->pName = COMMAX;
-				deviceCategory[deviceCategoryCnt]->iName = EXT2;
+				deviceCategory[deviceCategoryCnt]->iName = EXT2;	
+
 				deviceCategory[deviceCategoryCnt]->DeviceInit();
 				deviceCategoryCnt++;				
 			}
@@ -617,7 +717,8 @@ int SetDeviceConfigure()
 				deviceCategory[deviceCategoryCnt]->supportedPollingCount = atoi(confBuf[2]);
 				deviceCategory[deviceCategoryCnt]->dName = GAS;
 				deviceCategory[deviceCategoryCnt]->pName = COMMAX;
-				deviceCategory[deviceCategoryCnt]->iName = EXT2;
+				deviceCategory[deviceCategoryCnt]->iName = EXT2;	
+
 				deviceCategory[deviceCategoryCnt]->DeviceInit();
 				deviceCategoryCnt++;
 			}
@@ -633,6 +734,23 @@ int SetDeviceConfigure()
 				deviceCategory[deviceCategoryCnt]->dName = CURTAIN;
 				deviceCategory[deviceCategoryCnt]->pName = HAMUN;
 				deviceCategory[deviceCategoryCnt]->iName = EXT1;
+
+				deviceCategory[deviceCategoryCnt]->DeviceInit();
+				deviceCategoryCnt++;
+			}
+			Log(LOG::MGR, "%s %s Device Setting up, supportedPollingCount = %d\n", confBuf[0], confBuf[1], atoi(confBuf[2]));
+		}
+
+		if(!strcmp(confBuf[0], "SENSOR"))
+		{
+			if(!strcmp(confBuf[1], "NOKSUNG"))
+			{
+				deviceCategory[deviceCategoryCnt] =  (ConcreteDeviceCreator::GetInstance())->DeviceFactoryMethod(SENSOR, NOKSUNG);
+				deviceCategory[deviceCategoryCnt]->supportedPollingCount = atoi(confBuf[2]);
+				deviceCategory[deviceCategoryCnt]->dName = SENSOR;
+				deviceCategory[deviceCategoryCnt]->pName = NOKSUNG;
+				deviceCategory[deviceCategoryCnt]->iName = EXT1;
+
 				deviceCategory[deviceCategoryCnt]->DeviceInit();
 				deviceCategoryCnt++;
 			}
@@ -833,6 +951,24 @@ void* DevicePollingManger(void * arg)
 
 					}
 					break;
+
+				case SENSOR:
+					if(deviceCategory[pollingDeviceIndex]->pName == NOKSUNG)
+					{
+						Log(LOG::MGR, "%s Polling\n", ((NOKSUNG_Sensor*)deviceCategory[pollingDeviceIndex])->sensorStatus[pollingDeviceOrder -1].deviceCharName);
+						result = ((NOKSUNG_Sensor*)deviceCategory[pollingDeviceIndex])->FrameMake(POLLING_CMD, pollingDeviceOrder, 0, 0, 0, 0);
+						pollingDeviceOrder++;	
+
+						if(result == FAIL)
+							Log(LOG::ERR, "%s Polling Error\n", ((NOKSUNG_Sensor*)deviceCategory[pollingDeviceIndex])->sensorStatus[pollingDeviceOrder - 1].deviceCharName);					
+
+						if(pollingDeviceOrder > deviceCategory[pollingDeviceIndex]->supportedPollingCount)
+						{
+							pollingDeviceOrder = 1;
+							pollingDeviceIndex++;
+						}
+					}
+					break;
 					
 				default:
 					break;
@@ -971,7 +1107,25 @@ int NotifyControlToDevice(enum DEVICE_NAME dName, unsigned char order, unsigned 
 				controlFlag = FALSE;
 			}
 			break;
+			
+		case SENSOR:
+			{
+				get_device_property(SENSOR, order, &d_property);
+					
+				notifyDevice = (ConcreteDeviceCreator::GetInstance())->DeviceFactoryMethod(SENSOR, dProtocol);			
 
+				controlFlag = TRUE;
+
+				usleep(POLLING_TIME);
+				result = notifyDevice->FrameMake(CONTROL_CMD, order, function1, function2, function3, function4);
+				
+				pollingDeviceIndex = get_device_index(SENSOR);
+				if(pollingDeviceIndex == -1) pollingDeviceIndex = 0;
+				pollingDeviceOrder = order;
+
+				controlFlag = FALSE;
+			}
+			break;
 
 		default:
 
@@ -1009,6 +1163,10 @@ int NotifyEventToService(enum DEVICE_NAME dName, unsigned char order, unsigned c
 			(SOAP_Handler::Instance())->event.device_name = CURTAIN;
 			break;
 
+		case SENSOR:
+			(SOAP_Handler::Instance())->event.device_name = SENSOR;
+			break;
+
 		default:
 			break;
 	}
@@ -1026,6 +1184,126 @@ int NotifyEventToService(enum DEVICE_NAME dName, unsigned char order, unsigned c
 	return result;
 }
 
+void UartOpenAndUartStart()
+{
+	int i, result = 0;
+	enum DEVICE_PROTOCOL dProtocol;
+	
+	for( i = 0; i < deviceCategoryCnt; i++)
+	{
+		switch(deviceCategory[i]->iName)
+		{
+			case EXT1:
+				if(deviceCategory[i]->pName == COMMAX)
+				{
+					if((CMX_UartRS485::Instance())->isOpen() == FALSE)
+					{
+						result = (CMX_UartRS485::Instance())->UartOpen(3, 3);
+
+						if(result == FAIL)
+						{
+							Log(LOG::ERR, "/dev/ttyS2  UartOpen error\n");
+							(CMX_UartRS485::Instance())->UartClose();
+						}
+					}
+
+					if((CMX_UartRS485::Instance())->isRunning() == FALSE)
+						(CMX_UartRS485::Instance())->Start();
+
+				}
+				else if(deviceCategory[i]->pName == HAMUN)
+				{
+					if((HAMUN_UartRS485::Instance())->isOpen() == FALSE)
+					{
+						result = (HAMUN_UartRS485::Instance())->UartOpen(3, 1);
+						if(result == FAIL)
+						{
+							Log(LOG::ERR, "/dev/ttyS2 UartOpen error\n");
+							(HAMUN_UartRS485::Instance())->UartClose();
+						}
+					}
+
+					if((HAMUN_UartRS485::Instance())->isRunning() == FALSE)
+						(HAMUN_UartRS485::Instance())->Start();
+
+				}
+				else if(deviceCategory[i]->pName == NOKSUNG)
+				{
+					if((NOKSUNG_UartRS485::Instance())->isOpen() == FALSE)
+					{
+						result = (NOKSUNG_UartRS485::Instance())->UartOpen(3, 3);
+						if(result == FAIL)
+						{
+							Log(LOG::ERR, "/dev/ttyS2 UartOpen error\n");
+							(NOKSUNG_UartRS485::Instance())->UartClose();
+						}
+					}
+
+					if((NOKSUNG_UartRS485::Instance())->isRunning() == FALSE)
+						(NOKSUNG_UartRS485::Instance())->Start();
+
+				}	
+				
+				break;
+				
+			case EXT2:
+				if(deviceCategory[i]->pName == COMMAX)
+				{
+					if((CMX_UartRS485::Instance())->isOpen() == FALSE)
+					{
+						result = (CMX_UartRS485::Instance())->UartOpen(6, 3);
+
+						if(result == FAIL)
+						{
+							Log(LOG::ERR, "/dev/uart1  UartOpen error\n");
+							(CMX_UartRS485::Instance())->UartClose();
+						}
+					}
+
+					if((CMX_UartRS485::Instance())->isRunning() == FALSE)
+						(CMX_UartRS485::Instance())->Start();
+
+				}
+				else if(deviceCategory[i]->pName == HAMUN)
+				{
+					if((HAMUN_UartRS485::Instance())->isOpen() == FALSE)
+					{
+						result = (HAMUN_UartRS485::Instance())->UartOpen(6, 1);
+						if(result == FAIL)
+						{
+							Log(LOG::ERR, "/dev/uart1 UartOpen error\n");
+							(HAMUN_UartRS485::Instance())->UartClose();
+						}
+					}
+
+					if((HAMUN_UartRS485::Instance())->isRunning() == FALSE)
+						(HAMUN_UartRS485::Instance())->Start();
+
+				}
+				else if(deviceCategory[i]->pName == NOKSUNG)
+				{
+					if((NOKSUNG_UartRS485::Instance())->isOpen() == FALSE)
+					{
+						result = (NOKSUNG_UartRS485::Instance())->UartOpen(6, 3);
+						if(result == FAIL)
+						{
+							Log(LOG::ERR, "/dev/uart1 UartOpen error\n");
+							(NOKSUNG_UartRS485::Instance())->UartClose();
+						}
+					}
+
+					if((NOKSUNG_UartRS485::Instance())->isRunning() == FALSE)
+						(NOKSUNG_UartRS485::Instance())->Start();
+
+				}	
+				
+				break;
+				
+			default:
+				break;
+		}
+	}
+}
 
 int main(int argc, char** argv)
 {
@@ -1053,72 +1331,7 @@ int main(int argc, char** argv)
 /***************************************************************************************/
 // UART  Open & Start
 /**************************************************************************************/
-	enum DEVICE_PROTOCOL dProtocol;
-	
-	for( i = 0; i < deviceCategoryCnt; i++)
-	{
-		switch(deviceCategory[i]->iName)
-		{
-			case EXT1:
-				if(deviceCategory[i]->pName == COMMAX)
-				{
-					if((CMX_UartRS485::Instance())->isOpen() == FALSE)
-					{
-						result = (CMX_UartRS485::Instance())->UartOpen(6, 3);
-
-						if(result == FAIL)
-						{
-							Log(LOG::ERR, "/dev/uart1 UartOpen error\n");
-							(CMX_UartRS485::Instance())->UartClose();
-						}
-					}
-
-					if((CMX_UartRS485::Instance())->isRunning() == FALSE)
-						(CMX_UartRS485::Instance())->Start();
-
-				}
-				else if(deviceCategory[i]->pName == HAMUN)
-				{
-					if((HAMUN_UartRS485::Instance())->isOpen() == FALSE)
-					{
-						result = (HAMUN_UartRS485::Instance())->UartOpen(3, 1);
-						if(result == FAIL)
-						{
-							Log(LOG::ERR, "/dev/ttyS2 UartOpen error\n");
-							(HAMUN_UartRS485::Instance())->UartClose();
-						}
-					}
-
-					if((HAMUN_UartRS485::Instance())->isRunning() == FALSE)
-						(HAMUN_UartRS485::Instance())->Start();
-
-				}
-				break;
-				
-			case EXT2:
-				if(deviceCategory[i]->pName == COMMAX)
-				{
-					if((CMX_UartRS485::Instance())->isOpen() == FALSE)
-					{
-						result = (CMX_UartRS485::Instance())->UartOpen(6, 3);
-
-						if(result == FAIL)
-						{
-							Log(LOG::ERR, "/dev/uart1 UartOpen error\n");
-							(CMX_UartRS485::Instance())->UartClose();
-						}
-					}
-
-					if((CMX_UartRS485::Instance())->isRunning() == FALSE)
-						(CMX_UartRS485::Instance())->Start();
-
-				}
-				break;
-				
-			default:
-				break;
-		}
-	}
+	UartOpenAndUartStart();
 
 /***************************************************************************************/
 // Soap Handler Start
@@ -1192,6 +1405,7 @@ void Close()
 
 	(CMX_UartRS485::Instance())->Close();
 	(HAMUN_UartRS485::Instance())->Close();	
+	(NOKSUNG_UartRS485::Instance())->Close();		
 	(SOAP_Handler::Instance())->Close();
 	(SOAP_Service::Instance())->Close();
 
@@ -1203,6 +1417,7 @@ void Close()
 	}
 
 }
+
 
 /***************************************************************************************/
 //SOAP Handler Helper Command
@@ -1460,6 +1675,22 @@ void  get_device_property(enum DEVICE_NAME device_name, int order, D_Property* d
 				}
 			}
 			break;
+
+		case SENSOR:
+			if(dCategory->pName == NOKSUNG)
+			{
+				if(((NOKSUNG_Sensor*)dCategory)->sensorStatus[order - 1].order != 0xFF)
+				{
+					d_property->sensorProperty.sensorDetected = SUPPORTED;
+					d_property->sensorProperty.sensorUndetected = SUPPORTED;
+				}
+				else
+				{
+					d_property->sensorProperty.sensorDetected = NOT_SUPPORTED;
+					d_property->sensorProperty.sensorUndetected = NOT_SUPPORTED;
+				}
+			}
+			break;
 							
 		default:
 			break;
@@ -1593,6 +1824,8 @@ void get_device_item(enum DEVICE_NAME device_name, int order, D_Item* d_item)
 				}
 			}
 
+			break;
+			
 		case BOILER:
 			if(dCategory->pName == COMMAX)
 			{
@@ -1655,7 +1888,38 @@ void get_device_item(enum DEVICE_NAME device_name, int order, D_Item* d_item)
 				}
 			}
 	
-			break;			
+			break;		
+
+		case SENSOR:
+			if(dCategory->pName == NOKSUNG)
+			{
+				if(ack == FALSE)
+					d_item->sensorItem.error = PORT_ERROR;
+				else if(check_device_disconnection(SENSOR) == FALSE)
+					d_item->sensorItem.error = SENSOR_DISCONNECTION;
+				else
+				{
+					if(order > get_current_supported_cnt(SENSOR))
+					{
+						Log(LOG::ERR, "SENSOR order %d over Error\n", order);					
+						break;							
+					}
+
+					d_item->sensorItem.error = NO_ERROR;
+
+					for(int i = 0; i < MAX_SUBSENSOR_CNT; i++)
+					{
+						if(((NOKSUNG_Sensor*)dCategory)->sensorStatus[order - 1].subSensor[i].action == SENSOR_DETECTED)
+							d_item->sensorItem.subAction[i] = SENSOR_DETECTED;
+						if(((NOKSUNG_Sensor*)dCategory)->sensorStatus[order - 1].subSensor[i].action == SENSOR_UNDETECTED)
+							d_item->sensorItem.subAction[i] = SENSOR_UNDETECTED;
+						else
+							d_item->sensorItem.subAction[i] = SENSOR_NONE;
+					}
+				}
+			}
+	
+			break;				
 
 		default:
 			break;
@@ -2103,7 +2367,36 @@ void notify_print(unsigned char cmd_mode, enum DEVICE_NAME device_name, unsigned
 			}
 		}
 		break;
-		
+
+		case SENSOR:
+		{
+			switch(function1)
+			{
+				case SENSOR_ACTION_EVENT:
+				{
+					if(function3 == SENSOR_DETECTED)
+					{
+						//Log(LOG::HND, "%s : SENSOR [%d] SUBID[%d], SENSOR_DETECTED\n", str, order, function2);
+						Log(LOG::MGR, "%s : SENSOR [%d] SUBID[%d], SENSOR_DETECTED\n", str, order, function2);
+						Log(LOG::INFO, "%s : SENSOR [%d] SUBID[%d], SENSOR_DETECTED\n", str, order, function2);
+						//Log(LOG::PRTCL, "%s : SENSOR [%d] SUBID[%d], SENSOR_DETECTED\n", str, order, function2);
+					}
+					else if(function3 == SENSOR_UNDETECTED)
+					{
+						//Log(LOG::HND, "%s : SENSOR [%d] SUBID[%d], SENSOR_UNDETECTED\n", str, order, function2);
+						Log(LOG::MGR, "%s : SENSOR [%d] SUBID[%d], SENSOR_UNDETECTED\n", str, order, function2);
+						Log(LOG::INFO, "%s : SENSOR [%d] SUBID[%d], SENSOR_UNDETECTED\n", str, order, function2);
+						//Log(LOG::PRTCL, "%s : SENSOR [%d] SUBID[%d], SENSOR_UNDETECTED\n", str, order, function2);
+					}
+				}
+				break;
+
+				default:
+					Log(LOG::ERR, "%s : SENSOR [%d], WRONG_ACTION\n", str, order);
+					break;
+			}
+		}
+		break;		
 		
 		default:
 			Log(LOG::ERR, "%s : device_name %d is WRONG DEVICE \n", str, device_name);
@@ -2113,7 +2406,7 @@ void notify_print(unsigned char cmd_mode, enum DEVICE_NAME device_name, unsigned
 
 void device_status_print(enum DEVICE_NAME device_name)
 {
-	int index, current_device_cnt;
+	int index, subIndex, current_device_cnt;
 	enum DEVICE_PROTOCOL protocol;
 	DeviceProtocol *dCategory;
 	protocol = get_protocol(device_name);
@@ -2313,8 +2606,40 @@ void device_status_print(enum DEVICE_NAME device_name)
 				}
 				Log(LOG::INFO, "***************\n");
 			}
-			break;			
-			
+			break;	
+
+		case SENSOR:
+			current_device_cnt = get_current_supported_cnt(SENSOR);
+			Log(LOG::INFO, "SENSOR current_device_cnt = %d\n", current_device_cnt);
+
+			if(protocol == NOKSUNG)
+			{
+				Log(LOG::INFO, "**************************************************************************************************************\n");
+				Log(LOG::INFO, "| ID | 센서1 상태 | 센서2 상태 | 센서3 상태 | 센서4 상태 | 센서5 상태 | 센서6 상태 | 센서7 상태 | 센서8 상태 |\n");
+
+
+				for(index = 0; index < current_device_cnt; index++)
+				{
+					Log(LOG::INFO, "| %02d |", ((NOKSUNG_Sensor*)dCategory)->sensorStatus[index].order);
+
+					for(subIndex = 0; subIndex < MAX_SUBSENSOR_CNT; subIndex++)
+					{
+						if(((NOKSUNG_Sensor*)dCategory)->sensorStatus[index].subSensor[subIndex].action == SENSOR_DETECTED)
+							Log(LOG::INFO, "  센서감지  |");
+						else if(((NOKSUNG_Sensor*)dCategory)->sensorStatus[index].subSensor[subIndex].action == SENSOR_UNDETECTED)
+							Log(LOG::INFO, "  센서해지  |");
+						else
+							Log(LOG::INFO, "    NONE    |");
+
+					}
+
+					Log(LOG::INFO, "\n");									
+				}
+
+				Log(LOG::INFO, "**************************************************************************************************************\n");
+			}
+			break;				
+		
 		default:
 			break;
 	}

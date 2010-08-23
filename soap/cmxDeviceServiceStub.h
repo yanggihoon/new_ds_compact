@@ -25,13 +25,13 @@ namespace cmxDeviceService {
 #ifndef SOAP_TYPE_cmxDeviceService_ns__enum_devInfo
 #define SOAP_TYPE_cmxDeviceService_ns__enum_devInfo (6)
 /* ns:enum-devInfo */
-enum ns__enum_devInfo {_dummy = 0, _boiler = 1, _light = 2, _gasValve = 3, _doorLock = 4, _outlet = 5, _curtain = 6, _airCleaner = 7, _bide = 8, _aroma = 9, _rf = 10, _zlplc = 11, _bundleLight = 12, _systemAircon = 13, _fanSystem = 14, _aircon = 21, _washMachine = 22, _dishWashMachine = 23, _gasOven = 24, _microwave = 25, _television = 26, _audio = 27, _vtr = 28, _dvd = 29, _refrigerator = 30, _kRefrigeator = 31, _sensorEmer = 32, _exTerminal = 33, _protoCommax = 34, _protoLnCP = 35, _protoSCUBE = 36, _protoZ256 = 37, _protoICROSS = 38, _protoSamsung = 39, _protoHaMun = 40, _intfPLC = 41, _intfRF = 42, _intfRS485 = 43, _intfLAN = 44};
+enum ns__enum_devInfo {_dummy = 0, _boiler = 1, _light = 2, _gasValve = 3, _doorLock = 4, _outlet = 5, _curtain = 6, _airCleaner = 7, _bide = 8, _aroma = 9, _rf = 10, _zlplc = 11, _bundleLight = 12, _systemAircon = 13, _fanSystem = 14, _aircon = 21, _washMachine = 22, _dishWashMachine = 23, _gasOven = 24, _microwave = 25, _television = 26, _audio = 27, _vtr = 28, _dvd = 29, _refrigerator = 30, _kRefrigeator = 31, _securitySensor = 32, _sensorEmer = 33, _exTerminal = 34, _protoCommax = 35, _protoNokSung = 36, _protoLnCP = 37, _protoSCUBE = 38, _protoZ256 = 39, _protoICROSS = 40, _protoSamsung = 41, _protoHaMun = 42, _intfPLC = 43, _intfRF = 44, _intfRS485 = 45, _intfLAN = 46};
 #endif
 
 #ifndef SOAP_TYPE_cmxDeviceService_ns__enum_devError
 #define SOAP_TYPE_cmxDeviceService_ns__enum_devError (7)
 /* ns:enum-devError */
-enum ns__enum_devError {devError_no = 0, devError_232_Serial_Port_Open_Error = 1, devError_lncp_Common_Micom_Error = 2, devError_lncp_Common_Running_Door_Open = 3, devError_lncp_Common_Hardware_Error = 4, devError_lncp_Common_Sensor_Error = 5, devError_lncp_Common_Motor_Error = 6, devError_lncp_Common_Power_Fail = 7, devError_lncp_Common_Temperature_Range_Error = 8, devError_lncp_Common_Device_Preempted_Error = 9, devError_lncp_Common_Device_control_timeout = 10, devError_lncp_Common_Device_Not_Exist_DD = 11, devError_lncp_Common_Device_Nak_Error = 12, devError_lncp_Common_Incorrect_Option_Setting = 13, devError_lncp_Common_Argument_Error = 14, devError_485_Serial_Port_Open_Error = 15, devError_TTL_Serial_Port_Open_Error = 16, devError_boiler_DisConnect = 17, devError_light_DisConnect = 18, devError_gas_DisConnect = 19, devError_door_DisConnect = 20, devError_outlet_DisConnect = 21, devError_curtain_DisConnect = 22, devError_airCleaner_DisConnect = 23, devError_bide_DisConnect = 24, devError_aroma_DisConnect = 25, devError_rf_DisConnect = 26, devError_plc_DisConnect = 27, devError_bundleLight_DisConnect = 28, devError_systemAircon_DisConnect = 29, devError_fanSystem_DisConnect = 30, devError_aircon_DisConnect = 31, devError_washMachine_DisConnect = 32, devError_dishWashMachine_DisConnect = 33, devError_gasOven_DisConnect = 34, devError_microwave_DisConnect = 35, devError_television_DisConnect = 36, devError_audio_DisConnect = 37, devError_vtr_DisConnect = 38, devError_refrigerator_DisConnect = 39, devError_kRefrigeator_DisConnect = 40, devError_Boiler_control = 41, devError_Boiler_drive = 42, devError_Boiler_boiler = 43, devError_Boiler_eeprom = 44, devGas_notFound_sensor = 45, devError_aroma_catridge1_drive = 46, devError_aroma_catridge2_drive = 47, devError_aroma_catridge3_drive = 48, devStatus_no = 49};
+enum ns__enum_devError {devError_no = 0, devError_232_Serial_Port_Open_Error = 1, devError_lncp_Common_Micom_Error = 2, devError_lncp_Common_Running_Door_Open = 3, devError_lncp_Common_Hardware_Error = 4, devError_lncp_Common_Sensor_Error = 5, devError_lncp_Common_Motor_Error = 6, devError_lncp_Common_Power_Fail = 7, devError_lncp_Common_Temperature_Range_Error = 8, devError_lncp_Common_Device_Preempted_Error = 9, devError_lncp_Common_Device_control_timeout = 10, devError_lncp_Common_Device_Not_Exist_DD = 11, devError_lncp_Common_Device_Nak_Error = 12, devError_lncp_Common_Incorrect_Option_Setting = 13, devError_lncp_Common_Argument_Error = 14, devError_485_Serial_Port_Open_Error = 15, devError_TTL_Serial_Port_Open_Error = 16, devError_boiler_DisConnect = 17, devError_light_DisConnect = 18, devError_gas_DisConnect = 19, devError_door_DisConnect = 20, devError_outlet_DisConnect = 21, devError_curtain_DisConnect = 22, devError_airCleaner_DisConnect = 23, devError_bide_DisConnect = 24, devError_aroma_DisConnect = 25, devError_rf_DisConnect = 26, devError_plc_DisConnect = 27, devError_bundleLight_DisConnect = 28, devError_systemAircon_DisConnect = 29, devError_fanSystem_DisConnect = 30, devError_nokSungSensor_DisConnect = 31, devError_aircon_DisConnect = 32, devError_washMachine_DisConnect = 33, devError_dishWashMachine_DisConnect = 34, devError_gasOven_DisConnect = 35, devError_microwave_DisConnect = 36, devError_television_DisConnect = 37, devError_audio_DisConnect = 38, devError_vtr_DisConnect = 39, devError_refrigerator_DisConnect = 40, devError_kRefrigeator_DisConnect = 41, devError_Boiler_control = 42, devError_Boiler_drive = 43, devError_Boiler_boiler = 44, devError_Boiler_eeprom = 45, devGas_notFound_sensor = 46, devError_aroma_catridge1_drive = 47, devError_aroma_catridge2_drive = 48, devError_aroma_catridge3_drive = 49, devStatus_no = 50};
 #endif
 
 #ifndef SOAP_TYPE_cmxDeviceService_ns__enum_device_connect_check
@@ -136,16 +136,16 @@ enum ns__enum_fanSystem {_fanSystemDo_Power_Off = 0, _fanSystemDo_Power_On = 1, 
 enum ns__fanSystemFunc {f_fanSystemDo_Power = 0, f_fanSystemDo_AutoFan = 1, f_fanSystemDo_FanMode = 2, f_fanSystemDo_FanWind = 3, f_fanSystemDo_FanReservationSet = 4, f_fanSystemSt_Power = 5, f_fanSystemSt_AutoFan = 6, f_fanSystemSt_FanMode = 7, f_fanSystemSt_FanWind = 8, f_fanSystemSt_FanReservationSet = 9, f_fanSystemSt_SensorMode = 10, f_fanSystemSt_DamperMode = 11, f_fanSystemSt_FilterEmpress = 12, f_fanSystemSt_AlarmMode = 13, f_fanSystemSt_Temperature = 14, f_fanSystemSt_CO2_Density = 15, f_fanSystemSt_GAS_Density = 16, f_fanSystemDevError = 17};
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__enum_sensorEmer
-#define SOAP_TYPE_cmxDeviceService_ns__enum_sensorEmer (221)
-/* ns:enum-sensorEmer */
-enum ns__enum_sensorEmer {_seMode_Release = 0, _seMode_Set = 1, _seMode_Alarm = 2, _model_sensorEmer_Menix = 3};
+#ifndef SOAP_TYPE_cmxDeviceService_ns__enum_securitySensor
+#define SOAP_TYPE_cmxDeviceService_ns__enum_securitySensor (221)
+/* ns:enum-securitySensor */
+enum ns__enum_securitySensor {_securitySensorSt_Detected = 0, _securitySensorSt_UnDetected = 1, _model_NokSung_XP830RS8I = 2};
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__sensorEmerFunc
-#define SOAP_TYPE_cmxDeviceService_ns__sensorEmerFunc (223)
-/* ns:sensorEmerFunc */
-enum ns__sensorEmerFunc {f_seMode = 0, f_seDevError = 1};
+#ifndef SOAP_TYPE_cmxDeviceService_ns__securitySensorFunc
+#define SOAP_TYPE_cmxDeviceService_ns__securitySensorFunc (224)
+/* ns:securitySensorFunc */
+enum ns__securitySensorFunc {f_securitySensorStSubChannelOne = 0, f_securitySensorStSubChannelTwo = 1, f_securitySensorStSubChannelThree = 2, f_securitySensorStSubChannelFour = 3, f_securitySensorStSubChannelFive = 4, f_securitySensorStSubChannelSix = 5, f_securitySensorStSubChannelSeven = 6, f_securitySensorStSubChannelEight = 7, f_securitySensorDevError = 8};
 #endif
 
 /******************************************************************************\
@@ -220,6 +220,7 @@ public:
 	unsigned int _dvd;	/* required element of type xsd:unsignedInt */
 	unsigned int _refrigerator;	/* required element of type xsd:unsignedInt */
 	unsigned int _kRefrigeator;	/* required element of type xsd:unsignedInt */
+	unsigned int _securitySensor;	/* required element of type xsd:unsignedInt */
 };
 #endif
 
@@ -239,6 +240,7 @@ public:
 	enum ns__enum_devError curtainDeviceError;	/* required element of type ns:enum-devError */
 	enum ns__enum_devError bundleLightDeviceError;	/* required element of type ns:enum-devError */
 	enum ns__enum_devError fanSystemDeviceError;	/* required element of type ns:enum-devError */
+	enum ns__enum_devError securitySensorDeviceError;	/* required element of type ns:enum-devError */
 	enum ns__enum_devError airconDeviceError;	/* required element of type ns:enum-devError */
 	enum ns__enum_devError rfDeviceError;	/* required element of type ns:enum-devError */
 	enum ns__enum_devError systemAirconDeviceError;	/* required element of type ns:enum-devError */
@@ -1949,159 +1951,209 @@ public:
 };
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__sensorEmer
-#define SOAP_TYPE_cmxDeviceService_ns__sensorEmer (222)
-/* ns:sensorEmer */
-class SOAP_CMAC ns__sensorEmer : public ns__rootDevice
+#ifndef SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty
+#define SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty (222)
+/* xsd-SecuritySensorProperty */
+struct xsd_SecuritySensorProperty
 {
 public:
-	enum ns__enum_sensorEmer model;	/* required element of type ns:enum-sensorEmer */
-	enum ns__enum_sensorEmer seMode;	/* required element of type ns:enum-sensorEmer */
-	enum ns__enum_devError seDevError;	/* required element of type ns:enum-devError */
-	enum ns__sensorEmerFunc func;	/* required element of type ns:sensorEmerFunc */
+	unsigned int _securitySensorSt_Detected;	/* required element of type xsd:unsignedInt */
+	unsigned int _securitySensorSt_UnDetected;	/* required element of type xsd:unsignedInt */
+};
+#endif
+
+#ifndef SOAP_TYPE_cmxDeviceService_ns__securitySensor
+#define SOAP_TYPE_cmxDeviceService_ns__securitySensor (223)
+/* ns:securitySensor */
+class SOAP_CMAC ns__securitySensor : public ns__rootDevice
+{
 public:
-	virtual int soap_type() const { return 222; } /* = unique id SOAP_TYPE_cmxDeviceService_ns__sensorEmer */
+	struct xsd_SecuritySensorProperty devSecuritySensorProperty;	/* required element of type xsd-SecuritySensorProperty */
+	int securitySensorStMainChannel;	/* required element of type xsd:int */
+	enum ns__enum_securitySensor model;	/* required element of type ns:enum-securitySensor */
+	enum ns__enum_securitySensor securitySensorStSubChannel_One;	/* required element of type ns:enum-securitySensor */
+	enum ns__enum_securitySensor securitySensorStSubChannel_Two;	/* required element of type ns:enum-securitySensor */
+	enum ns__enum_securitySensor securitySensorStSubChannel_Three;	/* required element of type ns:enum-securitySensor */
+	enum ns__enum_securitySensor securitySensorStSubChannel_Four;	/* required element of type ns:enum-securitySensor */
+	enum ns__enum_securitySensor securitySensorStSubChannel_Five;	/* required element of type ns:enum-securitySensor */
+	enum ns__enum_securitySensor securitySensorStSubChannel_Six;	/* required element of type ns:enum-securitySensor */
+	enum ns__enum_securitySensor securitySensorStSubChannel_Seven;	/* required element of type ns:enum-securitySensor */
+	enum ns__enum_securitySensor securitySensorStSubChannel_Eight;	/* required element of type ns:enum-securitySensor */
+	enum ns__enum_devError securitySensorDevError;	/* required element of type ns:enum-devError */
+	enum ns__securitySensorFunc func;	/* required element of type ns:securitySensorFunc */
+public:
+	virtual int soap_type() const { return 223; } /* = unique id SOAP_TYPE_cmxDeviceService_ns__securitySensor */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
 	virtual int soap_out(struct soap*, const char*, int, const char*) const;
 	virtual void *soap_get(struct soap*, const char*, const char*);
 	virtual void *soap_in(struct soap*, const char*, const char*);
-	         ns__sensorEmer()  { }
-	virtual ~ns__sensorEmer() { }
+	         ns__securitySensor()  { }
+	virtual ~ns__securitySensor() { }
 };
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse
-#define SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse (224)
-/* ns:getSensorEmerItemResponse */
-class SOAP_CMAC ns__getSensorEmerItemResponse
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse (225)
+/* ns:getSecuritySensorPropertyItemResponse */
+class SOAP_CMAC ns__getSecuritySensorPropertyItemResponse
 {
 public:
-	ns__sensorEmer _return;	/* RPC return element */	/* required element of type ns:sensorEmer */
+	ns__securitySensor _return;	/* RPC return element */	/* required element of type ns:securitySensor */
 public:
-	virtual int soap_type() const { return 224; } /* = unique id SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse */
+	virtual int soap_type() const { return 225; } /* = unique id SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
 	virtual int soap_out(struct soap*, const char*, int, const char*) const;
 	virtual void *soap_get(struct soap*, const char*, const char*);
 	virtual void *soap_in(struct soap*, const char*, const char*);
-	         ns__getSensorEmerItemResponse()  { }
-	virtual ~ns__getSensorEmerItemResponse() { }
+	         ns__getSecuritySensorPropertyItemResponse()  { }
+	virtual ~ns__getSecuritySensorPropertyItemResponse() { }
 };
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse
-#define SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse (225)
-/* ns:getSensorEmerResponse */
-class SOAP_CMAC ns__getSensorEmerResponse
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse (226)
+/* ns:getSecuritySensorItemResponse */
+class SOAP_CMAC ns__getSecuritySensorItemResponse
 {
 public:
-	ns__sensorEmer _return;	/* RPC return element */	/* required element of type ns:sensorEmer */
+	ns__securitySensor _return;	/* RPC return element */	/* required element of type ns:securitySensor */
 public:
-	virtual int soap_type() const { return 225; } /* = unique id SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse */
+	virtual int soap_type() const { return 226; } /* = unique id SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
 	virtual int soap_out(struct soap*, const char*, int, const char*) const;
 	virtual void *soap_get(struct soap*, const char*, const char*);
 	virtual void *soap_in(struct soap*, const char*, const char*);
-	         ns__getSensorEmerResponse()  { }
-	virtual ~ns__getSensorEmerResponse() { }
+	         ns__getSecuritySensorItemResponse()  { }
+	virtual ~ns__getSecuritySensorItemResponse() { }
 };
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse
-#define SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse (227)
-/* ns:getSensorEmerCountResponse */
-struct ns__getSensorEmerCountResponse
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse (227)
+/* ns:getSecuritySensorResponse */
+class SOAP_CMAC ns__getSecuritySensorResponse
+{
+public:
+	ns__securitySensor _return;	/* RPC return element */	/* required element of type ns:securitySensor */
+public:
+	virtual int soap_type() const { return 227; } /* = unique id SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         ns__getSecuritySensorResponse()  { }
+	virtual ~ns__getSecuritySensorResponse() { }
+};
+#endif
+
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse (229)
+/* ns:getSecuritySensorCountResponse */
+struct ns__getSecuritySensorCountResponse
 {
 public:
 	int *out;	/* RPC return element */	/* optional element of type xsd:int */
 };
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount
-#define SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount (228)
-/* ns:getSensorEmerCount */
-struct ns__getSensorEmerCount
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount (230)
+/* ns:getSecuritySensorCount */
+struct ns__getSecuritySensorCount
 {
 public:
 	void *_;	/* transient */
 };
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem
-#define SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem (231)
-/* ns:getSensorEmerItem */
-struct ns__getSensorEmerItem
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem (233)
+/* ns:getSecuritySensorPropertyItem */
+struct ns__getSecuritySensorPropertyItem
 {
 public:
 	int order;	/* required element of type xsd:int */
 };
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__getSensorEmer
-#define SOAP_TYPE_cmxDeviceService_ns__getSensorEmer (234)
-/* ns:getSensorEmer */
-struct ns__getSensorEmer
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem (236)
+/* ns:getSecuritySensorItem */
+struct ns__getSecuritySensorItem
 {
 public:
-	ns__sensorEmer in;	/* required element of type ns:sensorEmer */
+	int order;	/* required element of type xsd:int */
 };
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse
-#define SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse (235)
-/* ns:setSensorEmerResponse */
-class SOAP_CMAC ns__setSensorEmerResponse
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor (239)
+/* ns:getSecuritySensor */
+struct ns__getSecuritySensor
 {
 public:
-	virtual int soap_type() const { return 235; } /* = unique id SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse */
+	ns__securitySensor in;	/* required element of type ns:securitySensor */
+};
+#endif
+
+#ifndef SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse
+#define SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse (240)
+/* ns:setSecuritySensorResponse */
+class SOAP_CMAC ns__setSecuritySensorResponse
+{
+public:
+	virtual int soap_type() const { return 240; } /* = unique id SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse */
 	virtual void soap_default(struct soap*);
 	virtual void soap_serialize(struct soap*) const;
 	virtual int soap_put(struct soap*, const char*, const char*) const;
 	virtual int soap_out(struct soap*, const char*, int, const char*) const;
 	virtual void *soap_get(struct soap*, const char*, const char*);
 	virtual void *soap_in(struct soap*, const char*, const char*);
-	         ns__setSensorEmerResponse()  { }
-	virtual ~ns__setSensorEmerResponse() { }
+	         ns__setSecuritySensorResponse()  { }
+	virtual ~ns__setSecuritySensorResponse() { }
 };
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__setSensorEmer
-#define SOAP_TYPE_cmxDeviceService_ns__setSensorEmer (238)
-/* ns:setSensorEmer */
-struct ns__setSensorEmer
+#ifndef SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor
+#define SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor (243)
+/* ns:setSecuritySensor */
+struct ns__setSecuritySensor
 {
 public:
-	ns__sensorEmer in;	/* required element of type ns:sensorEmer */
+	ns__securitySensor in;	/* required element of type ns:securitySensor */
 };
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse
-#define SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse (240)
-/* ns:sensorEmerEventResponse */
-struct ns__sensorEmerEventResponse
+#ifndef SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse
+#define SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse (245)
+/* ns:securitySensorEventResponse */
+struct ns__securitySensorEventResponse
 {
 public:
 	int *out;	/* RPC return element */	/* optional element of type xsd:int */
 };
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent
-#define SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent (241)
-/* ns:sensorEmerEvent */
-struct ns__sensorEmerEvent
+#ifndef SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent
+#define SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent (246)
+/* ns:securitySensorEvent */
+struct ns__securitySensorEvent
 {
 public:
-	ns__sensorEmer in;	/* required element of type ns:sensorEmer */
+	ns__securitySensor in;	/* required element of type ns:securitySensor */
 };
 #endif
 
 #ifndef SOAP_TYPE_cmxDeviceService_ns__subcribeEventResponse
-#define SOAP_TYPE_cmxDeviceService_ns__subcribeEventResponse (243)
+#define SOAP_TYPE_cmxDeviceService_ns__subcribeEventResponse (248)
 /* ns:subcribeEventResponse */
 struct ns__subcribeEventResponse
 {
@@ -2111,7 +2163,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_cmxDeviceService_ns__subcribeEvent
-#define SOAP_TYPE_cmxDeviceService_ns__subcribeEvent (244)
+#define SOAP_TYPE_cmxDeviceService_ns__subcribeEvent (249)
 /* ns:subcribeEvent */
 struct ns__subcribeEvent
 {
@@ -2121,7 +2173,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_cmxDeviceService_SOAP_ENV__Header
-#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Header (245)
+#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Header (250)
 /* SOAP Header: */
 struct SOAP_ENV__Header
 {
@@ -2131,7 +2183,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_cmxDeviceService_SOAP_ENV__Code
-#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Code (246)
+#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Code (251)
 /* SOAP Fault Code: */
 struct SOAP_ENV__Code
 {
@@ -2142,7 +2194,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_cmxDeviceService_SOAP_ENV__Detail
-#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Detail (248)
+#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Detail (253)
 /* SOAP-ENV:Detail */
 struct SOAP_ENV__Detail
 {
@@ -2154,7 +2206,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_cmxDeviceService_SOAP_ENV__Reason
-#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Reason (249)
+#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Reason (254)
 /* SOAP-ENV:Reason */
 struct SOAP_ENV__Reason
 {
@@ -2164,7 +2216,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_cmxDeviceService_SOAP_ENV__Fault
-#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Fault (250)
+#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Fault (255)
 /* SOAP Fault: */
 struct SOAP_ENV__Fault
 {
@@ -2320,15 +2372,17 @@ SOAP_FMAC5 int SOAP_FMAC6 ns__setFanSystem(struct soap*, ns__fanSystem in, ns__s
 
 SOAP_FMAC5 int SOAP_FMAC6 ns__FanSystemEvent(struct soap*, ns__fanSystem in, int *out);
 
-SOAP_FMAC5 int SOAP_FMAC6 ns__getSensorEmerCount(struct soap*, void *_, int *out);
+SOAP_FMAC5 int SOAP_FMAC6 ns__getSecuritySensorCount(struct soap*, void *_, int *out);
 
-SOAP_FMAC5 int SOAP_FMAC6 ns__getSensorEmerItem(struct soap*, int order, ns__getSensorEmerItemResponse *out);
+SOAP_FMAC5 int SOAP_FMAC6 ns__getSecuritySensorPropertyItem(struct soap*, int order, ns__getSecuritySensorPropertyItemResponse *out);
 
-SOAP_FMAC5 int SOAP_FMAC6 ns__getSensorEmer(struct soap*, ns__sensorEmer in, ns__getSensorEmerResponse *out);
+SOAP_FMAC5 int SOAP_FMAC6 ns__getSecuritySensorItem(struct soap*, int order, ns__getSecuritySensorItemResponse *out);
 
-SOAP_FMAC5 int SOAP_FMAC6 ns__setSensorEmer(struct soap*, ns__sensorEmer in, ns__setSensorEmerResponse *out);
+SOAP_FMAC5 int SOAP_FMAC6 ns__getSecuritySensor(struct soap*, ns__securitySensor in, ns__getSecuritySensorResponse *out);
 
-SOAP_FMAC5 int SOAP_FMAC6 ns__sensorEmerEvent(struct soap*, ns__sensorEmer in, int *out);
+SOAP_FMAC5 int SOAP_FMAC6 ns__setSecuritySensor(struct soap*, ns__securitySensor in, ns__setSecuritySensorResponse *out);
+
+SOAP_FMAC5 int SOAP_FMAC6 ns__securitySensorEvent(struct soap*, ns__securitySensor in, int *out);
 
 SOAP_FMAC5 int SOAP_FMAC6 ns__subcribeEvent(struct soap*, int port, int *out);
 
@@ -2433,15 +2487,17 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__setFanSystem(struct soap *soap, const ch
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__FanSystemEvent(struct soap *soap, const char *soap_endpoint, const char *soap_action, ns__fanSystem in, int *out);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmerCount(struct soap *soap, const char *soap_endpoint, const char *soap_action, void *_, int *out);
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSecuritySensorCount(struct soap *soap, const char *soap_endpoint, const char *soap_action, void *_, int *out);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmerItem(struct soap *soap, const char *soap_endpoint, const char *soap_action, int order, ns__getSensorEmerItemResponse *out);
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSecuritySensorPropertyItem(struct soap *soap, const char *soap_endpoint, const char *soap_action, int order, ns__getSecuritySensorPropertyItemResponse *out);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmer(struct soap *soap, const char *soap_endpoint, const char *soap_action, ns__sensorEmer in, ns__getSensorEmerResponse *out);
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSecuritySensorItem(struct soap *soap, const char *soap_endpoint, const char *soap_action, int order, ns__getSecuritySensorItemResponse *out);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__setSensorEmer(struct soap *soap, const char *soap_endpoint, const char *soap_action, ns__sensorEmer in, ns__setSensorEmerResponse *out);
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSecuritySensor(struct soap *soap, const char *soap_endpoint, const char *soap_action, ns__securitySensor in, ns__getSecuritySensorResponse *out);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__sensorEmerEvent(struct soap *soap, const char *soap_endpoint, const char *soap_action, ns__sensorEmer in, int *out);
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__setSecuritySensor(struct soap *soap, const char *soap_endpoint, const char *soap_action, ns__securitySensor in, ns__setSecuritySensorResponse *out);
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__securitySensorEvent(struct soap *soap, const char *soap_endpoint, const char *soap_action, ns__securitySensor in, int *out);
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__subcribeEvent(struct soap *soap, const char *soap_endpoint, const char *soap_action, int port, int *out);
 
@@ -2549,15 +2605,17 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__setFanSystem(struct soap*);
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__FanSystemEvent(struct soap*);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__getSensorEmerCount(struct soap*);
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__getSecuritySensorCount(struct soap*);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__getSensorEmerItem(struct soap*);
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__getSecuritySensorPropertyItem(struct soap*);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__getSensorEmer(struct soap*);
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__getSecuritySensorItem(struct soap*);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__setSensorEmer(struct soap*);
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__getSecuritySensor(struct soap*);
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__sensorEmerEvent(struct soap*);
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__setSecuritySensor(struct soap*);
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__securitySensorEvent(struct soap*);
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_serve_ns__subcribeEvent(struct soap*);
 

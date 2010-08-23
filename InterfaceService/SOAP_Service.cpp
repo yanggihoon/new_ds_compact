@@ -1035,35 +1035,97 @@ int ns__systemAirconEvent(struct soap* soap, ns__systemAircon in, int* out)
 }
 
 //-------------------------------------------------------------
-//	sensorEmer, 방범센서
+//	securitySensor, 녹성센서
 //-------------------------------------------------------------
-int ns__getSensorEmerCount(struct soap* soap, void* _, int* out)
+int ns__getSecuritySensorCount(struct soap* soap, void* _, int* out)
+{
+	Log(LOG::SERV, "ns__getSecuritySensorCount\n");
+
+	*out = (SOAP_Handler::Instance())->Get_Count(SENSOR);
+
+	return SOAP_OK;
+}
+
+int ns__getSecuritySensorPropertyItem(struct soap* soap,  int order, ns__getSecuritySensorPropertyItemResponse* out)
+{
+
+	Log(LOG::SERV, "ns__getSecuritySensorPropertyItem\n");
+	int ret = SOAP_OK;
+	
+	out->_return.dev = _sensorEmer;
+	out->_return.order = order;
+
+	ret =(SOAP_Handler::Instance())->Get_Property( &(out->_return), &order );
+
+	if( ret != SOAP_OK ) return send_fault(soap, ret, "");
+	
+	return SOAP_OK;
+	
+}
+
+int ns__getSecuritySensorItem(struct soap* soap, int order, ns__getSecuritySensorItemResponse* out)
+{	
+
+	int ret = SOAP_OK;
+	int dev_order = order;
+	
+	Log(LOG::SERV, "ns__getSecuritySensorItem order = %d\n", order);	
+	
+	out->_return.dev = _sensorEmer;
+	out->_return.order = dev_order;
+	
+	ret = (SOAP_Handler::Instance())->Get_Item(soap, &(out->_return));		
+		
+	if( ret != SOAP_OK) {
+			
+		if( ret == SOAP_IOB ) {
+			return send_fault(soap, ret, "Order : Out of Range ");
+
+		} else if( ret == SOAP_FATAL_ERROR) {
+			
+			return send_fault(soap, ret, "Order : UnKnown Interface Type ");
+		}
+	}
+
+	return ret;
+	
+}
+
+int ns__getSecuritySensor(struct soap* soap, ns__securitySensor in, ns__getSecuritySensorResponse* out)
+{
+	int ret = SOAP_OK;
+	int dev_order = in.order;
+	
+	Log(LOG::SERV, "ns__getSecuritySensor\n" );	
+	
+	out->_return.dev = _sensorEmer;
+	out->_return.order = dev_order;
+	
+	ret = (SOAP_Handler::Instance())->Get_Item(soap, &(out->_return));	
+		
+	if( ret != SOAP_OK) {
+			
+		if( ret == SOAP_IOB ) {
+			return send_fault(soap, ret, "Order : Out of Range ");
+
+		} else if( ret == SOAP_FATAL_ERROR) {
+			
+			return send_fault(soap, ret, "Order : UnKnown Interface Type ");
+		}
+	}
+
+	return ret;		
+}
+
+int ns__setSecuritySensor(struct soap* soap, ns__securitySensor in, class ns__setSecuritySensorResponse* out)
+{
+	return SOAP_OK;
+}
+
+int ns__securitySensorEvent(struct soap* soap, ns__securitySensor  in, int* out)
 {
 	return SOAP_OK;
 
-}
-
-int ns__getSensorEmerItem(struct soap* soap, int order, ns__getSensorEmerItemResponse* out)
-{
-	return SOAP_OK;
-
-}
-
-int ns__getSensorEmer(struct soap* soap, ns__sensorEmer in, ns__getSensorEmerResponse* out)
-{
-	return SOAP_OK;
-
-}
-
-int ns__setSensorEmer(struct soap* soap, ns__sensorEmer in, ns__setSensorEmerResponse* out)
-{
-	return SOAP_OK;
-
-}
-
-int ns__sensorEmerEvent(struct soap* soap, ns__sensorEmer in, int* out)
-{
-	return SOAP_NO_METHOD;
 }
 
 

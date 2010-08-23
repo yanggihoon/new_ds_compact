@@ -53,9 +53,11 @@
     <enumeration value="dvd"/>
     <enumeration value="refrigerator"/>
     <enumeration value="kRefrigeator"/>
+    <enumeration value="securitySensor"/>
     <enumeration value="sensorEmer"/>
     <enumeration value="exTerminal"/>
     <enumeration value="protoCommax"/>
+    <enumeration value="protoNokSung"/>
     <enumeration value="protoLnCP"/>
     <enumeration value="protoSCUBE"/>
     <enumeration value="protoZ256"/>
@@ -101,6 +103,7 @@
     <enumeration value="devError-bundleLight-DisConnect"/>
     <enumeration value="devError-systemAircon-DisConnect"/>
     <enumeration value="devError-fanSystem-DisConnect"/>
+    <enumeration value="devError-nokSungSensor-DisConnect"/>
     <enumeration value="devError-aircon-DisConnect"/>
     <enumeration value="devError-washMachine-DisConnect"/>
     <enumeration value="devError-dishWashMachine-DisConnect"/>
@@ -447,18 +450,24 @@
     <enumeration value="f-fanSystemDevError"/>
    </restriction>
   </simpleType>
-  <simpleType name="enum-sensorEmer">
+  <simpleType name="enum-securitySensor">
    <restriction base="xsd:string">
-    <enumeration value="seMode-Release"/>
-    <enumeration value="seMode-Set"/>
-    <enumeration value="seMode-Alarm"/>
-    <enumeration value="model-sensorEmer-Menix"/>
+    <enumeration value="securitySensorSt-Detected"/>
+    <enumeration value="securitySensorSt-UnDetected"/>
+    <enumeration value="model-NokSung-XP830RS8I"/>
    </restriction>
   </simpleType>
-  <simpleType name="sensorEmerFunc">
+  <simpleType name="securitySensorFunc">
    <restriction base="xsd:string">
-    <enumeration value="f-seMode"/>
-    <enumeration value="f-seDevError"/>
+    <enumeration value="f-securitySensorStSubChannelOne"/>
+    <enumeration value="f-securitySensorStSubChannelTwo"/>
+    <enumeration value="f-securitySensorStSubChannelThree"/>
+    <enumeration value="f-securitySensorStSubChannelFour"/>
+    <enumeration value="f-securitySensorStSubChannelFive"/>
+    <enumeration value="f-securitySensorStSubChannelSix"/>
+    <enumeration value="f-securitySensorStSubChannelSeven"/>
+    <enumeration value="f-securitySensorStSubChannelEight"/>
+    <enumeration value="f-securitySensorDevError"/>
    </restriction>
   </simpleType>
   <complexType name="rootDevice">
@@ -496,6 +505,7 @@
      <element name="dvd" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
      <element name="refrigerator" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
      <element name="kRefrigeator" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensor" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
    </sequence>
   </complexType>
   <complexType name="deviceCategory">
@@ -510,6 +520,7 @@
      <element name="curtainDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
      <element name="bundleLightDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
      <element name="fanSystemDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
      <element name="airconDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
      <element name="rfDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
      <element name="systemAirconDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
@@ -863,14 +874,29 @@
     </extension>
    </complexContent>
   </complexType>
-  <complexType name="sensorEmer">
+  <complexType name="xsd-SecuritySensorProperty">
+   <sequence>
+     <element name="securitySensorSt-Detected" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorSt-UnDetected" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1"/>
+   </sequence>
+  </complexType>
+  <complexType name="securitySensor">
    <complexContent>
     <extension base="ns:rootDevice">
      <sequence>
-     <element name="model" type="ns:enum-sensorEmer" minOccurs="1" maxOccurs="1"/>
-     <element name="seMode" type="ns:enum-sensorEmer" minOccurs="1" maxOccurs="1"/>
-     <element name="seDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
-     <element name="func" type="ns:sensorEmerFunc" minOccurs="1" maxOccurs="1"/>
+     <element name="devSecuritySensorProperty" type="ns:xsd-SecuritySensorProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStMainChannel" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-One" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Two" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Three" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Four" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Five" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Six" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Seven" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Eight" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:securitySensorFunc" minOccurs="1" maxOccurs="1"/>
      </sequence>
     </extension>
    </complexContent>
@@ -1239,41 +1265,49 @@
  <part name="out" type="xsd:int"/>
 </message>
 
-<message name="getSensorEmerCountRequest">
+<message name="getSecuritySensorCountRequest">
 </message>
 
-<message name="getSensorEmerCountResponse">
+<message name="getSecuritySensorCountResponse">
  <part name="out" type="xsd:int"/>
 </message>
 
-<message name="getSensorEmerItem">
+<message name="getSecuritySensorPropertyItem">
  <part name="order" type="xsd:int"/>
 </message>
 
-<message name="getSensorEmerItemResponse">
- <part name="return" type="ns:sensorEmer"/>
+<message name="getSecuritySensorPropertyItemResponse">
+ <part name="return" type="ns:securitySensor"/>
 </message>
 
-<message name="getSensorEmer">
- <part name="in" type="ns:sensorEmer"/>
+<message name="getSecuritySensorItem">
+ <part name="order" type="xsd:int"/>
 </message>
 
-<message name="getSensorEmerResponse">
- <part name="return" type="ns:sensorEmer"/>
+<message name="getSecuritySensorItemResponse">
+ <part name="return" type="ns:securitySensor"/>
 </message>
 
-<message name="setSensorEmer">
- <part name="in" type="ns:sensorEmer"/>
+<message name="getSecuritySensor">
+ <part name="in" type="ns:securitySensor"/>
 </message>
 
-<message name="setSensorEmerResponse">
+<message name="getSecuritySensorResponse">
+ <part name="return" type="ns:securitySensor"/>
 </message>
 
-<message name="sensorEmerEventRequest">
- <part name="in" type="ns:sensorEmer"/>
+<message name="setSecuritySensor">
+ <part name="in" type="ns:securitySensor"/>
 </message>
 
-<message name="sensorEmerEventResponse">
+<message name="setSecuritySensorResponse">
+</message>
+
+<message name="securitySensorEventRequest">
+ <part name="in" type="ns:securitySensor"/>
+</message>
+
+<message name="securitySensorEventResponse">
  <part name="out" type="xsd:int"/>
 </message>
 
@@ -1521,30 +1555,35 @@
   <input message="tns:FanSystemEventRequest"/>
   <output message="tns:FanSystemEventResponse"/>
  </operation>
- <operation name="getSensorEmerCount">
-  <documentation>Service definition of function ns__getSensorEmerCount</documentation>
-  <input message="tns:getSensorEmerCountRequest"/>
-  <output message="tns:getSensorEmerCountResponse"/>
+ <operation name="getSecuritySensorCount">
+  <documentation>Service definition of function ns__getSecuritySensorCount</documentation>
+  <input message="tns:getSecuritySensorCountRequest"/>
+  <output message="tns:getSecuritySensorCountResponse"/>
  </operation>
- <operation name="getSensorEmerItem">
-  <documentation>Service definition of function ns__getSensorEmerItem</documentation>
-  <input message="tns:getSensorEmerItem"/>
-  <output message="tns:getSensorEmerItemResponse"/>
+ <operation name="getSecuritySensorPropertyItem">
+  <documentation>Service definition of function ns__getSecuritySensorPropertyItem</documentation>
+  <input message="tns:getSecuritySensorPropertyItem"/>
+  <output message="tns:getSecuritySensorPropertyItemResponse"/>
  </operation>
- <operation name="getSensorEmer">
-  <documentation>Service definition of function ns__getSensorEmer</documentation>
-  <input message="tns:getSensorEmer"/>
-  <output message="tns:getSensorEmerResponse"/>
+ <operation name="getSecuritySensorItem">
+  <documentation>Service definition of function ns__getSecuritySensorItem</documentation>
+  <input message="tns:getSecuritySensorItem"/>
+  <output message="tns:getSecuritySensorItemResponse"/>
  </operation>
- <operation name="setSensorEmer">
-  <documentation>Service definition of function ns__setSensorEmer</documentation>
-  <input message="tns:setSensorEmer"/>
-  <output message="tns:setSensorEmerResponse"/>
+ <operation name="getSecuritySensor">
+  <documentation>Service definition of function ns__getSecuritySensor</documentation>
+  <input message="tns:getSecuritySensor"/>
+  <output message="tns:getSecuritySensorResponse"/>
  </operation>
- <operation name="sensorEmerEvent">
-  <documentation>Service definition of function ns__sensorEmerEvent</documentation>
-  <input message="tns:sensorEmerEventRequest"/>
-  <output message="tns:sensorEmerEventResponse"/>
+ <operation name="setSecuritySensor">
+  <documentation>Service definition of function ns__setSecuritySensor</documentation>
+  <input message="tns:setSecuritySensor"/>
+  <output message="tns:setSecuritySensorResponse"/>
+ </operation>
+ <operation name="securitySensorEvent">
+  <documentation>Service definition of function ns__securitySensorEvent</documentation>
+  <input message="tns:securitySensorEventRequest"/>
+  <output message="tns:securitySensorEventResponse"/>
  </operation>
  <operation name="subcribeEvent">
   <documentation>Service definition of function ns__subcribeEvent</documentation>
@@ -1978,7 +2017,7 @@
      <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
   </output>
  </operation>
- <operation name="getSensorEmerCount">
+ <operation name="getSecuritySensorCount">
   <SOAP:operation style="rpc" soapAction=""/>
   <input>
      <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
@@ -1987,7 +2026,7 @@
      <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
   </output>
  </operation>
- <operation name="getSensorEmerItem">
+ <operation name="getSecuritySensorPropertyItem">
   <SOAP:operation style="rpc" soapAction=""/>
   <input>
      <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
@@ -1996,7 +2035,7 @@
      <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
   </output>
  </operation>
- <operation name="getSensorEmer">
+ <operation name="getSecuritySensorItem">
   <SOAP:operation style="rpc" soapAction=""/>
   <input>
      <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
@@ -2005,7 +2044,7 @@
      <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
   </output>
  </operation>
- <operation name="setSensorEmer">
+ <operation name="getSecuritySensor">
   <SOAP:operation style="rpc" soapAction=""/>
   <input>
      <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
@@ -2014,7 +2053,16 @@
      <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
   </output>
  </operation>
- <operation name="sensorEmerEvent">
+ <operation name="setSecuritySensor">
+  <SOAP:operation style="rpc" soapAction=""/>
+  <input>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </input>
+  <output>
+     <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+  </output>
+ </operation>
+ <operation name="securitySensorEvent">
   <SOAP:operation style="rpc" soapAction=""/>
   <input>
      <SOAP:body use="encoded" namespace="urn:cds" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>

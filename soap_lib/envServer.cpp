@@ -6,7 +6,7 @@
 */
 #include "envH.h"
 
-SOAP_SOURCE_STAMP("@(#) envServer.cpp ver 2.7.6e 2010-07-22 06:12:39 GMT")
+SOAP_SOURCE_STAMP("@(#) envServer.cpp ver 2.7.6e 2010-08-20 13:24:12 GMT")
 
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_serve(struct soap *soap)

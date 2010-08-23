@@ -12,17 +12,10 @@
 #include "LogUtil/logutil.h"
 #include "LogUtil/lognamespace.h"
 
-#include "DeviceProtocol/DeviceProtocol.h"
-#include "DeviceProtocol/DUMMY_Device.h"
-#include "DeviceProtocol/CMX_Boiler.h"
-#include "DeviceProtocol/CMX_Bundlelight.h"
-#include "DeviceProtocol/CMX_Light.h"
-#include "DeviceProtocol/CMX_Gas.h"
-#include "DeviceProtocol/HAMUN_Curtain.h"
-#include "DeviceFactory/DeviceCreator.h"
 #include "DeviceFactory/ConcreteDeviceCreator.h"
 #include "DeviceUart/CMX_UartRS485.h"
 #include "DeviceUart/HAMUN_UartRS485.h"
+#include "DeviceUart/NOKSUNG_UartRS485.h"
 #include "InterfaceHandler/SOAP_Handler.h"
 #include "InterfaceService/SOAP_Service.h"
 

@@ -69,11 +69,18 @@ typedef struct
 
 typedef struct 
 {
+	unsigned char sensorDetected;
+	unsigned char sensorUndetected;
+}_SensorProperty;
+
+typedef union
+{
 	_LightProperty lightProperty;
 	_GasProperty gasProperty;
 	_BundleLightProperty bundleLightProperty;
 	_BoilerProperty boilerProperty;
 	_CurtainProperty curtainProperty;
+	_SensorProperty sensorProperty;
 }D_Property;
 
 
@@ -118,15 +125,21 @@ typedef struct
 	unsigned char error;
 }_CurtainItem;
 
-typedef struct
+typedef struct 
+{
+	unsigned char subAction[8];
+	unsigned char error;
+}_SensorItem;
+
+typedef union
 {
 	_LightItem lightItem;
 	_GasItem gasItem;
 	_BundleLightItem bundleLightItem;
 	_BoilerItem boilerItem;
 	_CurtainItem curtainItem;
+	_SensorItem sensorItem;
 }D_Item;
-
 
 
 /*********************************BOILER Enum*********************************/
@@ -283,12 +296,28 @@ enum CURTAIN_ANGULAR
 
 };
 
+
+/*********************************SensorEmer Enum*********************************/
+enum SENSOR_EVENT
+{
+	SENSOR_ACTION_EVENT		=	1,
+};
+
+enum SENSOR_ACTION
+{
+	SENSOR_NONE			=	0,
+	SENSOR_DETECTED		=	1,
+	SENSOR_UNDETECTED	=	2
+};
+
+
 /*********************************Category*********************************/
 enum DEVICE_PROTOCOL
 {
 	PROTOCOL_DUMMY 	= 0,
 	COMMAX				= 1,
-	HAMUN 				= 2
+	HAMUN 				= 2,
+	NOKSUNG			= 3
 };
 
 enum DEVICE_NAME
@@ -298,7 +327,8 @@ enum DEVICE_NAME
 	GAS					= 2,
 	BOILER				= 3,
 	BUNDLELIGHT		= 4,
-	CURTAIN			= 5
+	CURTAIN			= 5,
+	SENSOR				= 6
 };
 
 enum DEVICE_INTERFACE
@@ -317,7 +347,8 @@ enum DEVICE_ERROR
 	GAS_DISCONNECTION			= 3,
 	BOILER_DISCONNECTION			= 4,
 	BUNDLELIGHT_DISCONNECTION	= 5,
-	CURTAIN_DISCONNECTION		= 6
+	CURTAIN_DISCONNECTION		= 6,
+	SENSOR_DISCONNECTION			= 7
 };
 
 class DeviceProtocol

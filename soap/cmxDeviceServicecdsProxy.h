@@ -64,11 +64,12 @@ class cds
 	virtual int ns__getFanSystem(ns__fanSystem in, ns__getFanSystemResponse *out) { return soap ? soap_call_ns__getFanSystem(soap, endpoint, NULL, in, out) : SOAP_EOM; };
 	virtual int ns__setFanSystem(ns__fanSystem in, ns__setFanSystemResponse *out) { return soap ? soap_call_ns__setFanSystem(soap, endpoint, NULL, in, out) : SOAP_EOM; };
 	virtual int ns__FanSystemEvent(ns__fanSystem in, int *out) { return soap ? soap_call_ns__FanSystemEvent(soap, endpoint, NULL, in, out) : SOAP_EOM; };
-	virtual int ns__getSensorEmerCount(void *_, int *out) { return soap ? soap_call_ns__getSensorEmerCount(soap, endpoint, NULL, _, out) : SOAP_EOM; };
-	virtual int ns__getSensorEmerItem(int order, ns__getSensorEmerItemResponse *out) { return soap ? soap_call_ns__getSensorEmerItem(soap, endpoint, NULL, order, out) : SOAP_EOM; };
-	virtual int ns__getSensorEmer(ns__sensorEmer in, ns__getSensorEmerResponse *out) { return soap ? soap_call_ns__getSensorEmer(soap, endpoint, NULL, in, out) : SOAP_EOM; };
-	virtual int ns__setSensorEmer(ns__sensorEmer in, ns__setSensorEmerResponse *out) { return soap ? soap_call_ns__setSensorEmer(soap, endpoint, NULL, in, out) : SOAP_EOM; };
-	virtual int ns__sensorEmerEvent(ns__sensorEmer in, int *out) { return soap ? soap_call_ns__sensorEmerEvent(soap, endpoint, NULL, in, out) : SOAP_EOM; };
+	virtual int ns__getSecuritySensorCount(void *_, int *out) { return soap ? soap_call_ns__getSecuritySensorCount(soap, endpoint, NULL, _, out) : SOAP_EOM; };
+	virtual int ns__getSecuritySensorPropertyItem(int order, ns__getSecuritySensorPropertyItemResponse *out) { return soap ? soap_call_ns__getSecuritySensorPropertyItem(soap, endpoint, NULL, order, out) : SOAP_EOM; };
+	virtual int ns__getSecuritySensorItem(int order, ns__getSecuritySensorItemResponse *out) { return soap ? soap_call_ns__getSecuritySensorItem(soap, endpoint, NULL, order, out) : SOAP_EOM; };
+	virtual int ns__getSecuritySensor(ns__securitySensor in, ns__getSecuritySensorResponse *out) { return soap ? soap_call_ns__getSecuritySensor(soap, endpoint, NULL, in, out) : SOAP_EOM; };
+	virtual int ns__setSecuritySensor(ns__securitySensor in, ns__setSecuritySensorResponse *out) { return soap ? soap_call_ns__setSecuritySensor(soap, endpoint, NULL, in, out) : SOAP_EOM; };
+	virtual int ns__securitySensorEvent(ns__securitySensor in, int *out) { return soap ? soap_call_ns__securitySensorEvent(soap, endpoint, NULL, in, out) : SOAP_EOM; };
 	virtual int ns__subcribeEvent(int port, int *out) { return soap ? soap_call_ns__subcribeEvent(soap, endpoint, NULL, port, out) : SOAP_EOM; };
 };
 

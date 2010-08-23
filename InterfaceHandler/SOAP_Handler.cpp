@@ -511,6 +511,35 @@ void SOAP_Handler::soap_print(unsigned char cmd_mode, enum DEVICE_NAME device_na
 		}
 		break;
 
+		case SENSOR:
+		{
+			switch(function1)
+			{
+				case SENSOR_ACTION_EVENT:
+				{
+					if(function3 == SENSOR_DETECTED)
+					{
+						Log(LOG::HND, "%s : SENSOR [%d] SUBID[%d], SENSOR_DETECTED\n", str, order, function2);
+						//Log(LOG::MGR, "%s : SENSOR [%d] SUBID[%d], SENSOR_DETECTED\n", str, order, function2);
+						//Log(LOG::INFO, "%s : SENSOR [%d] SUBID[%d], SENSOR_DETECTED\n", str, order, function2);
+						//Log(LOG::PRTCL, "%s : SENSOR [%d] SUBID[%d], SENSOR_DETECTED\n", str, order, function2);
+					}
+					else if(function3 == SENSOR_UNDETECTED)
+					{
+						Log(LOG::HND, "%s : SENSOR [%d] SUBID[%d], SENSOR_UNDETECTED\n", str, order, function2);
+						//Log(LOG::MGR, "%s : SENSOR [%d] SUBID[%d], SENSOR_UNDETECTED\n", str, order, function2);
+						//Log(LOG::INFO, "%s : SENSOR [%d] SUBID[%d], SENSOR_UNDETECTED\n", str, order, function2);
+						//Log(LOG::PRTCL, "%s : SENSOR [%d] SUBID[%d], SENSOR_UNDETECTED\n", str, order, function2);
+					}
+				}
+				break;
+
+				default:
+					Log(LOG::ERR, "%s : SENSOR [%d], WRONG_ACTION\n", str, order);
+					break;
+			}
+		}
+		break;	
 		
 		default:
 			Log(LOG::ERR, "%s : WRONG DEVICE \n", str);
@@ -604,7 +633,10 @@ void * SOAP_Handler::control_run(void * arg)
 			case CURTAIN:
 				Log(LOG::HND, "### SOAP_HANDLER:: soap control sent 'CURTAIN', order = %d\n", it->order);
 				break;				
-	
+
+			case SENSOR:
+				Log(LOG::HND, "### SOAP_HANDLER:: soap control sent 'SENSOR', order = %d\n", it->order);
+				break;				
 		}
 
 		usleep(CONTROL_TIME);	
@@ -1050,6 +1082,121 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 			//delete curtainEvent;
 			break;
 		}
+
+		case SENSOR:
+		{
+			cmxDeviceService::ns__securitySensor *sensorEvent = new cmxDeviceService::ns__securitySensor;
+
+			sensorEvent->order = it->order;
+			sensorEvent->securitySensorStMainChannel = it->order;
+			sensorEvent->dev = cmxDeviceService::_securitySensor;
+
+			dProtocol = get_protocol(SENSOR);	
+			if(dProtocol == COMMAX)
+			{
+				sensorEvent->proto = cmxDeviceService::_protoCommax;
+				sensorEvent->model = cmxDeviceService::_model_NokSung_XP830RS8I;
+			}
+			else if(dProtocol == NOKSUNG)
+			{
+				sensorEvent->proto = cmxDeviceService::_protoNokSung;		
+				sensorEvent->model = cmxDeviceService::_model_NokSung_XP830RS8I;				
+			}
+			sensorEvent->intf = cmxDeviceService::_intfRS485;			
+
+			switch(it->function1)
+			{
+				case SENSOR_ACTION_EVENT:
+				{
+					switch(it->function3)
+					{
+						case 1:
+							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelOne;
+							if(it->function2 == SENSOR_DETECTED) 
+								sensorEvent->securitySensorStSubChannel_One = cmxDeviceService::_securitySensorSt_Detected;
+							else if(it->function2 == SENSOR_UNDETECTED )
+								sensorEvent->securitySensorStSubChannel_One = cmxDeviceService::_securitySensorSt_UnDetected;
+							
+							break;
+
+						case 2:
+							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelTwo;
+							if(it->function2 == SENSOR_DETECTED) 
+								sensorEvent->securitySensorStSubChannel_Two = cmxDeviceService::_securitySensorSt_Detected;
+							else if(it->function2 == SENSOR_UNDETECTED )
+								sensorEvent->securitySensorStSubChannel_Two = cmxDeviceService::_securitySensorSt_UnDetected;
+
+							break;	
+
+						case 3:
+							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelThree;
+							if(it->function2 == SENSOR_DETECTED) 
+								sensorEvent->securitySensorStSubChannel_Three = cmxDeviceService::_securitySensorSt_Detected;
+							else if(it->function2 == SENSOR_UNDETECTED )
+								sensorEvent->securitySensorStSubChannel_Three = cmxDeviceService::_securitySensorSt_UnDetected;
+							
+							break;
+
+						case 4:
+							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelFour;
+							if(it->function2 == SENSOR_DETECTED) 
+								sensorEvent->securitySensorStSubChannel_Four = cmxDeviceService::_securitySensorSt_Detected;
+							else if(it->function2 == SENSOR_UNDETECTED )
+								sensorEvent->securitySensorStSubChannel_Four = cmxDeviceService::_securitySensorSt_UnDetected;
+							
+							break;
+
+						case 5:
+							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelFive;
+							if(it->function2 == SENSOR_DETECTED) 
+								sensorEvent->securitySensorStSubChannel_Five = cmxDeviceService::_securitySensorSt_Detected;
+							else if(it->function2 == SENSOR_UNDETECTED )
+								sensorEvent->securitySensorStSubChannel_Five = cmxDeviceService::_securitySensorSt_UnDetected;
+							
+							break;
+
+						case 6:
+							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelSix;
+							if(it->function2 == SENSOR_DETECTED) 
+								sensorEvent->securitySensorStSubChannel_Six = cmxDeviceService::_securitySensorSt_Detected;
+							else if(it->function2 == SENSOR_UNDETECTED )
+								sensorEvent->securitySensorStSubChannel_Six = cmxDeviceService::_securitySensorSt_UnDetected;
+							
+							break;
+
+						case 7:
+							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelSeven;
+							if(it->function2 == SENSOR_DETECTED) 
+								sensorEvent->securitySensorStSubChannel_Seven = cmxDeviceService::_securitySensorSt_Detected;
+							else if(it->function2 == SENSOR_UNDETECTED )
+								sensorEvent->securitySensorStSubChannel_Seven = cmxDeviceService::_securitySensorSt_UnDetected;
+							
+							break;
+
+						case 8:
+							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelEight;
+							if(it->function2 == SENSOR_DETECTED) 
+								sensorEvent->securitySensorStSubChannel_Eight = cmxDeviceService::_securitySensorSt_Detected;
+							else if(it->function2 == SENSOR_UNDETECTED )
+								sensorEvent->securitySensorStSubChannel_Eight = cmxDeviceService::_securitySensorSt_UnDetected;
+							
+							break;
+
+
+						default:
+							parsing_success = FALSE;
+							break;
+					}
+				}
+
+				default:
+					break;
+			}
+
+			rootDevice = (cmxDeviceService::ns__rootDevice*)sensorEvent;
+			//delete sensorEvent;
+			break;
+		}
 		
 		default:
 			break;
@@ -1147,6 +1294,15 @@ void SOAP_Handler::Event_End_Proc(char* url, 	cmxDeviceService::ns__rootDevice *
 			break;				
 		}
 
+		case cmxDeviceService::_securitySensor:
+		{
+			//Log(LOG::HND, "EVENT_END_PROC ->_SENSOR[%d]\n", rootDevice->order);
+
+			cmxDeviceService::ns__securitySensor value;
+			memcpy(&value, rootDevice, sizeof(cmxDeviceService::ns__securitySensor));
+			r = ds.ns__securitySensorEvent(value, &out);
+			break;				
+		}
 
 		default:
 		{
@@ -1226,6 +1382,10 @@ void * SOAP_Handler::event_run(void * arg)
 				Log(LOG::HND, "### SOAP_HANDLER:: soap event sent 'CURTAIN', order = %d\n", it->order);
 				break;				
 				
+			case SENSOR:
+				Log(LOG::HND, "### SOAP_HANDLER:: soap event sent 'SENSOR', order = %d\n", it->order);
+				break;				
+
 		}
 
 		usleep(EVENT_TIME);
@@ -1573,6 +1733,42 @@ int SOAP_Handler::Get_DeviceCategory(cmxDeviceService::ns__deviceCategory * devi
 		
 				break;
 
+			case SENSOR:
+				result = Check_Supported(SENSOR);
+				if(result == TRUE)
+				{
+					device->enable_device_category._securitySensor = cmxDeviceService::_device_support;
+					Log(LOG::HND, "SENSOR _device_support\n");						
+				}
+				else
+				{
+					device->enable_device_category._securitySensor = cmxDeviceService::_not_supported_device;
+					Log(LOG::HND, "SENSOR _not_supported_device\n");															
+
+					error_check = check_device_port_error();
+					if(error_check == FALSE)	//port error
+					{
+						device->securitySensorDeviceError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
+						Log(LOG::HND, "check_device_port = FALSE\n");					
+					}
+					else
+					{
+						error_check = check_device_disconnection(SENSOR);
+						if(error_check == FALSE)	//gas disconnection
+						{
+							device->deviceConnectionCheck = cmxDeviceService::_not_device_disconnect;
+							Log(LOG::HND, "check_device_ack = FALSE\n");					
+						}
+						else
+						{
+							device->deviceConnectionCheck = cmxDeviceService::_device_connect;
+							Log(LOG::HND, "check_device_ack = TRUE\n");					
+						}
+					}
+				}
+		
+				break;
+
 			default:
 				break;
 		}
@@ -1864,6 +2060,33 @@ int SOAP_Handler::Get_Property(cmxDeviceService::ns__rootDevice* device, int* or
 		}	
 		break;
 
+		case cmxDeviceService::_securitySensor:
+		{
+			if(Get_Count(SENSOR) < *order || *order < 1) 
+				*order = 1;
+
+			get_device_property(SENSOR, *order, &d_property);
+			cmxDeviceService::ns__securitySensor* pObject = (cmxDeviceService::ns__securitySensor*)device;		
+
+			if( d_property.sensorProperty.sensorDetected == SUPPORTED)
+			{
+				pObject->devSecuritySensorProperty._securitySensorSt_Detected   = cmxDeviceService::_supported_function;
+				pObject->devSecuritySensorProperty._securitySensorSt_UnDetected  = cmxDeviceService::_supported_function;
+				Log(LOG::HND, "SENSOR [%d] PROPERTY = SUPPORTED\n", *order);					
+			}
+			else 
+			{
+				pObject->devSecuritySensorProperty._securitySensorSt_Detected   = cmxDeviceService::_not_supported_function;
+				pObject->devSecuritySensorProperty._securitySensorSt_UnDetected  = cmxDeviceService::_not_supported_function;
+				Log(LOG::HND, "SENSOR [%d] PROPERTY = NOT SUPPORTED\n", *order);					
+			}
+		}	
+		break;
+
+		default:
+			Log(LOG::ERR, "WRONG DEVICE\n", *order);					
+			break;
+
 	}
 
 	return res;
@@ -1871,7 +2094,7 @@ int SOAP_Handler::Get_Property(cmxDeviceService::ns__rootDevice* device, int* or
 
 int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice* device)
 {
-	int res = SOAP_OK;
+	int res = SOAP_OK, index;
 	D_Item d_item;
 	D_Property d_property;
 	enum DEVICE_PROTOCOL dProtocol;
@@ -2270,9 +2493,186 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 
 			break;
 		}	
+
+		case cmxDeviceService::_securitySensor:
+		{
+			cmxDeviceService::ns__securitySensor * pObject = (cmxDeviceService::ns__securitySensor*)device;					
+			get_device_property(SENSOR, device->order, &d_property);
+			get_device_item(SENSOR, device->order, &d_item);	
+						
+			// 디바이스 아이디 범위 초과 에러	
+			if(Get_Count(SENSOR) < device->order  || device->order < 1) 
+				return SOAP_IOB;
+
+			dProtocol = get_protocol(SENSOR);
+			if(dProtocol == NOKSUNG)
+			{
+				pObject->proto = cmxDeviceService::_protoNokSung;		
+				pObject->intf =  cmxDeviceService::_intfRS485;			
+				pObject->model = cmxDeviceService::_model_NokSung_XP830RS8I;
+			}
+			else
+				return SOAP_FATAL_ERROR;			
+
+			if(d_item.sensorItem.error == PORT_ERROR)
+			{
+				pObject->func = cmxDeviceService::f_securitySensorDevError;
+				pObject->securitySensorDevError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
+			
+				Log(LOG::ERR, "SENSOR [%] PORT_ERROR\n", device->order);
+				return SOAP_OK;	
+			}
+			else if(d_item.sensorItem.error == SENSOR_DISCONNECTION)
+			{
+				pObject->func = cmxDeviceService::f_securitySensorDevError;
+				pObject->securitySensorDevError = cmxDeviceService::devError_nokSungSensor_DisConnect;
+			
+				Log(LOG::ERR, "SENSOR [%] SENSOR_DISCONNECTION\n", device->order);
+				return SOAP_OK;	
+			}
+			else
+			{
+				res = Check_Supported(SENSOR);
+				if(res == FALSE)
+					return SOAP_FATAL_ERROR;
+
+			}
+			
+			int ret = 0;
+
+			cmxDeviceService::cds service;
+			service.endpoint = event_end_point;
+			pObject->securitySensorStMainChannel = device->order;	
+
+			switch( device->order ) 
+			{
+				case 0x01:
+					pObject->func = cmxDeviceService::f_securitySensorStSubChannelOne;
+				break;
+
+				case 0x02:
+					pObject->func = cmxDeviceService::f_securitySensorStSubChannelTwo;
+				break;
+	
+				case 0x03:
+					pObject->func = cmxDeviceService::f_securitySensorStSubChannelThree;
+				break;
+
+				case 0x04:
+					pObject->func = cmxDeviceService::f_securitySensorStSubChannelFour;
+				break;
+
+				case 0x05:
+					pObject->func = cmxDeviceService::f_securitySensorStSubChannelFive;
+				break;
+
+				case 0x06:
+					pObject->func = cmxDeviceService::f_securitySensorStSubChannelSix;
+				break;
+
+				case 0x07:
+					pObject->func = cmxDeviceService::f_securitySensorStSubChannelSeven;
+				break;
+
+				case 0x08:
+					pObject->func = cmxDeviceService::f_securitySensorStSubChannelEight;
+				break;
+
+				default:
+					break;
+			}
+			
+			  
+			for( index = 1; index <= 8; index++) 
+			{
+
+				switch( index ) 
+				{
+					case 0x01:
+						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
+							pObject->securitySensorStSubChannel_One = cmxDeviceService::_securitySensorSt_Detected; 
+						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
+							pObject->securitySensorStSubChannel_One = cmxDeviceService::_securitySensorSt_UnDetected;
+
+						break;
+
+					case 0x02:
+						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
+							pObject->securitySensorStSubChannel_Two = cmxDeviceService::_securitySensorSt_Detected; 
+						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
+							pObject->securitySensorStSubChannel_Two = cmxDeviceService::_securitySensorSt_UnDetected;
+
+						break;
+
+
+					case 0x03:
+						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
+							pObject->securitySensorStSubChannel_Three = cmxDeviceService::_securitySensorSt_Detected; 
+						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
+							pObject->securitySensorStSubChannel_Three = cmxDeviceService::_securitySensorSt_UnDetected;
+
+						break;
+
+
+					case 0x04:
+						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
+							pObject->securitySensorStSubChannel_Four = cmxDeviceService::_securitySensorSt_Detected; 
+						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
+							pObject->securitySensorStSubChannel_Four = cmxDeviceService::_securitySensorSt_UnDetected;
+
+						break;
+
+
+					case 0x05:
+						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
+							pObject->securitySensorStSubChannel_Five = cmxDeviceService::_securitySensorSt_Detected; 
+						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
+							pObject->securitySensorStSubChannel_Five = cmxDeviceService::_securitySensorSt_UnDetected;
+
+						break;
+
+
+					case 0x06:
+						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
+							pObject->securitySensorStSubChannel_Six = cmxDeviceService::_securitySensorSt_Detected; 
+						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
+							pObject->securitySensorStSubChannel_Six = cmxDeviceService::_securitySensorSt_UnDetected;
+
+						break;
+
+
+					case 0x07:
+						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
+							pObject->securitySensorStSubChannel_Seven = cmxDeviceService::_securitySensorSt_Detected; 
+						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
+							pObject->securitySensorStSubChannel_Seven = cmxDeviceService::_securitySensorSt_UnDetected;
+
+						break;
+
+
+					case 0x08:
+						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
+							pObject->securitySensorStSubChannel_Eight = cmxDeviceService::_securitySensorSt_Detected; 
+						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
+							pObject->securitySensorStSubChannel_Eight = cmxDeviceService::_securitySensorSt_UnDetected;
+
+						break;
+
+
+					default:
+						break;
+				}
+			}
+
+
+			break;
+		}	
+
+		default:
+			break;
 	}
 
-	return res;
+	return SOAP_OK;
 
 }
 
@@ -2524,6 +2924,14 @@ int SOAP_Handler::Set_Dev(cmxDeviceService::ns__rootDevice* device)
 			delete pObject;
 		}
 		break;
+
+
+		case cmxDeviceService::_sensorEmer:
+		{
+			//녹성 센서는 제어 command가 없다.
+		}
+		break;
+		
 
 		default:
 			parsing_success = FALSE;								

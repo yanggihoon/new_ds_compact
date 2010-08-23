@@ -25,7 +25,7 @@ enum ns__enum_devInfo
 	_airCleaner			=7,
 	_bide               		=8,
 	_aroma				=9,
-	_rf				   	=10,
+	_rf				    	=10,
 	_zlplc              		=11,
 	_bundleLight		=12,			// 일괄 소등 스위치
 	_systemAircon		=13,			// 삼성 시스템 에어컨 : 극동 건설
@@ -36,12 +36,13 @@ enum ns__enum_devInfo
 	_gasOven			=24,
 	_microwave			=25,
 	_television			=26,
-	_audio         			=27,
-	_vtr             			=28,
-	_dvd               		=29,
+	_audio            		=27,
+	_vtr              			=28,
+	_dvd                		=29,
 	_refrigerator		=30,
 	_kRefrigeator		=31,
-
+	_securitySensor		=32,
+	
 	// 디바이스가 설정되어 있지 않음
 	_sensorEmer,
 	_exTerminal,
@@ -49,6 +50,7 @@ enum ns__enum_devInfo
 	//
 	 // Controlled Device Protocol
 	_protoCommax,
+	_protoNokSung, //중국 녹성 부동산 [방범 센서]	
 	_protoLnCP,
 	_protoSCUBE,
 	_protoZ256,
@@ -115,6 +117,7 @@ enum ns__enum_devError
 	devError_bundleLight_DisConnect,
 	devError_systemAircon_DisConnect,
 	devError_fanSystem_DisConnect,
+	devError_nokSungSensor_DisConnect,	
 
 	devError_aircon_DisConnect,
 	devError_washMachine_DisConnect,
@@ -218,11 +221,12 @@ struct xsd_devCategory
 	unsigned _gasOven			:1;
 	unsigned _microwave			:1;
 	unsigned _television			:1;
-    unsigned _audio			   	:1;
+   	 unsigned _audio				:1;
 	unsigned _vtr			   		:1;
-	unsigned _dvd			    	:1;
+	unsigned _dvd				:1;
 	unsigned _refrigerator		:1;
 	unsigned _kRefrigeator		:1;
+	unsigned _securitySensor    	:1;		
 };
 
 
@@ -243,6 +247,7 @@ class ns__deviceCategory
 		enum ns__enum_devError curtainDeviceError;			// RS 485 통신 에러
 		enum ns__enum_devError bundleLightDeviceError;		// RS 485 통신 에러
 		enum ns__enum_devError fanSystemDeviceError;        // RS 485 통신 에러
+		enum ns__enum_devError securitySensorDeviceError;        // RS 485 통신 에러		
 
 		enum ns__enum_devError airconDeviceError;           // RS 232 통신 에러
 
@@ -1174,39 +1179,72 @@ int ns__FanSystemEvent(ns__fanSystem in, int* out);
 //-------------------------------------------------------------
 //	방범 센서: NokSung Construction [중국 녹성 부동산] :  
 //-------------------------------------------------------------
-enum ns__enum_sensorEmer
+enum ns__enum_securitySensor
 {
-	_seMode_Release,				// 방범모드_해제
-	_seMode_Set,					// 방범모드_설정
-	_seMode_Alarm,					// 방범모드_비상
-
-	_model_sensorEmer_Menix			// Menix_sensorEmer_ICROSS_PLC
+	
+	_securitySensorSt_Detected,
+	_securitySensorSt_UnDetected,
+	
+	_model_NokSung_XP830RS8I	        // 녹성 부동산
+	
 };
 
-class ns__sensorEmer : public ns__rootDevice
+struct xsd_SecuritySensorProperty 
+{
+	unsigned   _securitySensorSt_Detected   : 1;	
+	unsigned   _securitySensorSt_UnDetected : 1;	
+
+};
+
+class ns__securitySensor : public ns__rootDevice
 {
 public:
-	enum ns__enum_sensorEmer	model;		// 모델명
-	enum ns__enum_sensorEmer	seMode;		// 방범모드
-	enum ns__enum_devError		seDevError;	// 디바이스 에러
 
-	enum ns__sensorEmerFunc
-	{
-		f_seMode,
-		f_seDevError
+	struct xsd_SecuritySensorProperty devSecuritySensorProperty;
+
+	int		securitySensorStMainChannel;									//  Main ID : 1 - 8
+
+	enum ns__enum_securitySensor		model;								// 모델명
+	enum ns__enum_securitySensor        securitySensorStSubChannel_One;		// 센서 감지 / 감지 해제 : Sub Id 1
+	enum ns__enum_securitySensor        securitySensorStSubChannel_Two;		// 센서 감지 / 감지 해제 : Sub Id 2
+	enum ns__enum_securitySensor        securitySensorStSubChannel_Three;	// 센서 감지 / 감지 해제 : Sub Id 3	
+	enum ns__enum_securitySensor        securitySensorStSubChannel_Four;	// 센서 감지 / 감지 해제 : Sub Id 4	
+	enum ns__enum_securitySensor        securitySensorStSubChannel_Five;	// 센서 감지 / 감지 해제 : Sub Id 5	
+	enum ns__enum_securitySensor        securitySensorStSubChannel_Six;		// 센서 감지 / 감지 해제 : Sub Id 6	
+	enum ns__enum_securitySensor        securitySensorStSubChannel_Seven;	// 센서 감지 / 감지 해제 : Sub Id 7	
+	enum ns__enum_securitySensor        securitySensorStSubChannel_Eight;	// 센서 감지 / 감지 해제 : Sub Id 8	
+	
+	enum ns__enum_devError	securitySensorDevError;							// 디바이스 에러	
+
+	enum ns__securitySensorFunc
+	{		
+		//f_securitySensorStSubChannel,
+		f_securitySensorStSubChannelOne,
+		f_securitySensorStSubChannelTwo,
+		f_securitySensorStSubChannelThree,
+		f_securitySensorStSubChannelFour,
+		f_securitySensorStSubChannelFive,
+		f_securitySensorStSubChannelSix,
+		f_securitySensorStSubChannelSeven,
+		f_securitySensorStSubChannelEight,
+
+		f_securitySensorDevError
 	}
 	func;
 };
 
-class ns__getSensorEmerItemResponse{ns__sensorEmer _return;};
-class ns__getSensorEmerResponse{ns__sensorEmer _return;};
+class ns__getSecuritySensorPropertyItemResponse {ns__securitySensor _return;};
+class ns__getSecuritySensorItemResponse {ns__securitySensor _return;};
+class ns__getSecuritySensorResponse {ns__securitySensor _return;};
 
-int ns__getSensorEmerCount(void* _, int* out);
-int ns__getSensorEmerItem(int order, ns__getSensorEmerItemResponse* out);
-int ns__getSensorEmer(ns__sensorEmer in, ns__getSensorEmerResponse* out);
-int ns__setSensorEmer(ns__sensorEmer in, class ns__setSensorEmerResponse{}* out);
+int ns__getSecuritySensorCount(void* _, int* out);
 
-int ns__sensorEmerEvent(ns__sensorEmer in, int* out);
+int ns__getSecuritySensorPropertyItem(int order, ns__getSecuritySensorPropertyItemResponse* out);
+int ns__getSecuritySensorItem(int order, ns__getSecuritySensorItemResponse* out);
+int ns__getSecuritySensor(ns__securitySensor in, ns__getSecuritySensorResponse* out);
+int ns__setSecuritySensor(ns__securitySensor in, class ns__setSecuritySensorResponse{}* out);
+
+int ns__securitySensorEvent(ns__securitySensor  in, int* out);
 
 
 //-------------------------------------------------------------

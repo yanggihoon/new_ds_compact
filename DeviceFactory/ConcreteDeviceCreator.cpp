@@ -62,6 +62,12 @@ DeviceProtocol* ConcreteDeviceCreator::DeviceFactoryMethod(enum DEVICE_NAME devi
 
 			break;
 
+		case SENSOR:
+			if(deviceProtocol == NOKSUNG)
+				return (NOKSUNG_Sensor::GetInstance());
+
+			break;
+
 		default:
 				return (DUMMY_Device::GetInstance());
 		break;

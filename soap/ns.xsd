@@ -37,9 +37,11 @@
     <enumeration value="dvd"/>
     <enumeration value="refrigerator"/>
     <enumeration value="kRefrigeator"/>
+    <enumeration value="securitySensor"/>
     <enumeration value="sensorEmer"/>
     <enumeration value="exTerminal"/>
     <enumeration value="protoCommax"/>
+    <enumeration value="protoNokSung"/>
     <enumeration value="protoLnCP"/>
     <enumeration value="protoSCUBE"/>
     <enumeration value="protoZ256"/>
@@ -85,6 +87,7 @@
     <enumeration value="devError-bundleLight-DisConnect"/>
     <enumeration value="devError-systemAircon-DisConnect"/>
     <enumeration value="devError-fanSystem-DisConnect"/>
+    <enumeration value="devError-nokSungSensor-DisConnect"/>
     <enumeration value="devError-aircon-DisConnect"/>
     <enumeration value="devError-washMachine-DisConnect"/>
     <enumeration value="devError-dishWashMachine-DisConnect"/>
@@ -431,18 +434,24 @@
     <enumeration value="f-fanSystemDevError"/>
    </restriction>
   </simpleType>
-  <simpleType name="enum-sensorEmer">
+  <simpleType name="enum-securitySensor">
    <restriction base="xsd:string">
-    <enumeration value="seMode-Release"/>
-    <enumeration value="seMode-Set"/>
-    <enumeration value="seMode-Alarm"/>
-    <enumeration value="model-sensorEmer-Menix"/>
+    <enumeration value="securitySensorSt-Detected"/>
+    <enumeration value="securitySensorSt-UnDetected"/>
+    <enumeration value="model-NokSung-XP830RS8I"/>
    </restriction>
   </simpleType>
-  <simpleType name="sensorEmerFunc">
+  <simpleType name="securitySensorFunc">
    <restriction base="xsd:string">
-    <enumeration value="f-seMode"/>
-    <enumeration value="f-seDevError"/>
+    <enumeration value="f-securitySensorStSubChannelOne"/>
+    <enumeration value="f-securitySensorStSubChannelTwo"/>
+    <enumeration value="f-securitySensorStSubChannelThree"/>
+    <enumeration value="f-securitySensorStSubChannelFour"/>
+    <enumeration value="f-securitySensorStSubChannelFive"/>
+    <enumeration value="f-securitySensorStSubChannelSix"/>
+    <enumeration value="f-securitySensorStSubChannelSeven"/>
+    <enumeration value="f-securitySensorStSubChannelEight"/>
+    <enumeration value="f-securitySensorDevError"/>
    </restriction>
   </simpleType>
   <complexType name="rootDevice">
@@ -465,6 +474,7 @@
      <element name="curtainDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
      <element name="bundleLightDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
      <element name="fanSystemDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
      <element name="airconDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
      <element name="rfDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
      <element name="systemAirconDeviceError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
@@ -617,14 +627,23 @@
     </extension>
    </complexContent>
   </complexType>
-  <complexType name="sensorEmer">
+  <complexType name="securitySensor">
    <complexContent>
     <extension base="ns:rootDevice">
      <sequence>
-     <element name="model" type="ns:enum-sensorEmer" minOccurs="1" maxOccurs="1"/>
-     <element name="seMode" type="ns:enum-sensorEmer" minOccurs="1" maxOccurs="1"/>
-     <element name="seDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
-     <element name="func" type="ns:sensorEmerFunc" minOccurs="1" maxOccurs="1"/>
+     <element name="devSecuritySensorProperty" type="ns:xsd-SecuritySensorProperty" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStMainChannel" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+     <element name="model" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-One" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Two" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Three" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Four" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Five" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Six" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Seven" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorStSubChannel-Eight" type="ns:enum-securitySensor" minOccurs="1" maxOccurs="1"/>
+     <element name="securitySensorDevError" type="ns:enum-devError" minOccurs="1" maxOccurs="1"/>
+     <element name="func" type="ns:securitySensorFunc" minOccurs="1" maxOccurs="1"/>
      </sequence>
     </extension>
    </complexContent>

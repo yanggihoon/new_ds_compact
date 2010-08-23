@@ -8,7 +8,7 @@
 
 namespace cmxDeviceService {
 
-SOAP_SOURCE_STAMP("@(#) cmxDeviceServiceClient.cpp ver 2.7.6e 2010-07-22 06:12:39 GMT")
+SOAP_SOURCE_STAMP("@(#) cmxDeviceServiceClient.cpp ver 2.7.6e 2010-08-20 13:24:12 GMT")
 
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getDeviceCategoryCount(struct soap *soap, const char *soap_endpoint, const char *soap_action, void *_, int *out)
@@ -2471,23 +2471,23 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__FanSystemEvent(struct soap *soap, const 
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmerCount(struct soap *soap, const char *soap_endpoint, const char *soap_action, void *_, int *out)
-{	struct ns__getSensorEmerCount soap_tmp_ns__getSensorEmerCount;
-	struct ns__getSensorEmerCountResponse *soap_tmp_ns__getSensorEmerCountResponse;
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSecuritySensorCount(struct soap *soap, const char *soap_endpoint, const char *soap_action, void *_, int *out)
+{	struct ns__getSecuritySensorCount soap_tmp_ns__getSecuritySensorCount;
+	struct ns__getSecuritySensorCountResponse *soap_tmp_ns__getSecuritySensorCountResponse;
 	if (!soap_endpoint)
 		soap_endpoint = "http://220.120.109.37:29700";
 	soap->encodingStyle = "";
-	soap_tmp_ns__getSensorEmerCount._ = _;
+	soap_tmp_ns__getSecuritySensorCount._ = _;
 	soap_begin(soap);
 	soap_serializeheader(soap);
-	soap_serialize_ns__getSensorEmerCount(soap, &soap_tmp_ns__getSensorEmerCount);
+	soap_serialize_ns__getSecuritySensorCount(soap, &soap_tmp_ns__getSecuritySensorCount);
 	if (soap_begin_count(soap))
 		return soap->error;
 	if (soap->mode & SOAP_IO_LENGTH)
 	{	if (soap_envelope_begin_out(soap)
 		 || soap_putheader(soap)
 		 || soap_body_begin_out(soap)
-		 || soap_put_ns__getSensorEmerCount(soap, &soap_tmp_ns__getSensorEmerCount, "ns:getSensorEmerCount", "")
+		 || soap_put_ns__getSecuritySensorCount(soap, &soap_tmp_ns__getSecuritySensorCount, "ns:getSecuritySensorCount", "")
 		 || soap_body_end_out(soap)
 		 || soap_envelope_end_out(soap))
 			 return soap->error;
@@ -2498,7 +2498,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmerCount(struct soap *soap, co
 	 || soap_envelope_begin_out(soap)
 	 || soap_putheader(soap)
 	 || soap_body_begin_out(soap)
-	 || soap_put_ns__getSensorEmerCount(soap, &soap_tmp_ns__getSensorEmerCount, "ns:getSensorEmerCount", "")
+	 || soap_put_ns__getSecuritySensorCount(soap, &soap_tmp_ns__getSecuritySensorCount, "ns:getSecuritySensorCount", "")
 	 || soap_body_end_out(soap)
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
@@ -2509,7 +2509,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmerCount(struct soap *soap, co
 	 || soap_recv_header(soap)
 	 || soap_body_begin_in(soap))
 		return soap_closesock(soap);
-	soap_tmp_ns__getSensorEmerCountResponse = soap_get_ns__getSensorEmerCountResponse(soap, NULL, "ns:getSensorEmerCountResponse", "");
+	soap_tmp_ns__getSecuritySensorCountResponse = soap_get_ns__getSecuritySensorCountResponse(soap, NULL, "ns:getSecuritySensorCountResponse", "");
 	if (soap->error)
 	{	if (soap->error == SOAP_TAG_MISMATCH && soap->level == 2)
 			return soap_recv_fault(soap);
@@ -2519,27 +2519,27 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmerCount(struct soap *soap, co
 	 || soap_envelope_end_in(soap)
 	 || soap_end_recv(soap))
 		return soap_closesock(soap);
-	if (out && soap_tmp_ns__getSensorEmerCountResponse->out)
-		*out = *soap_tmp_ns__getSensorEmerCountResponse->out;
+	if (out && soap_tmp_ns__getSecuritySensorCountResponse->out)
+		*out = *soap_tmp_ns__getSecuritySensorCountResponse->out;
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmerItem(struct soap *soap, const char *soap_endpoint, const char *soap_action, int order, ns__getSensorEmerItemResponse *out)
-{	struct ns__getSensorEmerItem soap_tmp_ns__getSensorEmerItem;
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSecuritySensorPropertyItem(struct soap *soap, const char *soap_endpoint, const char *soap_action, int order, ns__getSecuritySensorPropertyItemResponse *out)
+{	struct ns__getSecuritySensorPropertyItem soap_tmp_ns__getSecuritySensorPropertyItem;
 	if (!soap_endpoint)
 		soap_endpoint = "http://220.120.109.37:29700";
 	soap->encodingStyle = "";
-	soap_tmp_ns__getSensorEmerItem.order = order;
+	soap_tmp_ns__getSecuritySensorPropertyItem.order = order;
 	soap_begin(soap);
 	soap_serializeheader(soap);
-	soap_serialize_ns__getSensorEmerItem(soap, &soap_tmp_ns__getSensorEmerItem);
+	soap_serialize_ns__getSecuritySensorPropertyItem(soap, &soap_tmp_ns__getSecuritySensorPropertyItem);
 	if (soap_begin_count(soap))
 		return soap->error;
 	if (soap->mode & SOAP_IO_LENGTH)
 	{	if (soap_envelope_begin_out(soap)
 		 || soap_putheader(soap)
 		 || soap_body_begin_out(soap)
-		 || soap_put_ns__getSensorEmerItem(soap, &soap_tmp_ns__getSensorEmerItem, "ns:getSensorEmerItem", "")
+		 || soap_put_ns__getSecuritySensorPropertyItem(soap, &soap_tmp_ns__getSecuritySensorPropertyItem, "ns:getSecuritySensorPropertyItem", "")
 		 || soap_body_end_out(soap)
 		 || soap_envelope_end_out(soap))
 			 return soap->error;
@@ -2550,7 +2550,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmerItem(struct soap *soap, con
 	 || soap_envelope_begin_out(soap)
 	 || soap_putheader(soap)
 	 || soap_body_begin_out(soap)
-	 || soap_put_ns__getSensorEmerItem(soap, &soap_tmp_ns__getSensorEmerItem, "ns:getSensorEmerItem", "")
+	 || soap_put_ns__getSecuritySensorPropertyItem(soap, &soap_tmp_ns__getSecuritySensorPropertyItem, "ns:getSecuritySensorPropertyItem", "")
 	 || soap_body_end_out(soap)
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
@@ -2563,7 +2563,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmerItem(struct soap *soap, con
 	 || soap_recv_header(soap)
 	 || soap_body_begin_in(soap))
 		return soap_closesock(soap);
-	out->soap_get(soap, "ns:getSensorEmerItemResponse", "");
+	out->soap_get(soap, "ns:getSecuritySensorPropertyItemResponse", "");
 	if (soap->error)
 	{	if (soap->error == SOAP_TAG_MISMATCH && soap->level == 2)
 			return soap_recv_fault(soap);
@@ -2576,22 +2576,22 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmerItem(struct soap *soap, con
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmer(struct soap *soap, const char *soap_endpoint, const char *soap_action, ns__sensorEmer in, ns__getSensorEmerResponse *out)
-{	struct ns__getSensorEmer soap_tmp_ns__getSensorEmer;
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSecuritySensorItem(struct soap *soap, const char *soap_endpoint, const char *soap_action, int order, ns__getSecuritySensorItemResponse *out)
+{	struct ns__getSecuritySensorItem soap_tmp_ns__getSecuritySensorItem;
 	if (!soap_endpoint)
 		soap_endpoint = "http://220.120.109.37:29700";
 	soap->encodingStyle = "";
-	soap_tmp_ns__getSensorEmer.in = in;
+	soap_tmp_ns__getSecuritySensorItem.order = order;
 	soap_begin(soap);
 	soap_serializeheader(soap);
-	soap_serialize_ns__getSensorEmer(soap, &soap_tmp_ns__getSensorEmer);
+	soap_serialize_ns__getSecuritySensorItem(soap, &soap_tmp_ns__getSecuritySensorItem);
 	if (soap_begin_count(soap))
 		return soap->error;
 	if (soap->mode & SOAP_IO_LENGTH)
 	{	if (soap_envelope_begin_out(soap)
 		 || soap_putheader(soap)
 		 || soap_body_begin_out(soap)
-		 || soap_put_ns__getSensorEmer(soap, &soap_tmp_ns__getSensorEmer, "ns:getSensorEmer", "")
+		 || soap_put_ns__getSecuritySensorItem(soap, &soap_tmp_ns__getSecuritySensorItem, "ns:getSecuritySensorItem", "")
 		 || soap_body_end_out(soap)
 		 || soap_envelope_end_out(soap))
 			 return soap->error;
@@ -2602,7 +2602,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmer(struct soap *soap, const c
 	 || soap_envelope_begin_out(soap)
 	 || soap_putheader(soap)
 	 || soap_body_begin_out(soap)
-	 || soap_put_ns__getSensorEmer(soap, &soap_tmp_ns__getSensorEmer, "ns:getSensorEmer", "")
+	 || soap_put_ns__getSecuritySensorItem(soap, &soap_tmp_ns__getSecuritySensorItem, "ns:getSecuritySensorItem", "")
 	 || soap_body_end_out(soap)
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
@@ -2615,7 +2615,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmer(struct soap *soap, const c
 	 || soap_recv_header(soap)
 	 || soap_body_begin_in(soap))
 		return soap_closesock(soap);
-	out->soap_get(soap, "ns:getSensorEmerResponse", "");
+	out->soap_get(soap, "ns:getSecuritySensorItemResponse", "");
 	if (soap->error)
 	{	if (soap->error == SOAP_TAG_MISMATCH && soap->level == 2)
 			return soap_recv_fault(soap);
@@ -2628,22 +2628,22 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSensorEmer(struct soap *soap, const c
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__setSensorEmer(struct soap *soap, const char *soap_endpoint, const char *soap_action, ns__sensorEmer in, ns__setSensorEmerResponse *out)
-{	struct ns__setSensorEmer soap_tmp_ns__setSensorEmer;
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getSecuritySensor(struct soap *soap, const char *soap_endpoint, const char *soap_action, ns__securitySensor in, ns__getSecuritySensorResponse *out)
+{	struct ns__getSecuritySensor soap_tmp_ns__getSecuritySensor;
 	if (!soap_endpoint)
 		soap_endpoint = "http://220.120.109.37:29700";
 	soap->encodingStyle = "";
-	soap_tmp_ns__setSensorEmer.in = in;
+	soap_tmp_ns__getSecuritySensor.in = in;
 	soap_begin(soap);
 	soap_serializeheader(soap);
-	soap_serialize_ns__setSensorEmer(soap, &soap_tmp_ns__setSensorEmer);
+	soap_serialize_ns__getSecuritySensor(soap, &soap_tmp_ns__getSecuritySensor);
 	if (soap_begin_count(soap))
 		return soap->error;
 	if (soap->mode & SOAP_IO_LENGTH)
 	{	if (soap_envelope_begin_out(soap)
 		 || soap_putheader(soap)
 		 || soap_body_begin_out(soap)
-		 || soap_put_ns__setSensorEmer(soap, &soap_tmp_ns__setSensorEmer, "ns:setSensorEmer", "")
+		 || soap_put_ns__getSecuritySensor(soap, &soap_tmp_ns__getSecuritySensor, "ns:getSecuritySensor", "")
 		 || soap_body_end_out(soap)
 		 || soap_envelope_end_out(soap))
 			 return soap->error;
@@ -2654,7 +2654,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__setSensorEmer(struct soap *soap, const c
 	 || soap_envelope_begin_out(soap)
 	 || soap_putheader(soap)
 	 || soap_body_begin_out(soap)
-	 || soap_put_ns__setSensorEmer(soap, &soap_tmp_ns__setSensorEmer, "ns:setSensorEmer", "")
+	 || soap_put_ns__getSecuritySensor(soap, &soap_tmp_ns__getSecuritySensor, "ns:getSecuritySensor", "")
 	 || soap_body_end_out(soap)
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
@@ -2667,7 +2667,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__setSensorEmer(struct soap *soap, const c
 	 || soap_recv_header(soap)
 	 || soap_body_begin_in(soap))
 		return soap_closesock(soap);
-	out->soap_get(soap, "ns:setSensorEmerResponse", "");
+	out->soap_get(soap, "ns:getSecuritySensorResponse", "");
 	if (soap->error)
 	{	if (soap->error == SOAP_TAG_MISMATCH && soap->level == 2)
 			return soap_recv_fault(soap);
@@ -2680,23 +2680,22 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__setSensorEmer(struct soap *soap, const c
 	return soap_closesock(soap);
 }
 
-SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__sensorEmerEvent(struct soap *soap, const char *soap_endpoint, const char *soap_action, ns__sensorEmer in, int *out)
-{	struct ns__sensorEmerEvent soap_tmp_ns__sensorEmerEvent;
-	struct ns__sensorEmerEventResponse *soap_tmp_ns__sensorEmerEventResponse;
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__setSecuritySensor(struct soap *soap, const char *soap_endpoint, const char *soap_action, ns__securitySensor in, ns__setSecuritySensorResponse *out)
+{	struct ns__setSecuritySensor soap_tmp_ns__setSecuritySensor;
 	if (!soap_endpoint)
 		soap_endpoint = "http://220.120.109.37:29700";
 	soap->encodingStyle = "";
-	soap_tmp_ns__sensorEmerEvent.in = in;
+	soap_tmp_ns__setSecuritySensor.in = in;
 	soap_begin(soap);
 	soap_serializeheader(soap);
-	soap_serialize_ns__sensorEmerEvent(soap, &soap_tmp_ns__sensorEmerEvent);
+	soap_serialize_ns__setSecuritySensor(soap, &soap_tmp_ns__setSecuritySensor);
 	if (soap_begin_count(soap))
 		return soap->error;
 	if (soap->mode & SOAP_IO_LENGTH)
 	{	if (soap_envelope_begin_out(soap)
 		 || soap_putheader(soap)
 		 || soap_body_begin_out(soap)
-		 || soap_put_ns__sensorEmerEvent(soap, &soap_tmp_ns__sensorEmerEvent, "ns:sensorEmerEvent", "")
+		 || soap_put_ns__setSecuritySensor(soap, &soap_tmp_ns__setSecuritySensor, "ns:setSecuritySensor", "")
 		 || soap_body_end_out(soap)
 		 || soap_envelope_end_out(soap))
 			 return soap->error;
@@ -2707,7 +2706,60 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__sensorEmerEvent(struct soap *soap, const
 	 || soap_envelope_begin_out(soap)
 	 || soap_putheader(soap)
 	 || soap_body_begin_out(soap)
-	 || soap_put_ns__sensorEmerEvent(soap, &soap_tmp_ns__sensorEmerEvent, "ns:sensorEmerEvent", "")
+	 || soap_put_ns__setSecuritySensor(soap, &soap_tmp_ns__setSecuritySensor, "ns:setSecuritySensor", "")
+	 || soap_body_end_out(soap)
+	 || soap_envelope_end_out(soap)
+	 || soap_end_send(soap))
+		return soap_closesock(soap);
+	if (!out)
+		return soap_closesock(soap);
+	out->soap_default(soap);
+	if (soap_begin_recv(soap)
+	 || soap_envelope_begin_in(soap)
+	 || soap_recv_header(soap)
+	 || soap_body_begin_in(soap))
+		return soap_closesock(soap);
+	out->soap_get(soap, "ns:setSecuritySensorResponse", "");
+	if (soap->error)
+	{	if (soap->error == SOAP_TAG_MISMATCH && soap->level == 2)
+			return soap_recv_fault(soap);
+		return soap_closesock(soap);
+	}
+	if (soap_body_end_in(soap)
+	 || soap_envelope_end_in(soap)
+	 || soap_end_recv(soap))
+		return soap_closesock(soap);
+	return soap_closesock(soap);
+}
+
+SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__securitySensorEvent(struct soap *soap, const char *soap_endpoint, const char *soap_action, ns__securitySensor in, int *out)
+{	struct ns__securitySensorEvent soap_tmp_ns__securitySensorEvent;
+	struct ns__securitySensorEventResponse *soap_tmp_ns__securitySensorEventResponse;
+	if (!soap_endpoint)
+		soap_endpoint = "http://220.120.109.37:29700";
+	soap->encodingStyle = "";
+	soap_tmp_ns__securitySensorEvent.in = in;
+	soap_begin(soap);
+	soap_serializeheader(soap);
+	soap_serialize_ns__securitySensorEvent(soap, &soap_tmp_ns__securitySensorEvent);
+	if (soap_begin_count(soap))
+		return soap->error;
+	if (soap->mode & SOAP_IO_LENGTH)
+	{	if (soap_envelope_begin_out(soap)
+		 || soap_putheader(soap)
+		 || soap_body_begin_out(soap)
+		 || soap_put_ns__securitySensorEvent(soap, &soap_tmp_ns__securitySensorEvent, "ns:securitySensorEvent", "")
+		 || soap_body_end_out(soap)
+		 || soap_envelope_end_out(soap))
+			 return soap->error;
+	}
+	if (soap_end_count(soap))
+		return soap->error;
+	if (soap_connect(soap, soap_endpoint, soap_action)
+	 || soap_envelope_begin_out(soap)
+	 || soap_putheader(soap)
+	 || soap_body_begin_out(soap)
+	 || soap_put_ns__securitySensorEvent(soap, &soap_tmp_ns__securitySensorEvent, "ns:securitySensorEvent", "")
 	 || soap_body_end_out(soap)
 	 || soap_envelope_end_out(soap)
 	 || soap_end_send(soap))
@@ -2718,7 +2770,7 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__sensorEmerEvent(struct soap *soap, const
 	 || soap_recv_header(soap)
 	 || soap_body_begin_in(soap))
 		return soap_closesock(soap);
-	soap_tmp_ns__sensorEmerEventResponse = soap_get_ns__sensorEmerEventResponse(soap, NULL, "ns:sensorEmerEventResponse", "");
+	soap_tmp_ns__securitySensorEventResponse = soap_get_ns__securitySensorEventResponse(soap, NULL, "ns:securitySensorEventResponse", "");
 	if (soap->error)
 	{	if (soap->error == SOAP_TAG_MISMATCH && soap->level == 2)
 			return soap_recv_fault(soap);
@@ -2728,8 +2780,8 @@ SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__sensorEmerEvent(struct soap *soap, const
 	 || soap_envelope_end_in(soap)
 	 || soap_end_recv(soap))
 		return soap_closesock(soap);
-	if (out && soap_tmp_ns__sensorEmerEventResponse->out)
-		*out = *soap_tmp_ns__sensorEmerEventResponse->out;
+	if (out && soap_tmp_ns__securitySensorEventResponse->out)
+		*out = *soap_tmp_ns__securitySensorEventResponse->out;
 	return soap_closesock(soap);
 }
 

@@ -59,31 +59,31 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_unsignedInt(struct soap*, const char*, int, c
 SOAP_FMAC3 unsigned int * SOAP_FMAC4 soap_get_unsignedInt(struct soap*, unsigned int *, const char*, const char*);
 SOAP_FMAC3 unsigned int * SOAP_FMAC4 soap_in_unsignedInt(struct soap*, const char*, unsigned int *, const char*);
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__sensorEmerFunc
-#define SOAP_TYPE_cmxDeviceService_ns__sensorEmerFunc (223)
+#ifndef SOAP_TYPE_cmxDeviceService_ns__securitySensorFunc
+#define SOAP_TYPE_cmxDeviceService_ns__securitySensorFunc (224)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__sensorEmerFunc(struct soap*, enum ns__sensorEmerFunc *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__sensorEmerFunc(struct soap*, const enum ns__sensorEmerFunc *, const char*, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__sensorEmerFunc(struct soap*, const char*, int, const enum ns__sensorEmerFunc *, const char*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__securitySensorFunc(struct soap*, enum ns__securitySensorFunc *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__securitySensorFunc(struct soap*, const enum ns__securitySensorFunc *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__securitySensorFunc(struct soap*, const char*, int, const enum ns__securitySensorFunc *, const char*);
 
-SOAP_FMAC3S const char* SOAP_FMAC4S soap_ns__sensorEmerFunc2s(struct soap*, enum ns__sensorEmerFunc);
-SOAP_FMAC3 enum ns__sensorEmerFunc * SOAP_FMAC4 soap_get_ns__sensorEmerFunc(struct soap*, enum ns__sensorEmerFunc *, const char*, const char*);
-SOAP_FMAC3 enum ns__sensorEmerFunc * SOAP_FMAC4 soap_in_ns__sensorEmerFunc(struct soap*, const char*, enum ns__sensorEmerFunc *, const char*);
+SOAP_FMAC3S const char* SOAP_FMAC4S soap_ns__securitySensorFunc2s(struct soap*, enum ns__securitySensorFunc);
+SOAP_FMAC3 enum ns__securitySensorFunc * SOAP_FMAC4 soap_get_ns__securitySensorFunc(struct soap*, enum ns__securitySensorFunc *, const char*, const char*);
+SOAP_FMAC3 enum ns__securitySensorFunc * SOAP_FMAC4 soap_in_ns__securitySensorFunc(struct soap*, const char*, enum ns__securitySensorFunc *, const char*);
 
-SOAP_FMAC3S int SOAP_FMAC4S soap_s2ns__sensorEmerFunc(struct soap*, const char*, enum ns__sensorEmerFunc *);
+SOAP_FMAC3S int SOAP_FMAC4S soap_s2ns__securitySensorFunc(struct soap*, const char*, enum ns__securitySensorFunc *);
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__enum_sensorEmer
-#define SOAP_TYPE_cmxDeviceService_ns__enum_sensorEmer (221)
+#ifndef SOAP_TYPE_cmxDeviceService_ns__enum_securitySensor
+#define SOAP_TYPE_cmxDeviceService_ns__enum_securitySensor (221)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__enum_sensorEmer(struct soap*, enum ns__enum_sensorEmer *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__enum_sensorEmer(struct soap*, const enum ns__enum_sensorEmer *, const char*, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__enum_sensorEmer(struct soap*, const char*, int, const enum ns__enum_sensorEmer *, const char*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__enum_securitySensor(struct soap*, enum ns__enum_securitySensor *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__enum_securitySensor(struct soap*, const enum ns__enum_securitySensor *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__enum_securitySensor(struct soap*, const char*, int, const enum ns__enum_securitySensor *, const char*);
 
-SOAP_FMAC3S const char* SOAP_FMAC4S soap_ns__enum_sensorEmer2s(struct soap*, enum ns__enum_sensorEmer);
-SOAP_FMAC3 enum ns__enum_sensorEmer * SOAP_FMAC4 soap_get_ns__enum_sensorEmer(struct soap*, enum ns__enum_sensorEmer *, const char*, const char*);
-SOAP_FMAC3 enum ns__enum_sensorEmer * SOAP_FMAC4 soap_in_ns__enum_sensorEmer(struct soap*, const char*, enum ns__enum_sensorEmer *, const char*);
+SOAP_FMAC3S const char* SOAP_FMAC4S soap_ns__enum_securitySensor2s(struct soap*, enum ns__enum_securitySensor);
+SOAP_FMAC3 enum ns__enum_securitySensor * SOAP_FMAC4 soap_get_ns__enum_securitySensor(struct soap*, enum ns__enum_securitySensor *, const char*, const char*);
+SOAP_FMAC3 enum ns__enum_securitySensor * SOAP_FMAC4 soap_in_ns__enum_securitySensor(struct soap*, const char*, enum ns__enum_securitySensor *, const char*);
 
-SOAP_FMAC3S int SOAP_FMAC4S soap_s2ns__enum_sensorEmer(struct soap*, const char*, enum ns__enum_sensorEmer *);
+SOAP_FMAC3S int SOAP_FMAC4S soap_s2ns__enum_securitySensor(struct soap*, const char*, enum ns__enum_securitySensor *);
 
 #ifndef SOAP_TYPE_cmxDeviceService_ns__fanSystemFunc
 #define SOAP_TYPE_cmxDeviceService_ns__fanSystemFunc (198)
@@ -332,53 +332,65 @@ SOAP_FMAC3 enum ns__enum_devInfo * SOAP_FMAC4 soap_in_ns__enum_devInfo(struct so
 
 SOAP_FMAC3S int SOAP_FMAC4S soap_s2ns__enum_devInfo(struct soap*, const char*, enum ns__enum_devInfo *);
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse
-#define SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse (235)
+#ifndef SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse
+#define SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse (240)
 #endif
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__setSensorEmerResponse(struct soap*, const char*, int, const ns__setSensorEmerResponse *, const char*);
-SOAP_FMAC3 ns__setSensorEmerResponse * SOAP_FMAC4 soap_get_ns__setSensorEmerResponse(struct soap*, ns__setSensorEmerResponse *, const char*, const char*);
-SOAP_FMAC3 ns__setSensorEmerResponse * SOAP_FMAC4 soap_in_ns__setSensorEmerResponse(struct soap*, const char*, ns__setSensorEmerResponse *, const char*);
-SOAP_FMAC5 ns__setSensorEmerResponse * SOAP_FMAC6 soap_new_ns__setSensorEmerResponse(struct soap*, int);
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__setSensorEmerResponse(struct soap*, ns__setSensorEmerResponse*);
-SOAP_FMAC3 ns__setSensorEmerResponse * SOAP_FMAC4 soap_instantiate_ns__setSensorEmerResponse(struct soap*, int, const char*, const char*, size_t*);
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__setSensorEmerResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__setSecuritySensorResponse(struct soap*, const char*, int, const ns__setSecuritySensorResponse *, const char*);
+SOAP_FMAC3 ns__setSecuritySensorResponse * SOAP_FMAC4 soap_get_ns__setSecuritySensorResponse(struct soap*, ns__setSecuritySensorResponse *, const char*, const char*);
+SOAP_FMAC3 ns__setSecuritySensorResponse * SOAP_FMAC4 soap_in_ns__setSecuritySensorResponse(struct soap*, const char*, ns__setSecuritySensorResponse *, const char*);
+SOAP_FMAC5 ns__setSecuritySensorResponse * SOAP_FMAC6 soap_new_ns__setSecuritySensorResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__setSecuritySensorResponse(struct soap*, ns__setSecuritySensorResponse*);
+SOAP_FMAC3 ns__setSecuritySensorResponse * SOAP_FMAC4 soap_instantiate_ns__setSecuritySensorResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__setSecuritySensorResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse
-#define SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse (225)
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse (227)
 #endif
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSensorEmerResponse(struct soap*, const char*, int, const ns__getSensorEmerResponse *, const char*);
-SOAP_FMAC3 ns__getSensorEmerResponse * SOAP_FMAC4 soap_get_ns__getSensorEmerResponse(struct soap*, ns__getSensorEmerResponse *, const char*, const char*);
-SOAP_FMAC3 ns__getSensorEmerResponse * SOAP_FMAC4 soap_in_ns__getSensorEmerResponse(struct soap*, const char*, ns__getSensorEmerResponse *, const char*);
-SOAP_FMAC5 ns__getSensorEmerResponse * SOAP_FMAC6 soap_new_ns__getSensorEmerResponse(struct soap*, int);
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSensorEmerResponse(struct soap*, ns__getSensorEmerResponse*);
-SOAP_FMAC3 ns__getSensorEmerResponse * SOAP_FMAC4 soap_instantiate_ns__getSensorEmerResponse(struct soap*, int, const char*, const char*, size_t*);
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSensorEmerResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorResponse(struct soap*, const char*, int, const ns__getSecuritySensorResponse *, const char*);
+SOAP_FMAC3 ns__getSecuritySensorResponse * SOAP_FMAC4 soap_get_ns__getSecuritySensorResponse(struct soap*, ns__getSecuritySensorResponse *, const char*, const char*);
+SOAP_FMAC3 ns__getSecuritySensorResponse * SOAP_FMAC4 soap_in_ns__getSecuritySensorResponse(struct soap*, const char*, ns__getSecuritySensorResponse *, const char*);
+SOAP_FMAC5 ns__getSecuritySensorResponse * SOAP_FMAC6 soap_new_ns__getSecuritySensorResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorResponse(struct soap*, ns__getSecuritySensorResponse*);
+SOAP_FMAC3 ns__getSecuritySensorResponse * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse
-#define SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse (224)
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse (226)
 #endif
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSensorEmerItemResponse(struct soap*, const char*, int, const ns__getSensorEmerItemResponse *, const char*);
-SOAP_FMAC3 ns__getSensorEmerItemResponse * SOAP_FMAC4 soap_get_ns__getSensorEmerItemResponse(struct soap*, ns__getSensorEmerItemResponse *, const char*, const char*);
-SOAP_FMAC3 ns__getSensorEmerItemResponse * SOAP_FMAC4 soap_in_ns__getSensorEmerItemResponse(struct soap*, const char*, ns__getSensorEmerItemResponse *, const char*);
-SOAP_FMAC5 ns__getSensorEmerItemResponse * SOAP_FMAC6 soap_new_ns__getSensorEmerItemResponse(struct soap*, int);
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSensorEmerItemResponse(struct soap*, ns__getSensorEmerItemResponse*);
-SOAP_FMAC3 ns__getSensorEmerItemResponse * SOAP_FMAC4 soap_instantiate_ns__getSensorEmerItemResponse(struct soap*, int, const char*, const char*, size_t*);
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSensorEmerItemResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorItemResponse(struct soap*, const char*, int, const ns__getSecuritySensorItemResponse *, const char*);
+SOAP_FMAC3 ns__getSecuritySensorItemResponse * SOAP_FMAC4 soap_get_ns__getSecuritySensorItemResponse(struct soap*, ns__getSecuritySensorItemResponse *, const char*, const char*);
+SOAP_FMAC3 ns__getSecuritySensorItemResponse * SOAP_FMAC4 soap_in_ns__getSecuritySensorItemResponse(struct soap*, const char*, ns__getSecuritySensorItemResponse *, const char*);
+SOAP_FMAC5 ns__getSecuritySensorItemResponse * SOAP_FMAC6 soap_new_ns__getSecuritySensorItemResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorItemResponse(struct soap*, ns__getSecuritySensorItemResponse*);
+SOAP_FMAC3 ns__getSecuritySensorItemResponse * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorItemResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorItemResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__sensorEmer
-#define SOAP_TYPE_cmxDeviceService_ns__sensorEmer (222)
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse (225)
 #endif
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__sensorEmer(struct soap*, const char*, int, const ns__sensorEmer *, const char*);
-SOAP_FMAC3 ns__sensorEmer * SOAP_FMAC4 soap_get_ns__sensorEmer(struct soap*, ns__sensorEmer *, const char*, const char*);
-SOAP_FMAC3 ns__sensorEmer * SOAP_FMAC4 soap_in_ns__sensorEmer(struct soap*, const char*, ns__sensorEmer *, const char*);
-SOAP_FMAC5 ns__sensorEmer * SOAP_FMAC6 soap_new_ns__sensorEmer(struct soap*, int);
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__sensorEmer(struct soap*, ns__sensorEmer*);
-SOAP_FMAC3 ns__sensorEmer * SOAP_FMAC4 soap_instantiate_ns__sensorEmer(struct soap*, int, const char*, const char*, size_t*);
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__sensorEmer(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorPropertyItemResponse(struct soap*, const char*, int, const ns__getSecuritySensorPropertyItemResponse *, const char*);
+SOAP_FMAC3 ns__getSecuritySensorPropertyItemResponse * SOAP_FMAC4 soap_get_ns__getSecuritySensorPropertyItemResponse(struct soap*, ns__getSecuritySensorPropertyItemResponse *, const char*, const char*);
+SOAP_FMAC3 ns__getSecuritySensorPropertyItemResponse * SOAP_FMAC4 soap_in_ns__getSecuritySensorPropertyItemResponse(struct soap*, const char*, ns__getSecuritySensorPropertyItemResponse *, const char*);
+SOAP_FMAC5 ns__getSecuritySensorPropertyItemResponse * SOAP_FMAC6 soap_new_ns__getSecuritySensorPropertyItemResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorPropertyItemResponse(struct soap*, ns__getSecuritySensorPropertyItemResponse*);
+SOAP_FMAC3 ns__getSecuritySensorPropertyItemResponse * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorPropertyItemResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorPropertyItemResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_cmxDeviceService_ns__securitySensor
+#define SOAP_TYPE_cmxDeviceService_ns__securitySensor (223)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__securitySensor(struct soap*, const char*, int, const ns__securitySensor *, const char*);
+SOAP_FMAC3 ns__securitySensor * SOAP_FMAC4 soap_get_ns__securitySensor(struct soap*, ns__securitySensor *, const char*, const char*);
+SOAP_FMAC3 ns__securitySensor * SOAP_FMAC4 soap_in_ns__securitySensor(struct soap*, const char*, ns__securitySensor *, const char*);
+SOAP_FMAC5 ns__securitySensor * SOAP_FMAC6 soap_new_ns__securitySensor(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__securitySensor(struct soap*, ns__securitySensor*);
+SOAP_FMAC3 ns__securitySensor * SOAP_FMAC4 soap_instantiate_ns__securitySensor(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__securitySensor(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_cmxDeviceService_ns__setFanSystemResponse
 #define SOAP_TYPE_cmxDeviceService_ns__setFanSystemResponse (214)
@@ -863,7 +875,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__rootDevice(struct soap*, int, int, void
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_cmxDeviceService_SOAP_ENV__Fault
-#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Fault (250)
+#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Fault (255)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Fault(struct soap*, const struct SOAP_ENV__Fault *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Fault(struct soap*, struct SOAP_ENV__Fault *);
@@ -881,7 +893,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Fault(struct soap*, int, int, voi
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_cmxDeviceService_SOAP_ENV__Reason
-#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Reason (249)
+#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Reason (254)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Reason(struct soap*, const struct SOAP_ENV__Reason *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Reason(struct soap*, struct SOAP_ENV__Reason *);
@@ -899,7 +911,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Reason(struct soap*, int, int, vo
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_cmxDeviceService_SOAP_ENV__Detail
-#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Detail (248)
+#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Detail (253)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Detail(struct soap*, const struct SOAP_ENV__Detail *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Detail(struct soap*, struct SOAP_ENV__Detail *);
@@ -917,7 +929,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Detail(struct soap*, int, int, vo
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_cmxDeviceService_SOAP_ENV__Code
-#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Code (246)
+#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Code (251)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Code(struct soap*, const struct SOAP_ENV__Code *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Code(struct soap*, struct SOAP_ENV__Code *);
@@ -935,7 +947,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Code(struct soap*, int, int, void
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_cmxDeviceService_SOAP_ENV__Header
-#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Header (245)
+#define SOAP_TYPE_cmxDeviceService_SOAP_ENV__Header (250)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Header(struct soap*, const struct SOAP_ENV__Header *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Header(struct soap*, struct SOAP_ENV__Header *);
@@ -951,7 +963,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Header(struct soap*, int, int, vo
 #endif
 
 #ifndef SOAP_TYPE_cmxDeviceService_ns__subcribeEvent
-#define SOAP_TYPE_cmxDeviceService_ns__subcribeEvent (244)
+#define SOAP_TYPE_cmxDeviceService_ns__subcribeEvent (249)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__subcribeEvent(struct soap*, const struct ns__subcribeEvent *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__subcribeEvent(struct soap*, struct ns__subcribeEvent *);
@@ -965,7 +977,7 @@ SOAP_FMAC3 struct ns__subcribeEvent * SOAP_FMAC4 soap_instantiate_ns__subcribeEv
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__subcribeEvent(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_cmxDeviceService_ns__subcribeEventResponse
-#define SOAP_TYPE_cmxDeviceService_ns__subcribeEventResponse (243)
+#define SOAP_TYPE_cmxDeviceService_ns__subcribeEventResponse (248)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__subcribeEventResponse(struct soap*, const struct ns__subcribeEventResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__subcribeEventResponse(struct soap*, struct ns__subcribeEventResponse *);
@@ -978,103 +990,131 @@ SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__subcribeEventResponse(struct soap*, s
 SOAP_FMAC3 struct ns__subcribeEventResponse * SOAP_FMAC4 soap_instantiate_ns__subcribeEventResponse(struct soap*, int, const char*, const char*, size_t*);
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__subcribeEventResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent
-#define SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent (241)
+#ifndef SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent
+#define SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent (246)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__sensorEmerEvent(struct soap*, const struct ns__sensorEmerEvent *);
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__sensorEmerEvent(struct soap*, struct ns__sensorEmerEvent *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__sensorEmerEvent(struct soap*, const struct ns__sensorEmerEvent *, const char*, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__sensorEmerEvent(struct soap*, const char*, int, const struct ns__sensorEmerEvent *, const char*);
-SOAP_FMAC3 struct ns__sensorEmerEvent * SOAP_FMAC4 soap_get_ns__sensorEmerEvent(struct soap*, struct ns__sensorEmerEvent *, const char*, const char*);
-SOAP_FMAC3 struct ns__sensorEmerEvent * SOAP_FMAC4 soap_in_ns__sensorEmerEvent(struct soap*, const char*, struct ns__sensorEmerEvent *, const char*);
-SOAP_FMAC5 struct ns__sensorEmerEvent * SOAP_FMAC6 soap_new_ns__sensorEmerEvent(struct soap*, int);
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__sensorEmerEvent(struct soap*, struct ns__sensorEmerEvent*);
-SOAP_FMAC3 struct ns__sensorEmerEvent * SOAP_FMAC4 soap_instantiate_ns__sensorEmerEvent(struct soap*, int, const char*, const char*, size_t*);
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__sensorEmerEvent(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__securitySensorEvent(struct soap*, const struct ns__securitySensorEvent *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__securitySensorEvent(struct soap*, struct ns__securitySensorEvent *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__securitySensorEvent(struct soap*, const struct ns__securitySensorEvent *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__securitySensorEvent(struct soap*, const char*, int, const struct ns__securitySensorEvent *, const char*);
+SOAP_FMAC3 struct ns__securitySensorEvent * SOAP_FMAC4 soap_get_ns__securitySensorEvent(struct soap*, struct ns__securitySensorEvent *, const char*, const char*);
+SOAP_FMAC3 struct ns__securitySensorEvent * SOAP_FMAC4 soap_in_ns__securitySensorEvent(struct soap*, const char*, struct ns__securitySensorEvent *, const char*);
+SOAP_FMAC5 struct ns__securitySensorEvent * SOAP_FMAC6 soap_new_ns__securitySensorEvent(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__securitySensorEvent(struct soap*, struct ns__securitySensorEvent*);
+SOAP_FMAC3 struct ns__securitySensorEvent * SOAP_FMAC4 soap_instantiate_ns__securitySensorEvent(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__securitySensorEvent(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse
-#define SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse (240)
+#ifndef SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse
+#define SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse (245)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__sensorEmerEventResponse(struct soap*, const struct ns__sensorEmerEventResponse *);
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__sensorEmerEventResponse(struct soap*, struct ns__sensorEmerEventResponse *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__sensorEmerEventResponse(struct soap*, const struct ns__sensorEmerEventResponse *, const char*, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__sensorEmerEventResponse(struct soap*, const char*, int, const struct ns__sensorEmerEventResponse *, const char*);
-SOAP_FMAC3 struct ns__sensorEmerEventResponse * SOAP_FMAC4 soap_get_ns__sensorEmerEventResponse(struct soap*, struct ns__sensorEmerEventResponse *, const char*, const char*);
-SOAP_FMAC3 struct ns__sensorEmerEventResponse * SOAP_FMAC4 soap_in_ns__sensorEmerEventResponse(struct soap*, const char*, struct ns__sensorEmerEventResponse *, const char*);
-SOAP_FMAC5 struct ns__sensorEmerEventResponse * SOAP_FMAC6 soap_new_ns__sensorEmerEventResponse(struct soap*, int);
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__sensorEmerEventResponse(struct soap*, struct ns__sensorEmerEventResponse*);
-SOAP_FMAC3 struct ns__sensorEmerEventResponse * SOAP_FMAC4 soap_instantiate_ns__sensorEmerEventResponse(struct soap*, int, const char*, const char*, size_t*);
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__sensorEmerEventResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__securitySensorEventResponse(struct soap*, const struct ns__securitySensorEventResponse *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__securitySensorEventResponse(struct soap*, struct ns__securitySensorEventResponse *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__securitySensorEventResponse(struct soap*, const struct ns__securitySensorEventResponse *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__securitySensorEventResponse(struct soap*, const char*, int, const struct ns__securitySensorEventResponse *, const char*);
+SOAP_FMAC3 struct ns__securitySensorEventResponse * SOAP_FMAC4 soap_get_ns__securitySensorEventResponse(struct soap*, struct ns__securitySensorEventResponse *, const char*, const char*);
+SOAP_FMAC3 struct ns__securitySensorEventResponse * SOAP_FMAC4 soap_in_ns__securitySensorEventResponse(struct soap*, const char*, struct ns__securitySensorEventResponse *, const char*);
+SOAP_FMAC5 struct ns__securitySensorEventResponse * SOAP_FMAC6 soap_new_ns__securitySensorEventResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__securitySensorEventResponse(struct soap*, struct ns__securitySensorEventResponse*);
+SOAP_FMAC3 struct ns__securitySensorEventResponse * SOAP_FMAC4 soap_instantiate_ns__securitySensorEventResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__securitySensorEventResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__setSensorEmer
-#define SOAP_TYPE_cmxDeviceService_ns__setSensorEmer (238)
+#ifndef SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor
+#define SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor (243)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__setSensorEmer(struct soap*, const struct ns__setSensorEmer *);
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__setSensorEmer(struct soap*, struct ns__setSensorEmer *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__setSensorEmer(struct soap*, const struct ns__setSensorEmer *, const char*, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__setSensorEmer(struct soap*, const char*, int, const struct ns__setSensorEmer *, const char*);
-SOAP_FMAC3 struct ns__setSensorEmer * SOAP_FMAC4 soap_get_ns__setSensorEmer(struct soap*, struct ns__setSensorEmer *, const char*, const char*);
-SOAP_FMAC3 struct ns__setSensorEmer * SOAP_FMAC4 soap_in_ns__setSensorEmer(struct soap*, const char*, struct ns__setSensorEmer *, const char*);
-SOAP_FMAC5 struct ns__setSensorEmer * SOAP_FMAC6 soap_new_ns__setSensorEmer(struct soap*, int);
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__setSensorEmer(struct soap*, struct ns__setSensorEmer*);
-SOAP_FMAC3 struct ns__setSensorEmer * SOAP_FMAC4 soap_instantiate_ns__setSensorEmer(struct soap*, int, const char*, const char*, size_t*);
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__setSensorEmer(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__setSecuritySensor(struct soap*, const struct ns__setSecuritySensor *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__setSecuritySensor(struct soap*, struct ns__setSecuritySensor *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__setSecuritySensor(struct soap*, const struct ns__setSecuritySensor *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__setSecuritySensor(struct soap*, const char*, int, const struct ns__setSecuritySensor *, const char*);
+SOAP_FMAC3 struct ns__setSecuritySensor * SOAP_FMAC4 soap_get_ns__setSecuritySensor(struct soap*, struct ns__setSecuritySensor *, const char*, const char*);
+SOAP_FMAC3 struct ns__setSecuritySensor * SOAP_FMAC4 soap_in_ns__setSecuritySensor(struct soap*, const char*, struct ns__setSecuritySensor *, const char*);
+SOAP_FMAC5 struct ns__setSecuritySensor * SOAP_FMAC6 soap_new_ns__setSecuritySensor(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__setSecuritySensor(struct soap*, struct ns__setSecuritySensor*);
+SOAP_FMAC3 struct ns__setSecuritySensor * SOAP_FMAC4 soap_instantiate_ns__setSecuritySensor(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__setSecuritySensor(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__getSensorEmer
-#define SOAP_TYPE_cmxDeviceService_ns__getSensorEmer (234)
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor (239)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSensorEmer(struct soap*, const struct ns__getSensorEmer *);
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSensorEmer(struct soap*, struct ns__getSensorEmer *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSensorEmer(struct soap*, const struct ns__getSensorEmer *, const char*, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSensorEmer(struct soap*, const char*, int, const struct ns__getSensorEmer *, const char*);
-SOAP_FMAC3 struct ns__getSensorEmer * SOAP_FMAC4 soap_get_ns__getSensorEmer(struct soap*, struct ns__getSensorEmer *, const char*, const char*);
-SOAP_FMAC3 struct ns__getSensorEmer * SOAP_FMAC4 soap_in_ns__getSensorEmer(struct soap*, const char*, struct ns__getSensorEmer *, const char*);
-SOAP_FMAC5 struct ns__getSensorEmer * SOAP_FMAC6 soap_new_ns__getSensorEmer(struct soap*, int);
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSensorEmer(struct soap*, struct ns__getSensorEmer*);
-SOAP_FMAC3 struct ns__getSensorEmer * SOAP_FMAC4 soap_instantiate_ns__getSensorEmer(struct soap*, int, const char*, const char*, size_t*);
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSensorEmer(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSecuritySensor(struct soap*, const struct ns__getSecuritySensor *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSecuritySensor(struct soap*, struct ns__getSecuritySensor *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSecuritySensor(struct soap*, const struct ns__getSecuritySensor *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensor(struct soap*, const char*, int, const struct ns__getSecuritySensor *, const char*);
+SOAP_FMAC3 struct ns__getSecuritySensor * SOAP_FMAC4 soap_get_ns__getSecuritySensor(struct soap*, struct ns__getSecuritySensor *, const char*, const char*);
+SOAP_FMAC3 struct ns__getSecuritySensor * SOAP_FMAC4 soap_in_ns__getSecuritySensor(struct soap*, const char*, struct ns__getSecuritySensor *, const char*);
+SOAP_FMAC5 struct ns__getSecuritySensor * SOAP_FMAC6 soap_new_ns__getSecuritySensor(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensor(struct soap*, struct ns__getSecuritySensor*);
+SOAP_FMAC3 struct ns__getSecuritySensor * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensor(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensor(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem
-#define SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem (231)
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem (236)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSensorEmerItem(struct soap*, const struct ns__getSensorEmerItem *);
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSensorEmerItem(struct soap*, struct ns__getSensorEmerItem *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSensorEmerItem(struct soap*, const struct ns__getSensorEmerItem *, const char*, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSensorEmerItem(struct soap*, const char*, int, const struct ns__getSensorEmerItem *, const char*);
-SOAP_FMAC3 struct ns__getSensorEmerItem * SOAP_FMAC4 soap_get_ns__getSensorEmerItem(struct soap*, struct ns__getSensorEmerItem *, const char*, const char*);
-SOAP_FMAC3 struct ns__getSensorEmerItem * SOAP_FMAC4 soap_in_ns__getSensorEmerItem(struct soap*, const char*, struct ns__getSensorEmerItem *, const char*);
-SOAP_FMAC5 struct ns__getSensorEmerItem * SOAP_FMAC6 soap_new_ns__getSensorEmerItem(struct soap*, int);
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSensorEmerItem(struct soap*, struct ns__getSensorEmerItem*);
-SOAP_FMAC3 struct ns__getSensorEmerItem * SOAP_FMAC4 soap_instantiate_ns__getSensorEmerItem(struct soap*, int, const char*, const char*, size_t*);
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSensorEmerItem(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSecuritySensorItem(struct soap*, const struct ns__getSecuritySensorItem *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSecuritySensorItem(struct soap*, struct ns__getSecuritySensorItem *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSecuritySensorItem(struct soap*, const struct ns__getSecuritySensorItem *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorItem(struct soap*, const char*, int, const struct ns__getSecuritySensorItem *, const char*);
+SOAP_FMAC3 struct ns__getSecuritySensorItem * SOAP_FMAC4 soap_get_ns__getSecuritySensorItem(struct soap*, struct ns__getSecuritySensorItem *, const char*, const char*);
+SOAP_FMAC3 struct ns__getSecuritySensorItem * SOAP_FMAC4 soap_in_ns__getSecuritySensorItem(struct soap*, const char*, struct ns__getSecuritySensorItem *, const char*);
+SOAP_FMAC5 struct ns__getSecuritySensorItem * SOAP_FMAC6 soap_new_ns__getSecuritySensorItem(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorItem(struct soap*, struct ns__getSecuritySensorItem*);
+SOAP_FMAC3 struct ns__getSecuritySensorItem * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorItem(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorItem(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount
-#define SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount (228)
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem (233)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSensorEmerCount(struct soap*, const struct ns__getSensorEmerCount *);
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSensorEmerCount(struct soap*, struct ns__getSensorEmerCount *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSensorEmerCount(struct soap*, const struct ns__getSensorEmerCount *, const char*, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSensorEmerCount(struct soap*, const char*, int, const struct ns__getSensorEmerCount *, const char*);
-SOAP_FMAC3 struct ns__getSensorEmerCount * SOAP_FMAC4 soap_get_ns__getSensorEmerCount(struct soap*, struct ns__getSensorEmerCount *, const char*, const char*);
-SOAP_FMAC3 struct ns__getSensorEmerCount * SOAP_FMAC4 soap_in_ns__getSensorEmerCount(struct soap*, const char*, struct ns__getSensorEmerCount *, const char*);
-SOAP_FMAC5 struct ns__getSensorEmerCount * SOAP_FMAC6 soap_new_ns__getSensorEmerCount(struct soap*, int);
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSensorEmerCount(struct soap*, struct ns__getSensorEmerCount*);
-SOAP_FMAC3 struct ns__getSensorEmerCount * SOAP_FMAC4 soap_instantiate_ns__getSensorEmerCount(struct soap*, int, const char*, const char*, size_t*);
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSensorEmerCount(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSecuritySensorPropertyItem(struct soap*, const struct ns__getSecuritySensorPropertyItem *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSecuritySensorPropertyItem(struct soap*, struct ns__getSecuritySensorPropertyItem *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSecuritySensorPropertyItem(struct soap*, const struct ns__getSecuritySensorPropertyItem *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorPropertyItem(struct soap*, const char*, int, const struct ns__getSecuritySensorPropertyItem *, const char*);
+SOAP_FMAC3 struct ns__getSecuritySensorPropertyItem * SOAP_FMAC4 soap_get_ns__getSecuritySensorPropertyItem(struct soap*, struct ns__getSecuritySensorPropertyItem *, const char*, const char*);
+SOAP_FMAC3 struct ns__getSecuritySensorPropertyItem * SOAP_FMAC4 soap_in_ns__getSecuritySensorPropertyItem(struct soap*, const char*, struct ns__getSecuritySensorPropertyItem *, const char*);
+SOAP_FMAC5 struct ns__getSecuritySensorPropertyItem * SOAP_FMAC6 soap_new_ns__getSecuritySensorPropertyItem(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorPropertyItem(struct soap*, struct ns__getSecuritySensorPropertyItem*);
+SOAP_FMAC3 struct ns__getSecuritySensorPropertyItem * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorPropertyItem(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorPropertyItem(struct soap*, int, int, void*, size_t, const void*, size_t);
 
-#ifndef SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse
-#define SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse (227)
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount (230)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSensorEmerCountResponse(struct soap*, const struct ns__getSensorEmerCountResponse *);
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSensorEmerCountResponse(struct soap*, struct ns__getSensorEmerCountResponse *);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSensorEmerCountResponse(struct soap*, const struct ns__getSensorEmerCountResponse *, const char*, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSensorEmerCountResponse(struct soap*, const char*, int, const struct ns__getSensorEmerCountResponse *, const char*);
-SOAP_FMAC3 struct ns__getSensorEmerCountResponse * SOAP_FMAC4 soap_get_ns__getSensorEmerCountResponse(struct soap*, struct ns__getSensorEmerCountResponse *, const char*, const char*);
-SOAP_FMAC3 struct ns__getSensorEmerCountResponse * SOAP_FMAC4 soap_in_ns__getSensorEmerCountResponse(struct soap*, const char*, struct ns__getSensorEmerCountResponse *, const char*);
-SOAP_FMAC5 struct ns__getSensorEmerCountResponse * SOAP_FMAC6 soap_new_ns__getSensorEmerCountResponse(struct soap*, int);
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSensorEmerCountResponse(struct soap*, struct ns__getSensorEmerCountResponse*);
-SOAP_FMAC3 struct ns__getSensorEmerCountResponse * SOAP_FMAC4 soap_instantiate_ns__getSensorEmerCountResponse(struct soap*, int, const char*, const char*, size_t*);
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSensorEmerCountResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSecuritySensorCount(struct soap*, const struct ns__getSecuritySensorCount *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSecuritySensorCount(struct soap*, struct ns__getSecuritySensorCount *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSecuritySensorCount(struct soap*, const struct ns__getSecuritySensorCount *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorCount(struct soap*, const char*, int, const struct ns__getSecuritySensorCount *, const char*);
+SOAP_FMAC3 struct ns__getSecuritySensorCount * SOAP_FMAC4 soap_get_ns__getSecuritySensorCount(struct soap*, struct ns__getSecuritySensorCount *, const char*, const char*);
+SOAP_FMAC3 struct ns__getSecuritySensorCount * SOAP_FMAC4 soap_in_ns__getSecuritySensorCount(struct soap*, const char*, struct ns__getSecuritySensorCount *, const char*);
+SOAP_FMAC5 struct ns__getSecuritySensorCount * SOAP_FMAC6 soap_new_ns__getSecuritySensorCount(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorCount(struct soap*, struct ns__getSecuritySensorCount*);
+SOAP_FMAC3 struct ns__getSecuritySensorCount * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorCount(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorCount(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse
+#define SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse (229)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSecuritySensorCountResponse(struct soap*, const struct ns__getSecuritySensorCountResponse *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSecuritySensorCountResponse(struct soap*, struct ns__getSecuritySensorCountResponse *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSecuritySensorCountResponse(struct soap*, const struct ns__getSecuritySensorCountResponse *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorCountResponse(struct soap*, const char*, int, const struct ns__getSecuritySensorCountResponse *, const char*);
+SOAP_FMAC3 struct ns__getSecuritySensorCountResponse * SOAP_FMAC4 soap_get_ns__getSecuritySensorCountResponse(struct soap*, struct ns__getSecuritySensorCountResponse *, const char*, const char*);
+SOAP_FMAC3 struct ns__getSecuritySensorCountResponse * SOAP_FMAC4 soap_in_ns__getSecuritySensorCountResponse(struct soap*, const char*, struct ns__getSecuritySensorCountResponse *, const char*);
+SOAP_FMAC5 struct ns__getSecuritySensorCountResponse * SOAP_FMAC6 soap_new_ns__getSecuritySensorCountResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorCountResponse(struct soap*, struct ns__getSecuritySensorCountResponse*);
+SOAP_FMAC3 struct ns__getSecuritySensorCountResponse * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorCountResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorCountResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty
+#define SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty (222)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_xsd_SecuritySensorProperty(struct soap*, const struct xsd_SecuritySensorProperty *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_xsd_SecuritySensorProperty(struct soap*, struct xsd_SecuritySensorProperty *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_xsd_SecuritySensorProperty(struct soap*, const struct xsd_SecuritySensorProperty *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd_SecuritySensorProperty(struct soap*, const char*, int, const struct xsd_SecuritySensorProperty *, const char*);
+SOAP_FMAC3 struct xsd_SecuritySensorProperty * SOAP_FMAC4 soap_get_xsd_SecuritySensorProperty(struct soap*, struct xsd_SecuritySensorProperty *, const char*, const char*);
+SOAP_FMAC3 struct xsd_SecuritySensorProperty * SOAP_FMAC4 soap_in_xsd_SecuritySensorProperty(struct soap*, const char*, struct xsd_SecuritySensorProperty *, const char*);
+SOAP_FMAC5 struct xsd_SecuritySensorProperty * SOAP_FMAC6 soap_new_xsd_SecuritySensorProperty(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_xsd_SecuritySensorProperty(struct soap*, struct xsd_SecuritySensorProperty*);
+SOAP_FMAC3 struct xsd_SecuritySensorProperty * SOAP_FMAC4 soap_instantiate_xsd_SecuritySensorProperty(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd_SecuritySensorProperty(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_cmxDeviceService_ns__FanSystemEvent
 #define SOAP_TYPE_cmxDeviceService_ns__FanSystemEvent (220)
@@ -2087,7 +2127,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__base64Binary(struct soap*, int, int, v
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_cmxDeviceService_PointerToSOAP_ENV__Reason
-#define SOAP_TYPE_cmxDeviceService_PointerToSOAP_ENV__Reason (252)
+#define SOAP_TYPE_cmxDeviceService_PointerToSOAP_ENV__Reason (257)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Reason(struct soap*, struct SOAP_ENV__Reason *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSOAP_ENV__Reason(struct soap*, struct SOAP_ENV__Reason *const*, const char*, const char*);
@@ -2100,7 +2140,7 @@ SOAP_FMAC3 struct SOAP_ENV__Reason ** SOAP_FMAC4 soap_in_PointerToSOAP_ENV__Reas
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_cmxDeviceService_PointerToSOAP_ENV__Detail
-#define SOAP_TYPE_cmxDeviceService_PointerToSOAP_ENV__Detail (251)
+#define SOAP_TYPE_cmxDeviceService_PointerToSOAP_ENV__Detail (256)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Detail(struct soap*, struct SOAP_ENV__Detail *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSOAP_ENV__Detail(struct soap*, struct SOAP_ENV__Detail *const*, const char*, const char*);
@@ -2113,7 +2153,7 @@ SOAP_FMAC3 struct SOAP_ENV__Detail ** SOAP_FMAC4 soap_in_PointerToSOAP_ENV__Deta
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_cmxDeviceService_PointerToSOAP_ENV__Code
-#define SOAP_TYPE_cmxDeviceService_PointerToSOAP_ENV__Code (247)
+#define SOAP_TYPE_cmxDeviceService_PointerToSOAP_ENV__Code (252)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Code(struct soap*, struct SOAP_ENV__Code *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSOAP_ENV__Code(struct soap*, struct SOAP_ENV__Code *const*, const char*, const char*);
@@ -2123,32 +2163,41 @@ SOAP_FMAC3 struct SOAP_ENV__Code ** SOAP_FMAC4 soap_in_PointerToSOAP_ENV__Code(s
 
 #endif
 
-#ifndef SOAP_TYPE_cmxDeviceService_PointerTons__setSensorEmerResponse
-#define SOAP_TYPE_cmxDeviceService_PointerTons__setSensorEmerResponse (236)
+#ifndef SOAP_TYPE_cmxDeviceService_PointerTons__setSecuritySensorResponse
+#define SOAP_TYPE_cmxDeviceService_PointerTons__setSecuritySensorResponse (241)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__setSensorEmerResponse(struct soap*, ns__setSensorEmerResponse *const*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__setSensorEmerResponse(struct soap*, ns__setSensorEmerResponse *const*, const char*, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__setSensorEmerResponse(struct soap*, const char *, int, ns__setSensorEmerResponse *const*, const char *);
-SOAP_FMAC3 ns__setSensorEmerResponse ** SOAP_FMAC4 soap_get_PointerTons__setSensorEmerResponse(struct soap*, ns__setSensorEmerResponse **, const char*, const char*);
-SOAP_FMAC3 ns__setSensorEmerResponse ** SOAP_FMAC4 soap_in_PointerTons__setSensorEmerResponse(struct soap*, const char*, ns__setSensorEmerResponse **, const char*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__setSecuritySensorResponse(struct soap*, ns__setSecuritySensorResponse *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__setSecuritySensorResponse(struct soap*, ns__setSecuritySensorResponse *const*, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__setSecuritySensorResponse(struct soap*, const char *, int, ns__setSecuritySensorResponse *const*, const char *);
+SOAP_FMAC3 ns__setSecuritySensorResponse ** SOAP_FMAC4 soap_get_PointerTons__setSecuritySensorResponse(struct soap*, ns__setSecuritySensorResponse **, const char*, const char*);
+SOAP_FMAC3 ns__setSecuritySensorResponse ** SOAP_FMAC4 soap_in_PointerTons__setSecuritySensorResponse(struct soap*, const char*, ns__setSecuritySensorResponse **, const char*);
 
-#ifndef SOAP_TYPE_cmxDeviceService_PointerTons__getSensorEmerResponse
-#define SOAP_TYPE_cmxDeviceService_PointerTons__getSensorEmerResponse (232)
+#ifndef SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorResponse
+#define SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorResponse (237)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__getSensorEmerResponse(struct soap*, ns__getSensorEmerResponse *const*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__getSensorEmerResponse(struct soap*, ns__getSensorEmerResponse *const*, const char*, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__getSensorEmerResponse(struct soap*, const char *, int, ns__getSensorEmerResponse *const*, const char *);
-SOAP_FMAC3 ns__getSensorEmerResponse ** SOAP_FMAC4 soap_get_PointerTons__getSensorEmerResponse(struct soap*, ns__getSensorEmerResponse **, const char*, const char*);
-SOAP_FMAC3 ns__getSensorEmerResponse ** SOAP_FMAC4 soap_in_PointerTons__getSensorEmerResponse(struct soap*, const char*, ns__getSensorEmerResponse **, const char*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__getSecuritySensorResponse(struct soap*, ns__getSecuritySensorResponse *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__getSecuritySensorResponse(struct soap*, ns__getSecuritySensorResponse *const*, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__getSecuritySensorResponse(struct soap*, const char *, int, ns__getSecuritySensorResponse *const*, const char *);
+SOAP_FMAC3 ns__getSecuritySensorResponse ** SOAP_FMAC4 soap_get_PointerTons__getSecuritySensorResponse(struct soap*, ns__getSecuritySensorResponse **, const char*, const char*);
+SOAP_FMAC3 ns__getSecuritySensorResponse ** SOAP_FMAC4 soap_in_PointerTons__getSecuritySensorResponse(struct soap*, const char*, ns__getSecuritySensorResponse **, const char*);
 
-#ifndef SOAP_TYPE_cmxDeviceService_PointerTons__getSensorEmerItemResponse
-#define SOAP_TYPE_cmxDeviceService_PointerTons__getSensorEmerItemResponse (229)
+#ifndef SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorItemResponse
+#define SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorItemResponse (234)
 #endif
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__getSensorEmerItemResponse(struct soap*, ns__getSensorEmerItemResponse *const*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__getSensorEmerItemResponse(struct soap*, ns__getSensorEmerItemResponse *const*, const char*, const char*);
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__getSensorEmerItemResponse(struct soap*, const char *, int, ns__getSensorEmerItemResponse *const*, const char *);
-SOAP_FMAC3 ns__getSensorEmerItemResponse ** SOAP_FMAC4 soap_get_PointerTons__getSensorEmerItemResponse(struct soap*, ns__getSensorEmerItemResponse **, const char*, const char*);
-SOAP_FMAC3 ns__getSensorEmerItemResponse ** SOAP_FMAC4 soap_in_PointerTons__getSensorEmerItemResponse(struct soap*, const char*, ns__getSensorEmerItemResponse **, const char*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__getSecuritySensorItemResponse(struct soap*, ns__getSecuritySensorItemResponse *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__getSecuritySensorItemResponse(struct soap*, ns__getSecuritySensorItemResponse *const*, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__getSecuritySensorItemResponse(struct soap*, const char *, int, ns__getSecuritySensorItemResponse *const*, const char *);
+SOAP_FMAC3 ns__getSecuritySensorItemResponse ** SOAP_FMAC4 soap_get_PointerTons__getSecuritySensorItemResponse(struct soap*, ns__getSecuritySensorItemResponse **, const char*, const char*);
+SOAP_FMAC3 ns__getSecuritySensorItemResponse ** SOAP_FMAC4 soap_in_PointerTons__getSecuritySensorItemResponse(struct soap*, const char*, ns__getSecuritySensorItemResponse **, const char*);
+
+#ifndef SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorPropertyItemResponse
+#define SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorPropertyItemResponse (231)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__getSecuritySensorPropertyItemResponse(struct soap*, ns__getSecuritySensorPropertyItemResponse *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__getSecuritySensorPropertyItemResponse(struct soap*, ns__getSecuritySensorPropertyItemResponse *const*, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__getSecuritySensorPropertyItemResponse(struct soap*, const char *, int, ns__getSecuritySensorPropertyItemResponse *const*, const char *);
+SOAP_FMAC3 ns__getSecuritySensorPropertyItemResponse ** SOAP_FMAC4 soap_get_PointerTons__getSecuritySensorPropertyItemResponse(struct soap*, ns__getSecuritySensorPropertyItemResponse **, const char*, const char*);
+SOAP_FMAC3 ns__getSecuritySensorPropertyItemResponse ** SOAP_FMAC4 soap_in_PointerTons__getSecuritySensorPropertyItemResponse(struct soap*, const char*, ns__getSecuritySensorPropertyItemResponse **, const char*);
 
 #ifndef SOAP_TYPE_cmxDeviceService_PointerTons__setFanSystemResponse
 #define SOAP_TYPE_cmxDeviceService_PointerTons__setFanSystemResponse (215)

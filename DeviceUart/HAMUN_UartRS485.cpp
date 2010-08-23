@@ -248,7 +248,7 @@ unsigned int  HAMUN_UartRS485::WriteFrame(unsigned char * frame, unsigned int fr
 				
 		if(selectStatus == -1) {
 
-			Log(LOG::ERR, "HAMUN SERIAL -> CMX485::  UART.C : uart_data_send function -> Error Select\n");
+			Log(LOG::ERR, "SERIAL -> HAMUN485::  UART.C : uart_data_send function -> Error Select\n");
 
 			return FAIL;
 		}
@@ -258,12 +258,12 @@ unsigned int  HAMUN_UartRS485::WriteFrame(unsigned char * frame, unsigned int fr
 			res = write(i_SLfd, &frame[index], WRITE);
 			if (res == -1) {
 
-				Log(LOG::ERR, "HAMUN SERIAL -> CMX485:: UARTSERIAL.C :: uart_data_send function : Error Writing to Serial Port\n");
+				Log(LOG::ERR, "SERIAL -> HAMUN485:: UARTSERIAL.C :: uart_data_send function : Error Writing to Serial Port\n");
 				return FAIL;
 			}   
 			else if(res == 0 )
 
-				Log(LOG::ERR, "HAMUN SERIAL -> CMX485:: UARTSERIAL.C :: uart_data_send function : write res value => 0\n");
+				Log(LOG::ERR, "SERIAL -> HAMUN485:: UARTSERIAL.C :: uart_data_send function : write res value => 0\n");
 				
 			else {	
 				
@@ -274,7 +274,7 @@ unsigned int  HAMUN_UartRS485::WriteFrame(unsigned char * frame, unsigned int fr
 		}else{
 			if( sent > 0 ) {		
 
-				Log(LOG::ERR, "HAMUN PACKET ROUTER -> INTERFACE MEDIA [RS 485]:: SENDING TIME OUT :%d \n", sent);
+				Log(LOG::ERR, "PACKET ROUTER -> HAMUN INTERFACE MEDIA [RS 485]:: SENDING TIME OUT :%d \n", sent);
 				return FAIL;
 			}
 		}
@@ -339,7 +339,7 @@ void * HAMUN_UartRS485::run(void *arg)
 		selectStatus = select(rs485->i_SLfd+1, &fdsr, NULL, NULL,NULL);
 		if(selectStatus == -1)
 		{			
-			Log(LOG::ERR, "HAMUN RS485:: UARTRS485.CPP :: ERROR SELECT : RETURN  SELECT : -1\n");
+			Log(LOG::ERR, "RS485:: HAMUN UARTRS485.CPP :: ERROR SELECT : RETURN  SELECT : -1\n");
 			//continue;
 			rs485->UartClose();			
 		}
@@ -350,14 +350,14 @@ void * HAMUN_UartRS485::run(void *arg)
 
 			//Log(LOG::UART, "***** RECV FRAME : %02x *****\n",readBuffer);
 			if (recvSize == -1) {				
-				Log(LOG::ERR, "HAMUN RS485 <- COMMAX PROTOCOL:: ERROR READ FROM SERIAL PORT : -1\n");
+				Log(LOG::ERR, "RS485 <- HAMUN PROTOCOL:: ERROR READ FROM SERIAL PORT : -1\n");
 				
 				rs485->UartClose();						
 
 				break;
 
 			} else if(recvSize == 0 ) {
-				Log(LOG::ERR, "HAMUN RS485 <- COMMAX PROTOCOL:: READ VALUE FROM SERIAL : 0\n");
+				Log(LOG::ERR, "RS485 <- HAMUN PROTOCOL:: READ VALUE FROM SERIAL : 0\n");
 
 			} else {						
 				memcpy( (recvBuffer+rcvCnt), &readBuffer, recvSize);
@@ -397,7 +397,7 @@ void * HAMUN_UartRS485::run(void *arg)
 
 				}else if( rcvCnt > HAMUN_PACK_SIZE) {
 				
-					Log(LOG::ERR, "HAMUN SERIAL <- CMX485:: RECV DATA OVERFLOW : %d", recvSize);				
+					Log(LOG::ERR, "SERIAL <- HAMUN485:: RECV DATA OVERFLOW : %d", recvSize);				
 					rcvCnt = 0;
 					memset((void*)recvBuffer, 0x00,  HAMUN_PACK_SIZE);
 			   	}

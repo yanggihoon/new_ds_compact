@@ -9,7 +9,7 @@
 
 namespace cmxDeviceService {
 
-SOAP_SOURCE_STAMP("@(#) cmxDeviceServiceC.cpp ver 2.7.6e 2010-07-22 06:12:39 GMT")
+SOAP_SOURCE_STAMP("@(#) cmxDeviceServiceC.cpp ver 2.7.6e 2010-08-20 13:24:12 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -151,10 +151,10 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_unsignedByte(soap, NULL, NULL, "xsd:unsignedByte");
 	case SOAP_TYPE_cmxDeviceService_unsignedInt:
 		return soap_in_unsignedInt(soap, NULL, NULL, "xsd:unsignedInt");
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmerFunc:
-		return soap_in_ns__sensorEmerFunc(soap, NULL, NULL, "ns:sensorEmerFunc");
-	case SOAP_TYPE_cmxDeviceService_ns__enum_sensorEmer:
-		return soap_in_ns__enum_sensorEmer(soap, NULL, NULL, "ns:enum-sensorEmer");
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensorFunc:
+		return soap_in_ns__securitySensorFunc(soap, NULL, NULL, "ns:securitySensorFunc");
+	case SOAP_TYPE_cmxDeviceService_ns__enum_securitySensor:
+		return soap_in_ns__enum_securitySensor(soap, NULL, NULL, "ns:enum-securitySensor");
 	case SOAP_TYPE_cmxDeviceService_ns__fanSystemFunc:
 		return soap_in_ns__fanSystemFunc(soap, NULL, NULL, "ns:fanSystemFunc");
 	case SOAP_TYPE_cmxDeviceService_ns__enum_fanSystem:
@@ -193,14 +193,16 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_ns__enum_devError(soap, NULL, NULL, "ns:enum-devError");
 	case SOAP_TYPE_cmxDeviceService_ns__enum_devInfo:
 		return soap_in_ns__enum_devInfo(soap, NULL, NULL, "ns:enum-devInfo");
-	case SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse:
-		return soap_in_ns__setSensorEmerResponse(soap, NULL, NULL, "ns:setSensorEmerResponse");
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse:
-		return soap_in_ns__getSensorEmerResponse(soap, NULL, NULL, "ns:getSensorEmerResponse");
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse:
-		return soap_in_ns__getSensorEmerItemResponse(soap, NULL, NULL, "ns:getSensorEmerItemResponse");
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmer:
-		return soap_in_ns__sensorEmer(soap, NULL, NULL, "ns:sensorEmer");
+	case SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse:
+		return soap_in_ns__setSecuritySensorResponse(soap, NULL, NULL, "ns:setSecuritySensorResponse");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse:
+		return soap_in_ns__getSecuritySensorResponse(soap, NULL, NULL, "ns:getSecuritySensorResponse");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse:
+		return soap_in_ns__getSecuritySensorItemResponse(soap, NULL, NULL, "ns:getSecuritySensorItemResponse");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse:
+		return soap_in_ns__getSecuritySensorPropertyItemResponse(soap, NULL, NULL, "ns:getSecuritySensorPropertyItemResponse");
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensor:
+		return soap_in_ns__securitySensor(soap, NULL, NULL, "ns:securitySensor");
 	case SOAP_TYPE_cmxDeviceService_ns__setFanSystemResponse:
 		return soap_in_ns__setFanSystemResponse(soap, NULL, NULL, "ns:setFanSystemResponse");
 	case SOAP_TYPE_cmxDeviceService_ns__getFanSystemResponse:
@@ -285,20 +287,24 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_ns__subcribeEvent(soap, NULL, NULL, "ns:subcribeEvent");
 	case SOAP_TYPE_cmxDeviceService_ns__subcribeEventResponse:
 		return soap_in_ns__subcribeEventResponse(soap, NULL, NULL, "ns:subcribeEventResponse");
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent:
-		return soap_in_ns__sensorEmerEvent(soap, NULL, NULL, "ns:sensorEmerEvent");
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse:
-		return soap_in_ns__sensorEmerEventResponse(soap, NULL, NULL, "ns:sensorEmerEventResponse");
-	case SOAP_TYPE_cmxDeviceService_ns__setSensorEmer:
-		return soap_in_ns__setSensorEmer(soap, NULL, NULL, "ns:setSensorEmer");
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmer:
-		return soap_in_ns__getSensorEmer(soap, NULL, NULL, "ns:getSensorEmer");
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem:
-		return soap_in_ns__getSensorEmerItem(soap, NULL, NULL, "ns:getSensorEmerItem");
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount:
-		return soap_in_ns__getSensorEmerCount(soap, NULL, NULL, "ns:getSensorEmerCount");
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse:
-		return soap_in_ns__getSensorEmerCountResponse(soap, NULL, NULL, "ns:getSensorEmerCountResponse");
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent:
+		return soap_in_ns__securitySensorEvent(soap, NULL, NULL, "ns:securitySensorEvent");
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse:
+		return soap_in_ns__securitySensorEventResponse(soap, NULL, NULL, "ns:securitySensorEventResponse");
+	case SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor:
+		return soap_in_ns__setSecuritySensor(soap, NULL, NULL, "ns:setSecuritySensor");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor:
+		return soap_in_ns__getSecuritySensor(soap, NULL, NULL, "ns:getSecuritySensor");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem:
+		return soap_in_ns__getSecuritySensorItem(soap, NULL, NULL, "ns:getSecuritySensorItem");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem:
+		return soap_in_ns__getSecuritySensorPropertyItem(soap, NULL, NULL, "ns:getSecuritySensorPropertyItem");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount:
+		return soap_in_ns__getSecuritySensorCount(soap, NULL, NULL, "ns:getSecuritySensorCount");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse:
+		return soap_in_ns__getSecuritySensorCountResponse(soap, NULL, NULL, "ns:getSecuritySensorCountResponse");
+	case SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty:
+		return soap_in_xsd_SecuritySensorProperty(soap, NULL, NULL, "xsd-SecuritySensorProperty");
 	case SOAP_TYPE_cmxDeviceService_ns__FanSystemEvent:
 		return soap_in_ns__FanSystemEvent(soap, NULL, NULL, "ns:FanSystemEvent");
 	case SOAP_TYPE_cmxDeviceService_ns__FanSystemEventResponse:
@@ -443,12 +449,14 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_xsd_devCategory(soap, NULL, NULL, "xsd-devCategory");
 	case SOAP_TYPE_cmxDeviceService_xsd__base64Binary:
 		return soap_in_xsd__base64Binary(soap, NULL, NULL, "xsd:base64Binary");
-	case SOAP_TYPE_cmxDeviceService_PointerTons__setSensorEmerResponse:
-		return soap_in_PointerTons__setSensorEmerResponse(soap, NULL, NULL, "ns:setSensorEmerResponse");
-	case SOAP_TYPE_cmxDeviceService_PointerTons__getSensorEmerResponse:
-		return soap_in_PointerTons__getSensorEmerResponse(soap, NULL, NULL, "ns:getSensorEmerResponse");
-	case SOAP_TYPE_cmxDeviceService_PointerTons__getSensorEmerItemResponse:
-		return soap_in_PointerTons__getSensorEmerItemResponse(soap, NULL, NULL, "ns:getSensorEmerItemResponse");
+	case SOAP_TYPE_cmxDeviceService_PointerTons__setSecuritySensorResponse:
+		return soap_in_PointerTons__setSecuritySensorResponse(soap, NULL, NULL, "ns:setSecuritySensorResponse");
+	case SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorResponse:
+		return soap_in_PointerTons__getSecuritySensorResponse(soap, NULL, NULL, "ns:getSecuritySensorResponse");
+	case SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorItemResponse:
+		return soap_in_PointerTons__getSecuritySensorItemResponse(soap, NULL, NULL, "ns:getSecuritySensorItemResponse");
+	case SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorPropertyItemResponse:
+		return soap_in_PointerTons__getSecuritySensorPropertyItemResponse(soap, NULL, NULL, "ns:getSecuritySensorPropertyItemResponse");
 	case SOAP_TYPE_cmxDeviceService_PointerTons__setFanSystemResponse:
 		return soap_in_PointerTons__setFanSystemResponse(soap, NULL, NULL, "ns:setFanSystemResponse");
 	case SOAP_TYPE_cmxDeviceService_PointerTons__getFanSystemResponse:
@@ -545,13 +553,13 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		{	*type = SOAP_TYPE_cmxDeviceService_unsignedInt;
 			return soap_in_unsignedInt(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns:sensorEmerFunc"))
-		{	*type = SOAP_TYPE_cmxDeviceService_ns__sensorEmerFunc;
-			return soap_in_ns__sensorEmerFunc(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "ns:securitySensorFunc"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__securitySensorFunc;
+			return soap_in_ns__securitySensorFunc(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns:enum-sensorEmer"))
-		{	*type = SOAP_TYPE_cmxDeviceService_ns__enum_sensorEmer;
-			return soap_in_ns__enum_sensorEmer(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "ns:enum-securitySensor"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__enum_securitySensor;
+			return soap_in_ns__enum_securitySensor(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "ns:fanSystemFunc"))
 		{	*type = SOAP_TYPE_cmxDeviceService_ns__fanSystemFunc;
@@ -629,21 +637,25 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		{	*type = SOAP_TYPE_cmxDeviceService_ns__enum_devInfo;
 			return soap_in_ns__enum_devInfo(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns:setSensorEmerResponse"))
-		{	*type = SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse;
-			return soap_in_ns__setSensorEmerResponse(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "ns:setSecuritySensorResponse"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse;
+			return soap_in_ns__setSecuritySensorResponse(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns:getSensorEmerResponse"))
-		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse;
-			return soap_in_ns__getSensorEmerResponse(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "ns:getSecuritySensorResponse"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse;
+			return soap_in_ns__getSecuritySensorResponse(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns:getSensorEmerItemResponse"))
-		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse;
-			return soap_in_ns__getSensorEmerItemResponse(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "ns:getSecuritySensorItemResponse"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse;
+			return soap_in_ns__getSecuritySensorItemResponse(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns:sensorEmer"))
-		{	*type = SOAP_TYPE_cmxDeviceService_ns__sensorEmer;
-			return soap_in_ns__sensorEmer(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "ns:getSecuritySensorPropertyItemResponse"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse;
+			return soap_in_ns__getSecuritySensorPropertyItemResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "ns:securitySensor"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__securitySensor;
+			return soap_in_ns__securitySensor(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "ns:setFanSystemResponse"))
 		{	*type = SOAP_TYPE_cmxDeviceService_ns__setFanSystemResponse;
@@ -813,33 +825,41 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		{	*type = SOAP_TYPE_cmxDeviceService_ns__subcribeEventResponse;
 			return soap_in_ns__subcribeEventResponse(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns:sensorEmerEvent"))
-		{	*type = SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent;
-			return soap_in_ns__sensorEmerEvent(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "ns:securitySensorEvent"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent;
+			return soap_in_ns__securitySensorEvent(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns:sensorEmerEventResponse"))
-		{	*type = SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse;
-			return soap_in_ns__sensorEmerEventResponse(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "ns:securitySensorEventResponse"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse;
+			return soap_in_ns__securitySensorEventResponse(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns:setSensorEmer"))
-		{	*type = SOAP_TYPE_cmxDeviceService_ns__setSensorEmer;
-			return soap_in_ns__setSensorEmer(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "ns:setSecuritySensor"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor;
+			return soap_in_ns__setSecuritySensor(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns:getSensorEmer"))
-		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSensorEmer;
-			return soap_in_ns__getSensorEmer(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "ns:getSecuritySensor"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor;
+			return soap_in_ns__getSecuritySensor(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns:getSensorEmerItem"))
-		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem;
-			return soap_in_ns__getSensorEmerItem(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "ns:getSecuritySensorItem"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem;
+			return soap_in_ns__getSecuritySensorItem(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns:getSensorEmerCount"))
-		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount;
-			return soap_in_ns__getSensorEmerCount(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "ns:getSecuritySensorPropertyItem"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem;
+			return soap_in_ns__getSecuritySensorPropertyItem(soap, NULL, NULL, NULL);
 		}
-		if (!soap_match_tag(soap, t, "ns:getSensorEmerCountResponse"))
-		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse;
-			return soap_in_ns__getSensorEmerCountResponse(soap, NULL, NULL, NULL);
+		if (!soap_match_tag(soap, t, "ns:getSecuritySensorCount"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount;
+			return soap_in_ns__getSecuritySensorCount(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "ns:getSecuritySensorCountResponse"))
+		{	*type = SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse;
+			return soap_in_ns__getSecuritySensorCountResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "xsd-SecuritySensorProperty"))
+		{	*type = SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty;
+			return soap_in_xsd_SecuritySensorProperty(soap, NULL, NULL, NULL);
 		}
 		if (!soap_match_tag(soap, t, "ns:FanSystemEvent"))
 		{	*type = SOAP_TYPE_cmxDeviceService_ns__FanSystemEvent;
@@ -1204,10 +1224,10 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_unsignedByte(soap, tag, id, (const unsigned char *)ptr, "xsd:unsignedByte");
 	case SOAP_TYPE_cmxDeviceService_unsignedInt:
 		return soap_out_unsignedInt(soap, tag, id, (const unsigned int *)ptr, "xsd:unsignedInt");
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmerFunc:
-		return soap_out_ns__sensorEmerFunc(soap, tag, id, (const enum ns__sensorEmerFunc *)ptr, "ns:sensorEmerFunc");
-	case SOAP_TYPE_cmxDeviceService_ns__enum_sensorEmer:
-		return soap_out_ns__enum_sensorEmer(soap, tag, id, (const enum ns__enum_sensorEmer *)ptr, "ns:enum-sensorEmer");
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensorFunc:
+		return soap_out_ns__securitySensorFunc(soap, tag, id, (const enum ns__securitySensorFunc *)ptr, "ns:securitySensorFunc");
+	case SOAP_TYPE_cmxDeviceService_ns__enum_securitySensor:
+		return soap_out_ns__enum_securitySensor(soap, tag, id, (const enum ns__enum_securitySensor *)ptr, "ns:enum-securitySensor");
 	case SOAP_TYPE_cmxDeviceService_ns__fanSystemFunc:
 		return soap_out_ns__fanSystemFunc(soap, tag, id, (const enum ns__fanSystemFunc *)ptr, "ns:fanSystemFunc");
 	case SOAP_TYPE_cmxDeviceService_ns__enum_fanSystem:
@@ -1246,14 +1266,16 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_ns__enum_devError(soap, tag, id, (const enum ns__enum_devError *)ptr, "ns:enum-devError");
 	case SOAP_TYPE_cmxDeviceService_ns__enum_devInfo:
 		return soap_out_ns__enum_devInfo(soap, tag, id, (const enum ns__enum_devInfo *)ptr, "ns:enum-devInfo");
-	case SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse:
-		return ((ns__setSensorEmerResponse *)ptr)->soap_out(soap, tag, id, "ns:setSensorEmerResponse");
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse:
-		return ((ns__getSensorEmerResponse *)ptr)->soap_out(soap, tag, id, "ns:getSensorEmerResponse");
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse:
-		return ((ns__getSensorEmerItemResponse *)ptr)->soap_out(soap, tag, id, "ns:getSensorEmerItemResponse");
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmer:
-		return ((ns__sensorEmer *)ptr)->soap_out(soap, tag, id, "ns:sensorEmer");
+	case SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse:
+		return ((ns__setSecuritySensorResponse *)ptr)->soap_out(soap, tag, id, "ns:setSecuritySensorResponse");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse:
+		return ((ns__getSecuritySensorResponse *)ptr)->soap_out(soap, tag, id, "ns:getSecuritySensorResponse");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse:
+		return ((ns__getSecuritySensorItemResponse *)ptr)->soap_out(soap, tag, id, "ns:getSecuritySensorItemResponse");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse:
+		return ((ns__getSecuritySensorPropertyItemResponse *)ptr)->soap_out(soap, tag, id, "ns:getSecuritySensorPropertyItemResponse");
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensor:
+		return ((ns__securitySensor *)ptr)->soap_out(soap, tag, id, "ns:securitySensor");
 	case SOAP_TYPE_cmxDeviceService_ns__setFanSystemResponse:
 		return ((ns__setFanSystemResponse *)ptr)->soap_out(soap, tag, id, "ns:setFanSystemResponse");
 	case SOAP_TYPE_cmxDeviceService_ns__getFanSystemResponse:
@@ -1338,20 +1360,24 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_ns__subcribeEvent(soap, tag, id, (const struct ns__subcribeEvent *)ptr, "ns:subcribeEvent");
 	case SOAP_TYPE_cmxDeviceService_ns__subcribeEventResponse:
 		return soap_out_ns__subcribeEventResponse(soap, tag, id, (const struct ns__subcribeEventResponse *)ptr, "ns:subcribeEventResponse");
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent:
-		return soap_out_ns__sensorEmerEvent(soap, tag, id, (const struct ns__sensorEmerEvent *)ptr, "ns:sensorEmerEvent");
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse:
-		return soap_out_ns__sensorEmerEventResponse(soap, tag, id, (const struct ns__sensorEmerEventResponse *)ptr, "ns:sensorEmerEventResponse");
-	case SOAP_TYPE_cmxDeviceService_ns__setSensorEmer:
-		return soap_out_ns__setSensorEmer(soap, tag, id, (const struct ns__setSensorEmer *)ptr, "ns:setSensorEmer");
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmer:
-		return soap_out_ns__getSensorEmer(soap, tag, id, (const struct ns__getSensorEmer *)ptr, "ns:getSensorEmer");
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem:
-		return soap_out_ns__getSensorEmerItem(soap, tag, id, (const struct ns__getSensorEmerItem *)ptr, "ns:getSensorEmerItem");
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount:
-		return soap_out_ns__getSensorEmerCount(soap, tag, id, (const struct ns__getSensorEmerCount *)ptr, "ns:getSensorEmerCount");
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse:
-		return soap_out_ns__getSensorEmerCountResponse(soap, tag, id, (const struct ns__getSensorEmerCountResponse *)ptr, "ns:getSensorEmerCountResponse");
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent:
+		return soap_out_ns__securitySensorEvent(soap, tag, id, (const struct ns__securitySensorEvent *)ptr, "ns:securitySensorEvent");
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse:
+		return soap_out_ns__securitySensorEventResponse(soap, tag, id, (const struct ns__securitySensorEventResponse *)ptr, "ns:securitySensorEventResponse");
+	case SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor:
+		return soap_out_ns__setSecuritySensor(soap, tag, id, (const struct ns__setSecuritySensor *)ptr, "ns:setSecuritySensor");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor:
+		return soap_out_ns__getSecuritySensor(soap, tag, id, (const struct ns__getSecuritySensor *)ptr, "ns:getSecuritySensor");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem:
+		return soap_out_ns__getSecuritySensorItem(soap, tag, id, (const struct ns__getSecuritySensorItem *)ptr, "ns:getSecuritySensorItem");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem:
+		return soap_out_ns__getSecuritySensorPropertyItem(soap, tag, id, (const struct ns__getSecuritySensorPropertyItem *)ptr, "ns:getSecuritySensorPropertyItem");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount:
+		return soap_out_ns__getSecuritySensorCount(soap, tag, id, (const struct ns__getSecuritySensorCount *)ptr, "ns:getSecuritySensorCount");
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse:
+		return soap_out_ns__getSecuritySensorCountResponse(soap, tag, id, (const struct ns__getSecuritySensorCountResponse *)ptr, "ns:getSecuritySensorCountResponse");
+	case SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty:
+		return soap_out_xsd_SecuritySensorProperty(soap, tag, id, (const struct xsd_SecuritySensorProperty *)ptr, "xsd-SecuritySensorProperty");
 	case SOAP_TYPE_cmxDeviceService_ns__FanSystemEvent:
 		return soap_out_ns__FanSystemEvent(soap, tag, id, (const struct ns__FanSystemEvent *)ptr, "ns:FanSystemEvent");
 	case SOAP_TYPE_cmxDeviceService_ns__FanSystemEventResponse:
@@ -1496,12 +1522,14 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_xsd_devCategory(soap, tag, id, (const struct xsd_devCategory *)ptr, "xsd-devCategory");
 	case SOAP_TYPE_cmxDeviceService_xsd__base64Binary:
 		return soap_out_xsd__base64Binary(soap, tag, id, (const struct xsd__base64Binary *)ptr, "xsd:base64Binary");
-	case SOAP_TYPE_cmxDeviceService_PointerTons__setSensorEmerResponse:
-		return soap_out_PointerTons__setSensorEmerResponse(soap, tag, id, (ns__setSensorEmerResponse *const*)ptr, "ns:setSensorEmerResponse");
-	case SOAP_TYPE_cmxDeviceService_PointerTons__getSensorEmerResponse:
-		return soap_out_PointerTons__getSensorEmerResponse(soap, tag, id, (ns__getSensorEmerResponse *const*)ptr, "ns:getSensorEmerResponse");
-	case SOAP_TYPE_cmxDeviceService_PointerTons__getSensorEmerItemResponse:
-		return soap_out_PointerTons__getSensorEmerItemResponse(soap, tag, id, (ns__getSensorEmerItemResponse *const*)ptr, "ns:getSensorEmerItemResponse");
+	case SOAP_TYPE_cmxDeviceService_PointerTons__setSecuritySensorResponse:
+		return soap_out_PointerTons__setSecuritySensorResponse(soap, tag, id, (ns__setSecuritySensorResponse *const*)ptr, "ns:setSecuritySensorResponse");
+	case SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorResponse:
+		return soap_out_PointerTons__getSecuritySensorResponse(soap, tag, id, (ns__getSecuritySensorResponse *const*)ptr, "ns:getSecuritySensorResponse");
+	case SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorItemResponse:
+		return soap_out_PointerTons__getSecuritySensorItemResponse(soap, tag, id, (ns__getSecuritySensorItemResponse *const*)ptr, "ns:getSecuritySensorItemResponse");
+	case SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorPropertyItemResponse:
+		return soap_out_PointerTons__getSecuritySensorPropertyItemResponse(soap, tag, id, (ns__getSecuritySensorPropertyItemResponse *const*)ptr, "ns:getSecuritySensorPropertyItemResponse");
 	case SOAP_TYPE_cmxDeviceService_PointerTons__setFanSystemResponse:
 		return soap_out_PointerTons__setFanSystemResponse(soap, tag, id, (ns__setFanSystemResponse *const*)ptr, "ns:setFanSystemResponse");
 	case SOAP_TYPE_cmxDeviceService_PointerTons__getFanSystemResponse:
@@ -1583,17 +1611,20 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	(void)soap; (void)ptr; (void)type; /* appease -Wall -Werror */
 	switch (type)
 	{
-	case SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse:
-		((ns__setSensorEmerResponse *)ptr)->soap_serialize(soap);
+	case SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse:
+		((ns__setSecuritySensorResponse *)ptr)->soap_serialize(soap);
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse:
-		((ns__getSensorEmerResponse *)ptr)->soap_serialize(soap);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse:
+		((ns__getSecuritySensorResponse *)ptr)->soap_serialize(soap);
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse:
-		((ns__getSensorEmerItemResponse *)ptr)->soap_serialize(soap);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse:
+		((ns__getSecuritySensorItemResponse *)ptr)->soap_serialize(soap);
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmer:
-		((ns__sensorEmer *)ptr)->soap_serialize(soap);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse:
+		((ns__getSecuritySensorPropertyItemResponse *)ptr)->soap_serialize(soap);
+		break;
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensor:
+		((ns__securitySensor *)ptr)->soap_serialize(soap);
 		break;
 	case SOAP_TYPE_cmxDeviceService_ns__setFanSystemResponse:
 		((ns__setFanSystemResponse *)ptr)->soap_serialize(soap);
@@ -1721,26 +1752,32 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_cmxDeviceService_ns__subcribeEventResponse:
 		soap_serialize_ns__subcribeEventResponse(soap, (const struct ns__subcribeEventResponse *)ptr);
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent:
-		soap_serialize_ns__sensorEmerEvent(soap, (const struct ns__sensorEmerEvent *)ptr);
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent:
+		soap_serialize_ns__securitySensorEvent(soap, (const struct ns__securitySensorEvent *)ptr);
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse:
-		soap_serialize_ns__sensorEmerEventResponse(soap, (const struct ns__sensorEmerEventResponse *)ptr);
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse:
+		soap_serialize_ns__securitySensorEventResponse(soap, (const struct ns__securitySensorEventResponse *)ptr);
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__setSensorEmer:
-		soap_serialize_ns__setSensorEmer(soap, (const struct ns__setSensorEmer *)ptr);
+	case SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor:
+		soap_serialize_ns__setSecuritySensor(soap, (const struct ns__setSecuritySensor *)ptr);
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmer:
-		soap_serialize_ns__getSensorEmer(soap, (const struct ns__getSensorEmer *)ptr);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor:
+		soap_serialize_ns__getSecuritySensor(soap, (const struct ns__getSecuritySensor *)ptr);
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem:
-		soap_serialize_ns__getSensorEmerItem(soap, (const struct ns__getSensorEmerItem *)ptr);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem:
+		soap_serialize_ns__getSecuritySensorItem(soap, (const struct ns__getSecuritySensorItem *)ptr);
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount:
-		soap_serialize_ns__getSensorEmerCount(soap, (const struct ns__getSensorEmerCount *)ptr);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem:
+		soap_serialize_ns__getSecuritySensorPropertyItem(soap, (const struct ns__getSecuritySensorPropertyItem *)ptr);
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse:
-		soap_serialize_ns__getSensorEmerCountResponse(soap, (const struct ns__getSensorEmerCountResponse *)ptr);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount:
+		soap_serialize_ns__getSecuritySensorCount(soap, (const struct ns__getSecuritySensorCount *)ptr);
+		break;
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse:
+		soap_serialize_ns__getSecuritySensorCountResponse(soap, (const struct ns__getSecuritySensorCountResponse *)ptr);
+		break;
+	case SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty:
+		soap_serialize_xsd_SecuritySensorProperty(soap, (const struct xsd_SecuritySensorProperty *)ptr);
 		break;
 	case SOAP_TYPE_cmxDeviceService_ns__FanSystemEvent:
 		soap_serialize_ns__FanSystemEvent(soap, (const struct ns__FanSystemEvent *)ptr);
@@ -1958,14 +1995,17 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_cmxDeviceService_xsd__base64Binary:
 		soap_serialize_xsd__base64Binary(soap, (const struct xsd__base64Binary *)ptr);
 		break;
-	case SOAP_TYPE_cmxDeviceService_PointerTons__setSensorEmerResponse:
-		soap_serialize_PointerTons__setSensorEmerResponse(soap, (ns__setSensorEmerResponse *const*)ptr);
+	case SOAP_TYPE_cmxDeviceService_PointerTons__setSecuritySensorResponse:
+		soap_serialize_PointerTons__setSecuritySensorResponse(soap, (ns__setSecuritySensorResponse *const*)ptr);
 		break;
-	case SOAP_TYPE_cmxDeviceService_PointerTons__getSensorEmerResponse:
-		soap_serialize_PointerTons__getSensorEmerResponse(soap, (ns__getSensorEmerResponse *const*)ptr);
+	case SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorResponse:
+		soap_serialize_PointerTons__getSecuritySensorResponse(soap, (ns__getSecuritySensorResponse *const*)ptr);
 		break;
-	case SOAP_TYPE_cmxDeviceService_PointerTons__getSensorEmerItemResponse:
-		soap_serialize_PointerTons__getSensorEmerItemResponse(soap, (ns__getSensorEmerItemResponse *const*)ptr);
+	case SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorItemResponse:
+		soap_serialize_PointerTons__getSecuritySensorItemResponse(soap, (ns__getSecuritySensorItemResponse *const*)ptr);
+		break;
+	case SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorPropertyItemResponse:
+		soap_serialize_PointerTons__getSecuritySensorPropertyItemResponse(soap, (ns__getSecuritySensorPropertyItemResponse *const*)ptr);
 		break;
 	case SOAP_TYPE_cmxDeviceService_PointerTons__setFanSystemResponse:
 		soap_serialize_PointerTons__setFanSystemResponse(soap, (ns__setFanSystemResponse *const*)ptr);
@@ -2304,28 +2344,34 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_instantiate(struct soap *soap, int t, const ch
 		return (void*)soap_instantiate_ns__FanSystemEventResponse(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_cmxDeviceService_ns__FanSystemEvent:
 		return (void*)soap_instantiate_ns__FanSystemEvent(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmer:
-		return (void*)soap_instantiate_ns__sensorEmer(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse:
-		return (void*)soap_instantiate_ns__getSensorEmerItemResponse(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse:
-		return (void*)soap_instantiate_ns__getSensorEmerResponse(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse:
-		return (void*)soap_instantiate_ns__getSensorEmerCountResponse(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount:
-		return (void*)soap_instantiate_ns__getSensorEmerCount(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem:
-		return (void*)soap_instantiate_ns__getSensorEmerItem(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmer:
-		return (void*)soap_instantiate_ns__getSensorEmer(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse:
-		return (void*)soap_instantiate_ns__setSensorEmerResponse(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_cmxDeviceService_ns__setSensorEmer:
-		return (void*)soap_instantiate_ns__setSensorEmer(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse:
-		return (void*)soap_instantiate_ns__sensorEmerEventResponse(soap, -1, type, arrayType, n);
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent:
-		return (void*)soap_instantiate_ns__sensorEmerEvent(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty:
+		return (void*)soap_instantiate_xsd_SecuritySensorProperty(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensor:
+		return (void*)soap_instantiate_ns__securitySensor(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse:
+		return (void*)soap_instantiate_ns__getSecuritySensorPropertyItemResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse:
+		return (void*)soap_instantiate_ns__getSecuritySensorItemResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse:
+		return (void*)soap_instantiate_ns__getSecuritySensorResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse:
+		return (void*)soap_instantiate_ns__getSecuritySensorCountResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount:
+		return (void*)soap_instantiate_ns__getSecuritySensorCount(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem:
+		return (void*)soap_instantiate_ns__getSecuritySensorPropertyItem(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem:
+		return (void*)soap_instantiate_ns__getSecuritySensorItem(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor:
+		return (void*)soap_instantiate_ns__getSecuritySensor(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse:
+		return (void*)soap_instantiate_ns__setSecuritySensorResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor:
+		return (void*)soap_instantiate_ns__setSecuritySensor(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse:
+		return (void*)soap_instantiate_ns__securitySensorEventResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent:
+		return (void*)soap_instantiate_ns__securitySensorEvent(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_cmxDeviceService_ns__subcribeEventResponse:
 		return (void*)soap_instantiate_ns__subcribeEventResponse(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_cmxDeviceService_ns__subcribeEvent:
@@ -3009,71 +3055,89 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_fdelete(struct soap_clist *p)
 		else
 			delete[] (struct ns__FanSystemEvent*)p->ptr;
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmer:
+	case SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty:
 		if (p->size < 0)
-			delete (ns__sensorEmer*)p->ptr;
+			delete (struct xsd_SecuritySensorProperty*)p->ptr;
 		else
-			delete[] (ns__sensorEmer*)p->ptr;
+			delete[] (struct xsd_SecuritySensorProperty*)p->ptr;
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse:
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensor:
 		if (p->size < 0)
-			delete (ns__getSensorEmerItemResponse*)p->ptr;
+			delete (ns__securitySensor*)p->ptr;
 		else
-			delete[] (ns__getSensorEmerItemResponse*)p->ptr;
+			delete[] (ns__securitySensor*)p->ptr;
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse:
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse:
 		if (p->size < 0)
-			delete (ns__getSensorEmerResponse*)p->ptr;
+			delete (ns__getSecuritySensorPropertyItemResponse*)p->ptr;
 		else
-			delete[] (ns__getSensorEmerResponse*)p->ptr;
+			delete[] (ns__getSecuritySensorPropertyItemResponse*)p->ptr;
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse:
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse:
 		if (p->size < 0)
-			delete (struct ns__getSensorEmerCountResponse*)p->ptr;
+			delete (ns__getSecuritySensorItemResponse*)p->ptr;
 		else
-			delete[] (struct ns__getSensorEmerCountResponse*)p->ptr;
+			delete[] (ns__getSecuritySensorItemResponse*)p->ptr;
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount:
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse:
 		if (p->size < 0)
-			delete (struct ns__getSensorEmerCount*)p->ptr;
+			delete (ns__getSecuritySensorResponse*)p->ptr;
 		else
-			delete[] (struct ns__getSensorEmerCount*)p->ptr;
+			delete[] (ns__getSecuritySensorResponse*)p->ptr;
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem:
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse:
 		if (p->size < 0)
-			delete (struct ns__getSensorEmerItem*)p->ptr;
+			delete (struct ns__getSecuritySensorCountResponse*)p->ptr;
 		else
-			delete[] (struct ns__getSensorEmerItem*)p->ptr;
+			delete[] (struct ns__getSecuritySensorCountResponse*)p->ptr;
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__getSensorEmer:
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount:
 		if (p->size < 0)
-			delete (struct ns__getSensorEmer*)p->ptr;
+			delete (struct ns__getSecuritySensorCount*)p->ptr;
 		else
-			delete[] (struct ns__getSensorEmer*)p->ptr;
+			delete[] (struct ns__getSecuritySensorCount*)p->ptr;
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse:
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem:
 		if (p->size < 0)
-			delete (ns__setSensorEmerResponse*)p->ptr;
+			delete (struct ns__getSecuritySensorPropertyItem*)p->ptr;
 		else
-			delete[] (ns__setSensorEmerResponse*)p->ptr;
+			delete[] (struct ns__getSecuritySensorPropertyItem*)p->ptr;
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__setSensorEmer:
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem:
 		if (p->size < 0)
-			delete (struct ns__setSensorEmer*)p->ptr;
+			delete (struct ns__getSecuritySensorItem*)p->ptr;
 		else
-			delete[] (struct ns__setSensorEmer*)p->ptr;
+			delete[] (struct ns__getSecuritySensorItem*)p->ptr;
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse:
+	case SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor:
 		if (p->size < 0)
-			delete (struct ns__sensorEmerEventResponse*)p->ptr;
+			delete (struct ns__getSecuritySensor*)p->ptr;
 		else
-			delete[] (struct ns__sensorEmerEventResponse*)p->ptr;
+			delete[] (struct ns__getSecuritySensor*)p->ptr;
 		break;
-	case SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent:
+	case SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse:
 		if (p->size < 0)
-			delete (struct ns__sensorEmerEvent*)p->ptr;
+			delete (ns__setSecuritySensorResponse*)p->ptr;
 		else
-			delete[] (struct ns__sensorEmerEvent*)p->ptr;
+			delete[] (ns__setSecuritySensorResponse*)p->ptr;
+		break;
+	case SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor:
+		if (p->size < 0)
+			delete (struct ns__setSecuritySensor*)p->ptr;
+		else
+			delete[] (struct ns__setSecuritySensor*)p->ptr;
+		break;
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse:
+		if (p->size < 0)
+			delete (struct ns__securitySensorEventResponse*)p->ptr;
+		else
+			delete[] (struct ns__securitySensorEventResponse*)p->ptr;
+		break;
+	case SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent:
+		if (p->size < 0)
+			delete (struct ns__securitySensorEvent*)p->ptr;
+		else
+			delete[] (struct ns__securitySensorEvent*)p->ptr;
 		break;
 	case SOAP_TYPE_cmxDeviceService_ns__subcribeEventResponse:
 		if (p->size < 0)
@@ -3260,67 +3324,74 @@ SOAP_FMAC3 unsigned int * SOAP_FMAC4 soap_in_unsignedInt(struct soap *soap, cons
 	return soap_inunsignedInt(soap, tag, a, type, SOAP_TYPE_cmxDeviceService_unsignedInt);
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__sensorEmerFunc(struct soap *soap, enum ns__sensorEmerFunc *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__securitySensorFunc(struct soap *soap, enum ns__securitySensorFunc *a)
 {	(void)soap; /* appease -Wall -Werror */
-#ifdef SOAP_DEFAULT_ns__sensorEmerFunc
-	*a = SOAP_DEFAULT_ns__sensorEmerFunc;
+#ifdef SOAP_DEFAULT_ns__securitySensorFunc
+	*a = SOAP_DEFAULT_ns__securitySensorFunc;
 #else
-	*a = (enum ns__sensorEmerFunc)0;
+	*a = (enum ns__securitySensorFunc)0;
 #endif
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__sensorEmerFunc(struct soap *soap, const enum ns__sensorEmerFunc *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__securitySensorFunc(struct soap *soap, const enum ns__securitySensorFunc *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__sensorEmerFunc);
-	if (soap_out_ns__sensorEmerFunc(soap, tag, id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__securitySensorFunc);
+	if (soap_out_ns__securitySensorFunc(soap, tag, id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-static const struct soap_code_map soap_codes_ns__sensorEmerFunc[] =
-{	{ (long)f_seMode, "f-seMode" },
-	{ (long)f_seDevError, "f-seDevError" },
+static const struct soap_code_map soap_codes_ns__securitySensorFunc[] =
+{	{ (long)f_securitySensorStSubChannelOne, "f-securitySensorStSubChannelOne" },
+	{ (long)f_securitySensorStSubChannelTwo, "f-securitySensorStSubChannelTwo" },
+	{ (long)f_securitySensorStSubChannelThree, "f-securitySensorStSubChannelThree" },
+	{ (long)f_securitySensorStSubChannelFour, "f-securitySensorStSubChannelFour" },
+	{ (long)f_securitySensorStSubChannelFive, "f-securitySensorStSubChannelFive" },
+	{ (long)f_securitySensorStSubChannelSix, "f-securitySensorStSubChannelSix" },
+	{ (long)f_securitySensorStSubChannelSeven, "f-securitySensorStSubChannelSeven" },
+	{ (long)f_securitySensorStSubChannelEight, "f-securitySensorStSubChannelEight" },
+	{ (long)f_securitySensorDevError, "f-securitySensorDevError" },
 	{ 0, NULL }
 };
 
-SOAP_FMAC3S const char* SOAP_FMAC4S soap_ns__sensorEmerFunc2s(struct soap *soap, enum ns__sensorEmerFunc n)
-{	const char *s = soap_str_code(soap_codes_ns__sensorEmerFunc, (long)n);
+SOAP_FMAC3S const char* SOAP_FMAC4S soap_ns__securitySensorFunc2s(struct soap *soap, enum ns__securitySensorFunc n)
+{	const char *s = soap_str_code(soap_codes_ns__securitySensorFunc, (long)n);
 	if (s)
 		return s;
 	return soap_long2s(soap, (long)n);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__sensorEmerFunc(struct soap *soap, const char *tag, int id, const enum ns__sensorEmerFunc *a, const char *type)
-{	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__sensorEmerFunc), type);
-	soap_send(soap, soap_ns__sensorEmerFunc2s(soap, *a));
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__securitySensorFunc(struct soap *soap, const char *tag, int id, const enum ns__securitySensorFunc *a, const char *type)
+{	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__securitySensorFunc), type);
+	soap_send(soap, soap_ns__securitySensorFunc2s(soap, *a));
 	return soap_element_end_out(soap, tag);
 }
 
-SOAP_FMAC3 enum ns__sensorEmerFunc * SOAP_FMAC4 soap_get_ns__sensorEmerFunc(struct soap *soap, enum ns__sensorEmerFunc *p, const char *tag, const char *type)
+SOAP_FMAC3 enum ns__securitySensorFunc * SOAP_FMAC4 soap_get_ns__securitySensorFunc(struct soap *soap, enum ns__securitySensorFunc *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_ns__sensorEmerFunc(soap, tag, p, type)))
+	if ((p = soap_in_ns__securitySensorFunc(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-SOAP_FMAC3S int SOAP_FMAC4S soap_s2ns__sensorEmerFunc(struct soap *soap, const char *s, enum ns__sensorEmerFunc *a)
+SOAP_FMAC3S int SOAP_FMAC4S soap_s2ns__securitySensorFunc(struct soap *soap, const char *s, enum ns__securitySensorFunc *a)
 {
 	const struct soap_code_map *map;
 	if (!s)
 		return SOAP_OK;
-	map = soap_code(soap_codes_ns__sensorEmerFunc, s);
+	map = soap_code(soap_codes_ns__securitySensorFunc, s);
 	if (map)
-		*a = (enum ns__sensorEmerFunc)map->code;
+		*a = (enum ns__securitySensorFunc)map->code;
 	else
 	{	long n;
-		if (soap_s2long(soap, s, &n) || ((soap->mode & SOAP_XML_STRICT) && (n < 0 || n > 1)))
+		if (soap_s2long(soap, s, &n) || ((soap->mode & SOAP_XML_STRICT) && (n < 0 || n > 8)))
 			return soap->error = SOAP_TYPE;
-		*a = (enum ns__sensorEmerFunc)n;
+		*a = (enum ns__securitySensorFunc)n;
 	}
 	return SOAP_OK;
 }
 
-SOAP_FMAC3 enum ns__sensorEmerFunc * SOAP_FMAC4 soap_in_ns__sensorEmerFunc(struct soap *soap, const char *tag, enum ns__sensorEmerFunc *a, const char *type)
+SOAP_FMAC3 enum ns__securitySensorFunc * SOAP_FMAC4 soap_in_ns__securitySensorFunc(struct soap *soap, const char *tag, enum ns__securitySensorFunc *a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 0))
 		return NULL;
@@ -3328,84 +3399,83 @@ SOAP_FMAC3 enum ns__sensorEmerFunc * SOAP_FMAC4 soap_in_ns__sensorEmerFunc(struc
 	{	soap->error = SOAP_TYPE;
 		return NULL;
 	}
-	a = (enum ns__sensorEmerFunc *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__sensorEmerFunc, sizeof(enum ns__sensorEmerFunc), 0, NULL, NULL, NULL);
+	a = (enum ns__securitySensorFunc *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__securitySensorFunc, sizeof(enum ns__securitySensorFunc), 0, NULL, NULL, NULL);
 	if (!a)
 		return NULL;
 	if (soap->body && !*soap->href)
-	{	if (!a || soap_s2ns__sensorEmerFunc(soap, soap_value(soap), a) || soap_element_end_in(soap, tag))
+	{	if (!a || soap_s2ns__securitySensorFunc(soap, soap_value(soap), a) || soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	else
-	{	a = (enum ns__sensorEmerFunc *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__sensorEmerFunc, 0, sizeof(enum ns__sensorEmerFunc), 0, NULL);
+	{	a = (enum ns__securitySensorFunc *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__securitySensorFunc, 0, sizeof(enum ns__securitySensorFunc), 0, NULL);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__enum_sensorEmer(struct soap *soap, enum ns__enum_sensorEmer *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__enum_securitySensor(struct soap *soap, enum ns__enum_securitySensor *a)
 {	(void)soap; /* appease -Wall -Werror */
-#ifdef SOAP_DEFAULT_ns__enum_sensorEmer
-	*a = SOAP_DEFAULT_ns__enum_sensorEmer;
+#ifdef SOAP_DEFAULT_ns__enum_securitySensor
+	*a = SOAP_DEFAULT_ns__enum_securitySensor;
 #else
-	*a = (enum ns__enum_sensorEmer)0;
+	*a = (enum ns__enum_securitySensor)0;
 #endif
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__enum_sensorEmer(struct soap *soap, const enum ns__enum_sensorEmer *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__enum_securitySensor(struct soap *soap, const enum ns__enum_securitySensor *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__enum_sensorEmer);
-	if (soap_out_ns__enum_sensorEmer(soap, tag, id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__enum_securitySensor);
+	if (soap_out_ns__enum_securitySensor(soap, tag, id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-static const struct soap_code_map soap_codes_ns__enum_sensorEmer[] =
-{	{ (long)_seMode_Release, "seMode-Release" },
-	{ (long)_seMode_Set, "seMode-Set" },
-	{ (long)_seMode_Alarm, "seMode-Alarm" },
-	{ (long)_model_sensorEmer_Menix, "model-sensorEmer-Menix" },
+static const struct soap_code_map soap_codes_ns__enum_securitySensor[] =
+{	{ (long)_securitySensorSt_Detected, "securitySensorSt-Detected" },
+	{ (long)_securitySensorSt_UnDetected, "securitySensorSt-UnDetected" },
+	{ (long)_model_NokSung_XP830RS8I, "model-NokSung-XP830RS8I" },
 	{ 0, NULL }
 };
 
-SOAP_FMAC3S const char* SOAP_FMAC4S soap_ns__enum_sensorEmer2s(struct soap *soap, enum ns__enum_sensorEmer n)
-{	const char *s = soap_str_code(soap_codes_ns__enum_sensorEmer, (long)n);
+SOAP_FMAC3S const char* SOAP_FMAC4S soap_ns__enum_securitySensor2s(struct soap *soap, enum ns__enum_securitySensor n)
+{	const char *s = soap_str_code(soap_codes_ns__enum_securitySensor, (long)n);
 	if (s)
 		return s;
 	return soap_long2s(soap, (long)n);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__enum_sensorEmer(struct soap *soap, const char *tag, int id, const enum ns__enum_sensorEmer *a, const char *type)
-{	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__enum_sensorEmer), type);
-	soap_send(soap, soap_ns__enum_sensorEmer2s(soap, *a));
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__enum_securitySensor(struct soap *soap, const char *tag, int id, const enum ns__enum_securitySensor *a, const char *type)
+{	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__enum_securitySensor), type);
+	soap_send(soap, soap_ns__enum_securitySensor2s(soap, *a));
 	return soap_element_end_out(soap, tag);
 }
 
-SOAP_FMAC3 enum ns__enum_sensorEmer * SOAP_FMAC4 soap_get_ns__enum_sensorEmer(struct soap *soap, enum ns__enum_sensorEmer *p, const char *tag, const char *type)
+SOAP_FMAC3 enum ns__enum_securitySensor * SOAP_FMAC4 soap_get_ns__enum_securitySensor(struct soap *soap, enum ns__enum_securitySensor *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_ns__enum_sensorEmer(soap, tag, p, type)))
+	if ((p = soap_in_ns__enum_securitySensor(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-SOAP_FMAC3S int SOAP_FMAC4S soap_s2ns__enum_sensorEmer(struct soap *soap, const char *s, enum ns__enum_sensorEmer *a)
+SOAP_FMAC3S int SOAP_FMAC4S soap_s2ns__enum_securitySensor(struct soap *soap, const char *s, enum ns__enum_securitySensor *a)
 {
 	const struct soap_code_map *map;
 	if (!s)
 		return SOAP_OK;
-	map = soap_code(soap_codes_ns__enum_sensorEmer, s);
+	map = soap_code(soap_codes_ns__enum_securitySensor, s);
 	if (map)
-		*a = (enum ns__enum_sensorEmer)map->code;
+		*a = (enum ns__enum_securitySensor)map->code;
 	else
 	{	long n;
-		if (soap_s2long(soap, s, &n) || ((soap->mode & SOAP_XML_STRICT) && (n < 0 || n > 3)))
+		if (soap_s2long(soap, s, &n) || ((soap->mode & SOAP_XML_STRICT) && (n < 0 || n > 2)))
 			return soap->error = SOAP_TYPE;
-		*a = (enum ns__enum_sensorEmer)n;
+		*a = (enum ns__enum_securitySensor)n;
 	}
 	return SOAP_OK;
 }
 
-SOAP_FMAC3 enum ns__enum_sensorEmer * SOAP_FMAC4 soap_in_ns__enum_sensorEmer(struct soap *soap, const char *tag, enum ns__enum_sensorEmer *a, const char *type)
+SOAP_FMAC3 enum ns__enum_securitySensor * SOAP_FMAC4 soap_in_ns__enum_securitySensor(struct soap *soap, const char *tag, enum ns__enum_securitySensor *a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 0))
 		return NULL;
@@ -3413,15 +3483,15 @@ SOAP_FMAC3 enum ns__enum_sensorEmer * SOAP_FMAC4 soap_in_ns__enum_sensorEmer(str
 	{	soap->error = SOAP_TYPE;
 		return NULL;
 	}
-	a = (enum ns__enum_sensorEmer *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__enum_sensorEmer, sizeof(enum ns__enum_sensorEmer), 0, NULL, NULL, NULL);
+	a = (enum ns__enum_securitySensor *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__enum_securitySensor, sizeof(enum ns__enum_securitySensor), 0, NULL, NULL, NULL);
 	if (!a)
 		return NULL;
 	if (soap->body && !*soap->href)
-	{	if (!a || soap_s2ns__enum_sensorEmer(soap, soap_value(soap), a) || soap_element_end_in(soap, tag))
+	{	if (!a || soap_s2ns__enum_securitySensor(soap, soap_value(soap), a) || soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	else
-	{	a = (enum ns__enum_sensorEmer *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__enum_sensorEmer, 0, sizeof(enum ns__enum_sensorEmer), 0, NULL);
+	{	a = (enum ns__enum_securitySensor *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__enum_securitySensor, 0, sizeof(enum ns__enum_securitySensor), 0, NULL);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
@@ -5111,6 +5181,7 @@ static const struct soap_code_map soap_codes_ns__enum_devError[] =
 	{ (long)devError_bundleLight_DisConnect, "devError-bundleLight-DisConnect" },
 	{ (long)devError_systemAircon_DisConnect, "devError-systemAircon-DisConnect" },
 	{ (long)devError_fanSystem_DisConnect, "devError-fanSystem-DisConnect" },
+	{ (long)devError_nokSungSensor_DisConnect, "devError-nokSungSensor-DisConnect" },
 	{ (long)devError_aircon_DisConnect, "devError-aircon-DisConnect" },
 	{ (long)devError_washMachine_DisConnect, "devError-washMachine-DisConnect" },
 	{ (long)devError_dishWashMachine_DisConnect, "devError-dishWashMachine-DisConnect" },
@@ -5163,7 +5234,7 @@ SOAP_FMAC3S int SOAP_FMAC4S soap_s2ns__enum_devError(struct soap *soap, const ch
 		*a = (enum ns__enum_devError)map->code;
 	else
 	{	long n;
-		if (soap_s2long(soap, s, &n) || ((soap->mode & SOAP_XML_STRICT) && (n < 0 || n > 49)))
+		if (soap_s2long(soap, s, &n) || ((soap->mode & SOAP_XML_STRICT) && (n < 0 || n > 50)))
 			return soap->error = SOAP_TYPE;
 		*a = (enum ns__enum_devError)n;
 	}
@@ -5237,9 +5308,11 @@ static const struct soap_code_map soap_codes_ns__enum_devInfo[] =
 	{ (long)_dvd, "dvd" },
 	{ (long)_refrigerator, "refrigerator" },
 	{ (long)_kRefrigeator, "kRefrigeator" },
+	{ (long)_securitySensor, "securitySensor" },
 	{ (long)_sensorEmer, "sensorEmer" },
 	{ (long)_exTerminal, "exTerminal" },
 	{ (long)_protoCommax, "protoCommax" },
+	{ (long)_protoNokSung, "protoNokSung" },
 	{ (long)_protoLnCP, "protoLnCP" },
 	{ (long)_protoSCUBE, "protoSCUBE" },
 	{ (long)_protoZ256, "protoZ256" },
@@ -5283,7 +5356,7 @@ SOAP_FMAC3S int SOAP_FMAC4S soap_s2ns__enum_devInfo(struct soap *soap, const cha
 		*a = (enum ns__enum_devInfo)map->code;
 	else
 	{	long n;
-		if (soap_s2long(soap, s, &n) || ((soap->mode & SOAP_XML_STRICT) && (n < 0 || n > 44)))
+		if (soap_s2long(soap, s, &n) || ((soap->mode & SOAP_XML_STRICT) && (n < 0 || n > 46)))
 			return soap->error = SOAP_TYPE;
 		*a = (enum ns__enum_devInfo)n;
 	}
@@ -5313,65 +5386,65 @@ SOAP_FMAC3 enum ns__enum_devInfo * SOAP_FMAC4 soap_in_ns__enum_devInfo(struct so
 	return a;
 }
 
-void ns__setSensorEmerResponse::soap_serialize(struct soap *soap) const
+void ns__setSecuritySensorResponse::soap_serialize(struct soap *soap) const
 {
 	(void)soap; /* appease -Wall -Werror */
 }
 
-void ns__setSensorEmerResponse::soap_default(struct soap *soap)
+void ns__setSecuritySensorResponse::soap_default(struct soap *soap)
 {
 	(void)soap; /* appease -Wall -Werror */
 }
 
-int ns__setSensorEmerResponse::soap_put(struct soap *soap, const char *tag, const  char *type) const
+int ns__setSecuritySensorResponse::soap_put(struct soap *soap, const char *tag, const  char *type) const
 {
-	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse);
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse);
 	if (this->soap_out(soap, tag, id, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-int ns__setSensorEmerResponse::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+int ns__setSecuritySensorResponse::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
 {
-	return soap_out_ns__setSensorEmerResponse(soap, tag, id, this, type);
+	return soap_out_ns__setSecuritySensorResponse(soap, tag, id, this, type);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__setSensorEmerResponse(struct soap *soap, const char *tag, int id, const ns__setSensorEmerResponse *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__setSecuritySensorResponse(struct soap *soap, const char *tag, int id, const ns__setSecuritySensorResponse *a, const char *type)
 {
-	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse), type);
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse), type);
 	soap_element_end_out(soap, tag);
 	return SOAP_OK;
 }
 
-void *ns__setSensorEmerResponse::soap_get(struct soap *soap, const char *tag, const char *type)
+void *ns__setSecuritySensorResponse::soap_get(struct soap *soap, const char *tag, const char *type)
 {
-	return soap_get_ns__setSensorEmerResponse(soap, this, tag, type);
+	return soap_get_ns__setSecuritySensorResponse(soap, this, tag, type);
 }
 
-SOAP_FMAC3 ns__setSensorEmerResponse * SOAP_FMAC4 soap_get_ns__setSensorEmerResponse(struct soap *soap, ns__setSensorEmerResponse *p, const char *tag, const char *type)
+SOAP_FMAC3 ns__setSecuritySensorResponse * SOAP_FMAC4 soap_get_ns__setSecuritySensorResponse(struct soap *soap, ns__setSecuritySensorResponse *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_ns__setSensorEmerResponse(soap, tag, p, type)))
+	if ((p = soap_in_ns__setSecuritySensorResponse(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-void *ns__setSensorEmerResponse::soap_in(struct soap *soap, const char *tag, const char *type)
-{	return soap_in_ns__setSensorEmerResponse(soap, tag, this, type);
+void *ns__setSecuritySensorResponse::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in_ns__setSecuritySensorResponse(soap, tag, this, type);
 }
 
-SOAP_FMAC3 ns__setSensorEmerResponse * SOAP_FMAC4 soap_in_ns__setSensorEmerResponse(struct soap *soap, const char *tag, ns__setSensorEmerResponse *a, const char *type)
+SOAP_FMAC3 ns__setSecuritySensorResponse * SOAP_FMAC4 soap_in_ns__setSecuritySensorResponse(struct soap *soap, const char *tag, ns__setSecuritySensorResponse *a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 0))
 		return NULL;
-	a = (ns__setSensorEmerResponse *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse, sizeof(ns__setSensorEmerResponse), soap->type, soap->arrayType);
+	a = (ns__setSecuritySensorResponse *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse, sizeof(ns__setSecuritySensorResponse), soap->type, soap->arrayType);
 	if (!a)
 		return NULL;
 	if (soap->alloced)
 	{	a->soap_default(soap);
-		if (soap->clist->type != SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse)
+		if (soap->clist->type != SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse)
 		{	soap_revert(soap);
 			*soap->id = '\0';
-			return (ns__setSensorEmerResponse *)a->soap_in(soap, tag, type);
+			return (ns__setSecuritySensorResponse *)a->soap_in(soap, tag, type);
 		}
 	};
 	if (soap->body && !*soap->href)
@@ -5389,109 +5462,109 @@ SOAP_FMAC3 ns__setSensorEmerResponse * SOAP_FMAC4 soap_in_ns__setSensorEmerRespo
 			return NULL;
 	}
 	else
-	{	a = (ns__setSensorEmerResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse, 0, sizeof(ns__setSensorEmerResponse), 0, soap_copy_ns__setSensorEmerResponse);
+	{	a = (ns__setSecuritySensorResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse, 0, sizeof(ns__setSecuritySensorResponse), 0, soap_copy_ns__setSecuritySensorResponse);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC5 ns__setSensorEmerResponse * SOAP_FMAC6 soap_new_ns__setSensorEmerResponse(struct soap *soap, int n)
-{	return soap_instantiate_ns__setSensorEmerResponse(soap, n, NULL, NULL, NULL);
+SOAP_FMAC5 ns__setSecuritySensorResponse * SOAP_FMAC6 soap_new_ns__setSecuritySensorResponse(struct soap *soap, int n)
+{	return soap_instantiate_ns__setSecuritySensorResponse(soap, n, NULL, NULL, NULL);
 }
 
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__setSensorEmerResponse(struct soap *soap, ns__setSensorEmerResponse *p)
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__setSecuritySensorResponse(struct soap *soap, ns__setSecuritySensorResponse *p)
 {	soap_delete(soap, p);
 }
 
-SOAP_FMAC3 ns__setSensorEmerResponse * SOAP_FMAC4 soap_instantiate_ns__setSensorEmerResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC3 ns__setSecuritySensorResponse * SOAP_FMAC4 soap_instantiate_ns__setSecuritySensorResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__setSensorEmerResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__setSecuritySensorResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)new ns__setSensorEmerResponse;
+	{	cp->ptr = (void*)new ns__setSecuritySensorResponse;
 		if (size)
-			*size = sizeof(ns__setSensorEmerResponse);
+			*size = sizeof(ns__setSecuritySensorResponse);
 	}
 	else
-	{	cp->ptr = (void*)new ns__setSensorEmerResponse[n];
+	{	cp->ptr = (void*)new ns__setSecuritySensorResponse[n];
 		if (size)
-			*size = n * sizeof(ns__setSensorEmerResponse);
+			*size = n * sizeof(ns__setSecuritySensorResponse);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (ns__setSensorEmerResponse*)cp->ptr;
+	return (ns__setSecuritySensorResponse*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__setSensorEmerResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__setSecuritySensorResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying ns__setSensorEmerResponse %p -> %p\n", q, p));
-	*(ns__setSensorEmerResponse*)p = *(ns__setSensorEmerResponse*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying ns__setSecuritySensorResponse %p -> %p\n", q, p));
+	*(ns__setSecuritySensorResponse*)p = *(ns__setSecuritySensorResponse*)q;
 }
 
-void ns__getSensorEmerResponse::soap_serialize(struct soap *soap) const
-{
-	(void)soap; /* appease -Wall -Werror */
-	((ns__getSensorEmerResponse*)this)->_return.soap_serialize(soap);
-}
-
-void ns__getSensorEmerResponse::soap_default(struct soap *soap)
+void ns__getSecuritySensorResponse::soap_serialize(struct soap *soap) const
 {
 	(void)soap; /* appease -Wall -Werror */
-	((ns__getSensorEmerResponse*)this)->_return.ns__sensorEmer::soap_default(soap);
+	((ns__getSecuritySensorResponse*)this)->_return.soap_serialize(soap);
 }
 
-int ns__getSensorEmerResponse::soap_put(struct soap *soap, const char *tag, const  char *type) const
+void ns__getSecuritySensorResponse::soap_default(struct soap *soap)
 {
-	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse);
+	(void)soap; /* appease -Wall -Werror */
+	((ns__getSecuritySensorResponse*)this)->_return.ns__securitySensor::soap_default(soap);
+}
+
+int ns__getSecuritySensorResponse::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse);
 	if (this->soap_out(soap, tag, id, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-int ns__getSensorEmerResponse::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+int ns__getSecuritySensorResponse::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
 {
-	return soap_out_ns__getSensorEmerResponse(soap, tag, id, this, type);
+	return soap_out_ns__getSecuritySensorResponse(soap, tag, id, this, type);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSensorEmerResponse(struct soap *soap, const char *tag, int id, const ns__getSensorEmerResponse *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorResponse(struct soap *soap, const char *tag, int id, const ns__getSecuritySensorResponse *a, const char *type)
 {
-	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse), type);
-	(((ns__getSensorEmerResponse*)a)->_return).soap_out(soap, "return", -1, "");
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse), type);
+	(((ns__getSecuritySensorResponse*)a)->_return).soap_out(soap, "return", -1, "");
 	soap_element_end_out(soap, tag);
 	return SOAP_OK;
 }
 
-void *ns__getSensorEmerResponse::soap_get(struct soap *soap, const char *tag, const char *type)
+void *ns__getSecuritySensorResponse::soap_get(struct soap *soap, const char *tag, const char *type)
 {
-	return soap_get_ns__getSensorEmerResponse(soap, this, tag, type);
+	return soap_get_ns__getSecuritySensorResponse(soap, this, tag, type);
 }
 
-SOAP_FMAC3 ns__getSensorEmerResponse * SOAP_FMAC4 soap_get_ns__getSensorEmerResponse(struct soap *soap, ns__getSensorEmerResponse *p, const char *tag, const char *type)
+SOAP_FMAC3 ns__getSecuritySensorResponse * SOAP_FMAC4 soap_get_ns__getSecuritySensorResponse(struct soap *soap, ns__getSecuritySensorResponse *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_ns__getSensorEmerResponse(soap, tag, p, type)))
+	if ((p = soap_in_ns__getSecuritySensorResponse(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-void *ns__getSensorEmerResponse::soap_in(struct soap *soap, const char *tag, const char *type)
-{	return soap_in_ns__getSensorEmerResponse(soap, tag, this, type);
+void *ns__getSecuritySensorResponse::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in_ns__getSecuritySensorResponse(soap, tag, this, type);
 }
 
-SOAP_FMAC3 ns__getSensorEmerResponse * SOAP_FMAC4 soap_in_ns__getSensorEmerResponse(struct soap *soap, const char *tag, ns__getSensorEmerResponse *a, const char *type)
+SOAP_FMAC3 ns__getSecuritySensorResponse * SOAP_FMAC4 soap_in_ns__getSecuritySensorResponse(struct soap *soap, const char *tag, ns__getSecuritySensorResponse *a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 0))
 		return NULL;
-	a = (ns__getSensorEmerResponse *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse, sizeof(ns__getSensorEmerResponse), soap->type, soap->arrayType);
+	a = (ns__getSecuritySensorResponse *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse, sizeof(ns__getSecuritySensorResponse), soap->type, soap->arrayType);
 	if (!a)
 		return NULL;
 	if (soap->alloced)
 	{	a->soap_default(soap);
-		if (soap->clist->type != SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse)
+		if (soap->clist->type != SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse)
 		{	soap_revert(soap);
 			*soap->id = '\0';
-			return (ns__getSensorEmerResponse *)a->soap_in(soap, tag, type);
+			return (ns__getSecuritySensorResponse *)a->soap_in(soap, tag, type);
 		}
 	}
 	short soap_flag__return1 = 1;
@@ -5500,7 +5573,7 @@ SOAP_FMAC3 ns__getSensorEmerResponse * SOAP_FMAC4 soap_in_ns__getSensorEmerRespo
 		for (;;)
 		{	soap->error = SOAP_TAG_MISMATCH;
 			if (soap_flag__return1 && soap->error == SOAP_TAG_MISMATCH)
-				if ((((ns__getSensorEmerResponse*)a)->_return).soap_in(soap, NULL, "ns:sensorEmer"))
+				if ((((ns__getSecuritySensorResponse*)a)->_return).soap_in(soap, NULL, "ns:securitySensor"))
 				{	soap_flag__return1--;
 					continue;
 				}
@@ -5519,109 +5592,109 @@ SOAP_FMAC3 ns__getSensorEmerResponse * SOAP_FMAC4 soap_in_ns__getSensorEmerRespo
 			return NULL;
 	}
 	else
-	{	a = (ns__getSensorEmerResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse, 0, sizeof(ns__getSensorEmerResponse), 0, soap_copy_ns__getSensorEmerResponse);
+	{	a = (ns__getSecuritySensorResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse, 0, sizeof(ns__getSecuritySensorResponse), 0, soap_copy_ns__getSecuritySensorResponse);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC5 ns__getSensorEmerResponse * SOAP_FMAC6 soap_new_ns__getSensorEmerResponse(struct soap *soap, int n)
-{	return soap_instantiate_ns__getSensorEmerResponse(soap, n, NULL, NULL, NULL);
+SOAP_FMAC5 ns__getSecuritySensorResponse * SOAP_FMAC6 soap_new_ns__getSecuritySensorResponse(struct soap *soap, int n)
+{	return soap_instantiate_ns__getSecuritySensorResponse(soap, n, NULL, NULL, NULL);
 }
 
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSensorEmerResponse(struct soap *soap, ns__getSensorEmerResponse *p)
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorResponse(struct soap *soap, ns__getSecuritySensorResponse *p)
 {	soap_delete(soap, p);
 }
 
-SOAP_FMAC3 ns__getSensorEmerResponse * SOAP_FMAC4 soap_instantiate_ns__getSensorEmerResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC3 ns__getSecuritySensorResponse * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSensorEmerResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSecuritySensorResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)new ns__getSensorEmerResponse;
+	{	cp->ptr = (void*)new ns__getSecuritySensorResponse;
 		if (size)
-			*size = sizeof(ns__getSensorEmerResponse);
+			*size = sizeof(ns__getSecuritySensorResponse);
 	}
 	else
-	{	cp->ptr = (void*)new ns__getSensorEmerResponse[n];
+	{	cp->ptr = (void*)new ns__getSecuritySensorResponse[n];
 		if (size)
-			*size = n * sizeof(ns__getSensorEmerResponse);
+			*size = n * sizeof(ns__getSecuritySensorResponse);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (ns__getSensorEmerResponse*)cp->ptr;
+	return (ns__getSecuritySensorResponse*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSensorEmerResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying ns__getSensorEmerResponse %p -> %p\n", q, p));
-	*(ns__getSensorEmerResponse*)p = *(ns__getSensorEmerResponse*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying ns__getSecuritySensorResponse %p -> %p\n", q, p));
+	*(ns__getSecuritySensorResponse*)p = *(ns__getSecuritySensorResponse*)q;
 }
 
-void ns__getSensorEmerItemResponse::soap_serialize(struct soap *soap) const
-{
-	(void)soap; /* appease -Wall -Werror */
-	((ns__getSensorEmerItemResponse*)this)->_return.soap_serialize(soap);
-}
-
-void ns__getSensorEmerItemResponse::soap_default(struct soap *soap)
+void ns__getSecuritySensorItemResponse::soap_serialize(struct soap *soap) const
 {
 	(void)soap; /* appease -Wall -Werror */
-	((ns__getSensorEmerItemResponse*)this)->_return.ns__sensorEmer::soap_default(soap);
+	((ns__getSecuritySensorItemResponse*)this)->_return.soap_serialize(soap);
 }
 
-int ns__getSensorEmerItemResponse::soap_put(struct soap *soap, const char *tag, const  char *type) const
+void ns__getSecuritySensorItemResponse::soap_default(struct soap *soap)
 {
-	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse);
+	(void)soap; /* appease -Wall -Werror */
+	((ns__getSecuritySensorItemResponse*)this)->_return.ns__securitySensor::soap_default(soap);
+}
+
+int ns__getSecuritySensorItemResponse::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse);
 	if (this->soap_out(soap, tag, id, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-int ns__getSensorEmerItemResponse::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+int ns__getSecuritySensorItemResponse::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
 {
-	return soap_out_ns__getSensorEmerItemResponse(soap, tag, id, this, type);
+	return soap_out_ns__getSecuritySensorItemResponse(soap, tag, id, this, type);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSensorEmerItemResponse(struct soap *soap, const char *tag, int id, const ns__getSensorEmerItemResponse *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorItemResponse(struct soap *soap, const char *tag, int id, const ns__getSecuritySensorItemResponse *a, const char *type)
 {
-	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse), type);
-	(((ns__getSensorEmerItemResponse*)a)->_return).soap_out(soap, "return", -1, "");
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse), type);
+	(((ns__getSecuritySensorItemResponse*)a)->_return).soap_out(soap, "return", -1, "");
 	soap_element_end_out(soap, tag);
 	return SOAP_OK;
 }
 
-void *ns__getSensorEmerItemResponse::soap_get(struct soap *soap, const char *tag, const char *type)
+void *ns__getSecuritySensorItemResponse::soap_get(struct soap *soap, const char *tag, const char *type)
 {
-	return soap_get_ns__getSensorEmerItemResponse(soap, this, tag, type);
+	return soap_get_ns__getSecuritySensorItemResponse(soap, this, tag, type);
 }
 
-SOAP_FMAC3 ns__getSensorEmerItemResponse * SOAP_FMAC4 soap_get_ns__getSensorEmerItemResponse(struct soap *soap, ns__getSensorEmerItemResponse *p, const char *tag, const char *type)
+SOAP_FMAC3 ns__getSecuritySensorItemResponse * SOAP_FMAC4 soap_get_ns__getSecuritySensorItemResponse(struct soap *soap, ns__getSecuritySensorItemResponse *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_ns__getSensorEmerItemResponse(soap, tag, p, type)))
+	if ((p = soap_in_ns__getSecuritySensorItemResponse(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-void *ns__getSensorEmerItemResponse::soap_in(struct soap *soap, const char *tag, const char *type)
-{	return soap_in_ns__getSensorEmerItemResponse(soap, tag, this, type);
+void *ns__getSecuritySensorItemResponse::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in_ns__getSecuritySensorItemResponse(soap, tag, this, type);
 }
 
-SOAP_FMAC3 ns__getSensorEmerItemResponse * SOAP_FMAC4 soap_in_ns__getSensorEmerItemResponse(struct soap *soap, const char *tag, ns__getSensorEmerItemResponse *a, const char *type)
+SOAP_FMAC3 ns__getSecuritySensorItemResponse * SOAP_FMAC4 soap_in_ns__getSecuritySensorItemResponse(struct soap *soap, const char *tag, ns__getSecuritySensorItemResponse *a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 0))
 		return NULL;
-	a = (ns__getSensorEmerItemResponse *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse, sizeof(ns__getSensorEmerItemResponse), soap->type, soap->arrayType);
+	a = (ns__getSecuritySensorItemResponse *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse, sizeof(ns__getSecuritySensorItemResponse), soap->type, soap->arrayType);
 	if (!a)
 		return NULL;
 	if (soap->alloced)
 	{	a->soap_default(soap);
-		if (soap->clist->type != SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse)
+		if (soap->clist->type != SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse)
 		{	soap_revert(soap);
 			*soap->id = '\0';
-			return (ns__getSensorEmerItemResponse *)a->soap_in(soap, tag, type);
+			return (ns__getSecuritySensorItemResponse *)a->soap_in(soap, tag, type);
 		}
 	}
 	short soap_flag__return1 = 1;
@@ -5630,7 +5703,7 @@ SOAP_FMAC3 ns__getSensorEmerItemResponse * SOAP_FMAC4 soap_in_ns__getSensorEmerI
 		for (;;)
 		{	soap->error = SOAP_TAG_MISMATCH;
 			if (soap_flag__return1 && soap->error == SOAP_TAG_MISMATCH)
-				if ((((ns__getSensorEmerItemResponse*)a)->_return).soap_in(soap, NULL, "ns:sensorEmer"))
+				if ((((ns__getSecuritySensorItemResponse*)a)->_return).soap_in(soap, NULL, "ns:securitySensor"))
 				{	soap_flag__return1--;
 					continue;
 				}
@@ -5649,125 +5722,275 @@ SOAP_FMAC3 ns__getSensorEmerItemResponse * SOAP_FMAC4 soap_in_ns__getSensorEmerI
 			return NULL;
 	}
 	else
-	{	a = (ns__getSensorEmerItemResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse, 0, sizeof(ns__getSensorEmerItemResponse), 0, soap_copy_ns__getSensorEmerItemResponse);
+	{	a = (ns__getSecuritySensorItemResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse, 0, sizeof(ns__getSecuritySensorItemResponse), 0, soap_copy_ns__getSecuritySensorItemResponse);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC5 ns__getSensorEmerItemResponse * SOAP_FMAC6 soap_new_ns__getSensorEmerItemResponse(struct soap *soap, int n)
-{	return soap_instantiate_ns__getSensorEmerItemResponse(soap, n, NULL, NULL, NULL);
+SOAP_FMAC5 ns__getSecuritySensorItemResponse * SOAP_FMAC6 soap_new_ns__getSecuritySensorItemResponse(struct soap *soap, int n)
+{	return soap_instantiate_ns__getSecuritySensorItemResponse(soap, n, NULL, NULL, NULL);
 }
 
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSensorEmerItemResponse(struct soap *soap, ns__getSensorEmerItemResponse *p)
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorItemResponse(struct soap *soap, ns__getSecuritySensorItemResponse *p)
 {	soap_delete(soap, p);
 }
 
-SOAP_FMAC3 ns__getSensorEmerItemResponse * SOAP_FMAC4 soap_instantiate_ns__getSensorEmerItemResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC3 ns__getSecuritySensorItemResponse * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorItemResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSensorEmerItemResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSecuritySensorItemResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)new ns__getSensorEmerItemResponse;
+	{	cp->ptr = (void*)new ns__getSecuritySensorItemResponse;
 		if (size)
-			*size = sizeof(ns__getSensorEmerItemResponse);
+			*size = sizeof(ns__getSecuritySensorItemResponse);
 	}
 	else
-	{	cp->ptr = (void*)new ns__getSensorEmerItemResponse[n];
+	{	cp->ptr = (void*)new ns__getSecuritySensorItemResponse[n];
 		if (size)
-			*size = n * sizeof(ns__getSensorEmerItemResponse);
+			*size = n * sizeof(ns__getSecuritySensorItemResponse);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (ns__getSensorEmerItemResponse*)cp->ptr;
+	return (ns__getSecuritySensorItemResponse*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSensorEmerItemResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorItemResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying ns__getSensorEmerItemResponse %p -> %p\n", q, p));
-	*(ns__getSensorEmerItemResponse*)p = *(ns__getSensorEmerItemResponse*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying ns__getSecuritySensorItemResponse %p -> %p\n", q, p));
+	*(ns__getSecuritySensorItemResponse*)p = *(ns__getSecuritySensorItemResponse*)q;
 }
 
-void ns__sensorEmer::soap_serialize(struct soap *soap) const
-{
-	(void)soap; /* appease -Wall -Werror */
-}
-
-void ns__sensorEmer::soap_default(struct soap *soap)
+void ns__getSecuritySensorPropertyItemResponse::soap_serialize(struct soap *soap) const
 {
 	(void)soap; /* appease -Wall -Werror */
-	soap_default_ns__enum_sensorEmer(soap, &((ns__sensorEmer*)this)->model);
-	soap_default_ns__enum_sensorEmer(soap, &((ns__sensorEmer*)this)->seMode);
-	soap_default_ns__enum_devError(soap, &((ns__sensorEmer*)this)->seDevError);
-	soap_default_ns__sensorEmerFunc(soap, &((ns__sensorEmer*)this)->func);
+	((ns__getSecuritySensorPropertyItemResponse*)this)->_return.soap_serialize(soap);
+}
+
+void ns__getSecuritySensorPropertyItemResponse::soap_default(struct soap *soap)
+{
+	(void)soap; /* appease -Wall -Werror */
+	((ns__getSecuritySensorPropertyItemResponse*)this)->_return.ns__securitySensor::soap_default(soap);
+}
+
+int ns__getSecuritySensorPropertyItemResponse::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse);
+	if (this->soap_out(soap, tag, id, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+int ns__getSecuritySensorPropertyItemResponse::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+{
+	return soap_out_ns__getSecuritySensorPropertyItemResponse(soap, tag, id, this, type);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorPropertyItemResponse(struct soap *soap, const char *tag, int id, const ns__getSecuritySensorPropertyItemResponse *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse), type);
+	(((ns__getSecuritySensorPropertyItemResponse*)a)->_return).soap_out(soap, "return", -1, "");
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+void *ns__getSecuritySensorPropertyItemResponse::soap_get(struct soap *soap, const char *tag, const char *type)
+{
+	return soap_get_ns__getSecuritySensorPropertyItemResponse(soap, this, tag, type);
+}
+
+SOAP_FMAC3 ns__getSecuritySensorPropertyItemResponse * SOAP_FMAC4 soap_get_ns__getSecuritySensorPropertyItemResponse(struct soap *soap, ns__getSecuritySensorPropertyItemResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_ns__getSecuritySensorPropertyItemResponse(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+void *ns__getSecuritySensorPropertyItemResponse::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in_ns__getSecuritySensorPropertyItemResponse(soap, tag, this, type);
+}
+
+SOAP_FMAC3 ns__getSecuritySensorPropertyItemResponse * SOAP_FMAC4 soap_in_ns__getSecuritySensorPropertyItemResponse(struct soap *soap, const char *tag, ns__getSecuritySensorPropertyItemResponse *a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 0))
+		return NULL;
+	a = (ns__getSecuritySensorPropertyItemResponse *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse, sizeof(ns__getSecuritySensorPropertyItemResponse), soap->type, soap->arrayType);
+	if (!a)
+		return NULL;
+	if (soap->alloced)
+	{	a->soap_default(soap);
+		if (soap->clist->type != SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse)
+		{	soap_revert(soap);
+			*soap->id = '\0';
+			return (ns__getSecuritySensorPropertyItemResponse *)a->soap_in(soap, tag, type);
+		}
+	}
+	short soap_flag__return1 = 1;
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag__return1 && soap->error == SOAP_TAG_MISMATCH)
+				if ((((ns__getSecuritySensorPropertyItemResponse*)a)->_return).soap_in(soap, NULL, "ns:securitySensor"))
+				{	soap_flag__return1--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag__return1 > 0))
+		{	soap->error = SOAP_OCCURS;
+			return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (ns__getSecuritySensorPropertyItemResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse, 0, sizeof(ns__getSecuritySensorPropertyItemResponse), 0, soap_copy_ns__getSecuritySensorPropertyItemResponse);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 ns__getSecuritySensorPropertyItemResponse * SOAP_FMAC6 soap_new_ns__getSecuritySensorPropertyItemResponse(struct soap *soap, int n)
+{	return soap_instantiate_ns__getSecuritySensorPropertyItemResponse(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorPropertyItemResponse(struct soap *soap, ns__getSecuritySensorPropertyItemResponse *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 ns__getSecuritySensorPropertyItemResponse * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorPropertyItemResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSecuritySensorPropertyItemResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new ns__getSecuritySensorPropertyItemResponse;
+		if (size)
+			*size = sizeof(ns__getSecuritySensorPropertyItemResponse);
+	}
+	else
+	{	cp->ptr = (void*)new ns__getSecuritySensorPropertyItemResponse[n];
+		if (size)
+			*size = n * sizeof(ns__getSecuritySensorPropertyItemResponse);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (ns__getSecuritySensorPropertyItemResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorPropertyItemResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying ns__getSecuritySensorPropertyItemResponse %p -> %p\n", q, p));
+	*(ns__getSecuritySensorPropertyItemResponse*)p = *(ns__getSecuritySensorPropertyItemResponse*)q;
+}
+
+void ns__securitySensor::soap_serialize(struct soap *soap) const
+{
+	(void)soap; /* appease -Wall -Werror */
+	soap_serialize_xsd_SecuritySensorProperty(soap, &((ns__securitySensor*)this)->devSecuritySensorProperty);
+	soap_embedded(soap, &((ns__securitySensor*)this)->securitySensorStMainChannel, SOAP_TYPE_cmxDeviceService_int);
+}
+
+void ns__securitySensor::soap_default(struct soap *soap)
+{
+	(void)soap; /* appease -Wall -Werror */
+	soap_default_xsd_SecuritySensorProperty(soap, &((ns__securitySensor*)this)->devSecuritySensorProperty);
+	soap_default_int(soap, &((ns__securitySensor*)this)->securitySensorStMainChannel);
+	soap_default_ns__enum_securitySensor(soap, &((ns__securitySensor*)this)->model);
+	soap_default_ns__enum_securitySensor(soap, &((ns__securitySensor*)this)->securitySensorStSubChannel_One);
+	soap_default_ns__enum_securitySensor(soap, &((ns__securitySensor*)this)->securitySensorStSubChannel_Two);
+	soap_default_ns__enum_securitySensor(soap, &((ns__securitySensor*)this)->securitySensorStSubChannel_Three);
+	soap_default_ns__enum_securitySensor(soap, &((ns__securitySensor*)this)->securitySensorStSubChannel_Four);
+	soap_default_ns__enum_securitySensor(soap, &((ns__securitySensor*)this)->securitySensorStSubChannel_Five);
+	soap_default_ns__enum_securitySensor(soap, &((ns__securitySensor*)this)->securitySensorStSubChannel_Six);
+	soap_default_ns__enum_securitySensor(soap, &((ns__securitySensor*)this)->securitySensorStSubChannel_Seven);
+	soap_default_ns__enum_securitySensor(soap, &((ns__securitySensor*)this)->securitySensorStSubChannel_Eight);
+	soap_default_ns__enum_devError(soap, &((ns__securitySensor*)this)->securitySensorDevError);
+	soap_default_ns__securitySensorFunc(soap, &((ns__securitySensor*)this)->func);
 	soap_default_ns__enum_devInfo(soap, &((ns__rootDevice*)this)->dev);
 	soap_default_ns__enum_devInfo(soap, &((ns__rootDevice*)this)->proto);
 	soap_default_ns__enum_devInfo(soap, &((ns__rootDevice*)this)->intf);
 	soap_default_unsignedInt(soap, &((ns__rootDevice*)this)->order);
 }
 
-int ns__sensorEmer::soap_put(struct soap *soap, const char *tag, const  char *type) const
+int ns__securitySensor::soap_put(struct soap *soap, const char *tag, const  char *type) const
 {
-	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__sensorEmer);
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__securitySensor);
 	if (this->soap_out(soap, tag, id, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-int ns__sensorEmer::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+int ns__securitySensor::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
 {
-	return soap_out_ns__sensorEmer(soap, tag, id, this, type);
+	return soap_out_ns__securitySensor(soap, tag, id, this, type);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__sensorEmer(struct soap *soap, const char *tag, int id, const ns__sensorEmer *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__securitySensor(struct soap *soap, const char *tag, int id, const ns__securitySensor *a, const char *type)
 {
-	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__sensorEmer), "ns:sensorEmer");
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__securitySensor), "ns:securitySensor");
 	soap_out_ns__enum_devInfo(soap, "dev", -1, &(((ns__rootDevice*)a)->dev), "");
 	soap_out_ns__enum_devInfo(soap, "proto", -1, &(((ns__rootDevice*)a)->proto), "");
 	soap_out_ns__enum_devInfo(soap, "intf", -1, &(((ns__rootDevice*)a)->intf), "");
 	soap_out_unsignedInt(soap, "order", -1, &(((ns__rootDevice*)a)->order), "");
-	soap_out_ns__enum_sensorEmer(soap, "model", -1, &(((ns__sensorEmer*)a)->model), "");
-	soap_out_ns__enum_sensorEmer(soap, "seMode", -1, &(((ns__sensorEmer*)a)->seMode), "");
-	soap_out_ns__enum_devError(soap, "seDevError", -1, &(((ns__sensorEmer*)a)->seDevError), "");
-	soap_out_ns__sensorEmerFunc(soap, "func", -1, &(((ns__sensorEmer*)a)->func), "");
+	soap_out_xsd_SecuritySensorProperty(soap, "devSecuritySensorProperty", -1, &(((ns__securitySensor*)a)->devSecuritySensorProperty), "");
+	soap_out_int(soap, "securitySensorStMainChannel", -1, &(((ns__securitySensor*)a)->securitySensorStMainChannel), "");
+	soap_out_ns__enum_securitySensor(soap, "model", -1, &(((ns__securitySensor*)a)->model), "");
+	soap_out_ns__enum_securitySensor(soap, "securitySensorStSubChannel-One", -1, &(((ns__securitySensor*)a)->securitySensorStSubChannel_One), "");
+	soap_out_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Two", -1, &(((ns__securitySensor*)a)->securitySensorStSubChannel_Two), "");
+	soap_out_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Three", -1, &(((ns__securitySensor*)a)->securitySensorStSubChannel_Three), "");
+	soap_out_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Four", -1, &(((ns__securitySensor*)a)->securitySensorStSubChannel_Four), "");
+	soap_out_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Five", -1, &(((ns__securitySensor*)a)->securitySensorStSubChannel_Five), "");
+	soap_out_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Six", -1, &(((ns__securitySensor*)a)->securitySensorStSubChannel_Six), "");
+	soap_out_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Seven", -1, &(((ns__securitySensor*)a)->securitySensorStSubChannel_Seven), "");
+	soap_out_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Eight", -1, &(((ns__securitySensor*)a)->securitySensorStSubChannel_Eight), "");
+	soap_out_ns__enum_devError(soap, "securitySensorDevError", -1, &(((ns__securitySensor*)a)->securitySensorDevError), "");
+	soap_out_ns__securitySensorFunc(soap, "func", -1, &(((ns__securitySensor*)a)->func), "");
 	soap_element_end_out(soap, tag);
 	return SOAP_OK;
 }
 
-void *ns__sensorEmer::soap_get(struct soap *soap, const char *tag, const char *type)
+void *ns__securitySensor::soap_get(struct soap *soap, const char *tag, const char *type)
 {
-	return soap_get_ns__sensorEmer(soap, this, tag, type);
+	return soap_get_ns__securitySensor(soap, this, tag, type);
 }
 
-SOAP_FMAC3 ns__sensorEmer * SOAP_FMAC4 soap_get_ns__sensorEmer(struct soap *soap, ns__sensorEmer *p, const char *tag, const char *type)
+SOAP_FMAC3 ns__securitySensor * SOAP_FMAC4 soap_get_ns__securitySensor(struct soap *soap, ns__securitySensor *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_ns__sensorEmer(soap, tag, p, type)))
+	if ((p = soap_in_ns__securitySensor(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-void *ns__sensorEmer::soap_in(struct soap *soap, const char *tag, const char *type)
-{	return soap_in_ns__sensorEmer(soap, tag, this, type);
+void *ns__securitySensor::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in_ns__securitySensor(soap, tag, this, type);
 }
 
-SOAP_FMAC3 ns__sensorEmer * SOAP_FMAC4 soap_in_ns__sensorEmer(struct soap *soap, const char *tag, ns__sensorEmer *a, const char *type)
+SOAP_FMAC3 ns__securitySensor * SOAP_FMAC4 soap_in_ns__securitySensor(struct soap *soap, const char *tag, ns__securitySensor *a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 0))
 		return NULL;
-	a = (ns__sensorEmer *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__sensorEmer, sizeof(ns__sensorEmer), soap->type, soap->arrayType);
+	a = (ns__securitySensor *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__securitySensor, sizeof(ns__securitySensor), soap->type, soap->arrayType);
 	if (!a)
 		return NULL;
 	if (soap->alloced)
 	{	a->soap_default(soap);
-		if (soap->clist->type != SOAP_TYPE_cmxDeviceService_ns__sensorEmer)
+		if (soap->clist->type != SOAP_TYPE_cmxDeviceService_ns__securitySensor)
 		{	soap_revert(soap);
 			*soap->id = '\0';
-			return (ns__sensorEmer *)a->soap_in(soap, tag, type);
+			return (ns__securitySensor *)a->soap_in(soap, tag, type);
 		}
 	}
-	short soap_flag_dev2 = 1, soap_flag_proto2 = 1, soap_flag_intf2 = 1, soap_flag_order2 = 1, soap_flag_model1 = 1, soap_flag_seMode1 = 1, soap_flag_seDevError1 = 1, soap_flag_func1 = 1;
+	short soap_flag_dev2 = 1, soap_flag_proto2 = 1, soap_flag_intf2 = 1, soap_flag_order2 = 1, soap_flag_devSecuritySensorProperty1 = 1, soap_flag_securitySensorStMainChannel1 = 1, soap_flag_model1 = 1, soap_flag_securitySensorStSubChannel_One1 = 1, soap_flag_securitySensorStSubChannel_Two1 = 1, soap_flag_securitySensorStSubChannel_Three1 = 1, soap_flag_securitySensorStSubChannel_Four1 = 1, soap_flag_securitySensorStSubChannel_Five1 = 1, soap_flag_securitySensorStSubChannel_Six1 = 1, soap_flag_securitySensorStSubChannel_Seven1 = 1, soap_flag_securitySensorStSubChannel_Eight1 = 1, soap_flag_securitySensorDevError1 = 1, soap_flag_func1 = 1;
 	if (soap->body && !*soap->href)
 	{
 		for (;;)
@@ -5792,23 +6015,68 @@ SOAP_FMAC3 ns__sensorEmer * SOAP_FMAC4 soap_in_ns__sensorEmer(struct soap *soap,
 				{	soap_flag_order2--;
 					continue;
 				}
+			if (soap_flag_devSecuritySensorProperty1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_xsd_SecuritySensorProperty(soap, "devSecuritySensorProperty", &(((ns__securitySensor*)a)->devSecuritySensorProperty), "xsd-SecuritySensorProperty"))
+				{	soap_flag_devSecuritySensorProperty1--;
+					continue;
+				}
+			if (soap_flag_securitySensorStMainChannel1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "securitySensorStMainChannel", &(((ns__securitySensor*)a)->securitySensorStMainChannel), "xsd:int"))
+				{	soap_flag_securitySensorStMainChannel1--;
+					continue;
+				}
 			if (soap_flag_model1 && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_ns__enum_sensorEmer(soap, "model", &(((ns__sensorEmer*)a)->model), "ns:enum-sensorEmer"))
+				if (soap_in_ns__enum_securitySensor(soap, "model", &(((ns__securitySensor*)a)->model), "ns:enum-securitySensor"))
 				{	soap_flag_model1--;
 					continue;
 				}
-			if (soap_flag_seMode1 && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_ns__enum_sensorEmer(soap, "seMode", &(((ns__sensorEmer*)a)->seMode), "ns:enum-sensorEmer"))
-				{	soap_flag_seMode1--;
+			if (soap_flag_securitySensorStSubChannel_One1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_ns__enum_securitySensor(soap, "securitySensorStSubChannel-One", &(((ns__securitySensor*)a)->securitySensorStSubChannel_One), "ns:enum-securitySensor"))
+				{	soap_flag_securitySensorStSubChannel_One1--;
 					continue;
 				}
-			if (soap_flag_seDevError1 && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_ns__enum_devError(soap, "seDevError", &(((ns__sensorEmer*)a)->seDevError), "ns:enum-devError"))
-				{	soap_flag_seDevError1--;
+			if (soap_flag_securitySensorStSubChannel_Two1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Two", &(((ns__securitySensor*)a)->securitySensorStSubChannel_Two), "ns:enum-securitySensor"))
+				{	soap_flag_securitySensorStSubChannel_Two1--;
+					continue;
+				}
+			if (soap_flag_securitySensorStSubChannel_Three1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Three", &(((ns__securitySensor*)a)->securitySensorStSubChannel_Three), "ns:enum-securitySensor"))
+				{	soap_flag_securitySensorStSubChannel_Three1--;
+					continue;
+				}
+			if (soap_flag_securitySensorStSubChannel_Four1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Four", &(((ns__securitySensor*)a)->securitySensorStSubChannel_Four), "ns:enum-securitySensor"))
+				{	soap_flag_securitySensorStSubChannel_Four1--;
+					continue;
+				}
+			if (soap_flag_securitySensorStSubChannel_Five1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Five", &(((ns__securitySensor*)a)->securitySensorStSubChannel_Five), "ns:enum-securitySensor"))
+				{	soap_flag_securitySensorStSubChannel_Five1--;
+					continue;
+				}
+			if (soap_flag_securitySensorStSubChannel_Six1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Six", &(((ns__securitySensor*)a)->securitySensorStSubChannel_Six), "ns:enum-securitySensor"))
+				{	soap_flag_securitySensorStSubChannel_Six1--;
+					continue;
+				}
+			if (soap_flag_securitySensorStSubChannel_Seven1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Seven", &(((ns__securitySensor*)a)->securitySensorStSubChannel_Seven), "ns:enum-securitySensor"))
+				{	soap_flag_securitySensorStSubChannel_Seven1--;
+					continue;
+				}
+			if (soap_flag_securitySensorStSubChannel_Eight1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_ns__enum_securitySensor(soap, "securitySensorStSubChannel-Eight", &(((ns__securitySensor*)a)->securitySensorStSubChannel_Eight), "ns:enum-securitySensor"))
+				{	soap_flag_securitySensorStSubChannel_Eight1--;
+					continue;
+				}
+			if (soap_flag_securitySensorDevError1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_ns__enum_devError(soap, "securitySensorDevError", &(((ns__securitySensor*)a)->securitySensorDevError), "ns:enum-devError"))
+				{	soap_flag_securitySensorDevError1--;
 					continue;
 				}
 			if (soap_flag_func1 && soap->error == SOAP_TAG_MISMATCH)
-				if (soap_in_ns__sensorEmerFunc(soap, "func", &(((ns__sensorEmer*)a)->func), "ns:sensorEmerFunc"))
+				if (soap_in_ns__securitySensorFunc(soap, "func", &(((ns__securitySensor*)a)->func), "ns:securitySensorFunc"))
 				{	soap_flag_func1--;
 					continue;
 				}
@@ -5819,7 +6087,7 @@ SOAP_FMAC3 ns__sensorEmer * SOAP_FMAC4 soap_in_ns__sensorEmer(struct soap *soap,
 			if (soap->error)
 				return NULL;
 		}
-		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_dev2 > 0 || soap_flag_proto2 > 0 || soap_flag_intf2 > 0 || soap_flag_order2 > 0 || soap_flag_model1 > 0 || soap_flag_seMode1 > 0 || soap_flag_seDevError1 > 0 || soap_flag_func1 > 0))
+		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_dev2 > 0 || soap_flag_proto2 > 0 || soap_flag_intf2 > 0 || soap_flag_order2 > 0 || soap_flag_devSecuritySensorProperty1 > 0 || soap_flag_securitySensorStMainChannel1 > 0 || soap_flag_model1 > 0 || soap_flag_securitySensorStSubChannel_One1 > 0 || soap_flag_securitySensorStSubChannel_Two1 > 0 || soap_flag_securitySensorStSubChannel_Three1 > 0 || soap_flag_securitySensorStSubChannel_Four1 > 0 || soap_flag_securitySensorStSubChannel_Five1 > 0 || soap_flag_securitySensorStSubChannel_Six1 > 0 || soap_flag_securitySensorStSubChannel_Seven1 > 0 || soap_flag_securitySensorStSubChannel_Eight1 > 0 || soap_flag_securitySensorDevError1 > 0 || soap_flag_func1 > 0))
 		{	soap->error = SOAP_OCCURS;
 			return NULL;
 		}
@@ -5827,45 +6095,45 @@ SOAP_FMAC3 ns__sensorEmer * SOAP_FMAC4 soap_in_ns__sensorEmer(struct soap *soap,
 			return NULL;
 	}
 	else
-	{	a = (ns__sensorEmer *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__sensorEmer, 0, sizeof(ns__sensorEmer), 0, soap_copy_ns__sensorEmer);
+	{	a = (ns__securitySensor *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__securitySensor, 0, sizeof(ns__securitySensor), 0, soap_copy_ns__securitySensor);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC5 ns__sensorEmer * SOAP_FMAC6 soap_new_ns__sensorEmer(struct soap *soap, int n)
-{	return soap_instantiate_ns__sensorEmer(soap, n, NULL, NULL, NULL);
+SOAP_FMAC5 ns__securitySensor * SOAP_FMAC6 soap_new_ns__securitySensor(struct soap *soap, int n)
+{	return soap_instantiate_ns__securitySensor(soap, n, NULL, NULL, NULL);
 }
 
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__sensorEmer(struct soap *soap, ns__sensorEmer *p)
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__securitySensor(struct soap *soap, ns__securitySensor *p)
 {	soap_delete(soap, p);
 }
 
-SOAP_FMAC3 ns__sensorEmer * SOAP_FMAC4 soap_instantiate_ns__sensorEmer(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC3 ns__securitySensor * SOAP_FMAC4 soap_instantiate_ns__securitySensor(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__sensorEmer(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__sensorEmer, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__securitySensor(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__securitySensor, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)new ns__sensorEmer;
+	{	cp->ptr = (void*)new ns__securitySensor;
 		if (size)
-			*size = sizeof(ns__sensorEmer);
+			*size = sizeof(ns__securitySensor);
 	}
 	else
-	{	cp->ptr = (void*)new ns__sensorEmer[n];
+	{	cp->ptr = (void*)new ns__securitySensor[n];
 		if (size)
-			*size = n * sizeof(ns__sensorEmer);
+			*size = n * sizeof(ns__securitySensor);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (ns__sensorEmer*)cp->ptr;
+	return (ns__securitySensor*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__sensorEmer(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__securitySensor(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying ns__sensorEmer %p -> %p\n", q, p));
-	*(ns__sensorEmer*)p = *(ns__sensorEmer*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying ns__securitySensor %p -> %p\n", q, p));
+	*(ns__securitySensor*)p = *(ns__securitySensor*)q;
 }
 
 void ns__setFanSystemResponse::soap_serialize(struct soap *soap) const
@@ -11509,6 +11777,7 @@ void ns__deviceCategory::soap_default(struct soap *soap)
 	soap_default_ns__enum_devError(soap, &((ns__deviceCategory*)this)->curtainDeviceError);
 	soap_default_ns__enum_devError(soap, &((ns__deviceCategory*)this)->bundleLightDeviceError);
 	soap_default_ns__enum_devError(soap, &((ns__deviceCategory*)this)->fanSystemDeviceError);
+	soap_default_ns__enum_devError(soap, &((ns__deviceCategory*)this)->securitySensorDeviceError);
 	soap_default_ns__enum_devError(soap, &((ns__deviceCategory*)this)->airconDeviceError);
 	soap_default_ns__enum_devError(soap, &((ns__deviceCategory*)this)->rfDeviceError);
 	soap_default_ns__enum_devError(soap, &((ns__deviceCategory*)this)->systemAirconDeviceError);
@@ -11542,6 +11811,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__deviceCategory(struct soap *soap, const c
 	soap_out_ns__enum_devError(soap, "curtainDeviceError", -1, &(((ns__deviceCategory*)a)->curtainDeviceError), "");
 	soap_out_ns__enum_devError(soap, "bundleLightDeviceError", -1, &(((ns__deviceCategory*)a)->bundleLightDeviceError), "");
 	soap_out_ns__enum_devError(soap, "fanSystemDeviceError", -1, &(((ns__deviceCategory*)a)->fanSystemDeviceError), "");
+	soap_out_ns__enum_devError(soap, "securitySensorDeviceError", -1, &(((ns__deviceCategory*)a)->securitySensorDeviceError), "");
 	soap_out_ns__enum_devError(soap, "airconDeviceError", -1, &(((ns__deviceCategory*)a)->airconDeviceError), "");
 	soap_out_ns__enum_devError(soap, "rfDeviceError", -1, &(((ns__deviceCategory*)a)->rfDeviceError), "");
 	soap_out_ns__enum_devError(soap, "systemAirconDeviceError", -1, &(((ns__deviceCategory*)a)->systemAirconDeviceError), "");
@@ -11582,7 +11852,7 @@ SOAP_FMAC3 ns__deviceCategory * SOAP_FMAC4 soap_in_ns__deviceCategory(struct soa
 			return (ns__deviceCategory *)a->soap_in(soap, tag, type);
 		}
 	}
-	short soap_flag_enable_device_category1 = 1, soap_flag_commonError1 = 1, soap_flag_boilerDeviceError1 = 1, soap_flag_lightDeviceError1 = 1, soap_flag_gasDeviceError1 = 1, soap_flag_doorLockDeviceError1 = 1, soap_flag_acConsentDeviceError1 = 1, soap_flag_curtainDeviceError1 = 1, soap_flag_bundleLightDeviceError1 = 1, soap_flag_fanSystemDeviceError1 = 1, soap_flag_airconDeviceError1 = 1, soap_flag_rfDeviceError1 = 1, soap_flag_systemAirconDeviceError1 = 1, soap_flag_deviceConnectionCheck1 = 1, soap_flag_func1 = 1;
+	short soap_flag_enable_device_category1 = 1, soap_flag_commonError1 = 1, soap_flag_boilerDeviceError1 = 1, soap_flag_lightDeviceError1 = 1, soap_flag_gasDeviceError1 = 1, soap_flag_doorLockDeviceError1 = 1, soap_flag_acConsentDeviceError1 = 1, soap_flag_curtainDeviceError1 = 1, soap_flag_bundleLightDeviceError1 = 1, soap_flag_fanSystemDeviceError1 = 1, soap_flag_securitySensorDeviceError1 = 1, soap_flag_airconDeviceError1 = 1, soap_flag_rfDeviceError1 = 1, soap_flag_systemAirconDeviceError1 = 1, soap_flag_deviceConnectionCheck1 = 1, soap_flag_func1 = 1;
 	if (soap->body && !*soap->href)
 	{
 		for (;;)
@@ -11637,6 +11907,11 @@ SOAP_FMAC3 ns__deviceCategory * SOAP_FMAC4 soap_in_ns__deviceCategory(struct soa
 				{	soap_flag_fanSystemDeviceError1--;
 					continue;
 				}
+			if (soap_flag_securitySensorDeviceError1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_ns__enum_devError(soap, "securitySensorDeviceError", &(((ns__deviceCategory*)a)->securitySensorDeviceError), "ns:enum-devError"))
+				{	soap_flag_securitySensorDeviceError1--;
+					continue;
+				}
 			if (soap_flag_airconDeviceError1 && soap->error == SOAP_TAG_MISMATCH)
 				if (soap_in_ns__enum_devError(soap, "airconDeviceError", &(((ns__deviceCategory*)a)->airconDeviceError), "ns:enum-devError"))
 				{	soap_flag_airconDeviceError1--;
@@ -11669,7 +11944,7 @@ SOAP_FMAC3 ns__deviceCategory * SOAP_FMAC4 soap_in_ns__deviceCategory(struct soa
 			if (soap->error)
 				return NULL;
 		}
-		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_enable_device_category1 > 0 || soap_flag_commonError1 > 0 || soap_flag_boilerDeviceError1 > 0 || soap_flag_lightDeviceError1 > 0 || soap_flag_gasDeviceError1 > 0 || soap_flag_doorLockDeviceError1 > 0 || soap_flag_acConsentDeviceError1 > 0 || soap_flag_curtainDeviceError1 > 0 || soap_flag_bundleLightDeviceError1 > 0 || soap_flag_fanSystemDeviceError1 > 0 || soap_flag_airconDeviceError1 > 0 || soap_flag_rfDeviceError1 > 0 || soap_flag_systemAirconDeviceError1 > 0 || soap_flag_deviceConnectionCheck1 > 0 || soap_flag_func1 > 0))
+		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_enable_device_category1 > 0 || soap_flag_commonError1 > 0 || soap_flag_boilerDeviceError1 > 0 || soap_flag_lightDeviceError1 > 0 || soap_flag_gasDeviceError1 > 0 || soap_flag_doorLockDeviceError1 > 0 || soap_flag_acConsentDeviceError1 > 0 || soap_flag_curtainDeviceError1 > 0 || soap_flag_bundleLightDeviceError1 > 0 || soap_flag_fanSystemDeviceError1 > 0 || soap_flag_securitySensorDeviceError1 > 0 || soap_flag_airconDeviceError1 > 0 || soap_flag_rfDeviceError1 > 0 || soap_flag_systemAirconDeviceError1 > 0 || soap_flag_deviceConnectionCheck1 > 0 || soap_flag_func1 > 0))
 		{	soap->error = SOAP_OCCURS;
 			return NULL;
 		}
@@ -11953,20 +12228,20 @@ SOAP_FMAC3 ns__rootDevice * SOAP_FMAC4 soap_instantiate_ns__rootDevice(struct so
 	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
 		return (ns__fanSystem*)cp->ptr;
 	}
-	if (type && !soap_match_tag(soap, type, "ns:sensorEmer"))
-	{	cp->type = SOAP_TYPE_cmxDeviceService_ns__sensorEmer;
+	if (type && !soap_match_tag(soap, type, "ns:securitySensor"))
+	{	cp->type = SOAP_TYPE_cmxDeviceService_ns__securitySensor;
 		if (n < 0)
-		{	cp->ptr = (void*)new ns__sensorEmer;
+		{	cp->ptr = (void*)new ns__securitySensor;
 			if (size)
-				*size = sizeof(ns__sensorEmer);
+				*size = sizeof(ns__securitySensor);
 		}
 		else
-		{	cp->ptr = (void*)new ns__sensorEmer[n];
+		{	cp->ptr = (void*)new ns__securitySensor[n];
 			if (size)
-				*size = n * sizeof(ns__sensorEmer);
+				*size = n * sizeof(ns__securitySensor);
 		}
 	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-		return (ns__sensorEmer*)cp->ptr;
+		return (ns__securitySensor*)cp->ptr;
 	}
 	if (n < 0)
 	{	cp->ptr = (void*)new ns__rootDevice;
@@ -12854,42 +13129,42 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__subcribeEventResponse(struct soap *soap
 	*(struct ns__subcribeEventResponse*)p = *(struct ns__subcribeEventResponse*)q;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__sensorEmerEvent(struct soap *soap, const struct ns__sensorEmerEvent *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__securitySensorEvent(struct soap *soap, const struct ns__securitySensorEvent *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	a->in.soap_serialize(soap);
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__sensorEmerEvent(struct soap *soap, struct ns__sensorEmerEvent *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__securitySensorEvent(struct soap *soap, struct ns__securitySensorEvent *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	a->in.ns__sensorEmer::soap_default(soap);
+	a->in.ns__securitySensor::soap_default(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__sensorEmerEvent(struct soap *soap, const struct ns__sensorEmerEvent *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__securitySensorEvent(struct soap *soap, const struct ns__securitySensorEvent *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent);
-	if (soap_out_ns__sensorEmerEvent(soap, tag, id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent);
+	if (soap_out_ns__securitySensorEvent(soap, tag, id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__sensorEmerEvent(struct soap *soap, const char *tag, int id, const struct ns__sensorEmerEvent *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__securitySensorEvent(struct soap *soap, const char *tag, int id, const struct ns__securitySensorEvent *a, const char *type)
 {
-	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent), type);
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent), type);
 	a->in.soap_out(soap, "in", -1, "");
 	soap_element_end_out(soap, tag);
 	return SOAP_OK;
 }
 
-SOAP_FMAC3 struct ns__sensorEmerEvent * SOAP_FMAC4 soap_get_ns__sensorEmerEvent(struct soap *soap, struct ns__sensorEmerEvent *p, const char *tag, const char *type)
+SOAP_FMAC3 struct ns__securitySensorEvent * SOAP_FMAC4 soap_get_ns__securitySensorEvent(struct soap *soap, struct ns__securitySensorEvent *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_ns__sensorEmerEvent(soap, tag, p, type)))
+	if ((p = soap_in_ns__securitySensorEvent(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-SOAP_FMAC3 struct ns__sensorEmerEvent * SOAP_FMAC4 soap_in_ns__sensorEmerEvent(struct soap *soap, const char *tag, struct ns__sensorEmerEvent *a, const char *type)
+SOAP_FMAC3 struct ns__securitySensorEvent * SOAP_FMAC4 soap_in_ns__securitySensorEvent(struct soap *soap, const char *tag, struct ns__securitySensorEvent *a, const char *type)
 {
 	short soap_flag_in = 1;
 	if (soap_element_begin_in(soap, tag, 0))
@@ -12898,16 +13173,16 @@ SOAP_FMAC3 struct ns__sensorEmerEvent * SOAP_FMAC4 soap_in_ns__sensorEmerEvent(s
 	{	soap->error = SOAP_TYPE;
 		return NULL;
 	}
-	a = (struct ns__sensorEmerEvent *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent, sizeof(struct ns__sensorEmerEvent), soap->type, soap->arrayType);
+	a = (struct ns__securitySensorEvent *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent, sizeof(struct ns__securitySensorEvent), soap->type, soap->arrayType);
 	if (!a)
 		return NULL;
-	soap_default_ns__sensorEmerEvent(soap, a);
+	soap_default_ns__securitySensorEvent(soap, a);
 	if (soap->body && !*soap->href)
 	{
 		for (;;)
 		{	soap->error = SOAP_TAG_MISMATCH;
 			if (soap_flag_in && soap->error == SOAP_TAG_MISMATCH)
-				if (a->in.soap_in(soap, "in", "ns:sensorEmer"))
+				if (a->in.soap_in(soap, "in", "ns:securitySensor"))
 				{	soap_flag_in--;
 					continue;
 				}
@@ -12926,70 +13201,70 @@ SOAP_FMAC3 struct ns__sensorEmerEvent * SOAP_FMAC4 soap_in_ns__sensorEmerEvent(s
 			return NULL;
 	}
 	else
-	{	a = (struct ns__sensorEmerEvent *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent, 0, sizeof(struct ns__sensorEmerEvent), 0, soap_copy_ns__sensorEmerEvent);
+	{	a = (struct ns__securitySensorEvent *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent, 0, sizeof(struct ns__securitySensorEvent), 0, soap_copy_ns__securitySensorEvent);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC5 struct ns__sensorEmerEvent * SOAP_FMAC6 soap_new_ns__sensorEmerEvent(struct soap *soap, int n)
-{	return soap_instantiate_ns__sensorEmerEvent(soap, n, NULL, NULL, NULL);
+SOAP_FMAC5 struct ns__securitySensorEvent * SOAP_FMAC6 soap_new_ns__securitySensorEvent(struct soap *soap, int n)
+{	return soap_instantiate_ns__securitySensorEvent(soap, n, NULL, NULL, NULL);
 }
 
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__sensorEmerEvent(struct soap *soap, struct ns__sensorEmerEvent *p)
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__securitySensorEvent(struct soap *soap, struct ns__securitySensorEvent *p)
 {	soap_delete(soap, p);
 }
 
-SOAP_FMAC3 struct ns__sensorEmerEvent * SOAP_FMAC4 soap_instantiate_ns__sensorEmerEvent(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC3 struct ns__securitySensorEvent * SOAP_FMAC4 soap_instantiate_ns__securitySensorEvent(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__sensorEmerEvent(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__sensorEmerEvent, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__securitySensorEvent(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__securitySensorEvent, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)new struct ns__sensorEmerEvent;
+	{	cp->ptr = (void*)new struct ns__securitySensorEvent;
 		if (size)
-			*size = sizeof(struct ns__sensorEmerEvent);
+			*size = sizeof(struct ns__securitySensorEvent);
 	}
 	else
-	{	cp->ptr = (void*)new struct ns__sensorEmerEvent[n];
+	{	cp->ptr = (void*)new struct ns__securitySensorEvent[n];
 		if (size)
-			*size = n * sizeof(struct ns__sensorEmerEvent);
+			*size = n * sizeof(struct ns__securitySensorEvent);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (struct ns__sensorEmerEvent*)cp->ptr;
+	return (struct ns__securitySensorEvent*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__sensorEmerEvent(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__securitySensorEvent(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__sensorEmerEvent %p -> %p\n", q, p));
-	*(struct ns__sensorEmerEvent*)p = *(struct ns__sensorEmerEvent*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__securitySensorEvent %p -> %p\n", q, p));
+	*(struct ns__securitySensorEvent*)p = *(struct ns__securitySensorEvent*)q;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__sensorEmerEventResponse(struct soap *soap, const struct ns__sensorEmerEventResponse *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__securitySensorEventResponse(struct soap *soap, const struct ns__securitySensorEventResponse *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_PointerToint(soap, &a->out);
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__sensorEmerEventResponse(struct soap *soap, struct ns__sensorEmerEventResponse *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__securitySensorEventResponse(struct soap *soap, struct ns__securitySensorEventResponse *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	a->out = NULL;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__sensorEmerEventResponse(struct soap *soap, const struct ns__sensorEmerEventResponse *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__securitySensorEventResponse(struct soap *soap, const struct ns__securitySensorEventResponse *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse);
-	if (soap_out_ns__sensorEmerEventResponse(soap, tag, id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse);
+	if (soap_out_ns__securitySensorEventResponse(soap, tag, id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__sensorEmerEventResponse(struct soap *soap, const char *tag, int id, const struct ns__sensorEmerEventResponse *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__securitySensorEventResponse(struct soap *soap, const char *tag, int id, const struct ns__securitySensorEventResponse *a, const char *type)
 {
-	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse), type);
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse), type);
 	if (a->out)
 		soap_element_result(soap, "out");
 	soap_out_PointerToint(soap, "out", -1, &a->out, "");
@@ -12997,14 +13272,14 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__sensorEmerEventResponse(struct soap *soap
 	return SOAP_OK;
 }
 
-SOAP_FMAC3 struct ns__sensorEmerEventResponse * SOAP_FMAC4 soap_get_ns__sensorEmerEventResponse(struct soap *soap, struct ns__sensorEmerEventResponse *p, const char *tag, const char *type)
+SOAP_FMAC3 struct ns__securitySensorEventResponse * SOAP_FMAC4 soap_get_ns__securitySensorEventResponse(struct soap *soap, struct ns__securitySensorEventResponse *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_ns__sensorEmerEventResponse(soap, tag, p, type)))
+	if ((p = soap_in_ns__securitySensorEventResponse(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-SOAP_FMAC3 struct ns__sensorEmerEventResponse * SOAP_FMAC4 soap_in_ns__sensorEmerEventResponse(struct soap *soap, const char *tag, struct ns__sensorEmerEventResponse *a, const char *type)
+SOAP_FMAC3 struct ns__securitySensorEventResponse * SOAP_FMAC4 soap_in_ns__securitySensorEventResponse(struct soap *soap, const char *tag, struct ns__securitySensorEventResponse *a, const char *type)
 {
 	short soap_flag_out = 1;
 	if (soap_element_begin_in(soap, tag, 0))
@@ -13013,10 +13288,10 @@ SOAP_FMAC3 struct ns__sensorEmerEventResponse * SOAP_FMAC4 soap_in_ns__sensorEme
 	{	soap->error = SOAP_TYPE;
 		return NULL;
 	}
-	a = (struct ns__sensorEmerEventResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse, sizeof(struct ns__sensorEmerEventResponse), 0, NULL, NULL, NULL);
+	a = (struct ns__securitySensorEventResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse, sizeof(struct ns__securitySensorEventResponse), 0, NULL, NULL, NULL);
 	if (!a)
 		return NULL;
-	soap_default_ns__sensorEmerEventResponse(soap, a);
+	soap_default_ns__securitySensorEventResponse(soap, a);
 	if (soap->body && !*soap->href)
 	{
 		for (;;)
@@ -13037,83 +13312,83 @@ SOAP_FMAC3 struct ns__sensorEmerEventResponse * SOAP_FMAC4 soap_in_ns__sensorEme
 			return NULL;
 	}
 	else
-	{	a = (struct ns__sensorEmerEventResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse, 0, sizeof(struct ns__sensorEmerEventResponse), 0, NULL);
+	{	a = (struct ns__securitySensorEventResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse, 0, sizeof(struct ns__securitySensorEventResponse), 0, NULL);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC5 struct ns__sensorEmerEventResponse * SOAP_FMAC6 soap_new_ns__sensorEmerEventResponse(struct soap *soap, int n)
-{	return soap_instantiate_ns__sensorEmerEventResponse(soap, n, NULL, NULL, NULL);
+SOAP_FMAC5 struct ns__securitySensorEventResponse * SOAP_FMAC6 soap_new_ns__securitySensorEventResponse(struct soap *soap, int n)
+{	return soap_instantiate_ns__securitySensorEventResponse(soap, n, NULL, NULL, NULL);
 }
 
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__sensorEmerEventResponse(struct soap *soap, struct ns__sensorEmerEventResponse *p)
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__securitySensorEventResponse(struct soap *soap, struct ns__securitySensorEventResponse *p)
 {	soap_delete(soap, p);
 }
 
-SOAP_FMAC3 struct ns__sensorEmerEventResponse * SOAP_FMAC4 soap_instantiate_ns__sensorEmerEventResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC3 struct ns__securitySensorEventResponse * SOAP_FMAC4 soap_instantiate_ns__securitySensorEventResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__sensorEmerEventResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__sensorEmerEventResponse, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__securitySensorEventResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__securitySensorEventResponse, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)new struct ns__sensorEmerEventResponse;
+	{	cp->ptr = (void*)new struct ns__securitySensorEventResponse;
 		if (size)
-			*size = sizeof(struct ns__sensorEmerEventResponse);
+			*size = sizeof(struct ns__securitySensorEventResponse);
 	}
 	else
-	{	cp->ptr = (void*)new struct ns__sensorEmerEventResponse[n];
+	{	cp->ptr = (void*)new struct ns__securitySensorEventResponse[n];
 		if (size)
-			*size = n * sizeof(struct ns__sensorEmerEventResponse);
+			*size = n * sizeof(struct ns__securitySensorEventResponse);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (struct ns__sensorEmerEventResponse*)cp->ptr;
+	return (struct ns__securitySensorEventResponse*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__sensorEmerEventResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__securitySensorEventResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__sensorEmerEventResponse %p -> %p\n", q, p));
-	*(struct ns__sensorEmerEventResponse*)p = *(struct ns__sensorEmerEventResponse*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__securitySensorEventResponse %p -> %p\n", q, p));
+	*(struct ns__securitySensorEventResponse*)p = *(struct ns__securitySensorEventResponse*)q;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__setSensorEmer(struct soap *soap, const struct ns__setSensorEmer *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__setSecuritySensor(struct soap *soap, const struct ns__setSecuritySensor *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	a->in.soap_serialize(soap);
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__setSensorEmer(struct soap *soap, struct ns__setSensorEmer *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__setSecuritySensor(struct soap *soap, struct ns__setSecuritySensor *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	a->in.ns__sensorEmer::soap_default(soap);
+	a->in.ns__securitySensor::soap_default(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__setSensorEmer(struct soap *soap, const struct ns__setSensorEmer *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__setSecuritySensor(struct soap *soap, const struct ns__setSecuritySensor *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__setSensorEmer);
-	if (soap_out_ns__setSensorEmer(soap, tag, id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor);
+	if (soap_out_ns__setSecuritySensor(soap, tag, id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__setSensorEmer(struct soap *soap, const char *tag, int id, const struct ns__setSensorEmer *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__setSecuritySensor(struct soap *soap, const char *tag, int id, const struct ns__setSecuritySensor *a, const char *type)
 {
-	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__setSensorEmer), type);
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor), type);
 	a->in.soap_out(soap, "in", -1, "");
 	soap_element_end_out(soap, tag);
 	return SOAP_OK;
 }
 
-SOAP_FMAC3 struct ns__setSensorEmer * SOAP_FMAC4 soap_get_ns__setSensorEmer(struct soap *soap, struct ns__setSensorEmer *p, const char *tag, const char *type)
+SOAP_FMAC3 struct ns__setSecuritySensor * SOAP_FMAC4 soap_get_ns__setSecuritySensor(struct soap *soap, struct ns__setSecuritySensor *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_ns__setSensorEmer(soap, tag, p, type)))
+	if ((p = soap_in_ns__setSecuritySensor(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-SOAP_FMAC3 struct ns__setSensorEmer * SOAP_FMAC4 soap_in_ns__setSensorEmer(struct soap *soap, const char *tag, struct ns__setSensorEmer *a, const char *type)
+SOAP_FMAC3 struct ns__setSecuritySensor * SOAP_FMAC4 soap_in_ns__setSecuritySensor(struct soap *soap, const char *tag, struct ns__setSecuritySensor *a, const char *type)
 {
 	short soap_flag_in = 1;
 	if (soap_element_begin_in(soap, tag, 0))
@@ -13122,16 +13397,16 @@ SOAP_FMAC3 struct ns__setSensorEmer * SOAP_FMAC4 soap_in_ns__setSensorEmer(struc
 	{	soap->error = SOAP_TYPE;
 		return NULL;
 	}
-	a = (struct ns__setSensorEmer *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__setSensorEmer, sizeof(struct ns__setSensorEmer), soap->type, soap->arrayType);
+	a = (struct ns__setSecuritySensor *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor, sizeof(struct ns__setSecuritySensor), soap->type, soap->arrayType);
 	if (!a)
 		return NULL;
-	soap_default_ns__setSensorEmer(soap, a);
+	soap_default_ns__setSecuritySensor(soap, a);
 	if (soap->body && !*soap->href)
 	{
 		for (;;)
 		{	soap->error = SOAP_TAG_MISMATCH;
 			if (soap_flag_in && soap->error == SOAP_TAG_MISMATCH)
-				if (a->in.soap_in(soap, "in", "ns:sensorEmer"))
+				if (a->in.soap_in(soap, "in", "ns:securitySensor"))
 				{	soap_flag_in--;
 					continue;
 				}
@@ -13150,83 +13425,83 @@ SOAP_FMAC3 struct ns__setSensorEmer * SOAP_FMAC4 soap_in_ns__setSensorEmer(struc
 			return NULL;
 	}
 	else
-	{	a = (struct ns__setSensorEmer *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__setSensorEmer, 0, sizeof(struct ns__setSensorEmer), 0, soap_copy_ns__setSensorEmer);
+	{	a = (struct ns__setSecuritySensor *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor, 0, sizeof(struct ns__setSecuritySensor), 0, soap_copy_ns__setSecuritySensor);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC5 struct ns__setSensorEmer * SOAP_FMAC6 soap_new_ns__setSensorEmer(struct soap *soap, int n)
-{	return soap_instantiate_ns__setSensorEmer(soap, n, NULL, NULL, NULL);
+SOAP_FMAC5 struct ns__setSecuritySensor * SOAP_FMAC6 soap_new_ns__setSecuritySensor(struct soap *soap, int n)
+{	return soap_instantiate_ns__setSecuritySensor(soap, n, NULL, NULL, NULL);
 }
 
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__setSensorEmer(struct soap *soap, struct ns__setSensorEmer *p)
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__setSecuritySensor(struct soap *soap, struct ns__setSecuritySensor *p)
 {	soap_delete(soap, p);
 }
 
-SOAP_FMAC3 struct ns__setSensorEmer * SOAP_FMAC4 soap_instantiate_ns__setSensorEmer(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC3 struct ns__setSecuritySensor * SOAP_FMAC4 soap_instantiate_ns__setSecuritySensor(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__setSensorEmer(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__setSensorEmer, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__setSecuritySensor(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__setSecuritySensor, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)new struct ns__setSensorEmer;
+	{	cp->ptr = (void*)new struct ns__setSecuritySensor;
 		if (size)
-			*size = sizeof(struct ns__setSensorEmer);
+			*size = sizeof(struct ns__setSecuritySensor);
 	}
 	else
-	{	cp->ptr = (void*)new struct ns__setSensorEmer[n];
+	{	cp->ptr = (void*)new struct ns__setSecuritySensor[n];
 		if (size)
-			*size = n * sizeof(struct ns__setSensorEmer);
+			*size = n * sizeof(struct ns__setSecuritySensor);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (struct ns__setSensorEmer*)cp->ptr;
+	return (struct ns__setSecuritySensor*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__setSensorEmer(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__setSecuritySensor(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__setSensorEmer %p -> %p\n", q, p));
-	*(struct ns__setSensorEmer*)p = *(struct ns__setSensorEmer*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__setSecuritySensor %p -> %p\n", q, p));
+	*(struct ns__setSecuritySensor*)p = *(struct ns__setSecuritySensor*)q;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSensorEmer(struct soap *soap, const struct ns__getSensorEmer *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSecuritySensor(struct soap *soap, const struct ns__getSecuritySensor *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	a->in.soap_serialize(soap);
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSensorEmer(struct soap *soap, struct ns__getSensorEmer *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSecuritySensor(struct soap *soap, struct ns__getSecuritySensor *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	a->in.ns__sensorEmer::soap_default(soap);
+	a->in.ns__securitySensor::soap_default(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSensorEmer(struct soap *soap, const struct ns__getSensorEmer *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSecuritySensor(struct soap *soap, const struct ns__getSecuritySensor *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSensorEmer);
-	if (soap_out_ns__getSensorEmer(soap, tag, id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor);
+	if (soap_out_ns__getSecuritySensor(soap, tag, id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSensorEmer(struct soap *soap, const char *tag, int id, const struct ns__getSensorEmer *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensor(struct soap *soap, const char *tag, int id, const struct ns__getSecuritySensor *a, const char *type)
 {
-	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmer), type);
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor), type);
 	a->in.soap_out(soap, "in", -1, "");
 	soap_element_end_out(soap, tag);
 	return SOAP_OK;
 }
 
-SOAP_FMAC3 struct ns__getSensorEmer * SOAP_FMAC4 soap_get_ns__getSensorEmer(struct soap *soap, struct ns__getSensorEmer *p, const char *tag, const char *type)
+SOAP_FMAC3 struct ns__getSecuritySensor * SOAP_FMAC4 soap_get_ns__getSecuritySensor(struct soap *soap, struct ns__getSecuritySensor *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_ns__getSensorEmer(soap, tag, p, type)))
+	if ((p = soap_in_ns__getSecuritySensor(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-SOAP_FMAC3 struct ns__getSensorEmer * SOAP_FMAC4 soap_in_ns__getSensorEmer(struct soap *soap, const char *tag, struct ns__getSensorEmer *a, const char *type)
+SOAP_FMAC3 struct ns__getSecuritySensor * SOAP_FMAC4 soap_in_ns__getSecuritySensor(struct soap *soap, const char *tag, struct ns__getSecuritySensor *a, const char *type)
 {
 	short soap_flag_in = 1;
 	if (soap_element_begin_in(soap, tag, 0))
@@ -13235,16 +13510,16 @@ SOAP_FMAC3 struct ns__getSensorEmer * SOAP_FMAC4 soap_in_ns__getSensorEmer(struc
 	{	soap->error = SOAP_TYPE;
 		return NULL;
 	}
-	a = (struct ns__getSensorEmer *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmer, sizeof(struct ns__getSensorEmer), soap->type, soap->arrayType);
+	a = (struct ns__getSecuritySensor *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor, sizeof(struct ns__getSecuritySensor), soap->type, soap->arrayType);
 	if (!a)
 		return NULL;
-	soap_default_ns__getSensorEmer(soap, a);
+	soap_default_ns__getSecuritySensor(soap, a);
 	if (soap->body && !*soap->href)
 	{
 		for (;;)
 		{	soap->error = SOAP_TAG_MISMATCH;
 			if (soap_flag_in && soap->error == SOAP_TAG_MISMATCH)
-				if (a->in.soap_in(soap, "in", "ns:sensorEmer"))
+				if (a->in.soap_in(soap, "in", "ns:securitySensor"))
 				{	soap_flag_in--;
 					continue;
 				}
@@ -13263,83 +13538,83 @@ SOAP_FMAC3 struct ns__getSensorEmer * SOAP_FMAC4 soap_in_ns__getSensorEmer(struc
 			return NULL;
 	}
 	else
-	{	a = (struct ns__getSensorEmer *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSensorEmer, 0, sizeof(struct ns__getSensorEmer), 0, soap_copy_ns__getSensorEmer);
+	{	a = (struct ns__getSecuritySensor *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor, 0, sizeof(struct ns__getSecuritySensor), 0, soap_copy_ns__getSecuritySensor);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC5 struct ns__getSensorEmer * SOAP_FMAC6 soap_new_ns__getSensorEmer(struct soap *soap, int n)
-{	return soap_instantiate_ns__getSensorEmer(soap, n, NULL, NULL, NULL);
+SOAP_FMAC5 struct ns__getSecuritySensor * SOAP_FMAC6 soap_new_ns__getSecuritySensor(struct soap *soap, int n)
+{	return soap_instantiate_ns__getSecuritySensor(soap, n, NULL, NULL, NULL);
 }
 
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSensorEmer(struct soap *soap, struct ns__getSensorEmer *p)
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensor(struct soap *soap, struct ns__getSecuritySensor *p)
 {	soap_delete(soap, p);
 }
 
-SOAP_FMAC3 struct ns__getSensorEmer * SOAP_FMAC4 soap_instantiate_ns__getSensorEmer(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC3 struct ns__getSecuritySensor * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensor(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSensorEmer(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSensorEmer, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSecuritySensor(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensor, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)new struct ns__getSensorEmer;
+	{	cp->ptr = (void*)new struct ns__getSecuritySensor;
 		if (size)
-			*size = sizeof(struct ns__getSensorEmer);
+			*size = sizeof(struct ns__getSecuritySensor);
 	}
 	else
-	{	cp->ptr = (void*)new struct ns__getSensorEmer[n];
+	{	cp->ptr = (void*)new struct ns__getSecuritySensor[n];
 		if (size)
-			*size = n * sizeof(struct ns__getSensorEmer);
+			*size = n * sizeof(struct ns__getSecuritySensor);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (struct ns__getSensorEmer*)cp->ptr;
+	return (struct ns__getSecuritySensor*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSensorEmer(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensor(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__getSensorEmer %p -> %p\n", q, p));
-	*(struct ns__getSensorEmer*)p = *(struct ns__getSensorEmer*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__getSecuritySensor %p -> %p\n", q, p));
+	*(struct ns__getSecuritySensor*)p = *(struct ns__getSecuritySensor*)q;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSensorEmerItem(struct soap *soap, const struct ns__getSensorEmerItem *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSecuritySensorItem(struct soap *soap, const struct ns__getSecuritySensorItem *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_embedded(soap, &a->order, SOAP_TYPE_cmxDeviceService_int);
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSensorEmerItem(struct soap *soap, struct ns__getSensorEmerItem *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSecuritySensorItem(struct soap *soap, struct ns__getSecuritySensorItem *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_default_int(soap, &a->order);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSensorEmerItem(struct soap *soap, const struct ns__getSensorEmerItem *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSecuritySensorItem(struct soap *soap, const struct ns__getSecuritySensorItem *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem);
-	if (soap_out_ns__getSensorEmerItem(soap, tag, id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem);
+	if (soap_out_ns__getSecuritySensorItem(soap, tag, id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSensorEmerItem(struct soap *soap, const char *tag, int id, const struct ns__getSensorEmerItem *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorItem(struct soap *soap, const char *tag, int id, const struct ns__getSecuritySensorItem *a, const char *type)
 {
-	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem), type);
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem), type);
 	soap_out_int(soap, "order", -1, &a->order, "");
 	soap_element_end_out(soap, tag);
 	return SOAP_OK;
 }
 
-SOAP_FMAC3 struct ns__getSensorEmerItem * SOAP_FMAC4 soap_get_ns__getSensorEmerItem(struct soap *soap, struct ns__getSensorEmerItem *p, const char *tag, const char *type)
+SOAP_FMAC3 struct ns__getSecuritySensorItem * SOAP_FMAC4 soap_get_ns__getSecuritySensorItem(struct soap *soap, struct ns__getSecuritySensorItem *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_ns__getSensorEmerItem(soap, tag, p, type)))
+	if ((p = soap_in_ns__getSecuritySensorItem(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-SOAP_FMAC3 struct ns__getSensorEmerItem * SOAP_FMAC4 soap_in_ns__getSensorEmerItem(struct soap *soap, const char *tag, struct ns__getSensorEmerItem *a, const char *type)
+SOAP_FMAC3 struct ns__getSecuritySensorItem * SOAP_FMAC4 soap_in_ns__getSecuritySensorItem(struct soap *soap, const char *tag, struct ns__getSecuritySensorItem *a, const char *type)
 {
 	short soap_flag_order = 1;
 	if (soap_element_begin_in(soap, tag, 0))
@@ -13348,10 +13623,10 @@ SOAP_FMAC3 struct ns__getSensorEmerItem * SOAP_FMAC4 soap_in_ns__getSensorEmerIt
 	{	soap->error = SOAP_TYPE;
 		return NULL;
 	}
-	a = (struct ns__getSensorEmerItem *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem, sizeof(struct ns__getSensorEmerItem), 0, NULL, NULL, NULL);
+	a = (struct ns__getSecuritySensorItem *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem, sizeof(struct ns__getSecuritySensorItem), 0, NULL, NULL, NULL);
 	if (!a)
 		return NULL;
-	soap_default_ns__getSensorEmerItem(soap, a);
+	soap_default_ns__getSecuritySensorItem(soap, a);
 	if (soap->body && !*soap->href)
 	{
 		for (;;)
@@ -13376,83 +13651,196 @@ SOAP_FMAC3 struct ns__getSensorEmerItem * SOAP_FMAC4 soap_in_ns__getSensorEmerIt
 			return NULL;
 	}
 	else
-	{	a = (struct ns__getSensorEmerItem *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem, 0, sizeof(struct ns__getSensorEmerItem), 0, NULL);
+	{	a = (struct ns__getSecuritySensorItem *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem, 0, sizeof(struct ns__getSecuritySensorItem), 0, NULL);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC5 struct ns__getSensorEmerItem * SOAP_FMAC6 soap_new_ns__getSensorEmerItem(struct soap *soap, int n)
-{	return soap_instantiate_ns__getSensorEmerItem(soap, n, NULL, NULL, NULL);
+SOAP_FMAC5 struct ns__getSecuritySensorItem * SOAP_FMAC6 soap_new_ns__getSecuritySensorItem(struct soap *soap, int n)
+{	return soap_instantiate_ns__getSecuritySensorItem(soap, n, NULL, NULL, NULL);
 }
 
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSensorEmerItem(struct soap *soap, struct ns__getSensorEmerItem *p)
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorItem(struct soap *soap, struct ns__getSecuritySensorItem *p)
 {	soap_delete(soap, p);
 }
 
-SOAP_FMAC3 struct ns__getSensorEmerItem * SOAP_FMAC4 soap_instantiate_ns__getSensorEmerItem(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC3 struct ns__getSecuritySensorItem * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorItem(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSensorEmerItem(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItem, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSecuritySensorItem(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItem, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)new struct ns__getSensorEmerItem;
+	{	cp->ptr = (void*)new struct ns__getSecuritySensorItem;
 		if (size)
-			*size = sizeof(struct ns__getSensorEmerItem);
+			*size = sizeof(struct ns__getSecuritySensorItem);
 	}
 	else
-	{	cp->ptr = (void*)new struct ns__getSensorEmerItem[n];
+	{	cp->ptr = (void*)new struct ns__getSecuritySensorItem[n];
 		if (size)
-			*size = n * sizeof(struct ns__getSensorEmerItem);
+			*size = n * sizeof(struct ns__getSecuritySensorItem);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (struct ns__getSensorEmerItem*)cp->ptr;
+	return (struct ns__getSecuritySensorItem*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSensorEmerItem(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorItem(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__getSensorEmerItem %p -> %p\n", q, p));
-	*(struct ns__getSensorEmerItem*)p = *(struct ns__getSensorEmerItem*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__getSecuritySensorItem %p -> %p\n", q, p));
+	*(struct ns__getSecuritySensorItem*)p = *(struct ns__getSecuritySensorItem*)q;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSensorEmerCount(struct soap *soap, const struct ns__getSensorEmerCount *a)
-{
-	(void)soap; (void)a; /* appease -Wall -Werror */
-	/* transient _ skipped */
-}
-
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSensorEmerCount(struct soap *soap, struct ns__getSensorEmerCount *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSecuritySensorPropertyItem(struct soap *soap, const struct ns__getSecuritySensorPropertyItem *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
-	/* transient _ skipped */
+	soap_embedded(soap, &a->order, SOAP_TYPE_cmxDeviceService_int);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSensorEmerCount(struct soap *soap, const struct ns__getSensorEmerCount *a, const char *tag, const char *type)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSecuritySensorPropertyItem(struct soap *soap, struct ns__getSecuritySensorPropertyItem *a)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount);
-	if (soap_out_ns__getSensorEmerCount(soap, tag, id, a, type))
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_int(soap, &a->order);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSecuritySensorPropertyItem(struct soap *soap, const struct ns__getSecuritySensorPropertyItem *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem);
+	if (soap_out_ns__getSecuritySensorPropertyItem(soap, tag, id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSensorEmerCount(struct soap *soap, const char *tag, int id, const struct ns__getSensorEmerCount *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorPropertyItem(struct soap *soap, const char *tag, int id, const struct ns__getSecuritySensorPropertyItem *a, const char *type)
 {
-	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount), type);
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem), type);
+	soap_out_int(soap, "order", -1, &a->order, "");
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct ns__getSecuritySensorPropertyItem * SOAP_FMAC4 soap_get_ns__getSecuritySensorPropertyItem(struct soap *soap, struct ns__getSecuritySensorPropertyItem *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_ns__getSecuritySensorPropertyItem(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct ns__getSecuritySensorPropertyItem * SOAP_FMAC4 soap_in_ns__getSecuritySensorPropertyItem(struct soap *soap, const char *tag, struct ns__getSecuritySensorPropertyItem *a, const char *type)
+{
+	short soap_flag_order = 1;
+	if (soap_element_begin_in(soap, tag, 0))
+		return NULL;
+	if (*soap->type && soap_match_tag(soap, soap->type, type))
+	{	soap->error = SOAP_TYPE;
+		return NULL;
+	}
+	a = (struct ns__getSecuritySensorPropertyItem *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem, sizeof(struct ns__getSecuritySensorPropertyItem), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_ns__getSecuritySensorPropertyItem(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_order && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "order", &a->order, "xsd:int"))
+				{	soap_flag_order--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_order > 0))
+		{	soap->error = SOAP_OCCURS;
+			return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct ns__getSecuritySensorPropertyItem *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem, 0, sizeof(struct ns__getSecuritySensorPropertyItem), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct ns__getSecuritySensorPropertyItem * SOAP_FMAC6 soap_new_ns__getSecuritySensorPropertyItem(struct soap *soap, int n)
+{	return soap_instantiate_ns__getSecuritySensorPropertyItem(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorPropertyItem(struct soap *soap, struct ns__getSecuritySensorPropertyItem *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct ns__getSecuritySensorPropertyItem * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorPropertyItem(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSecuritySensorPropertyItem(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItem, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct ns__getSecuritySensorPropertyItem;
+		if (size)
+			*size = sizeof(struct ns__getSecuritySensorPropertyItem);
+	}
+	else
+	{	cp->ptr = (void*)new struct ns__getSecuritySensorPropertyItem[n];
+		if (size)
+			*size = n * sizeof(struct ns__getSecuritySensorPropertyItem);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct ns__getSecuritySensorPropertyItem*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorPropertyItem(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__getSecuritySensorPropertyItem %p -> %p\n", q, p));
+	*(struct ns__getSecuritySensorPropertyItem*)p = *(struct ns__getSecuritySensorPropertyItem*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSecuritySensorCount(struct soap *soap, const struct ns__getSecuritySensorCount *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	/* transient _ skipped */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSecuritySensorCount(struct soap *soap, struct ns__getSecuritySensorCount *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	/* transient _ skipped */
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSecuritySensorCount(struct soap *soap, const struct ns__getSecuritySensorCount *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount);
+	if (soap_out_ns__getSecuritySensorCount(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorCount(struct soap *soap, const char *tag, int id, const struct ns__getSecuritySensorCount *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount), type);
 	/* transient _ skipped */
 	soap_element_end_out(soap, tag);
 	return SOAP_OK;
 }
 
-SOAP_FMAC3 struct ns__getSensorEmerCount * SOAP_FMAC4 soap_get_ns__getSensorEmerCount(struct soap *soap, struct ns__getSensorEmerCount *p, const char *tag, const char *type)
+SOAP_FMAC3 struct ns__getSecuritySensorCount * SOAP_FMAC4 soap_get_ns__getSecuritySensorCount(struct soap *soap, struct ns__getSecuritySensorCount *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_ns__getSensorEmerCount(soap, tag, p, type)))
+	if ((p = soap_in_ns__getSecuritySensorCount(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-SOAP_FMAC3 struct ns__getSensorEmerCount * SOAP_FMAC4 soap_in_ns__getSensorEmerCount(struct soap *soap, const char *tag, struct ns__getSensorEmerCount *a, const char *type)
+SOAP_FMAC3 struct ns__getSecuritySensorCount * SOAP_FMAC4 soap_in_ns__getSecuritySensorCount(struct soap *soap, const char *tag, struct ns__getSecuritySensorCount *a, const char *type)
 {;
 	if (soap_element_begin_in(soap, tag, 0))
 		return NULL;
@@ -13460,10 +13848,10 @@ SOAP_FMAC3 struct ns__getSensorEmerCount * SOAP_FMAC4 soap_in_ns__getSensorEmerC
 	{	soap->error = SOAP_TYPE;
 		return NULL;
 	}
-	a = (struct ns__getSensorEmerCount *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount, sizeof(struct ns__getSensorEmerCount), 0, NULL, NULL, NULL);
+	a = (struct ns__getSecuritySensorCount *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount, sizeof(struct ns__getSecuritySensorCount), 0, NULL, NULL, NULL);
 	if (!a)
 		return NULL;
-	soap_default_ns__getSensorEmerCount(soap, a);
+	soap_default_ns__getSecuritySensorCount(soap, a);
 	if (soap->body && !*soap->href)
 	{
 		for (;;)
@@ -13480,70 +13868,70 @@ SOAP_FMAC3 struct ns__getSensorEmerCount * SOAP_FMAC4 soap_in_ns__getSensorEmerC
 			return NULL;
 	}
 	else
-	{	a = (struct ns__getSensorEmerCount *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount, 0, sizeof(struct ns__getSensorEmerCount), 0, NULL);
+	{	a = (struct ns__getSecuritySensorCount *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount, 0, sizeof(struct ns__getSecuritySensorCount), 0, NULL);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC5 struct ns__getSensorEmerCount * SOAP_FMAC6 soap_new_ns__getSensorEmerCount(struct soap *soap, int n)
-{	return soap_instantiate_ns__getSensorEmerCount(soap, n, NULL, NULL, NULL);
+SOAP_FMAC5 struct ns__getSecuritySensorCount * SOAP_FMAC6 soap_new_ns__getSecuritySensorCount(struct soap *soap, int n)
+{	return soap_instantiate_ns__getSecuritySensorCount(soap, n, NULL, NULL, NULL);
 }
 
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSensorEmerCount(struct soap *soap, struct ns__getSensorEmerCount *p)
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorCount(struct soap *soap, struct ns__getSecuritySensorCount *p)
 {	soap_delete(soap, p);
 }
 
-SOAP_FMAC3 struct ns__getSensorEmerCount * SOAP_FMAC4 soap_instantiate_ns__getSensorEmerCount(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC3 struct ns__getSecuritySensorCount * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorCount(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSensorEmerCount(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCount, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSecuritySensorCount(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCount, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)new struct ns__getSensorEmerCount;
+	{	cp->ptr = (void*)new struct ns__getSecuritySensorCount;
 		if (size)
-			*size = sizeof(struct ns__getSensorEmerCount);
+			*size = sizeof(struct ns__getSecuritySensorCount);
 	}
 	else
-	{	cp->ptr = (void*)new struct ns__getSensorEmerCount[n];
+	{	cp->ptr = (void*)new struct ns__getSecuritySensorCount[n];
 		if (size)
-			*size = n * sizeof(struct ns__getSensorEmerCount);
+			*size = n * sizeof(struct ns__getSecuritySensorCount);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (struct ns__getSensorEmerCount*)cp->ptr;
+	return (struct ns__getSecuritySensorCount*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSensorEmerCount(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorCount(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__getSensorEmerCount %p -> %p\n", q, p));
-	*(struct ns__getSensorEmerCount*)p = *(struct ns__getSensorEmerCount*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__getSecuritySensorCount %p -> %p\n", q, p));
+	*(struct ns__getSecuritySensorCount*)p = *(struct ns__getSecuritySensorCount*)q;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSensorEmerCountResponse(struct soap *soap, const struct ns__getSensorEmerCountResponse *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__getSecuritySensorCountResponse(struct soap *soap, const struct ns__getSecuritySensorCountResponse *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	soap_serialize_PointerToint(soap, &a->out);
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSensorEmerCountResponse(struct soap *soap, struct ns__getSensorEmerCountResponse *a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_ns__getSecuritySensorCountResponse(struct soap *soap, struct ns__getSecuritySensorCountResponse *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
 	a->out = NULL;
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSensorEmerCountResponse(struct soap *soap, const struct ns__getSensorEmerCountResponse *a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_ns__getSecuritySensorCountResponse(struct soap *soap, const struct ns__getSecuritySensorCountResponse *a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse);
-	if (soap_out_ns__getSensorEmerCountResponse(soap, tag, id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse);
+	if (soap_out_ns__getSecuritySensorCountResponse(soap, tag, id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSensorEmerCountResponse(struct soap *soap, const char *tag, int id, const struct ns__getSensorEmerCountResponse *a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSecuritySensorCountResponse(struct soap *soap, const char *tag, int id, const struct ns__getSecuritySensorCountResponse *a, const char *type)
 {
-	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse), type);
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse), type);
 	if (a->out)
 		soap_element_result(soap, "out");
 	soap_out_PointerToint(soap, "out", -1, &a->out, "");
@@ -13551,14 +13939,14 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_ns__getSensorEmerCountResponse(struct soap *s
 	return SOAP_OK;
 }
 
-SOAP_FMAC3 struct ns__getSensorEmerCountResponse * SOAP_FMAC4 soap_get_ns__getSensorEmerCountResponse(struct soap *soap, struct ns__getSensorEmerCountResponse *p, const char *tag, const char *type)
+SOAP_FMAC3 struct ns__getSecuritySensorCountResponse * SOAP_FMAC4 soap_get_ns__getSecuritySensorCountResponse(struct soap *soap, struct ns__getSecuritySensorCountResponse *p, const char *tag, const char *type)
 {
-	if ((p = soap_in_ns__getSensorEmerCountResponse(soap, tag, p, type)))
+	if ((p = soap_in_ns__getSecuritySensorCountResponse(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-SOAP_FMAC3 struct ns__getSensorEmerCountResponse * SOAP_FMAC4 soap_in_ns__getSensorEmerCountResponse(struct soap *soap, const char *tag, struct ns__getSensorEmerCountResponse *a, const char *type)
+SOAP_FMAC3 struct ns__getSecuritySensorCountResponse * SOAP_FMAC4 soap_in_ns__getSecuritySensorCountResponse(struct soap *soap, const char *tag, struct ns__getSecuritySensorCountResponse *a, const char *type)
 {
 	short soap_flag_out = 1;
 	if (soap_element_begin_in(soap, tag, 0))
@@ -13567,10 +13955,10 @@ SOAP_FMAC3 struct ns__getSensorEmerCountResponse * SOAP_FMAC4 soap_in_ns__getSen
 	{	soap->error = SOAP_TYPE;
 		return NULL;
 	}
-	a = (struct ns__getSensorEmerCountResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse, sizeof(struct ns__getSensorEmerCountResponse), 0, NULL, NULL, NULL);
+	a = (struct ns__getSecuritySensorCountResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse, sizeof(struct ns__getSecuritySensorCountResponse), 0, NULL, NULL, NULL);
 	if (!a)
 		return NULL;
-	soap_default_ns__getSensorEmerCountResponse(soap, a);
+	soap_default_ns__getSecuritySensorCountResponse(soap, a);
 	if (soap->body && !*soap->href)
 	{
 		for (;;)
@@ -13591,45 +13979,164 @@ SOAP_FMAC3 struct ns__getSensorEmerCountResponse * SOAP_FMAC4 soap_in_ns__getSen
 			return NULL;
 	}
 	else
-	{	a = (struct ns__getSensorEmerCountResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse, 0, sizeof(struct ns__getSensorEmerCountResponse), 0, NULL);
+	{	a = (struct ns__getSecuritySensorCountResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse, 0, sizeof(struct ns__getSecuritySensorCountResponse), 0, NULL);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC5 struct ns__getSensorEmerCountResponse * SOAP_FMAC6 soap_new_ns__getSensorEmerCountResponse(struct soap *soap, int n)
-{	return soap_instantiate_ns__getSensorEmerCountResponse(soap, n, NULL, NULL, NULL);
+SOAP_FMAC5 struct ns__getSecuritySensorCountResponse * SOAP_FMAC6 soap_new_ns__getSecuritySensorCountResponse(struct soap *soap, int n)
+{	return soap_instantiate_ns__getSecuritySensorCountResponse(soap, n, NULL, NULL, NULL);
 }
 
-SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSensorEmerCountResponse(struct soap *soap, struct ns__getSensorEmerCountResponse *p)
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_ns__getSecuritySensorCountResponse(struct soap *soap, struct ns__getSecuritySensorCountResponse *p)
 {	soap_delete(soap, p);
 }
 
-SOAP_FMAC3 struct ns__getSensorEmerCountResponse * SOAP_FMAC4 soap_instantiate_ns__getSensorEmerCountResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+SOAP_FMAC3 struct ns__getSecuritySensorCountResponse * SOAP_FMAC4 soap_instantiate_ns__getSecuritySensorCountResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSensorEmerCountResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
-	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerCountResponse, n, soap_fdelete);
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_ns__getSecuritySensorCountResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorCountResponse, n, soap_fdelete);
 	if (!cp)
 		return NULL;
 	if (n < 0)
-	{	cp->ptr = (void*)new struct ns__getSensorEmerCountResponse;
+	{	cp->ptr = (void*)new struct ns__getSecuritySensorCountResponse;
 		if (size)
-			*size = sizeof(struct ns__getSensorEmerCountResponse);
+			*size = sizeof(struct ns__getSecuritySensorCountResponse);
 	}
 	else
-	{	cp->ptr = (void*)new struct ns__getSensorEmerCountResponse[n];
+	{	cp->ptr = (void*)new struct ns__getSecuritySensorCountResponse[n];
 		if (size)
-			*size = n * sizeof(struct ns__getSensorEmerCountResponse);
+			*size = n * sizeof(struct ns__getSecuritySensorCountResponse);
 	}
 		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
-	return (struct ns__getSensorEmerCountResponse*)cp->ptr;
+	return (struct ns__getSecuritySensorCountResponse*)cp->ptr;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSensorEmerCountResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_ns__getSecuritySensorCountResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
 {
-	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__getSensorEmerCountResponse %p -> %p\n", q, p));
-	*(struct ns__getSensorEmerCountResponse*)p = *(struct ns__getSensorEmerCountResponse*)q;
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct ns__getSecuritySensorCountResponse %p -> %p\n", q, p));
+	*(struct ns__getSecuritySensorCountResponse*)p = *(struct ns__getSecuritySensorCountResponse*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_xsd_SecuritySensorProperty(struct soap *soap, const struct xsd_SecuritySensorProperty *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_xsd_SecuritySensorProperty(struct soap *soap, struct xsd_SecuritySensorProperty *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_unsignedInt(soap, &a->_securitySensorSt_Detected);
+	soap_default_unsignedInt(soap, &a->_securitySensorSt_UnDetected);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_xsd_SecuritySensorProperty(struct soap *soap, const struct xsd_SecuritySensorProperty *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty);
+	if (soap_out_xsd_SecuritySensorProperty(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd_SecuritySensorProperty(struct soap *soap, const char *tag, int id, const struct xsd_SecuritySensorProperty *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty), type);
+	soap_out_unsignedInt(soap, "securitySensorSt-Detected", -1, &a->_securitySensorSt_Detected, "");
+	soap_out_unsignedInt(soap, "securitySensorSt-UnDetected", -1, &a->_securitySensorSt_UnDetected, "");
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct xsd_SecuritySensorProperty * SOAP_FMAC4 soap_get_xsd_SecuritySensorProperty(struct soap *soap, struct xsd_SecuritySensorProperty *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_xsd_SecuritySensorProperty(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct xsd_SecuritySensorProperty * SOAP_FMAC4 soap_in_xsd_SecuritySensorProperty(struct soap *soap, const char *tag, struct xsd_SecuritySensorProperty *a, const char *type)
+{
+	short soap_flag__securitySensorSt_Detected = 1, soap_flag__securitySensorSt_UnDetected = 1;
+	if (soap_element_begin_in(soap, tag, 0))
+		return NULL;
+	if (*soap->type && soap_match_tag(soap, soap->type, type))
+	{	soap->error = SOAP_TYPE;
+		return NULL;
+	}
+	a = (struct xsd_SecuritySensorProperty *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty, sizeof(struct xsd_SecuritySensorProperty), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_xsd_SecuritySensorProperty(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag__securitySensorSt_Detected && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_unsignedInt(soap, NULL, &a->_securitySensorSt_Detected, "xsd:unsignedInt"))
+				{	soap_flag__securitySensorSt_Detected--;
+					continue;
+				}
+			if (soap_flag__securitySensorSt_UnDetected && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_unsignedInt(soap, NULL, &a->_securitySensorSt_UnDetected, "xsd:unsignedInt"))
+				{	soap_flag__securitySensorSt_UnDetected--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag__securitySensorSt_Detected > 0 || soap_flag__securitySensorSt_UnDetected > 0))
+		{	soap->error = SOAP_OCCURS;
+			return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct xsd_SecuritySensorProperty *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty, 0, sizeof(struct xsd_SecuritySensorProperty), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct xsd_SecuritySensorProperty * SOAP_FMAC6 soap_new_xsd_SecuritySensorProperty(struct soap *soap, int n)
+{	return soap_instantiate_xsd_SecuritySensorProperty(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_xsd_SecuritySensorProperty(struct soap *soap, struct xsd_SecuritySensorProperty *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct xsd_SecuritySensorProperty * SOAP_FMAC4 soap_instantiate_xsd_SecuritySensorProperty(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_xsd_SecuritySensorProperty(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_cmxDeviceService_xsd_SecuritySensorProperty, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct xsd_SecuritySensorProperty;
+		if (size)
+			*size = sizeof(struct xsd_SecuritySensorProperty);
+	}
+	else
+	{	cp->ptr = (void*)new struct xsd_SecuritySensorProperty[n];
+		if (size)
+			*size = n * sizeof(struct xsd_SecuritySensorProperty);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct xsd_SecuritySensorProperty*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd_SecuritySensorProperty(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct xsd_SecuritySensorProperty %p -> %p\n", q, p));
+	*(struct xsd_SecuritySensorProperty*)p = *(struct xsd_SecuritySensorProperty*)q;
 }
 
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_ns__FanSystemEvent(struct soap *soap, const struct ns__FanSystemEvent *a)
@@ -22626,6 +23133,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_default_xsd_devCategory(struct soap *soap, struc
 	soap_default_unsignedInt(soap, &a->_dvd);
 	soap_default_unsignedInt(soap, &a->_refrigerator);
 	soap_default_unsignedInt(soap, &a->_kRefrigeator);
+	soap_default_unsignedInt(soap, &a->_securitySensor);
 }
 
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_xsd_devCategory(struct soap *soap, const struct xsd_devCategory *a, const char *tag, const char *type)
@@ -22664,6 +23172,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_xsd_devCategory(struct soap *soap, const char
 	soap_out_unsignedInt(soap, "dvd", -1, &a->_dvd, "");
 	soap_out_unsignedInt(soap, "refrigerator", -1, &a->_refrigerator, "");
 	soap_out_unsignedInt(soap, "kRefrigeator", -1, &a->_kRefrigeator, "");
+	soap_out_unsignedInt(soap, "securitySensor", -1, &a->_securitySensor, "");
 	soap_element_end_out(soap, tag);
 	return SOAP_OK;
 }
@@ -22677,7 +23186,7 @@ SOAP_FMAC3 struct xsd_devCategory * SOAP_FMAC4 soap_get_xsd_devCategory(struct s
 
 SOAP_FMAC3 struct xsd_devCategory * SOAP_FMAC4 soap_in_xsd_devCategory(struct soap *soap, const char *tag, struct xsd_devCategory *a, const char *type)
 {
-	short soap_flag__boiler = 1, soap_flag__light = 1, soap_flag__gasValve = 1, soap_flag__doorLock = 1, soap_flag__outlet = 1, soap_flag__curtain = 1, soap_flag__aroma = 1, soap_flag__airCleaner = 1, soap_flag__bide = 1, soap_flag__rf = 1, soap_flag__plc = 1, soap_flag__bundleLight = 1, soap_flag__systemAircon = 1, soap_flag__fanSystem = 1, soap_flag__aircon = 1, soap_flag__washMachine = 1, soap_flag__dishWashMachine = 1, soap_flag__gasOven = 1, soap_flag__microwave = 1, soap_flag__television = 1, soap_flag__audio = 1, soap_flag__vtr = 1, soap_flag__dvd = 1, soap_flag__refrigerator = 1, soap_flag__kRefrigeator = 1;
+	short soap_flag__boiler = 1, soap_flag__light = 1, soap_flag__gasValve = 1, soap_flag__doorLock = 1, soap_flag__outlet = 1, soap_flag__curtain = 1, soap_flag__aroma = 1, soap_flag__airCleaner = 1, soap_flag__bide = 1, soap_flag__rf = 1, soap_flag__plc = 1, soap_flag__bundleLight = 1, soap_flag__systemAircon = 1, soap_flag__fanSystem = 1, soap_flag__aircon = 1, soap_flag__washMachine = 1, soap_flag__dishWashMachine = 1, soap_flag__gasOven = 1, soap_flag__microwave = 1, soap_flag__television = 1, soap_flag__audio = 1, soap_flag__vtr = 1, soap_flag__dvd = 1, soap_flag__refrigerator = 1, soap_flag__kRefrigeator = 1, soap_flag__securitySensor = 1;
 	if (soap_element_begin_in(soap, tag, 0))
 		return NULL;
 	if (*soap->type && soap_match_tag(soap, soap->type, type))
@@ -22817,6 +23326,11 @@ SOAP_FMAC3 struct xsd_devCategory * SOAP_FMAC4 soap_in_xsd_devCategory(struct so
 				{	soap_flag__kRefrigeator--;
 					continue;
 				}
+			if (soap_flag__securitySensor && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_unsignedInt(soap, NULL, &a->_securitySensor, "xsd:unsignedInt"))
+				{	soap_flag__securitySensor--;
+					continue;
+				}
 			if (soap->error == SOAP_TAG_MISMATCH)
 				soap->error = soap_ignore_element(soap);
 			if (soap->error == SOAP_NO_TAG)
@@ -22824,7 +23338,7 @@ SOAP_FMAC3 struct xsd_devCategory * SOAP_FMAC4 soap_in_xsd_devCategory(struct so
 			if (soap->error)
 				return NULL;
 		}
-		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag__boiler > 0 || soap_flag__light > 0 || soap_flag__gasValve > 0 || soap_flag__doorLock > 0 || soap_flag__outlet > 0 || soap_flag__curtain > 0 || soap_flag__aroma > 0 || soap_flag__airCleaner > 0 || soap_flag__bide > 0 || soap_flag__rf > 0 || soap_flag__plc > 0 || soap_flag__bundleLight > 0 || soap_flag__systemAircon > 0 || soap_flag__fanSystem > 0 || soap_flag__aircon > 0 || soap_flag__washMachine > 0 || soap_flag__dishWashMachine > 0 || soap_flag__gasOven > 0 || soap_flag__microwave > 0 || soap_flag__television > 0 || soap_flag__audio > 0 || soap_flag__vtr > 0 || soap_flag__dvd > 0 || soap_flag__refrigerator > 0 || soap_flag__kRefrigeator > 0))
+		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag__boiler > 0 || soap_flag__light > 0 || soap_flag__gasValve > 0 || soap_flag__doorLock > 0 || soap_flag__outlet > 0 || soap_flag__curtain > 0 || soap_flag__aroma > 0 || soap_flag__airCleaner > 0 || soap_flag__bide > 0 || soap_flag__rf > 0 || soap_flag__plc > 0 || soap_flag__bundleLight > 0 || soap_flag__systemAircon > 0 || soap_flag__fanSystem > 0 || soap_flag__aircon > 0 || soap_flag__washMachine > 0 || soap_flag__dishWashMachine > 0 || soap_flag__gasOven > 0 || soap_flag__microwave > 0 || soap_flag__television > 0 || soap_flag__audio > 0 || soap_flag__vtr > 0 || soap_flag__dvd > 0 || soap_flag__refrigerator > 0 || soap_flag__kRefrigeator > 0 || soap_flag__securitySensor > 0))
 		{	soap->error = SOAP_OCCURS;
 			return NULL;
 		}
@@ -23133,159 +23647,212 @@ SOAP_FMAC3 struct SOAP_ENV__Code ** SOAP_FMAC4 soap_in_PointerToSOAP_ENV__Code(s
 
 #endif
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__setSensorEmerResponse(struct soap *soap, ns__setSensorEmerResponse *const*a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__setSecuritySensorResponse(struct soap *soap, ns__setSecuritySensorResponse *const*a)
 {
-	if (!soap_reference(soap, *a, SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse))
+	if (!soap_reference(soap, *a, SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse))
 		(*a)->soap_serialize(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__setSensorEmerResponse(struct soap *soap, ns__setSensorEmerResponse *const*a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__setSecuritySensorResponse(struct soap *soap, ns__setSecuritySensorResponse *const*a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_PointerTons__setSensorEmerResponse);
-	if (soap_out_PointerTons__setSensorEmerResponse(soap, tag, id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_PointerTons__setSecuritySensorResponse);
+	if (soap_out_PointerTons__setSecuritySensorResponse(soap, tag, id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__setSensorEmerResponse(struct soap *soap, const char *tag, int id, ns__setSensorEmerResponse *const*a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__setSecuritySensorResponse(struct soap *soap, const char *tag, int id, ns__setSecuritySensorResponse *const*a, const char *type)
 {
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse);
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse);
 	if (id < 0)
 		return soap->error;
 	return (*a)->soap_out(soap, tag, id, type);
 }
 
-SOAP_FMAC3 ns__setSensorEmerResponse ** SOAP_FMAC4 soap_get_PointerTons__setSensorEmerResponse(struct soap *soap, ns__setSensorEmerResponse **p, const char *tag, const char *type)
+SOAP_FMAC3 ns__setSecuritySensorResponse ** SOAP_FMAC4 soap_get_PointerTons__setSecuritySensorResponse(struct soap *soap, ns__setSecuritySensorResponse **p, const char *tag, const char *type)
 {
-	if ((p = soap_in_PointerTons__setSensorEmerResponse(soap, tag, p, type)))
+	if ((p = soap_in_PointerTons__setSecuritySensorResponse(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-SOAP_FMAC3 ns__setSensorEmerResponse ** SOAP_FMAC4 soap_in_PointerTons__setSensorEmerResponse(struct soap *soap, const char *tag, ns__setSensorEmerResponse **a, const char *type)
+SOAP_FMAC3 ns__setSecuritySensorResponse ** SOAP_FMAC4 soap_in_PointerTons__setSecuritySensorResponse(struct soap *soap, const char *tag, ns__setSecuritySensorResponse **a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 1))
 		return NULL;
 	if (!a)
-		if (!(a = (ns__setSensorEmerResponse **)soap_malloc(soap, sizeof(ns__setSensorEmerResponse *))))
+		if (!(a = (ns__setSecuritySensorResponse **)soap_malloc(soap, sizeof(ns__setSecuritySensorResponse *))))
 			return NULL;
 	*a = NULL;
 	if (!soap->null && *soap->href != '#')
 	{	soap_revert(soap);
-		if (!(*a = (ns__setSensorEmerResponse *)soap_instantiate_ns__setSensorEmerResponse(soap, -1, soap->type, soap->arrayType, NULL)))
+		if (!(*a = (ns__setSecuritySensorResponse *)soap_instantiate_ns__setSecuritySensorResponse(soap, -1, soap->type, soap->arrayType, NULL)))
 			return NULL;
 		(*a)->soap_default(soap);
 		if (!(*a)->soap_in(soap, tag, NULL))
 			return NULL;
 	}
 	else
-	{	a = (ns__setSensorEmerResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_cmxDeviceService_ns__setSensorEmerResponse, sizeof(ns__setSensorEmerResponse), 0);
+	{	a = (ns__setSecuritySensorResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_cmxDeviceService_ns__setSecuritySensorResponse, sizeof(ns__setSecuritySensorResponse), 0);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__getSensorEmerResponse(struct soap *soap, ns__getSensorEmerResponse *const*a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__getSecuritySensorResponse(struct soap *soap, ns__getSecuritySensorResponse *const*a)
 {
-	if (!soap_reference(soap, *a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse))
+	if (!soap_reference(soap, *a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse))
 		(*a)->soap_serialize(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__getSensorEmerResponse(struct soap *soap, ns__getSensorEmerResponse *const*a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__getSecuritySensorResponse(struct soap *soap, ns__getSecuritySensorResponse *const*a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_PointerTons__getSensorEmerResponse);
-	if (soap_out_PointerTons__getSensorEmerResponse(soap, tag, id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorResponse);
+	if (soap_out_PointerTons__getSecuritySensorResponse(soap, tag, id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__getSensorEmerResponse(struct soap *soap, const char *tag, int id, ns__getSensorEmerResponse *const*a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__getSecuritySensorResponse(struct soap *soap, const char *tag, int id, ns__getSecuritySensorResponse *const*a, const char *type)
 {
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse);
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse);
 	if (id < 0)
 		return soap->error;
 	return (*a)->soap_out(soap, tag, id, type);
 }
 
-SOAP_FMAC3 ns__getSensorEmerResponse ** SOAP_FMAC4 soap_get_PointerTons__getSensorEmerResponse(struct soap *soap, ns__getSensorEmerResponse **p, const char *tag, const char *type)
+SOAP_FMAC3 ns__getSecuritySensorResponse ** SOAP_FMAC4 soap_get_PointerTons__getSecuritySensorResponse(struct soap *soap, ns__getSecuritySensorResponse **p, const char *tag, const char *type)
 {
-	if ((p = soap_in_PointerTons__getSensorEmerResponse(soap, tag, p, type)))
+	if ((p = soap_in_PointerTons__getSecuritySensorResponse(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-SOAP_FMAC3 ns__getSensorEmerResponse ** SOAP_FMAC4 soap_in_PointerTons__getSensorEmerResponse(struct soap *soap, const char *tag, ns__getSensorEmerResponse **a, const char *type)
+SOAP_FMAC3 ns__getSecuritySensorResponse ** SOAP_FMAC4 soap_in_PointerTons__getSecuritySensorResponse(struct soap *soap, const char *tag, ns__getSecuritySensorResponse **a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 1))
 		return NULL;
 	if (!a)
-		if (!(a = (ns__getSensorEmerResponse **)soap_malloc(soap, sizeof(ns__getSensorEmerResponse *))))
+		if (!(a = (ns__getSecuritySensorResponse **)soap_malloc(soap, sizeof(ns__getSecuritySensorResponse *))))
 			return NULL;
 	*a = NULL;
 	if (!soap->null && *soap->href != '#')
 	{	soap_revert(soap);
-		if (!(*a = (ns__getSensorEmerResponse *)soap_instantiate_ns__getSensorEmerResponse(soap, -1, soap->type, soap->arrayType, NULL)))
+		if (!(*a = (ns__getSecuritySensorResponse *)soap_instantiate_ns__getSecuritySensorResponse(soap, -1, soap->type, soap->arrayType, NULL)))
 			return NULL;
 		(*a)->soap_default(soap);
 		if (!(*a)->soap_in(soap, tag, NULL))
 			return NULL;
 	}
 	else
-	{	a = (ns__getSensorEmerResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerResponse, sizeof(ns__getSensorEmerResponse), 0);
+	{	a = (ns__getSecuritySensorResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorResponse, sizeof(ns__getSecuritySensorResponse), 0);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
 	return a;
 }
 
-SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__getSensorEmerItemResponse(struct soap *soap, ns__getSensorEmerItemResponse *const*a)
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__getSecuritySensorItemResponse(struct soap *soap, ns__getSecuritySensorItemResponse *const*a)
 {
-	if (!soap_reference(soap, *a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse))
+	if (!soap_reference(soap, *a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse))
 		(*a)->soap_serialize(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__getSensorEmerItemResponse(struct soap *soap, ns__getSensorEmerItemResponse *const*a, const char *tag, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__getSecuritySensorItemResponse(struct soap *soap, ns__getSecuritySensorItemResponse *const*a, const char *tag, const char *type)
 {
-	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_PointerTons__getSensorEmerItemResponse);
-	if (soap_out_PointerTons__getSensorEmerItemResponse(soap, tag, id, a, type))
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorItemResponse);
+	if (soap_out_PointerTons__getSecuritySensorItemResponse(soap, tag, id, a, type))
 		return soap->error;
 	return soap_putindependent(soap);
 }
 
-SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__getSensorEmerItemResponse(struct soap *soap, const char *tag, int id, ns__getSensorEmerItemResponse *const*a, const char *type)
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__getSecuritySensorItemResponse(struct soap *soap, const char *tag, int id, ns__getSecuritySensorItemResponse *const*a, const char *type)
 {
-	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse);
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse);
 	if (id < 0)
 		return soap->error;
 	return (*a)->soap_out(soap, tag, id, type);
 }
 
-SOAP_FMAC3 ns__getSensorEmerItemResponse ** SOAP_FMAC4 soap_get_PointerTons__getSensorEmerItemResponse(struct soap *soap, ns__getSensorEmerItemResponse **p, const char *tag, const char *type)
+SOAP_FMAC3 ns__getSecuritySensorItemResponse ** SOAP_FMAC4 soap_get_PointerTons__getSecuritySensorItemResponse(struct soap *soap, ns__getSecuritySensorItemResponse **p, const char *tag, const char *type)
 {
-	if ((p = soap_in_PointerTons__getSensorEmerItemResponse(soap, tag, p, type)))
+	if ((p = soap_in_PointerTons__getSecuritySensorItemResponse(soap, tag, p, type)))
 		soap_getindependent(soap);
 	return p;
 }
 
-SOAP_FMAC3 ns__getSensorEmerItemResponse ** SOAP_FMAC4 soap_in_PointerTons__getSensorEmerItemResponse(struct soap *soap, const char *tag, ns__getSensorEmerItemResponse **a, const char *type)
+SOAP_FMAC3 ns__getSecuritySensorItemResponse ** SOAP_FMAC4 soap_in_PointerTons__getSecuritySensorItemResponse(struct soap *soap, const char *tag, ns__getSecuritySensorItemResponse **a, const char *type)
 {
 	if (soap_element_begin_in(soap, tag, 1))
 		return NULL;
 	if (!a)
-		if (!(a = (ns__getSensorEmerItemResponse **)soap_malloc(soap, sizeof(ns__getSensorEmerItemResponse *))))
+		if (!(a = (ns__getSecuritySensorItemResponse **)soap_malloc(soap, sizeof(ns__getSecuritySensorItemResponse *))))
 			return NULL;
 	*a = NULL;
 	if (!soap->null && *soap->href != '#')
 	{	soap_revert(soap);
-		if (!(*a = (ns__getSensorEmerItemResponse *)soap_instantiate_ns__getSensorEmerItemResponse(soap, -1, soap->type, soap->arrayType, NULL)))
+		if (!(*a = (ns__getSecuritySensorItemResponse *)soap_instantiate_ns__getSecuritySensorItemResponse(soap, -1, soap->type, soap->arrayType, NULL)))
 			return NULL;
 		(*a)->soap_default(soap);
 		if (!(*a)->soap_in(soap, tag, NULL))
 			return NULL;
 	}
 	else
-	{	a = (ns__getSensorEmerItemResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_cmxDeviceService_ns__getSensorEmerItemResponse, sizeof(ns__getSensorEmerItemResponse), 0);
+	{	a = (ns__getSecuritySensorItemResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorItemResponse, sizeof(ns__getSecuritySensorItemResponse), 0);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerTons__getSecuritySensorPropertyItemResponse(struct soap *soap, ns__getSecuritySensorPropertyItemResponse *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerTons__getSecuritySensorPropertyItemResponse(struct soap *soap, ns__getSecuritySensorPropertyItemResponse *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_cmxDeviceService_PointerTons__getSecuritySensorPropertyItemResponse);
+	if (soap_out_PointerTons__getSecuritySensorPropertyItemResponse(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerTons__getSecuritySensorPropertyItemResponse(struct soap *soap, const char *tag, int id, ns__getSecuritySensorPropertyItemResponse *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 ns__getSecuritySensorPropertyItemResponse ** SOAP_FMAC4 soap_get_PointerTons__getSecuritySensorPropertyItemResponse(struct soap *soap, ns__getSecuritySensorPropertyItemResponse **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerTons__getSecuritySensorPropertyItemResponse(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 ns__getSecuritySensorPropertyItemResponse ** SOAP_FMAC4 soap_in_PointerTons__getSecuritySensorPropertyItemResponse(struct soap *soap, const char *tag, ns__getSecuritySensorPropertyItemResponse **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1))
+		return NULL;
+	if (!a)
+		if (!(a = (ns__getSecuritySensorPropertyItemResponse **)soap_malloc(soap, sizeof(ns__getSecuritySensorPropertyItemResponse *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (ns__getSecuritySensorPropertyItemResponse *)soap_instantiate_ns__getSecuritySensorPropertyItemResponse(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	a = (ns__getSecuritySensorPropertyItemResponse **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_cmxDeviceService_ns__getSecuritySensorPropertyItemResponse, sizeof(ns__getSecuritySensorPropertyItemResponse), 0);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}

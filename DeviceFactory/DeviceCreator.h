@@ -10,6 +10,7 @@
 #include "../DeviceProtocol/CMX_Gas.h"
 #include "../DeviceProtocol/CMX_Boiler.h"
 #include "../DeviceProtocol/HAMUN_Curtain.h"
+#include "../DeviceProtocol/NOKSUNG_Sensor.h"
 
 class DeviceCreator
 {

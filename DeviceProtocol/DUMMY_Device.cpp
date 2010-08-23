@@ -1,7 +1,6 @@
 
 
 #include "DUMMY_Device.h"
-#include "../DeviceUart/CMX_UartRS485.h"
 
 DUMMY_Device* DUMMY_Device::uniqueInstance = NULL;
 
@@ -78,5 +77,5 @@ int DUMMY_Device::checkDisconnected()
 
 unsigned int DUMMY_Device::getCurrentSupportedCount()
 {
-	return -1;
+	return 0;
 }

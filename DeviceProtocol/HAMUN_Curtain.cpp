@@ -45,6 +45,7 @@ void HAMUN_Curtain::DeviceInit()
 		sprintf(curtainStatus[i].deviceCharName, "CURTAIN%d", i + 1);
 	}
 
+	//하문 커튼은 폴링 방식이 아니므로 처음 한 번, 상태를 확인 하기 위해 폴링 할 때 사용 하는 flag
 	isStartPolled = FALSE;
 }
 
