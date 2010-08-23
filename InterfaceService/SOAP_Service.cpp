@@ -1052,7 +1052,7 @@ int ns__getSecuritySensorPropertyItem(struct soap* soap,  int order, ns__getSecu
 	Log(LOG::SERV, "ns__getSecuritySensorPropertyItem\n");
 	int ret = SOAP_OK;
 	
-	out->_return.dev = _sensorEmer;
+	out->_return.dev = _securitySensor;
 	out->_return.order = order;
 
 	ret =(SOAP_Handler::Instance())->Get_Property( &(out->_return), &order );
@@ -1071,7 +1071,7 @@ int ns__getSecuritySensorItem(struct soap* soap, int order, ns__getSecuritySenso
 	
 	Log(LOG::SERV, "ns__getSecuritySensorItem order = %d\n", order);	
 	
-	out->_return.dev = _sensorEmer;
+	out->_return.dev = _securitySensor;
 	out->_return.order = dev_order;
 	
 	ret = (SOAP_Handler::Instance())->Get_Item(soap, &(out->_return));		
@@ -1098,7 +1098,7 @@ int ns__getSecuritySensor(struct soap* soap, ns__securitySensor in, ns__getSecur
 	
 	Log(LOG::SERV, "ns__getSecuritySensor\n" );	
 	
-	out->_return.dev = _sensorEmer;
+	out->_return.dev = _securitySensor;
 	out->_return.order = dev_order;
 	
 	ret = (SOAP_Handler::Instance())->Get_Item(soap, &(out->_return));	

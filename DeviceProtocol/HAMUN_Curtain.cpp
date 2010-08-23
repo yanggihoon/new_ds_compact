@@ -59,10 +59,10 @@ int HAMUN_Curtain::FrameSend(unsigned char wBuf[])
 	Log(LOG::PRTCL, "CURTAIN SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6]);
 	result = (HAMUN_UartRS485::Instance())->WriteFrame(wBuf, HAMUN_PROTOCOL_LENGTH);
 
-	usleep(100000);
-
 	if(wBuf[0] == CURTAIN_CTRL_COMMAND && isRecv == FALSE)
 	{
+		usleep(100000);
+
 		while(isRecv == FALSE)
 		{
 			Log(LOG::ERR, "Retry CURTAIN SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6]);

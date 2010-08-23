@@ -61,10 +61,10 @@ int CMX_Boiler::FrameSend(unsigned char wBuf[])
 	Log(LOG::PRTCL, "BOILER SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6], wBuf[7]);
 	result = (CMX_UartRS485::Instance())->WriteFrame(wBuf, CMX_PROTOCOL_LENGTH);
 
-	usleep(100000);
-
 	if((wBuf[0] == INDIVIDUAL_BOILER_CTRL_COMMAND ||  wBuf[0] == EACH_BOILER_CTRL_COMMAND  || wBuf[0] == BOILER_OUT_CTRL_COMMAND ) && isRecv == FALSE)
 	{
+		usleep(100000);
+		
 		while(isRecv == FALSE)
 		{
 			Log(LOG::ERR, "Retry BOILER SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6], wBuf[7]);

@@ -1012,6 +1012,7 @@ int NotifyControlToDevice(enum DEVICE_NAME dName, unsigned char order, unsigned 
 				usleep(POLLING_TIME);
 				result = notifyDevice->FrameMake(CONTROL_CMD, order, function1, function2, function3, function4);
 
+				//디밍 스위치는 디바이스가 제어되는데 오래 걸리므로 usleep를 한 번 더 둔다.
 				if(d_property.lightProperty.mode == LIGHT_MODE_DIMMABLE)
 					usleep(POLLING_TIME);
 				
@@ -1080,6 +1081,9 @@ int NotifyControlToDevice(enum DEVICE_NAME dName, unsigned char order, unsigned 
 
 				usleep(POLLING_TIME);
 				result = notifyDevice->FrameMake(CONTROL_CMD, order, function1, function2, function3, function4);
+
+				//보일러는 디바이스가 제어되는데 오래 걸리므로 usleep를 한 번 더 둔다.
+				usleep(POLLING_TIME);
 				
 				pollingDeviceIndex = get_device_index(BOILER);
 				if(pollingDeviceIndex == -1) pollingDeviceIndex = 0;
@@ -1232,6 +1236,7 @@ void UartOpenAndUartStart()
 					if((NOKSUNG_UartRS485::Instance())->isOpen() == FALSE)
 					{
 						result = (NOKSUNG_UartRS485::Instance())->UartOpen(3, 3);
+
 						if(result == FAIL)
 						{
 							Log(LOG::ERR, "/dev/ttyS2 UartOpen error\n");
@@ -1262,7 +1267,6 @@ void UartOpenAndUartStart()
 
 					if((CMX_UartRS485::Instance())->isRunning() == FALSE)
 						(CMX_UartRS485::Instance())->Start();
-
 				}
 				else if(deviceCategory[i]->pName == HAMUN)
 				{
@@ -1404,8 +1408,8 @@ void Close()
 	int i;
 
 	(CMX_UartRS485::Instance())->Close();
+	(NOKSUNG_UartRS485::Instance())->Close();
 	(HAMUN_UartRS485::Instance())->Close();	
-	(NOKSUNG_UartRS485::Instance())->Close();		
 	(SOAP_Handler::Instance())->Close();
 	(SOAP_Service::Instance())->Close();
 

@@ -72,6 +72,22 @@ void soapTimeout(struct soap* soap, int connect, int send, int recv)
 	
 }
 
+int soapString_malloc(struct soap * pSoap, char ** ppDst, char * pSrc)
+{
+
+	if(strlen(pSrc) <= 0)
+		return 0;
+
+	*ppDst = (char *)soap_malloc(pSoap, strlen(pSrc) + 1);
+
+	if(*ppDst == 0)
+		return 0;
+
+	strcpy(*ppDst, pSrc);
+
+	return 1;
+}
+
 void SOAP_Handler::soap_print(unsigned char cmd_mode, enum DEVICE_NAME device_name, unsigned char order, unsigned char function1, unsigned char function2, unsigned char function3, unsigned char function4)
 {
 	char str[10];
@@ -713,7 +729,8 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 	enum DEVICE_PROTOCOL dProtocol;
 	cmxDeviceService::ns__rootDevice *rootDevice;
 	D_Item d_item;
-
+	D_Property d_property;
+	
 	member_it = member.begin();
 	current_device_cnt = Get_Count(it->device_name);
 	Subscribe_Copy(&member);
@@ -863,8 +880,32 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 			}
 			boilerEvent->intf = cmxDeviceService::_intfRS485;			
 
+			//client측에 DipSwitchMode 통보
+			get_device_property(BOILER, it->order, &d_property);		
+			if(d_property.boilerProperty.boilerMode == INNERTEMPERATURE_BOILER)
+				boilerEvent->boilerDipSwitchMode = cmxDeviceService::_boilerDipSwitchMode_InnerTemperature;
+			else if(d_property.boilerProperty.boilerMode == HYPOCAUST_BOILER)
+				boilerEvent->boilerDipSwitchMode = cmxDeviceService::_boilerDipSwitchMode_Hypocaust;
+			else
+			{
+
+			}
 			
-			boilerEvent->order = it->order;		
+			boilerEvent->order = it->order;
+
+			//main 보일러 외출설정 해제 통보
+			if(it->order == 1)
+			{
+				get_device_item(BOILER, it->order, &d_item);
+				if(d_item.boilerItem.outMode == BOILER_OUT_SET)
+					boilerEvent->boilerOutMode = cmxDeviceService::_boilerOutMode_Set; 	
+				else if(d_item.boilerItem.outMode == BOILER_OUT_RELEASE)
+					boilerEvent->boilerOutMode = cmxDeviceService::_boilerOutMode_Release; 
+				else
+				{
+
+				}
+			}
 
 			switch(it->function1)
 			{
@@ -1108,76 +1149,76 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 			{
 				case SENSOR_ACTION_EVENT:
 				{
-					switch(it->function3)
+					switch(it->function2)
 					{
 						case 1:
 							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelOne;
-							if(it->function2 == SENSOR_DETECTED) 
+							if(it->function3 == SENSOR_DETECTED) 
 								sensorEvent->securitySensorStSubChannel_One = cmxDeviceService::_securitySensorSt_Detected;
-							else if(it->function2 == SENSOR_UNDETECTED )
+							else if(it->function3 == SENSOR_UNDETECTED )
 								sensorEvent->securitySensorStSubChannel_One = cmxDeviceService::_securitySensorSt_UnDetected;
 							
 							break;
 
 						case 2:
 							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelTwo;
-							if(it->function2 == SENSOR_DETECTED) 
+							if(it->function3 == SENSOR_DETECTED) 
 								sensorEvent->securitySensorStSubChannel_Two = cmxDeviceService::_securitySensorSt_Detected;
-							else if(it->function2 == SENSOR_UNDETECTED )
+							else if(it->function3 == SENSOR_UNDETECTED )
 								sensorEvent->securitySensorStSubChannel_Two = cmxDeviceService::_securitySensorSt_UnDetected;
 
 							break;	
 
 						case 3:
 							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelThree;
-							if(it->function2 == SENSOR_DETECTED) 
+							if(it->function3 == SENSOR_DETECTED) 
 								sensorEvent->securitySensorStSubChannel_Three = cmxDeviceService::_securitySensorSt_Detected;
-							else if(it->function2 == SENSOR_UNDETECTED )
+							else if(it->function3 == SENSOR_UNDETECTED )
 								sensorEvent->securitySensorStSubChannel_Three = cmxDeviceService::_securitySensorSt_UnDetected;
 							
 							break;
 
 						case 4:
 							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelFour;
-							if(it->function2 == SENSOR_DETECTED) 
+							if(it->function3 == SENSOR_DETECTED) 
 								sensorEvent->securitySensorStSubChannel_Four = cmxDeviceService::_securitySensorSt_Detected;
-							else if(it->function2 == SENSOR_UNDETECTED )
+							else if(it->function3 == SENSOR_UNDETECTED )
 								sensorEvent->securitySensorStSubChannel_Four = cmxDeviceService::_securitySensorSt_UnDetected;
 							
 							break;
 
 						case 5:
 							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelFive;
-							if(it->function2 == SENSOR_DETECTED) 
+							if(it->function3 == SENSOR_DETECTED) 
 								sensorEvent->securitySensorStSubChannel_Five = cmxDeviceService::_securitySensorSt_Detected;
-							else if(it->function2 == SENSOR_UNDETECTED )
+							else if(it->function3 == SENSOR_UNDETECTED )
 								sensorEvent->securitySensorStSubChannel_Five = cmxDeviceService::_securitySensorSt_UnDetected;
 							
 							break;
 
 						case 6:
 							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelSix;
-							if(it->function2 == SENSOR_DETECTED) 
+							if(it->function3 == SENSOR_DETECTED) 
 								sensorEvent->securitySensorStSubChannel_Six = cmxDeviceService::_securitySensorSt_Detected;
-							else if(it->function2 == SENSOR_UNDETECTED )
+							else if(it->function3 == SENSOR_UNDETECTED )
 								sensorEvent->securitySensorStSubChannel_Six = cmxDeviceService::_securitySensorSt_UnDetected;
 							
 							break;
 
 						case 7:
 							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelSeven;
-							if(it->function2 == SENSOR_DETECTED) 
+							if(it->function3 == SENSOR_DETECTED) 
 								sensorEvent->securitySensorStSubChannel_Seven = cmxDeviceService::_securitySensorSt_Detected;
-							else if(it->function2 == SENSOR_UNDETECTED )
+							else if(it->function3 == SENSOR_UNDETECTED )
 								sensorEvent->securitySensorStSubChannel_Seven = cmxDeviceService::_securitySensorSt_UnDetected;
 							
 							break;
 
 						case 8:
 							sensorEvent->func = cmxDeviceService::f_securitySensorStSubChannelEight;
-							if(it->function2 == SENSOR_DETECTED) 
+							if(it->function3 == SENSOR_DETECTED) 
 								sensorEvent->securitySensorStSubChannel_Eight = cmxDeviceService::_securitySensorSt_Detected;
-							else if(it->function2 == SENSOR_UNDETECTED )
+							else if(it->function3 == SENSOR_UNDETECTED )
 								sensorEvent->securitySensorStSubChannel_Eight = cmxDeviceService::_securitySensorSt_UnDetected;
 							
 							break;
@@ -2152,11 +2193,6 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				
 			}
 
-			int ret = 0;
-
-			cmxDeviceService::cds service;
-			service.endpoint = event_end_point;
-			
 			if(d_item.lightItem.power == LIGHT_POWER_OFF)
 			{
 				pObject->lightPower = cmxDeviceService::_lightPower_Off;		
@@ -2178,6 +2214,49 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				pObject->dimmableLevel = d_item.lightItem.dimmingLevel;
 				Log(LOG::HND,"LIGHT [%d] dimmableLevel = %d\n", device->order, pObject->dimmableLevel);								
 			}
+
+			//월패드 위치 쿼리
+			int ret = 0;
+
+			cmxDeviceService::cds service;
+			service.endpoint = event_end_point;
+						
+			cmxDeviceService::ns__getLightItemResponse out;
+						
+			out._return.lightZoneMainName = NULL;
+			out._return.lightZoneSubName = NULL;
+
+			ret = service.ns__getLightItem(device->order, &out);				
+			if(ret == SOAP_OK)
+			{	
+				if(out._return.lightZoneMainName == NULL ||
+				   (out._return.lightZoneMainName != NULL && strlen((char*)out._return.lightZoneMainName) == 0) )
+				{
+					pObject->lightZoneMainName = (char*)soap_malloc(pSoap,2);
+					sprintf(pObject->lightZoneMainName, "");					
+				}else
+				{
+					soapString_malloc(pSoap, &pObject->lightZoneMainName, (char *)out._return.lightZoneMainName);	
+				}
+
+				if(out._return.lightZoneSubName == NULL ||
+				  (out._return.lightZoneSubName != NULL && strlen((char*)out._return.lightZoneSubName) == 0))
+				{
+					pObject->lightZoneSubName = (char*)soap_malloc(pSoap,2);
+					sprintf(pObject->lightZoneSubName , "");					
+				}else
+				{
+					soapString_malloc(pSoap, &pObject->lightZoneSubName , (char *)out._return.lightZoneSubName);	
+				}
+	
+			}else
+			{
+				pObject->lightZoneMainName = (char*)soap_malloc(pSoap,2);
+				sprintf(pObject->lightZoneMainName , "");
+				
+				pObject->lightZoneSubName = (char*)soap_malloc(pSoap,2);
+				sprintf(pObject->lightZoneSubName, "");					
+			}				
 
 			break;
 		}
@@ -2382,12 +2461,6 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 
 			}
 
-
-			int ret = 0;
-
-			cmxDeviceService::cds service;
-			service.endpoint = event_end_point;
-						
 			pObject->boilerCurrentTemperature = d_item.boilerItem.currentTemperature;
 			pObject->boilerRequestedTemperature = d_item.boilerItem.requestTemperature;
 
@@ -2422,8 +2495,43 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 					Log(LOG::HND,"BOILER [%] BOILER_OUT_SET\n", device->order);				
 				}
 			}
+
+			// 온도 조절기 위치를 월패드에 쿼리 함
+			/*******************************************************/
+			int ret = 0;
+
+			cmxDeviceService::cds service;
+			service.endpoint = event_end_point;
+						
+			cmxDeviceService::ns__getBoilerItemResponse out;
+						
+			out._return.boilerZoneName = NULL;					
+
+			ret = service.ns__getBoilerItem(device->order, &out);					
+				
+			if(ret == SOAP_OK)
+			{	
+				if(out._return.boilerZoneName == NULL ||
+				(out._return.boilerZoneName != NULL && strlen((char*)out._return.boilerZoneName) == 0) )
+				{
+					pObject->boilerZoneName = (char*)soap_malloc(pSoap,2);
+					sprintf( pObject->boilerZoneName, "");	
+				}
+				else
+				{
+					soapString_malloc( pSoap, &pObject->boilerZoneName, (char *)out._return.boilerZoneName);
+				}
+	
+			}else
+			{
+				pObject->boilerZoneName = (char*)soap_malloc(pSoap,2);
+				sprintf( pObject->boilerZoneName , "");	
+			}
+
+			
+			break;
 		}
-		break;
+
 
 		case cmxDeviceService::_curtain:
 		{
@@ -2583,12 +2691,12 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 			}
 			
 			  
-			for( index = 1; index <= 8; index++) 
+			for( index = 0; index < 8; index++) 
 			{
 
 				switch( index ) 
 				{
-					case 0x01:
+					case 0x00:
 						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
 							pObject->securitySensorStSubChannel_One = cmxDeviceService::_securitySensorSt_Detected; 
 						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
@@ -2596,7 +2704,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 
 						break;
 
-					case 0x02:
+					case 0x01:
 						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
 							pObject->securitySensorStSubChannel_Two = cmxDeviceService::_securitySensorSt_Detected; 
 						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
@@ -2605,7 +2713,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 						break;
 
 
-					case 0x03:
+					case 0x02:
 						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
 							pObject->securitySensorStSubChannel_Three = cmxDeviceService::_securitySensorSt_Detected; 
 						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
@@ -2614,7 +2722,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 						break;
 
 
-					case 0x04:
+					case 0x03:
 						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
 							pObject->securitySensorStSubChannel_Four = cmxDeviceService::_securitySensorSt_Detected; 
 						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
@@ -2623,7 +2731,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 						break;
 
 
-					case 0x05:
+					case 0x04:
 						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
 							pObject->securitySensorStSubChannel_Five = cmxDeviceService::_securitySensorSt_Detected; 
 						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
@@ -2632,7 +2740,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 						break;
 
 
-					case 0x06:
+					case 0x05:
 						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
 							pObject->securitySensorStSubChannel_Six = cmxDeviceService::_securitySensorSt_Detected; 
 						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
@@ -2641,7 +2749,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 						break;
 
 
-					case 0x07:
+					case 0x06:
 						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
 							pObject->securitySensorStSubChannel_Seven = cmxDeviceService::_securitySensorSt_Detected; 
 						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)
@@ -2650,7 +2758,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 						break;
 
 
-					case 0x08:
+					case 0x07:
 						if( d_item.sensorItem.subAction[index] == SENSOR_DETECTED)
 							pObject->securitySensorStSubChannel_Eight = cmxDeviceService::_securitySensorSt_Detected; 
 						else if(d_item.sensorItem.subAction[index] == SENSOR_UNDETECTED)

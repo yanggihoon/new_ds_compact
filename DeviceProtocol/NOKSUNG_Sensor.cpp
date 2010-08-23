@@ -62,10 +62,9 @@ int NOKSUNG_Sensor::FrameSend(unsigned char wBuf[])
 	Log(LOG::PRTCL, "SENSOR SendFrame : %02x`%02x`%02x`%02x %02x`%02x`%02x`%02x`%02x`%02x\n", wBuf[0], wBuf[1], wBuf[2], wBuf[3], wBuf[4], wBuf[5], wBuf[6], wBuf[7], wBuf[8], wBuf[9]);
 	result = (NOKSUNG_UartRS485::Instance())->WriteFrame(wBuf, NOKSUNG_PROTOCOL_SEND_LENGTH);
 
-	usleep(100000);
-
 	//녹성 센서는 제어 command가 없기 대문에 제어 실패시 retry하는 부분이 필요 없다
-
+	//usleep(100000);
+	
 	return result;
 }
 

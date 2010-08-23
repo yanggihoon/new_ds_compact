@@ -122,7 +122,7 @@ void	NOKSUNG_UartRS485::Close()
 	if(isOpen() == TRUE)
 		UartClose();
 
-	usleep(200000);
+	usleep(500000);
 	Instance_Close();
 }
 
@@ -232,13 +232,12 @@ int NOKSUNG_UartRS485::UartOpen(unsigned int COMMPORT, unsigned int BAUDRATE)
 			break;
 
 	}
-	
+
 	if (!b_portSet) {
 	    tcgetattr(i_SLfd,&oldtio); 
 		b_portSet = true;
 	}
 
-	
 	bzero(&newtio, sizeof(newtio)); 
 	
 	newtio.c_cflag =  BAUDRATE | CS8 | CLOCAL | CREAD;
@@ -247,29 +246,24 @@ int NOKSUNG_UartRS485::UartOpen(unsigned int COMMPORT, unsigned int BAUDRATE)
 	newtio.c_lflag = 0;
 	newtio.c_cc[VTIME] = 0;   //문자 사이의 timer를 disable 	
 	newtio.c_cc[VMIN]  = 0;   //최소 1 문자 받을 때까진 blocking 		
-	
 
 	/*
 	now clean the modem line and activate the settings for the port
 	*/
 
-
 	tcflush(i_SLfd, TCIFLUSH);
 	tcsetattr(i_SLfd,TCSANOW,&newtio);
-	
 
 	/*
-	u_info.baud = 9600;
+	u_info.baud = 2400;
 	u_info.bits = 8;
 	u_info.parity = 0; //COMM_PARITY_NONE
 	u_info.stops = 1;
-	*/
-	
-	//ioctl(i_SLfd, IOCTL_UART_SET, &u_info );
 
+	ioctl(i_SLfd, IOCTL_UART_SET, &u_info );
+	*/
 	//Log(LOG::UART, "CMX RS485 SERIAL Successfully Serial Open:\n");
 	
-
 	return SUCCESS;
 }
 
@@ -295,7 +289,8 @@ int NOKSUNG_UartRS485::UartClose()
 {
 	 /* restore the old port settings */  
 	
-	if (b_portSet)  tcsetattr(i_SLfd,TCSANOW,&oldtio);
+	/*if (b_portSet)  tcsetattr(i_SLfd,TCSANOW,&oldtio);
+		b_portSet = false;*/
 
 	b_portSet = FALSE;
 
@@ -305,7 +300,7 @@ int NOKSUNG_UartRS485::UartClose()
 	b_open = FALSE;
 	run_flag = FALSE;
 
-	Log(LOG::UART, "RS485:: NOKSUNG UART CLOSE\n");
+	Log(LOG::UART, "NOKSUNG RS485:: UART CLOSE\n");
 	return SUCCESS;
 }
 
@@ -457,7 +452,7 @@ void * NOKSUNG_UartRS485::run(void *arg)
 
 			recvSize = read(rs485->i_SLfd, &readBuffer, PACK_SIZE_ONE);
 
-			Log(LOG::UART, "***** RECV FRAME : %02x *****\n",readBuffer);
+			//Log(LOG::UART, "***** RECV FRAME : %02x *****\n",readBuffer);
 			if (recvSize == -1) {				
 				Log(LOG::ERR, "RS485 <- NOKSUNG PROTOCOL:: ERROR READ FROM SERIAL PORT : -1\n");
 				
