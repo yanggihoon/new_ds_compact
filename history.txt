@@ -1,0 +1,59 @@
+
+*******************************************************************************************************
+2010 08/22
+ 1. 녹성 센서 추가
+ 2. dummy device 추가
+ 3. get item 할 때 연동 되지 않는 디바이스에 대해서는
+       SOAP_FATAL_ERROR 리턴 되도록 추가
+*******************************************************************************************************
+
+*******************************************************************************************************
+2010 08/23
+ 1. 보일러, 조명 zonename 추가
+ 2. polling time 조절 ->
+    기존 제어 command 보낸 후 ack 기다리는 usleep 함수를 if 문 안에 둠
+    (polling command에 대해서는 usleep를 처리 하지 않는다.)
+ 3. 보일러 event에서 dipswitchmode 포함, order 1일 때 외출 설정/해제 포함
+ 4. 녹성 센서 처음 uart open 되고 두번째 open이 잘 안되는 버그 수정
+    (hamun uart꺼 그대로 복사 하여 사용)
+       * 녹성 센서 특이 사항
+         securitySensor 485 port 에러 확인은 기존의 'deviceError'로 하지 않고 아래 내용으로 한다.
+         pObject->securitySensorDevError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
+
+*******************************************************************************************************
+
+*******************************************************************************************************
+2010 08/24
+1. check_each_ack 함수 추가하여 각 id별 ack를 확인 할 수 있도록 함
+
+2. debug 모드에서도 'ack' 명령어로 각 id별 ack 확인
+   (기존 'ack'명령은 'discon'으로 바꿈)
+
+3. 각 device의 getCurrentSupportedCount안의 for문을 반대로 수정
+   마지막 result가 true가 되면 그 order까지 support 되는 것으로 판단
+   ex) device 1번 discon이고 device 2번 connection일 때 support count는 
+       2가 되어야 한다.
+
+4. main에서 get_device_item에서 disconnection에러 확인을 각 id별로 하기 
+   위해 check_device_disconnection()에서 check_each_ack()로 바꿈
+   * check_device_disconnection() -> device자체의 connection인지 확인 함수
+                                     전체 order 중 1개라도 ACK가 오면 
+                                     true로 return함
+   * check_each_ack() -> 각 회로별 ack를 check 하게 된다.
+
+5. 하문커튼 count 값을 얻기 위해 처음 실행 시 stop 제어 command를 보내부분
+   삭제하고 device.conf파일에서 읽은 값 그대로 사용
+
+6. 커튼 soap message open, stop 메시지 분리
+
+7. 전등 dimming level초기값 0xff->0x00 으로 변경
+
+8. debug st print 전등 부분 power on/off 둘다 아닐 경우 none 으로 
+   dimming, binary 둘다 아닐 경우 none 으로 프린트 되도록 수정
+
+9. 전등 전체 제어 시 binary일 때도 디밍레벨(buf[6])은 0x08로 함
+   이유: binary스위치와 dimming스위치가 같이 있을 경우 전에 on을 하게 되면
+         binary스위치에 의해 dimming스위치의 디밍레벨값이 0으로 들어 가게
+         된다. 그래서 binary 스위치에도 전체 on을 할 땐 디밍레벨값을 0x08
+         로 한다.
+*******************************************************************************************************
