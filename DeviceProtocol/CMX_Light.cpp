@@ -36,7 +36,7 @@ void CMX_Light::DeviceInit()
 		lightStatus[i].order = 0xFF;
 		lightStatus[i].isAck = FALSE;
 		lightStatus[i].power = LIGHT_POWER_NONE;
-		lightStatus[i].dimmingLevel = 0xFF;
+		lightStatus[i].dimmingLevel = 0x00;
 	}
 
 	for(i = 0; i < supportedPollingCount; i++)
@@ -135,7 +135,7 @@ int CMX_Light::FrameMake(unsigned char cmd_flag, unsigned char order, unsigned c
 						buf[3] = 0xFF;
 						buf[4] = 0xFF;
 						buf[5] = 0xFF;
-						buf[6] = 0x00;
+						buf[6] = 0x08;
 						buf[7] = buf[0] + buf[1] + buf[2] + buf[3] + buf[4] + buf[5] + buf[6];
 					}
 					else if(function3 == LIGHT_POWER_ALLOFF)
@@ -324,9 +324,11 @@ int CMX_Light::checkDisconnected()
 {
 	int order;
 	int result;
-	for(order = 1; order <= getCurrentSupportedCount(); order++)
+
+	for(order = 1; order <= getCurrentSupportedCount(); order++)		
 	{
 		result = checkEachAck(order);
+
 		if(result == TRUE)		//No Disconnected
 			return TRUE;
 	}
@@ -338,12 +340,16 @@ unsigned int CMX_Light::getCurrentSupportedCount()
 {
 	int order;
 	int result;
-	for(order = 1; order <= supportedPollingCount; order++)
+
+	if(supportedPollingCount > MAX_SUPPORTED_LIGHT_CNT)
+		supportedPollingCount = MAX_SUPPORTED_LIGHT_CNT;	
+
+	for(order = supportedPollingCount; order > 0; order--)
 	{
 		result = checkEachAck(order);
-		if(result == FALSE)	
-			return order - 1;
+		if(result == TRUE)
+			return order;
 	}
-
-	return supportedPollingCount;
+	
+	return 0;
 }

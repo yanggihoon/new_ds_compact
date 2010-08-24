@@ -283,9 +283,11 @@ int NOKSUNG_Sensor::checkDisconnected()
 {
 	int order;
 	int result;
-	for(order = 1; order <= getCurrentSupportedCount(); order++)
+
+	for(order = 1; order <= getCurrentSupportedCount(); order++)		
 	{
 		result = checkEachAck(order);
+
 		if(result == TRUE)		//No Disconnected
 			return TRUE;
 	}
@@ -297,11 +299,16 @@ unsigned int NOKSUNG_Sensor::getCurrentSupportedCount()
 {
 	int order;
 	int result;
-	for(order = 1; order <= supportedPollingCount; order++)
+
+	if(supportedPollingCount > MAX_SUPPORTED_SENSOR_CNT)
+		supportedPollingCount = MAX_SUPPORTED_SENSOR_CNT;
+
+	for(order = supportedPollingCount; order > 0; order--)
 	{
 		result = checkEachAck(order);
-		if(result == FALSE)	
-			return order - 1;
+		if(result == TRUE)
+			return order;
 	}
-	return supportedPollingCount;
+	
+	return 0;
 }

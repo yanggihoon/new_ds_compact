@@ -280,7 +280,6 @@ struct BUNDLELIGHT_SUPPORT_FUNCTION
 enum CURTAIN_EVENT
 {
 	CURTAIN_ACTION_EVENT		=	1,
-	CURTAIN_ANGULAR_EVENT 	= 	2
 };
 
 enum CURTAIN_ACTION
@@ -290,12 +289,6 @@ enum CURTAIN_ACTION
 	CURTAIN_OPEN		=	2,
 	CURTAIN_STOP		=	3
 };
-
-enum CURTAIN_ANGULAR
-{
-
-};
-
 
 /*********************************SensorEmer Enum*********************************/
 enum SENSOR_EVENT
@@ -363,13 +356,16 @@ public:
 	virtual int FrameMake(unsigned char cmd_flag, unsigned char order, unsigned char function1, unsigned char function2, unsigned char function3, unsigned char function4) = 0;
 	virtual int FrameRecv(unsigned char rBuf[]) = 0;
 	virtual int FarmeParser(unsigned char buf[]) = 0;
+
 	virtual unsigned int getCurrentSupportedCount() = 0;
+	virtual int checkEachAck(int order) = 0;
 	virtual int checkDisconnected() = 0;
 
-	unsigned int supportedPollingCount;
+	unsigned int supportedPollingCount;	//최초 device.conf로 부터 읽어 오는 count
 	unsigned int isAck;
-	unsigned int isRecv;
-	unsigned int retrySendCnt;
+
+	unsigned int isRecv;			//제어 command 보낸 후 제어 ack 확인 용 flag
+	unsigned int retrySendCnt;		//제어 command 실패시 제 전송 count
 	
 	enum DEVICE_NAME dName;
 	enum DEVICE_PROTOCOL pName;

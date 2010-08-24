@@ -16,8 +16,6 @@ int pollingDeviceIndex = 0;
 int pollingDeviceOrder = 1;
 int deviceCategoryCnt = 0;
 DeviceProtocol* deviceCategory[MAX_DEVICE_CATEGORY] = {NULL, };
-clock_t t_begin, t_end, t_elap;
-
 
 int ParsingLine(char str[][MAX_CONF_BUF], char *line)
 {
@@ -314,6 +312,70 @@ void CmdCtrl(char* ctrl)
 		{
 			dProtocol = get_protocol(deviceCategory[i]->dName);
 			dCategory = (ConcreteDeviceCreator::GetInstance())->DeviceFactoryMethod(deviceCategory[i]->dName, dProtocol);
+
+			for(order = 1; order <= dCategory->getCurrentSupportedCount(); order++)
+			{
+				result = dCategory->checkEachAck(order);
+
+				switch(deviceCategory[i]->dName)
+				{
+					case LIGHT:
+							if(result == TRUE)
+								Log(LOG::INFO, "LIGHT %d ack is OK\n", order);
+							else
+								Log(LOG::INFO, "LIGHT %d ack is ERROR\n", order);
+						break;
+
+					case GAS:
+							if(result == TRUE)
+								Log(LOG::INFO, "GAS %d ack is OK\n", order);
+							else
+								Log(LOG::INFO, "GAS %d ack is ERROR\n", order);
+						break;
+
+					case BUNDLELIGHT:
+							if(result == TRUE)
+								Log(LOG::INFO, "BUNDLELIGHT %d ack is OK\n", order);
+							else
+								Log(LOG::INFO, "BUNDLELIGHT %d ack is ERROR\n", order);
+
+						break;
+
+					case BOILER:
+							if(result == TRUE)
+								Log(LOG::INFO, "BOILER %d ack is OK\n", order);
+							else
+								Log(LOG::INFO, "BOILER %d ack is ERROR\n", order);
+
+						break;
+
+					case CURTAIN:
+							if(result == TRUE)
+								Log(LOG::INFO, "CURTAIN %d ack is OK\n", order);
+							else
+								Log(LOG::INFO, "CURTAIN %d ack is ERROR\n", order);
+
+						break;
+
+					case SENSOR:
+							if(result == TRUE)
+								Log(LOG::INFO, "SENSOR %d ack is OK\n", order);
+							else
+								Log(LOG::INFO, "SENSOR %d ack is ERROR\n", order);
+
+						break;
+						
+				}
+			}
+		}
+
+	}
+	else if(!strcmp(arg1, "discon"))
+	{
+		for(i = 0; i < deviceCategoryCnt; i++)
+		{
+			dProtocol = get_protocol(deviceCategory[i]->dName);
+			dCategory = (ConcreteDeviceCreator::GetInstance())->DeviceFactoryMethod(deviceCategory[i]->dName, dProtocol);
 			result = dCategory->checkDisconnected();
 
 			switch(deviceCategory[i]->dName)
@@ -583,7 +645,8 @@ void GetCmd()
 			printf("slist : show current subscriber list\n");
 			printf("category : show device category whether supported or not supported\n");
 			printf("protocol : show protocol of supported device\n");
-			printf("ack : show device connection status whether connected or disconnected\n");
+			printf("ack : show device each order ack status\n");
+			printf("discon : show device connection status whether connected or disconnected\n");
 			printf("port : show port error\n");
 			printf("uart : show using uart port\n");
 			printf("st : show current all device status\n");
@@ -933,6 +996,7 @@ void* DevicePollingManger(void * arg)
 					if(deviceCategory[pollingDeviceIndex]->pName == HAMUN)
 					{
 						//하문용 커튼은 폴링 방식이 아니므로 디바이스 상태 값을 확인 하기 위해 처음 한 번만 폴링(STOP control으로 폴링) 하고 따로 폴링을 하지 않는다.
+						/*
 						if(((HAMUN_Curtain*)deviceCategory[pollingDeviceIndex])->isStartPolled == FALSE)
 						{
 							for(i = 1; i <= deviceCategory[pollingDeviceIndex]->supportedPollingCount; i++)
@@ -947,8 +1011,11 @@ void* DevicePollingManger(void * arg)
 						{
 							pollingDeviceOrder = 1;
 							pollingDeviceIndex++;
-						}
+						}*/
 
+						pollingDeviceOrder = 1;
+						pollingDeviceIndex++;
+						
 					}
 					break;
 
@@ -1474,9 +1541,24 @@ int get_current_supported_cnt(enum DEVICE_NAME device_name)
 	return count;
 }
 
+int check_each_ack(enum DEVICE_NAME device_name, int order)
+{
+	int flag = FALSE;
+
+	DeviceProtocol* dCategory;
+	enum DEVICE_PROTOCOL dProtocol;
+	
+	dProtocol = get_protocol(device_name);
+
+	dCategory = (ConcreteDeviceCreator::GetInstance())->DeviceFactoryMethod(device_name, dProtocol);
+
+	flag = dCategory->checkEachAck(order);
+
+	return flag;
+}
+
 int check_device_disconnection(enum DEVICE_NAME device_name)
 {
-
 	int flag = FALSE;
 
 	DeviceProtocol* dCategory;
@@ -1719,7 +1801,7 @@ void get_device_item(enum DEVICE_NAME device_name, int order, D_Item* d_item)
 			{
 				if(ack == FALSE)
 					d_item->lightItem.error = PORT_ERROR;
-				else if(check_device_disconnection(LIGHT) == FALSE)
+				else if(check_each_ack(LIGHT, order) == FALSE)
 					d_item->lightItem.error = LIGHT_DISCONNECTION;
 				else
 				{
@@ -1752,7 +1834,7 @@ void get_device_item(enum DEVICE_NAME device_name, int order, D_Item* d_item)
 			{
 				if(ack == FALSE)
 					d_item->gasItem.error = PORT_ERROR;
-				else if(check_device_disconnection(GAS) == FALSE)
+				else if(check_each_ack(GAS, order) == FALSE)
 					d_item->gasItem.error = GAS_DISCONNECTION;
 				else
 				{
@@ -1782,7 +1864,7 @@ void get_device_item(enum DEVICE_NAME device_name, int order, D_Item* d_item)
 			{
 				if(ack == FALSE)
 					d_item->bundleLightItem.error = PORT_ERROR;
-				else if(check_device_disconnection(BUNDLELIGHT) == FALSE)
+				else if(check_each_ack(BUNDLELIGHT, order) == FALSE)
 					d_item->bundleLightItem.error = BUNDLELIGHT_DISCONNECTION;
 				else
 				{
@@ -1835,7 +1917,7 @@ void get_device_item(enum DEVICE_NAME device_name, int order, D_Item* d_item)
 			{
 				if(ack == FALSE)
 					d_item->boilerItem.error = PORT_ERROR;
-				else if(check_device_disconnection(BOILER) == FALSE)
+				else if(check_each_ack(BOILER, order) == FALSE)
 					d_item->boilerItem.error = BOILER_DISCONNECTION;
 				else
 				{
@@ -1869,7 +1951,7 @@ void get_device_item(enum DEVICE_NAME device_name, int order, D_Item* d_item)
 			{
 				if(ack == FALSE)
 					d_item->curtainItem.error = PORT_ERROR;
-				else if(check_device_disconnection(CURTAIN) == FALSE)
+				else if(check_each_ack(CURTAIN, order) == FALSE)
 					d_item->curtainItem.error = CURTAIN_DISCONNECTION;
 				else
 				{
@@ -1899,7 +1981,7 @@ void get_device_item(enum DEVICE_NAME device_name, int order, D_Item* d_item)
 			{
 				if(ack == FALSE)
 					d_item->sensorItem.error = PORT_ERROR;
-				else if(check_device_disconnection(SENSOR) == FALSE)
+				else if(check_each_ack(SENSOR, order) == FALSE)
 					d_item->sensorItem.error = SENSOR_DISCONNECTION;
 				else
 				{
@@ -2435,12 +2517,14 @@ void device_status_print(enum DEVICE_NAME device_name)
 					else if(((CMX_Light*)dCategory)->lightStatus[index].power == LIGHT_POWER_ON)
 						Log(LOG::INFO, " 전원On  |");
 					else
-						Log(LOG::INFO, "  %03d  |", ((CMX_Light*)dCategory)->lightStatus[index].power);
+						Log(LOG::INFO, "  NONE   |");
 
 					if(((CMX_Light*)dCategory)->lightStatus[index].mode == LIGHT_MODE_BINARY)
 						Log(LOG::INFO, "  BINARY |");
-					else
+					else if(((CMX_Light*)dCategory)->lightStatus[index].mode == LIGHT_MODE_DIMMABLE)
 						Log(LOG::INFO, " DIMMING |");
+					else
+						Log(LOG::INFO, "   NONE  |");
 
 					Log(LOG::INFO, "      %02d     |", ((CMX_Light*)dCategory)->lightStatus[index].dimmingLevel);
 					Log(LOG::INFO, "           %02d        |", ((CMX_Light*)dCategory)->lightStatus[index].maxDimmingLevel);

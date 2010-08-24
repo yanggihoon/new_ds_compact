@@ -38,10 +38,14 @@ enum DEVICE_NAME get_name(int categoryIndex);
 enum DEVICE_PROTOCOL get_protocol(enum DEVICE_NAME device_name);
 unsigned int get_devicecategory_cnt();
 int get_current_supported_cnt(enum DEVICE_NAME dName);
+
+int check_each_ack(enum DEVICE_NAME device_name, int order);
 int check_device_disconnection(enum DEVICE_NAME device_name);
 int check_device_port_error();
+
 void  get_device_property(enum DEVICE_NAME device_name, int order, D_Property* d_property);
 void get_device_item(enum DEVICE_NAME device_name, int order, D_Item* d_item);
+
 void device_status_print(enum DEVICE_NAME device_name);
 
 #endif

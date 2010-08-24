@@ -612,9 +612,9 @@ void * SOAP_Handler::control_run(void * arg)
 		Log(LOG::HND, "### SOAP_HANDLER:: g_controlList.size = %d\n", s_handler->g_controlList.size());
 		it = s_handler->g_controlList.begin();
 
-		if(it->order > s_handler->Get_Count(it->device_name) || it->order < 1)
+		if(it->order < 1)
 		{
-			Log(LOG::ERR, "### SOAP_HANDLER:: Over or Under Current Device Cnt\n");	
+			Log(LOG::ERR, "### SOAP_HANDLER:: Under Current Device Cnt\n");	
 
 			pthread_mutex_lock(&s_handler->control_mutex);
 			s_handler->g_controlList.pop_front();
@@ -735,9 +735,9 @@ int SOAP_Handler::Soap_Event_Parser(list<Event>::iterator it)
 	current_device_cnt = Get_Count(it->device_name);
 	Subscribe_Copy(&member);
 
-	if(it->order > current_device_cnt || it->order <= 0)
+	if( it->order <= 0)
 	{
-		Log(LOG::ERR, "### SOAP_HANDLER:: Over or Under Current Device Cnt\n");	
+		Log(LOG::ERR, "### SOAP_HANDLER:: Under Current Device Cnt\n");	
 		return FALSE;
 	}
 
@@ -2286,7 +2286,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				pObject->func = cmxDeviceService::f_gvDevError;
 				pObject->gvDevError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
 			
-				Log(LOG::ERR, "GAS [%] PORT_ERROR\n", device->order);
+				Log(LOG::ERR, "GAS [%d] PORT_ERROR\n", device->order);
 				return SOAP_OK;	
 			}
 			else if(d_item.gasItem.error == GAS_DISCONNECTION)
@@ -2294,7 +2294,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				pObject->func = cmxDeviceService::f_gvDevError;
 				pObject->gvDevError = cmxDeviceService::devError_gas_DisConnect;
 			
-				Log(LOG::ERR, "GAS [%] GAS_DISCONNECTION\n", device->order);
+				Log(LOG::ERR, "GAS [%d] GAS_DISCONNECTION\n", device->order);
 				return SOAP_OK;	
 			}
 			else
@@ -2487,12 +2487,12 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				if(d_item.boilerItem.outMode == BOILER_OUT_RELEASE)
 				{
 					pObject->boilerOutMode = cmxDeviceService::_boilerOutMode_Release;
-					Log(LOG::HND,"BOILER [%] BOILER_OUT_RELEASE\n", device->order);				
+					Log(LOG::HND,"BOILER [%d] BOILER_OUT_RELEASE\n", device->order);				
 				}
 				else if(d_item.boilerItem.outMode == BOILER_OUT_SET)
 				{
 					pObject->boilerOutMode = cmxDeviceService::_boilerOutMode_Set;
-					Log(LOG::HND,"BOILER [%] BOILER_OUT_SET\n", device->order);				
+					Log(LOG::HND,"BOILER [%d] BOILER_OUT_SET\n", device->order);				
 				}
 			}
 
@@ -2552,7 +2552,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 			}
 			else if(dProtocol == HAMUN)
 			{
-				pObject->proto = cmxDeviceService::_protoCommax;		
+				pObject->proto = cmxDeviceService::_protoHaMun;		
 				pObject->intf =  cmxDeviceService::_intfRS485;			
 				pObject->model = cmxDeviceService::_model_curtain_HaMun;
 			}
@@ -2564,7 +2564,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				pObject->func = cmxDeviceService::f_curtainDevError;
 				pObject->curtainDevError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
 			
-				Log(LOG::ERR, "CURTAIN [%] PORT_ERROR\n", device->order);
+				Log(LOG::ERR, "CURTAIN [%d] PORT_ERROR\n", device->order);
 				return SOAP_OK;	
 			}
 			else if(d_item.curtainItem.error == CURTAIN_DISCONNECTION)
@@ -2572,7 +2572,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				pObject->func = cmxDeviceService::f_curtainDevError;
 				pObject->curtainDevError = cmxDeviceService::devError_curtain_DisConnect;
 			
-				Log(LOG::ERR, "CURTAIN [%] CURTAIN_DISCONNECTION\n", device->order);
+				Log(LOG::ERR, "CURTAIN [%d] CURTAIN_DISCONNECTION\n", device->order);
 				return SOAP_OK;	
 			}
 			else
@@ -2588,7 +2588,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 			cmxDeviceService::cds service;
 			service.endpoint = event_end_point;
 
-			if(d_item.curtainItem.action == CURTAIN_OPEN || d_item.curtainItem.action == CURTAIN_STOP)
+			if(d_item.curtainItem.action == CURTAIN_OPEN)
 			{
 				pObject->curtainDo = cmxDeviceService::_curtainDo_Open;
 				Log(LOG::HND,"CURTAIN [%d] CURTAIN_OPEN\n", device->order);
@@ -2596,7 +2596,12 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 			else if(d_item.curtainItem.action == CURTAIN_CLOSE)
 			{
 				pObject->curtainDo = cmxDeviceService::_curtainDo_Close;
-				Log(LOG::HND,"GAS [%d] CURTAIN_CLOSE\n", device->order);
+				Log(LOG::HND,"CURTAIN [%d] CURTAIN_CLOSE\n", device->order);
+			}
+			else if(d_item.curtainItem.action ==  CURTAIN_STOP)
+			{
+				pObject->curtainDo = cmxDeviceService::_curtainDo_Stop;
+				Log(LOG::HND,"CURTAIN [%d] CURTAIN_STOP\n", device->order);
 			}
 
 			break;
@@ -2627,7 +2632,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				pObject->func = cmxDeviceService::f_securitySensorDevError;
 				pObject->securitySensorDevError = cmxDeviceService::devError_485_Serial_Port_Open_Error;
 			
-				Log(LOG::ERR, "SENSOR [%] PORT_ERROR\n", device->order);
+				Log(LOG::ERR, "SENSOR [%d] PORT_ERROR\n", device->order);
 				return SOAP_OK;	
 			}
 			else if(d_item.sensorItem.error == SENSOR_DISCONNECTION)
@@ -2635,7 +2640,7 @@ int SOAP_Handler::Get_Item(struct soap *pSoap, cmxDeviceService::ns__rootDevice*
 				pObject->func = cmxDeviceService::f_securitySensorDevError;
 				pObject->securitySensorDevError = cmxDeviceService::devError_nokSungSensor_DisConnect;
 			
-				Log(LOG::ERR, "SENSOR [%] SENSOR_DISCONNECTION\n", device->order);
+				Log(LOG::ERR, "SENSOR [%d] SENSOR_DISCONNECTION\n", device->order);
 				return SOAP_OK;	
 			}
 			else

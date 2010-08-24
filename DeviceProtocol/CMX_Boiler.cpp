@@ -415,9 +415,11 @@ int CMX_Boiler::checkDisconnected()
 {
 	int order;
 	int result;
-	for(order = 1; order <= getCurrentSupportedCount(); order++)
+
+	for(order = 1; order <= getCurrentSupportedCount(); order++)		
 	{
 		result = checkEachAck(order);
+
 		if(result == TRUE)		//No Disconnected
 			return TRUE;
 	}
@@ -430,16 +432,18 @@ unsigned int CMX_Boiler::getCurrentSupportedCount()
 	/*
 	int order;
 	int result;
-	for(order = 1; order <= supportedPollingCount; order++)
+
+	for(order = supportedPollingCount; order > 0; order--)
 	{
 		result = checkEachAck(order);
-		if(result == FALSE)	
-			return order - 1;
+		if(result == TRUE)
+			return order;
 	}
-
-	return supportedPollingCount;
+	
+	return 0;
 	*/
-
+	
+	//보일러의 count는 boiler method command에서 가져 온다.	
 	return boilerCnt;
 }
 

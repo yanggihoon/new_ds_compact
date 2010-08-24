@@ -79,8 +79,6 @@ int HAMUN_Curtain::FrameSend(unsigned char wBuf[])
 		}
 	}
 
-
-
 	return result;
 }
 
@@ -189,9 +187,11 @@ int HAMUN_Curtain::checkDisconnected()
 {
 	int order;
 	int result;
-	for(order = 1; order <= getCurrentSupportedCount(); order++)
+
+	for(order = 1; order <= getCurrentSupportedCount(); order++)		
 	{
 		result = checkEachAck(order);
+
 		if(result == TRUE)		//No Disconnected
 			return TRUE;
 	}
@@ -201,13 +201,23 @@ int HAMUN_Curtain::checkDisconnected()
 
 unsigned int HAMUN_Curtain::getCurrentSupportedCount()
 {
+	/*
 	int order;
 	int result;
-	for(order = 1; order <= supportedPollingCount; order++)
+
+	if(supportedPollingCount > MAX_SUPPORTED_CURTAIN_CNT)
+		supportedPollingCount = MAX_SUPPORTED_CURTAIN_CNT;
+
+	for(order = supportedPollingCount; order > 0; order--)
 	{
 		result = checkEachAck(order);
-		if(result == FALSE)	
-			return order - 1;
+		if(result == TRUE)
+			return order;
 	}
+
+	return 0;
+	*/
+	//하문 커튼은 device의 상태를 체크 하는 명령어가 없어서 count를 알지 못 한다.
+	//그래서 처음 device.conf 파일에서 가져온 값을 device count로 한다.
 	return supportedPollingCount;
 }
