@@ -1561,12 +1561,18 @@ void SOAP_Handler::Subscribe_Remove(char* url)
 int SOAP_Handler::Check_Supported(enum DEVICE_NAME device_name)
 {
 	int count;
-	count = get_current_supported_cnt(device_name);
 
-	if(count <= 0) 
-		return FALSE;
+	if(get_current_supported_cnt(device_name) > 0)
+	{
+		count = check_device_supported(device_name);
+
+		if(count == NOT_SUPPORTED || count == -1) 
+			return FALSE;
+		else
+			return TRUE;
+	}
 	else
-		return TRUE;
+		return FALSE;
 }
 
 //client 프로그램 중 get_item 할 때  get_count를 먼저 가져와 count 수 만큼 

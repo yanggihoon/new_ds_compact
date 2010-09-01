@@ -16,6 +16,7 @@ int pollingDeviceIndex = 0;
 int pollingDeviceOrder = 1;
 int deviceCategoryCnt = 0;
 DeviceProtocol* deviceCategory[MAX_DEVICE_CATEGORY] = {NULL, };
+unsigned char all_device_supported[ALL_DEVICE_COUNT][2];
 
 int ParsingLine(char str[][MAX_CONF_BUF], char *line)
 {
@@ -304,6 +305,99 @@ void CmdCtrl(char* ctrl)
 					break;					
 					
 			}
+		}
+	}
+	else if(!strcmp(arg1, "supported"))
+	{
+		for(i = 0; i < ALL_DEVICE_COUNT; i++)
+		{
+			switch(all_device_supported[i][0])
+			{
+				case LIGHT:
+					if(all_device_supported[i][1] == SUPPORTED)
+						Log(LOG::INFO, "LIGHT is SUPPORTED\n");
+					else if(all_device_supported[i][1] == NOT_SUPPORTED)
+						Log(LOG::INFO, "LIGHT is NOT SUPPORTED\n");							
+					else
+						Log(LOG::INFO, "LIGHT is UNKNOWN\n");
+					break;
+
+				case GAS:
+					if(all_device_supported[i][1] == SUPPORTED)
+						Log(LOG::INFO, "GAS is SUPPORTED\n");
+					else if(all_device_supported[i][1] == NOT_SUPPORTED)
+						Log(LOG::INFO, "GAS is NOT SUPPORTED\n");							
+					else
+						Log(LOG::INFO, "GAS is UNKNOWN\n");
+					break;
+					
+				case BOILER:
+					if(all_device_supported[i][1] == SUPPORTED)
+						Log(LOG::INFO, "BOILER is SUPPORTED\n");
+					else if(all_device_supported[i][1] == NOT_SUPPORTED)
+						Log(LOG::INFO, "BOILER is NOT SUPPORTED\n");							
+					else
+						Log(LOG::INFO, "BOILER is UNKNOWN\n");
+					break;
+
+				case BUNDLELIGHT:
+					if(all_device_supported[i][1] == SUPPORTED)
+						Log(LOG::INFO, "BUNDLELIGHT is SUPPORTED\n");
+					else if(all_device_supported[i][1] == NOT_SUPPORTED)
+						Log(LOG::INFO, "BUNDLELIGHT is NOT SUPPORTED\n");							
+					else
+						Log(LOG::INFO, "BUNDLELIGHT is UNKNOWN\n");
+					break;
+
+				case CURTAIN:
+					if(all_device_supported[i][1] == SUPPORTED)
+						Log(LOG::INFO, "CURTAIN is SUPPORTED\n");
+					else if(all_device_supported[i][1] == NOT_SUPPORTED)
+						Log(LOG::INFO, "CURTAIN is NOT SUPPORTED\n");							
+					else
+						Log(LOG::INFO, "CURTAIN is UNKNOWN\n");
+					break;
+
+				case SENSOR:
+					if(all_device_supported[i][1] == SUPPORTED)
+						Log(LOG::INFO, "SENSOR is SUPPORTED\n");
+					else if(all_device_supported[i][1] == NOT_SUPPORTED)
+						Log(LOG::INFO, "SENSOR is NOT SUPPORTED\n");							
+					else
+						Log(LOG::INFO, "SENSOR is UNKNOWN\n");
+					break;
+
+				case SYSTEMAIRCON:
+					if(all_device_supported[i][1] == SUPPORTED)
+						Log(LOG::INFO, "SYSTEMAIRCON is SUPPORTED\n");
+					else if(all_device_supported[i][1] == NOT_SUPPORTED)
+						Log(LOG::INFO, "SYSTEMAIRCON is NOT SUPPORTED\n");							
+					else
+						Log(LOG::INFO, "SYSTEMAIRCON is UNKNOWN\n");
+					break;
+
+				case FANSYSTEM:
+					if(all_device_supported[i][1] == SUPPORTED)
+						Log(LOG::INFO, "FANSYSTEM is SUPPORTED\n");
+					else if(all_device_supported[i][1] == NOT_SUPPORTED)
+						Log(LOG::INFO, "FANSYSTEM is NOT SUPPORTED\n");							
+					else
+						Log(LOG::INFO, "FANSYSTEM is UNKNOWN\n");
+					break;					
+
+				case DOORLOCK:
+					if(all_device_supported[i][1] == SUPPORTED)
+						Log(LOG::INFO, "DOORLOCK is SUPPORTED\n");
+					else if(all_device_supported[i][1] == NOT_SUPPORTED)
+						Log(LOG::INFO, "DOORLOCK is NOT SUPPORTED\n");							
+					else
+						Log(LOG::INFO, "DOORLOCK is UNKNOWN\n");
+					break;					
+
+				default:
+					break;
+			}
+
 		}
 	}
 	else if(!strcmp(arg1, "ack"))
@@ -645,6 +739,7 @@ void GetCmd()
 			printf("slist : show current subscriber list\n");
 			printf("category : show device category whether supported or not supported\n");
 			printf("protocol : show protocol of supported device\n");
+			printf("supported : show supported devices \n");
 			printf("ack : show device each order ack status\n");
 			printf("discon : show device connection status whether connected or disconnected\n");
 			printf("port : show port error\n");
@@ -703,13 +798,24 @@ int SetLogType(int cnt, char* param)
 	return log_type;
 }
 
+void markup_device_support(enum DEVICE_NAME device_name)
+{
+	int i;
+	
+	for(i = 0; i < ALL_DEVICE_COUNT; i++)
+	{
+		if(all_device_supported[i][0] == device_name)
+			all_device_supported[i][1] = SUPPORTED;
+	}
+}
+
 int SetDeviceConfigure()
 {
 	FILE *fconf;
 	char confBuf[MAX_CONF_BUF][MAX_CONF_BUF];
 	char confTemp[MAX_CONF_BUF];
 	int tokenCnt;
-	int result;
+	int result, i;
 	
 	if((fconf = fopen("device.conf","r")) == NULL)	
 	{
@@ -738,6 +844,7 @@ int SetDeviceConfigure()
 				deviceCategoryCnt++;				
 			}
 			Log(LOG::MGR, "%s %s Device Setting up, supportedPollingCount = %d\n", confBuf[0], confBuf[1], atoi(confBuf[2]));
+			markup_device_support(LIGHT);
 		}
 
 		if(!strcmp(confBuf[0], "BOILER"))
@@ -754,6 +861,7 @@ int SetDeviceConfigure()
 				deviceCategoryCnt++;				
 			}
 			Log(LOG::MGR, "%s %s Device Setting up, supportedPollingCount = %d\n", confBuf[0], confBuf[1], atoi(confBuf[2]));
+			markup_device_support(BOILER);			
 		}
 
 		if(!strcmp(confBuf[0], "BUNDLELIGHT"))
@@ -770,6 +878,7 @@ int SetDeviceConfigure()
 				deviceCategoryCnt++;				
 			}
 			Log(LOG::MGR, "%s %s Device Setting up, supportedPollingCount = %d\n", confBuf[0], confBuf[1], atoi(confBuf[2]));
+			markup_device_support(BUNDLELIGHT);			
 		}
 
 		if(!strcmp(confBuf[0], "GAS"))
@@ -786,6 +895,7 @@ int SetDeviceConfigure()
 				deviceCategoryCnt++;
 			}
 			Log(LOG::MGR, "%s %s Device Setting up, supportedPollingCount = %d\n", confBuf[0], confBuf[1], atoi(confBuf[2]));
+			markup_device_support(GAS);
 		}
 
 		if(!strcmp(confBuf[0], "CURTAIN"))
@@ -802,6 +912,7 @@ int SetDeviceConfigure()
 				deviceCategoryCnt++;
 			}
 			Log(LOG::MGR, "%s %s Device Setting up, supportedPollingCount = %d\n", confBuf[0], confBuf[1], atoi(confBuf[2]));
+			markup_device_support(CURTAIN);
 		}
 
 		if(!strcmp(confBuf[0], "SENSOR"))
@@ -818,6 +929,7 @@ int SetDeviceConfigure()
 				deviceCategoryCnt++;
 			}
 			Log(LOG::MGR, "%s %s Device Setting up, supportedPollingCount = %d\n", confBuf[0], confBuf[1], atoi(confBuf[2]));
+			markup_device_support(SENSOR);
 		}
 
 	}
@@ -1390,6 +1502,26 @@ int main(int argc, char** argv)
 	log_type = SetLogType(argc, argv[1]);
 
 	Log(LOG::MGR, "App version : "__DATE__" "__TIME__"\n");
+
+/************************************************************************************/
+/* init All Device Category 																*/
+/************************************************************************************/
+	all_device_supported[0][0] = LIGHT, all_device_supported[0][1] = NOT_SUPPORTED;
+	all_device_supported[1][0] = GAS, all_device_supported[1][1] = NOT_SUPPORTED;
+	all_device_supported[2][0] = BOILER, all_device_supported[2][1] = NOT_SUPPORTED;
+	all_device_supported[3][0] = BUNDLELIGHT, all_device_supported[3][1] = NOT_SUPPORTED;
+	all_device_supported[4][0] = CURTAIN, all_device_supported[4][1] = NOT_SUPPORTED;
+	all_device_supported[5][0] = SENSOR, all_device_supported[5][1] = NOT_SUPPORTED;
+	all_device_supported[6][0] = SYSTEMAIRCON, all_device_supported[6][1] = NOT_SUPPORTED;	
+	all_device_supported[7][0] = FANSYSTEM, all_device_supported[7][1] = NOT_SUPPORTED;
+	all_device_supported[8][0] = DOORLOCK, all_device_supported[8][1] = NOT_SUPPORTED;
+	all_device_supported[9][0] = DEVICE_DUMMY, all_device_supported[9][1] = NOT_SUPPORTED;
+	all_device_supported[10][0] = DEVICE_DUMMY, all_device_supported[10][1] = NOT_SUPPORTED;
+	all_device_supported[11][0] = DEVICE_DUMMY, all_device_supported[11][1] = NOT_SUPPORTED;
+	all_device_supported[12][0] = DEVICE_DUMMY, all_device_supported[12][1] = NOT_SUPPORTED;
+	all_device_supported[13][0] = DEVICE_DUMMY, all_device_supported[13][1] = NOT_SUPPORTED;	
+	all_device_supported[14][0] = DEVICE_DUMMY, all_device_supported[14][1] = NOT_SUPPORTED;
+
 /************************************************************************************/
 /* Device Setting																		*/
 /************************************************************************************/
@@ -1524,6 +1656,21 @@ enum DEVICE_PROTOCOL get_protocol(enum DEVICE_NAME device_name)
 unsigned int get_devicecategory_cnt()
 {
 	return deviceCategoryCnt;
+}
+
+int check_device_supported(enum DEVICE_NAME device_name)
+{
+	int i;
+
+	for(i = 0; i < ALL_DEVICE_COUNT; i++)
+	{
+		if(all_device_supported[i][0] == device_name)
+		{
+			return all_device_supported[i][1];
+		}
+	}
+
+	return -1;
 }
 
 int get_current_supported_cnt(enum DEVICE_NAME device_name)

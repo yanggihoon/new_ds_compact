@@ -73,6 +73,22 @@ typedef struct
 	unsigned char sensorUndetected;
 }_SensorProperty;
 
+typedef struct
+{
+	unsigned char doPower;
+	unsigned char doWindDirection;
+	unsigned char doWindPower;
+	unsigned char doDrive;
+	unsigned char stPower;	
+	unsigned char stWindDirection;
+	unsigned char stWindPower;
+	unsigned char stDrive;
+	unsigned char stTracking;
+	unsigned char stInstallation;
+	unsigned char stInnerRoomError;
+	unsigned char stOutRoomError;
+}_SystemAirconProperty;
+
 typedef union
 {
 	_LightProperty lightProperty;
@@ -81,7 +97,9 @@ typedef union
 	_BoilerProperty boilerProperty;
 	_CurtainProperty curtainProperty;
 	_SensorProperty sensorProperty;
+	_SystemAirconProperty systemAirconProperty;
 }D_Property;
+
 
 
 /*********************************Item*********************************/
@@ -130,6 +148,18 @@ typedef struct
 	unsigned char subAction[8];
 	unsigned char error;
 }_SensorItem;
+
+typedef struct
+{
+	unsigned char power;
+	unsigned char windDirection;
+	unsigned char windPower;
+	unsigned char drive;
+	unsigned char rtemp;
+	unsigned char ctemp;
+	unsigned char trackingMode;
+	unsigned char error;
+}_SystemAirconItem;
 
 typedef union
 {
@@ -303,6 +333,18 @@ enum SENSOR_ACTION
 	SENSOR_UNDETECTED	=	2
 };
 
+/*********************************SystemAircon Enum*********************************/
+enum SYSTEMAIRCON_EVENT
+{
+
+};
+
+/*
+enum SENSOR_ACTION
+{
+
+};
+*/
 
 /*********************************Category*********************************/
 enum DEVICE_PROTOCOL
@@ -321,7 +363,10 @@ enum DEVICE_NAME
 	BOILER				= 3,
 	BUNDLELIGHT		= 4,
 	CURTAIN			= 5,
-	SENSOR				= 6
+	SENSOR				= 6,
+	SYSTEMAIRCON 		= 7,
+	FANSYSTEM			= 8,
+	DOORLOCK			= 9
 };
 
 enum DEVICE_INTERFACE
