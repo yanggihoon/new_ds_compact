@@ -1,4 +1,4 @@
-//Test Commit
+
 #include <app.h>
 
 #define BUNDLELIGHT_GAS_CLOSE_MAX_WAIT_COUNT	100	//한개 polling은 대략 200ms 1초 polling은 5개 = 10초 polling은 50개 
