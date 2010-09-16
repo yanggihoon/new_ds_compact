@@ -79,7 +79,7 @@ APP_OBJECTS =	main.o \
 		$(SOAP_DIR)/cmxDeviceServiceServer.o
 
 
-APP_TARGET	=	new_ds_compact
+APP_TARGET	=	standard_compact
 
 ####### Implicit rules
 

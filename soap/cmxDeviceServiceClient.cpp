@@ -8,7 +8,7 @@
 
 namespace cmxDeviceService {
 
-SOAP_SOURCE_STAMP("@(#) cmxDeviceServiceClient.cpp ver 2.7.6e 2010-08-20 13:24:12 GMT")
+SOAP_SOURCE_STAMP("@(#) cmxDeviceServiceClient.cpp ver 2.7.6e 2010-09-15 10:01:05 GMT")
 
 
 SOAP_FMAC5 int SOAP_FMAC6 soap_call_ns__getDeviceCategoryCount(struct soap *soap, const char *soap_endpoint, const char *soap_action, void *_, int *out)

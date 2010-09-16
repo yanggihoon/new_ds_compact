@@ -9,7 +9,7 @@
 
 namespace cmxDeviceService {
 
-SOAP_SOURCE_STAMP("@(#) cmxDeviceServiceC.cpp ver 2.7.6e 2010-08-20 13:24:12 GMT")
+SOAP_SOURCE_STAMP("@(#) cmxDeviceServiceC.cpp ver 2.7.6e 2010-09-15 10:01:05 GMT")
 
 
 #ifndef WITH_NOGLOBAL
